@@ -1,0 +1,213 @@
+{% extends "index.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+    <section class="pt-5 mt-5">
+        <div class="container py-4 py-xl-5">
+            <div class="row gy-4 gy-md-0">
+                <div class="col-md-6 text-center text-md-start d-flex d-sm-flex d-md-flex justify-content-center align-items-center justify-content-md-start align-items-md-center justify-content-xl-center">
+                    <div style="max-width: 350px;">
+                        <h1 class="display-6 fw-bold mb-4"><span class="underline"><strong>Features</strong></span>&nbsp;1
+                        </h1>
+                        <p class="my-4">Paragraph 1</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div><img class="rounded img-fluid w-100 fit-cover" style="min-height: 300px;"
+                              src="{% static 'assets/img/featuresBg1.jpg' %}"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="container py-4 py-xl-5">
+            <div class="row mb-5">
+                <div class="col text-center">
+                    <h3 class="display-6 fw-bold pb-2 mb-2"><span class="underline"><strong>Features</strong></span>&nbsp;2
+                    </h3>
+                </div>
+                <div class="col-lg-12 text-center">
+                    <p class="text-muted"><span style="color: rgb(45, 45, 45);">Paragraph 2</span></p>
+                </div>
+            </div>
+            <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3">
+                <div class="col-xl-6 col-xxl-6">
+                    <div class="card border-light border-1 d-flex justify-content-center p-4">
+                        <div class="card-body">
+                            <div>
+                                <div class="bs-icon-lg bs-icon-rounded d-flex flex-shrink-0 justify-content-center align-items-center d-inline-block mb-4 bs-icon defaultBgColor">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -32 576 576" width="1em"
+                                         height="1em" fill="currentColor">
+                                        <!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. -->
+                                        <path d="M287.9 0C297.1 0 305.5 5.25 309.5 13.52L378.1 154.8L531.4 177.5C540.4 178.8 547.8 185.1 550.7 193.7C553.5 202.4 551.2 211.9 544.8 218.2L433.6 328.4L459.9 483.9C461.4 492.9 457.7 502.1 450.2 507.4C442.8 512.7 432.1 513.4 424.9 509.1L287.9 435.9L150.1 509.1C142.9 513.4 133.1 512.7 125.6 507.4C118.2 502.1 114.5 492.9 115.1 483.9L142.2 328.4L31.11 218.2C24.65 211.9 22.36 202.4 25.2 193.7C28.03 185.1 35.5 178.8 44.49 177.5L197.7 154.8L266.3 13.52C270.4 5.249 278.7 0 287.9 0L287.9 0zM287.9 78.95L235.4 187.2C231.9 194.3 225.1 199.3 217.3 200.5L98.98 217.9L184.9 303C190.4 308.5 192.9 316.4 191.6 324.1L171.4 443.7L276.6 387.5C283.7 383.7 292.2 383.7 299.2 387.5L404.4 443.7L384.2 324.1C382.9 316.4 385.5 308.5 391 303L476.9 217.9L358.6 200.5C350.7 199.3 343.9 194.3 340.5 187.2L287.9 78.95z"></path>
+                                    </svg>
+                                </div>
+                                <h4 class="fw-bold">Title 1</h4>
+                                <p class="text-muted"><span style="color: rgb(45, 45, 45);">Paragraph 3</span></p><a
+                                    class="fw-bold link-primary" href="#">Learn more&nbsp;<svg
+                                    xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"
+                                    stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    class="icon icon-tabler icon-tabler-arrow-narrow-right fs-3">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <line x1="15" y1="16" x2="19" y2="12"></line>
+                                <line x1="15" y1="8" x2="19" y2="12"></line>
+                            </svg>
+                            </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-xxl-6">
+                    <div class="card border-light border-1 d-flex justify-content-center p-4">
+                        <div class="card-body">
+                            <div>
+                                <div class="bs-icon-lg bs-icon-rounded d-flex flex-shrink-0 justify-content-center align-items-center d-inline-block mb-4 bs-icon defaultBgColor">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -32 576 576" width="1em"
+                                         height="1em" fill="currentColor">
+                                        <!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. -->
+                                        <path d="M287.9 0C297.1 0 305.5 5.25 309.5 13.52L378.1 154.8L531.4 177.5C540.4 178.8 547.8 185.1 550.7 193.7C553.5 202.4 551.2 211.9 544.8 218.2L433.6 328.4L459.9 483.9C461.4 492.9 457.7 502.1 450.2 507.4C442.8 512.7 432.1 513.4 424.9 509.1L287.9 435.9L150.1 509.1C142.9 513.4 133.1 512.7 125.6 507.4C118.2 502.1 114.5 492.9 115.1 483.9L142.2 328.4L31.11 218.2C24.65 211.9 22.36 202.4 25.2 193.7C28.03 185.1 35.5 178.8 44.49 177.5L197.7 154.8L266.3 13.52C270.4 5.249 278.7 0 287.9 0L287.9 0zM287.9 78.95L235.4 187.2C231.9 194.3 225.1 199.3 217.3 200.5L98.98 217.9L184.9 303C190.4 308.5 192.9 316.4 191.6 324.1L171.4 443.7L276.6 387.5C283.7 383.7 292.2 383.7 299.2 387.5L404.4 443.7L384.2 324.1C382.9 316.4 385.5 308.5 391 303L476.9 217.9L358.6 200.5C350.7 199.3 343.9 194.3 340.5 187.2L287.9 78.95z"></path>
+                                    </svg>
+                                </div>
+                                <h4 class="fw-bold">Title 2</h4>
+                                <p class="text-muted"><span style="color: rgb(45, 45, 45);">Paragraph 4</span></p><a
+                                    class="fw-bold link-primary" href="#">Learn more&nbsp;<svg
+                                    xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"
+                                    stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    class="icon icon-tabler icon-tabler-arrow-narrow-right fs-3">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <line x1="15" y1="16" x2="19" y2="12"></line>
+                                <line x1="15" y1="8" x2="19" y2="12"></line>
+                            </svg>
+                            </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-5"><img class="rounded img-fluid"
+                                                src="{% static 'assets/img/featuresBg2.jpg' %}"></div>
+                <div class="col d-md-flex align-items-md-end align-items-lg-center mb-5">
+                    <div class="row gy-4 row-cols-1 row-cols-md-2 flex-grow-1">
+                        <div class="col">
+                            <div class="card border-light border-1 d-flex justify-content-center p-4">
+                                <div class="card-body">
+                                    <div>
+                                        <h4 class="fw-bold">Title 3</h4>
+                                        <p class="text-muted"><span style="color: rgb(45, 45, 45);">Paragraph 5</span>
+                                        </p><a class="fw-bold link-primary" href="#">Learn more&nbsp;<svg
+                                            xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
+                                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="icon icon-tabler icon-tabler-arrow-narrow-right fs-3">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                                        <line x1="15" y1="16" x2="19" y2="12"></line>
+                                        <line x1="15" y1="8" x2="19" y2="12"></line>
+                                    </svg>
+                                    </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card border-light border-1 d-flex justify-content-center p-4">
+                                <div class="card-body">
+                                    <div>
+                                        <h4 class="fw-bold">Title 4</h4>
+                                        <p class="text-muted"><span style="color: rgb(45, 45, 45);">Paragraph 6</span>
+                                        </p><a class="fw-bold link-primary" href="#">Learn more&nbsp;<svg
+                                            xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
+                                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="icon icon-tabler icon-tabler-arrow-narrow-right fs-3">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                                        <line x1="15" y1="16" x2="19" y2="12"></line>
+                                        <line x1="15" y1="8" x2="19" y2="12"></line>
+                                    </svg>
+                                    </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col d-md-flex align-items-md-end align-items-lg-center mb-5">
+                    <div class="row gy-4 row-cols-1 row-cols-md-2 flex-grow-1">
+                        <div class="col">
+                            <div class="card border-light border-1 d-flex justify-content-center p-4">
+                                <div class="card-body">
+                                    <div>
+                                        <h4 class="fw-bold">Title 5</h4>
+                                        <p class="text-muted"><span style="color: rgb(45, 45, 45);">Paragraph 7</span>
+                                        </p><a class="fw-bold link-primary" href="#">Learn more&nbsp;<svg
+                                            xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
+                                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="icon icon-tabler icon-tabler-arrow-narrow-right fs-3">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                                        <line x1="15" y1="16" x2="19" y2="12"></line>
+                                        <line x1="15" y1="8" x2="19" y2="12"></line>
+                                    </svg>
+                                    </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card border-light border-1 d-flex justify-content-center p-4">
+                                <div class="card-body">
+                                    <div>
+                                        <h4 class="fw-bold">Title 6</h4>
+                                        <p class="text-muted"><span style="color: rgb(45, 45, 45);">Paragraph 8</span>
+                                        </p><a class="fw-bold link-primary" href="#">Learn more&nbsp;<svg
+                                            xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"
+                                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                            stroke-linecap="round" stroke-linejoin="round"
+                                            class="icon icon-tabler icon-tabler-arrow-narrow-right fs-3">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                                        <line x1="15" y1="16" x2="19" y2="12"></line>
+                                        <line x1="15" y1="8" x2="19" y2="12"></line>
+                                    </svg>
+                                    </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 order-first order-md-last mb-5"><img class="rounded img-fluid"
+                                                                          src="{% static 'assets/img/featuresBg3.jpg' %}"></div>
+            </div>
+        </div>
+    </section><!-- Start: Brands -->
+    <section>
+        <div class="container text-center py-5">
+            <div class="text-center">
+                <p class="mb-4" style="font-size: 1.6rem;">Used by <span
+                        class="p-1 defaultBgColor"><strong>100+</strong></span>&nbsp;of the best institutions in the
+                    world.</p>
+                <a href="#"> <img class="m-3 companyImg" src="{% static 'assets/img/gov.png' %}"></a>
+                <a href="#"> <img class="m-3 companyImg" src="{% static 'assets/img/dae.png' %}"></a>
+                <a href="#"> <img class="m-3 companyImg" src="{% static 'assets/img/bari.png' %}"></a>
+                <a href="#"> <img class="m-3 companyImg" src="{% static 'assets/img/sabu.png' %}"></a>
+                <a href="#"> <img class="m-3 companyImg" src="{% static 'assets/img/iubat.png' %}"></a>
+            </div>
+        </div>
+    </section>
+    <!-- End: Brands -->
+{% endblock %}

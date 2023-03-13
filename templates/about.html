@@ -1,0 +1,73 @@
+{% extends "index.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+<section class="pt-5 pb-2 mt-5">
+    <div class="container py-4 py-xl-5">
+        <div class="row gy-4 gy-md-0">
+            <div class="col-md-6 text-center text-md-start d-flex d-sm-flex d-md-flex justify-content-center align-items-center justify-content-md-start align-items-md-center justify-content-xl-center">
+                <div style="max-width: 350px;">
+                    <h1 class="display-5 fw-bold mb-4"><span class="underline">Header</span>&nbsp;1</h1>
+                    <p class="text-muted my-4">Paragraph 1</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div><img class="rounded img-fluid w-100 fit-cover" style="min-height: 300px;" src="{% static 'assets/img/aboutBg1.jpg' %}"></div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="pb-5">
+    <div class="container py-5">
+        <div class="row row-cols-1 row-cols-md-2 mx-auto aboutContainer">
+            <div class="col mb-5"><img class="rounded img-fluid" src="{% static 'assets/img/aboutBg2.jpg' %}"></div>
+            <div class="col d-md-flex align-items-md-end align-items-lg-center mb-5">
+                <div>
+                    <h5 class="fs-3 fw-bold mb-4">Title 1</h5>
+                    <p class="text-muted mb-4">Paragraph 2</p><a class="fw-bold link-primary mb-3" href="#"><br><strong>Learn more&nbsp;</strong>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icon-tabler-arrow-narrow-right fs-3">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <line x1="15" y1="16" x2="19" y2="12"></line>
+                            <line x1="15" y1="8" x2="19" y2="12"></line>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="row row-cols-1 row-cols-md-2 mx-auto aboutContainer">
+            <div class="col order-md-last mb-5"><img class="rounded img-fluid" src="{% static 'assets/img/aboutBg3.jpg' %}"></div>
+            <div class="col d-md-flex align-items-md-end align-items-lg-center mb-5">
+                <div class="ms-md-3">
+                    <h5 class="fs-3 fw-bold mb-4">Title 2</h5>
+                    <p class="text-muted mb-4">Paragraph 3</p><a class="fw-bold link-primary" href="#"><br><strong>Learn
+                            more</strong>&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icon-tabler-arrow-narrow-right fs-3">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <line x1="15" y1="16" x2="19" y2="12"></line>
+                            <line x1="15" y1="8" x2="19" y2="12"></line>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="row row-cols-1 row-cols-md-2 mx-auto aboutContainer">
+            <div class="col mb-5"><img class="rounded img-fluid" src="{% static 'assets/img/aboutBg4.jpg' %}"></div>
+            <div class="col d-md-flex align-items-md-end align-items-lg-center mb-5">
+                <div>
+                    <h5 class="fs-3 fw-bold mb-4"><strong>Title 3</strong></h5>
+                    <p class="text-muted mb-4">Paragraph 4</p><a class="fw-bold link-primary" href="#"><strong>Learn
+                            more</strong>&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icon-tabler-arrow-narrow-right fs-3">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                            <line x1="15" y1="16" x2="19" y2="12"></line>
+                            <line x1="15" y1="8" x2="19" y2="12"></line>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,385 @@
+{% load static %}
+{% load i18n %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Agronomy</title>
+    <meta name="description" content="Agricultural assistant system.">
+    <link rel="shortcut icon" href="{% static 'assets/img/agronomy_16px.png' %}">
+    <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Raleway:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&amp;display=swap">
+    <link rel="stylesheet" href="{% static 'assets/fonts/fontawesome-all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/fonts/material-icons.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/styles.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/animate.min.min.css' %}">
+</head>
+
+<body id="page-top">
+
+<!-- Start: Navbar -->
+{% include 'navbar.html' %}
+<!-- End: Navbar -->
+
+{% block content %}
+    <!-- Start: Header -->
+    <header class="pt-5">
+        <div class="container pt-4 pt-xl-5">
+            <div class="row pt-5">
+                <div class="col-md-10 text-center text-md-start mx-auto">
+                    <div class="text-center">
+                        <h1 class="display-5 fw-bold mb-5"><span class="underline">Agricultural</span> Assistant System
+                        </h1>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-12 mx-auto">
+                    <div class="text-center position-relative">
+                        <div class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000"
+                             data-bs-touch="false" id="carousel-1">
+                            <div class="carousel-inner h-75">
+                                <div class="carousel-item active"><img class="w-100 d-block"
+                                                                       src="{% static 'assets/img/indexSlide1.jpg' %}"
+                                                                       alt="Slide Image"></div>
+                                <div class="carousel-item"><img class="w-100 d-block w-75"
+                                                                src="{% static 'assets/img/indexSlide2.jpg' %}"
+                                                                alt="Slide Image"></div>
+                                <div class="carousel-item"><img class="w-100 d-block"
+                                                                src="{% static 'assets/img/indexSlide3.jpg' %}"
+                                                                alt="Slide Image"></div>
+                                <div class="carousel-item"><img class="w-100 d-block"
+                                                                src="{% static 'assets/img/indexSlide4.jpg' %}"
+                                                                alt="Slide Image"></div>
+                                <div class="carousel-item"><img class="w-100 d-block"
+                                                                src="{% static 'assets/img/indexSlide5.jpg' %}"
+                                                                alt="Slide Image"></div>
+                                <div class="carousel-item"><img class="w-100 d-block"
+                                                                src="{% static 'assets/img/indexSlide6.jpg' %}"
+                                                                alt="Slide Image"></div>
+                            </div>
+                            <ol class="carousel-indicators">
+                                <li data-bs-target="#carousel-1" data-bs-slide-to="0" class="active"></li>
+                                <li data-bs-target="#carousel-1" data-bs-slide-to="1"></li>
+                                <li data-bs-target="#carousel-1" data-bs-slide-to="2"></li>
+                                <li data-bs-target="#carousel-1" data-bs-slide-to="3"></li>
+                                <li data-bs-target="#carousel-1" data-bs-slide-to="4"></li>
+                                <li data-bs-target="#carousel-1" data-bs-slide-to="5"></li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header><!-- End: Header -->
+    <section>
+        <div class="container py-4 py-xl-5">
+            <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-lg-3">
+                <div class="col">
+                    <div class="card border-light border-1 d-flex justify-content-center p-4">
+                        <div class="card-body">
+                            <div class="bs-icon-lg bs-icon-rounded d-flex flex-shrink-0 justify-content-center align-items-center d-inline-block mb-4 bs-icon defaultBgColor">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -32 576 576" width="1em" height="1em"
+                                     fill="currentColor">
+                                    <!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. -->
+                                    <path d="M287.9 0C297.1 0 305.5 5.25 309.5 13.52L378.1 154.8L531.4 177.5C540.4 178.8 547.8 185.1 550.7 193.7C553.5 202.4 551.2 211.9 544.8 218.2L433.6 328.4L459.9 483.9C461.4 492.9 457.7 502.1 450.2 507.4C442.8 512.7 432.1 513.4 424.9 509.1L287.9 435.9L150.1 509.1C142.9 513.4 133.1 512.7 125.6 507.4C118.2 502.1 114.5 492.9 115.1 483.9L142.2 328.4L31.11 218.2C24.65 211.9 22.36 202.4 25.2 193.7C28.03 185.1 35.5 178.8 44.49 177.5L197.7 154.8L266.3 13.52C270.4 5.249 278.7 0 287.9 0L287.9 0zM287.9 78.95L235.4 187.2C231.9 194.3 225.1 199.3 217.3 200.5L98.98 217.9L184.9 303C190.4 308.5 192.9 316.4 191.6 324.1L171.4 443.7L276.6 387.5C283.7 383.7 292.2 383.7 299.2 387.5L404.4 443.7L384.2 324.1C382.9 316.4 385.5 308.5 391 303L476.9 217.9L358.6 200.5C350.7 199.3 343.9 194.3 340.5 187.2L287.9 78.95z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="fw-bold">Title 1</h4>
+                                <p class="text-muted">Paragraph 1</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card border-light border-1 d-flex justify-content-center p-4">
+                        <div class="card-body">
+                            <div class="bs-icon-lg bs-icon-rounded d-flex flex-shrink-0 justify-content-center align-items-center d-inline-block mb-4 bs-icon defaultBgColor">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -32 576 576" width="1em" height="1em"
+                                     fill="currentColor">
+                                    <!--! Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. -->
+                                    <path d="M287.9 0C297.1 0 305.5 5.25 309.5 13.52L378.1 154.8L531.4 177.5C540.4 178.8 547.8 185.1 550.7 193.7C553.5 202.4 551.2 211.9 544.8 218.2L433.6 328.4L459.9 483.9C461.4 492.9 457.7 502.1 450.2 507.4C442.8 512.7 432.1 513.4 424.9 509.1L287.9 435.9L150.1 509.1C142.9 513.4 133.1 512.7 125.6 507.4C118.2 502.1 114.5 492.9 115.1 483.9L142.2 328.4L31.11 218.2C24.65 211.9 22.36 202.4 25.2 193.7C28.03 185.1 35.5 178.8 44.49 177.5L197.7 154.8L266.3 13.52C270.4 5.249 278.7 0 287.9 0L287.9 0zM287.9 78.95L235.4 187.2C231.9 194.3 225.1 199.3 217.3 200.5L98.98 217.9L184.9 303C190.4 308.5 192.9 316.4 191.6 324.1L171.4 443.7L276.6 387.5C283.7 383.7 292.2 383.7 299.2 387.5L404.4 443.7L384.2 324.1C382.9 316.4 385.5 308.5 391 303L476.9 217.9L358.6 200.5C350.7 199.3 343.9 194.3 340.5 187.2L287.9 78.95z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="fw-bold">Title 2</h4>
+                                <p class="text-muted">Paragraph 2</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card border-light border-1 d-flex justify-content-center p-4">
+                        <div class="card-body">
+                            <div class="bs-icon-lg bs-icon-rounded d-flex flex-shrink-0 justify-content-center align-items-center d-inline-block mb-4 bs-icon defaultBgColor">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"
+                                     stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                                     stroke-linejoin="round" class="icon icon-tabler icon-tabler-star">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                    <path d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h4 class="fw-bold">Title 3</h4>
+                                <p class="text-muted">Paragraph 3</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="container py-4 py-xl-5">
+            <div class="row">
+                <div class="col">
+                    <h3 class="display-6 fw-bold pb-md-4"><span class="underline"><strong>Features</strong></span>&nbsp;1
+                    </h3>
+                </div>
+                <div class="col pt-4">
+                    <p class="text-muted mb-4">Paragraph 4</p>
+                </div>
+            </div>
+            <div class="row gy-4 gy-md-0">
+                <div class="col d-flex d-sm-flex d-md-flex justify-content-center align-items-center justify-content-md-start align-items-md-center justify-content-xl-center">
+                    <div>
+                        <div class="row gy-2 row-cols-1 row-cols-sm-2">
+                            <div class="col text-center text-md-start">
+                                <div class="d-flex justify-content-center align-items-center justify-content-md-start">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"
+                                         stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                                         stroke-linejoin="round"
+                                         class="icon icon-tabler icon-tabler-sun fs-3 text-primary defaultBgColor">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <circle cx="12" cy="12" r="4"></circle>
+                                        <path d="M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7"></path>
+                                    </svg>
+                                    <h5 class="fw-bold mb-0 ms-2">Heading 1</h5>
+                                </div>
+                                <p class="text-muted my-3">Paragraph 5</p>
+                            </div>
+                            <div class="col text-center text-md-start">
+                                <div class="d-flex justify-content-center align-items-center justify-content-md-start">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"
+                                         stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                                         stroke-linejoin="round"
+                                         class="icon icon-tabler icon-tabler-sun fs-3 text-primary defaultBgColor">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <circle cx="12" cy="12" r="4"></circle>
+                                        <path d="M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7"></path>
+                                    </svg>
+                                    <h5 class="fw-bold mb-0 ms-2">Heading 2</h5>
+                                </div>
+                                <p class="text-muted my-3">Paragraph 6</p>
+                            </div>
+                            <div class="col text-center text-md-start">
+                                <div class="d-flex justify-content-center align-items-center justify-content-md-start">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"
+                                         stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                                         stroke-linejoin="round"
+                                         class="icon icon-tabler icon-tabler-sun fs-3 text-primary defaultBgColor">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <circle cx="12" cy="12" r="4"></circle>
+                                        <path d="M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7"></path>
+                                    </svg>
+                                    <h5 class="fw-bold mb-0 ms-2">Heading 3</h5>
+                                </div>
+                                <p class="text-muted my-3">Paragraph 7</p>
+                            </div>
+                            <div class="col text-center text-md-start">
+                                <div class="d-flex justify-content-center align-items-center justify-content-md-start">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"
+                                         stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                                         stroke-linejoin="round"
+                                         class="icon icon-tabler icon-tabler-sun fs-3 text-primary defaultBgColor">
+                                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                        <circle cx="12" cy="12" r="4"></circle>
+                                        <path d="M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7"></path>
+                                    </svg>
+                                    <h5 class="fw-bold mb-0 ms-2">Heading 4</h5>
+                                </div>
+                                <p class="text-muted my-3">Paragraph 8</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col order-first order-md-last">
+                    <div><img class="rounded img-fluid w-100 fit-cover" style="min-height: 300px;"
+                              src="{% static 'assets/img/indexBg1.jpg' %}"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section>
+        <div class="container py-4 py-xl-5">
+            <div class="row gy-4 gy-md-0">
+                <div class="col text-center text-md-start d-flex d-sm-flex d-md-flex justify-content-center align-items-center justify-content-md-start align-items-md-center justify-content-xl-center">
+                    <div><img class="rounded img-fluid fit-cover" style="min-height: 300px;"
+                              src="{% static 'assets/img/indexBg2.jpg' %}" width="800"></div>
+                </div>
+                <div class="col">
+                    <div style="max-width: 450px;">
+                        <h3 class="fw-bold pb-md-4"><span class="underline"><strong>Features</strong></span>&nbsp;2</h3>
+                        <p class="text-muted py-4 py-md-0">Paragraph 9</p>
+                        <div class="row row-cols-2 row-cols-md-2">
+                            <div class="col">
+                                <div><span class="fs-2 fw-bold text-primary defaultBgColor">10+</span>
+                                    <p class="fw-normal text-muted">Paragraph 10</p>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div><span class="fs-2 fw-bold text-primary defaultBgColor">20+</span>
+                                    <p class="fw-normal text-muted">Paragraph 11</p>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div><span class="fs-2 fw-bold text-primary defaultBgColor">30+</span>
+                                    <p class="fw-normal text-muted">Paragraph 12</p>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div><span class="fs-2 fw-bold text-primary defaultBgColor">40+</span>
+                                    <p class="fw-normal text-muted">Paragraph 13</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="py-4 py-xl-5">
+        <div class="container">
+            <div class="bg-primary border rounded border-0 border-primary overflow-hidden">
+                <div class="row g-0">
+                    <div class="col-md-6 d-flex flex-column justify-content-center">
+                        <div class="text-white p-4 p-md-5">
+                            <h2 class="fw-bold text-white mb-3">Feature 3</h2>
+                            <p class="mb-4">Paragraph 14</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 order-first order-md-last" style="min-height: 250px;"><img
+                            class="w-100 h-100 fit-contain pt-5 pt-md-0" src="{% static 'assets/img/indexBg3.png' %}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!-- Start: Testimonials -->
+    <section class="py-5">
+        <div class="container py-5">
+            <div class="row mb-5">
+                <div class="col-md-8 col-xl-6 text-center mx-auto">
+                    <h2 class="fw-bold">What people say<br><span class="underline pb-2">about us</span></h2>
+                </div>
+            </div>
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 d-sm-flex justify-content-sm-center">
+                <div class="col mb-4">
+                    <div class="d-flex align-items-center align-items-sm-start">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
+                             viewBox="0 0 16 16" class="bi bi-quote fs-1 flex-shrink-0 defaultColor">
+                            <path d="M12 12a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1h-1.388c0-.351.021-.703.062-1.054.062-.372.166-.703.31-.992.145-.29.331-.517.559-.683.227-.186.516-.279.868-.279V3c-.579 0-1.085.124-1.52.372a3.322 3.322 0 0 0-1.085.992 4.92 4.92 0 0 0-.62 1.458A7.712 7.712 0 0 0 9 7.558V11a1 1 0 0 0 1 1h2Zm-6 0a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1H4.612c0-.351.021-.703.062-1.054.062-.372.166-.703.31-.992.145-.29.331-.517.559-.683.227-.186.516-.279.868-.279V3c-.579 0-1.085.124-1.52.372a3.322 3.322 0 0 0-1.085.992 4.92 4.92 0 0 0-.62 1.458A7.712 7.712 0 0 0 3 7.558V11a1 1 0 0 0 1 1h2Z"></path>
+                        </svg>
+                        <div>
+                            <p class="fs-6 mb-3 ms-2">Paragraph 15</p>
+                            <div class="d-flex ms-2">
+                                <div class="d-flex">
+                                    <p class="fw-bold me-2">Asif Mahmud</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col mb-4">
+                    <div class="d-flex align-items-center align-items-sm-start">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
+                             viewBox="0 0 16 16" class="bi bi-quote fs-1 flex-shrink-0 defaultColor">
+                            <path d="M12 12a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1h-1.388c0-.351.021-.703.062-1.054.062-.372.166-.703.31-.992.145-.29.331-.517.559-.683.227-.186.516-.279.868-.279V3c-.579 0-1.085.124-1.52.372a3.322 3.322 0 0 0-1.085.992 4.92 4.92 0 0 0-.62 1.458A7.712 7.712 0 0 0 9 7.558V11a1 1 0 0 0 1 1h2Zm-6 0a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1H4.612c0-.351.021-.703.062-1.054.062-.372.166-.703.31-.992.145-.29.331-.517.559-.683.227-.186.516-.279.868-.279V3c-.579 0-1.085.124-1.52.372a3.322 3.322 0 0 0-1.085.992 4.92 4.92 0 0 0-.62 1.458A7.712 7.712 0 0 0 3 7.558V11a1 1 0 0 0 1 1h2Z"></path>
+                        </svg>
+                        <div>
+                            <p class="fs-6 mb-3 ms-2">Paragraph 16</p>
+                            <div class="d-flex ms-2">
+                                <div class="d-flex">
+                                    <p class="fw-bold me-2">Asif Mahmud</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col mb-4">
+                    <div class="d-flex align-items-center align-items-sm-start">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
+                             viewBox="0 0 16 16" class="bi bi-quote fs-1 flex-shrink-0 defaultColor">
+                            <path d="M12 12a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1h-1.388c0-.351.021-.703.062-1.054.062-.372.166-.703.31-.992.145-.29.331-.517.559-.683.227-.186.516-.279.868-.279V3c-.579 0-1.085.124-1.52.372a3.322 3.322 0 0 0-1.085.992 4.92 4.92 0 0 0-.62 1.458A7.712 7.712 0 0 0 9 7.558V11a1 1 0 0 0 1 1h2Zm-6 0a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1H4.612c0-.351.021-.703.062-1.054.062-.372.166-.703.31-.992.145-.29.331-.517.559-.683.227-.186.516-.279.868-.279V3c-.579 0-1.085.124-1.52.372a3.322 3.322 0 0 0-1.085.992 4.92 4.92 0 0 0-.62 1.458A7.712 7.712 0 0 0 3 7.558V11a1 1 0 0 0 1 1h2Z"></path>
+                        </svg>
+                        <div>
+                            <p class="fs-6 mb-3 ms-2">Paragraph 17</p>
+                            <div class="d-flex ms-2">
+                                <div class="d-flex">
+                                    <p class="fw-bold me-2"><strong>Asif Mahmud</strong></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section><!-- End: Testimonials --><!-- Start: Brands -->
+    <section>
+        <div class="container text-center py-5">
+            <div class="text-center">
+                <p class="mb-4" style="font-size: 1.6rem;">Used by <span
+                        class="p-1 defaultBgColor"><strong>100+</strong></span>&nbsp;of the best institutions in the
+                    world.</p>
+                <a href="#"> <img class="m-3 companyImg" src="{% static 'assets/img/gov.png' %}"></a>
+                <a href="#"> <img class="m-3 companyImg" src="{% static 'assets/img/dae.png' %}"></a>
+                <a href="#"> <img class="m-3 companyImg" src="{% static 'assets/img/bari.png' %}"></a>
+                <a href="#"> <img class="m-3 companyImg" src="{% static 'assets/img/sabu.png' %}"></a>
+                <a href="#"> <img class="m-3 companyImg" src="{% static 'assets/img/iubat.png' %}"></a>
+            </div>
+        </div>
+    </section><!-- End: Brands --><!-- Start: Newsletter -->
+    <section class="py-5">
+        <div class="container">
+            <div class="text-white bg-primary border rounded border-white d-flex flex-column justify-content-between align-items-center flex-lg-row p-4 p-lg-5">
+                <div class="text-center text-lg-start py-3 py-lg-1">
+                    <h2 class="fw-bold mb-2">Subscribe to our newsletter</h2>
+                </div>
+                <form class="d-flex justify-content-center flex-wrap flex-lg-nowrap" method="post">
+                    <div class="my-2"><input class="shadow-sm form-control newsInput" type="email" name="email"
+                                             placeholder="Email"></div>
+                    <div class="my-2">
+                        <button class="btn btn-light shadow newsBtn" type="submit">Subscribe</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section><!-- End: Newsletter --><!-- Start: Contact Us Banner -->
+    <section class="py-4 py-xl-5">
+        <div class="container">
+            <div class="text-white bg-primary border rounded border-0 border-primary d-flex flex-column justify-content-between flex-lg-row p-4 p-md-5 text-center">
+                <div class="py-3 py-lg-2">
+                    <h2 class="fw-bold text-warning">Not sure which plan suits you?</h2>
+                </div>
+                <div class="my-2"><a class="btn btn-light fs-5 py-2 px-4" role="button" href="{% url "contacts" %}">Contact
+                    us</a></div>
+            </div>
+        </div>
+    </section>
+    <!-- End: Contact Us Banner -->
+{% endblock %}
+<a class="d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
+
+<!-- Start: Footer -->
+{% include 'footer.html' %}
+<!-- End: Footer -->
+
+<script src="{% static 'assets/bootstrap/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'assets/js/script.min.js' %}"></script>
+{% block script %}
+{% endblock %}
+</body>
+
+</html>

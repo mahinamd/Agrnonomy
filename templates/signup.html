@@ -1,0 +1,93 @@
+{% extends "index.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+    <section class="py-4 py-md-5 my-5">
+        <div class="container py-md-5">
+            <div class="row">
+                <div class="col-md-6 text-center"><img class="img-fluid h-100"
+                                                       src="{% static 'assets/img/signupBg1.jpg' %}"></div>
+                <div class="col-md-6 col-lg-6 col-xl-6 col-xxl-6 offset-lg-0 text-center text-md-start align-self-center">
+                    <h2 class="display-6 fw-bold my-3 mb-5 text-center"><span
+                            class="underline pb-1"><strong>Welcome!</strong></span></h2>
+                    <div>
+                        <h4 class="fw-normal mb-4 text-center"><img class="me-2"
+                                                                    src="{% static 'assets/img/agronomy_32px.png' %}">Agronomy
+                        </h4>
+                        <div class="text-center">
+                            <h6 class="fw-normal mb-3">Sign up with</h6><a class="border rounded-pill shadow-sm btn"
+                                                                           href="#"><span><img
+                                src="{% static 'assets/img/google.svg' %}"></span><span>Google</span></a>
+                        </div>
+                        <hr>
+                        <form>
+                            <h6 class="fw-normal mb-3 text-center">Or sign up with credentials</h6>
+                            <div><input class="form-control mb-1" type="text" name="phone" placeholder="Phone"
+                                        required=""></div>
+                            <div class="d-flex"><input class="form-control" type="text" name="fname"
+                                                       placeholder="First Name" required=""><input class="form-control"
+                                                                                                   type="text"
+                                                                                                   name="lname"
+                                                                                                   placeholder="Last Name"
+                                                                                                   required=""></div>
+                            <div><input class="form-control my-1" type="email" name="email"
+                                        placeholder="Email (Optional)"
+                                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,15}$"></div>
+                            <div class="d-flex"><input id="mpass-id" class="form-control mb-1" type="password" name="mpass"
+                                                       placeholder="Password" required="">
+                                <button class="btn btn-primary viewBtn" type="button" onclick="mpass_show()"><i id="mpass-eye" class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                            <div class="d-flex"><input id="cpass-id" class="form-control mb-1" type="password" name="cpass"
+                                                       placeholder="Confirm Password" required="">
+                                <button class="btn btn-primary viewBtn" type="button" onclick="cpass_show()"><i id="cpass-eye" class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                            <div>
+                                <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-2"
+                                                               required=""><label class="form-check-label"
+                                                                                  for="formCheck-2">I agree with the&nbsp;<a
+                                        class="link" href="#">Privacy Policy<br></a></label></div>
+                            </div>
+                            <div class="text-center">
+                                <button class="btn btn-primary my-3" type="button"><strong>Create Account</strong><br>
+                                </button>
+                            </div>
+                        </form>
+                        <div class="pb-5 mt-3"><a class="link" href="{% url "login" %}">Already have an account? Login!</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block script %}
+<script>
+    function mpass_show() {
+        let p = document.getElementById("mpass-id");
+        let i = document.getElementById("mpass-eye");
+        if (p.type === "password") {
+            p.type = "text";
+            i.className = "fas fa-eye-slash";
+        } else {
+            p.type = "password";
+            i.className = "fas fa-eye";
+        }
+    }
+
+    function cpass_show() {
+        let p = document.getElementById("cpass-id");
+        let i = document.getElementById("cpass-eye");
+        if (p.type === "password") {
+            p.type = "text";
+            i.className = "fas fa-eye-slash";
+        } else {
+            p.type = "password";
+            i.className = "fas fa-eye";
+        }
+    }
+</script>
+{% endblock %}
