@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-15 11:50+0600\n"
+"POT-Creation-Date: 2023-03-15 22:02+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,36 +20,213 @@ msgstr ""
 
 #: .\Agronomy\settings.py:134
 msgid "Bengali"
-msgstr ""
+msgstr "বাংলা"
 
 #: .\Agronomy\settings.py:135
 msgid "English"
-msgstr ""
+msgstr "ইংরেজি"
 
 #: .\accounts\forms.py:10
 msgid "The two password fields didn’t match."
-msgstr ""
+msgstr "দুটি পাসওয়ার্ড ক্ষেত্র মেলেনি।"
 
 #: .\accounts\forms.py:14
 msgid "Password"
-msgstr ""
+msgstr "পাসওয়ার্ড"
 
 #: .\accounts\forms.py:17
 msgid "Password confirmation"
-msgstr ""
+msgstr "পাসওয়ার্ড নিশ্চিতকরণ"
 
 #: .\accounts\forms.py:19
 msgid "Enter the same password as before, for verification."
-msgstr ""
+msgstr "যাচাইয়ের জন্য আগের মতোই পাসওয়ার্ড দিন।"
 
-#: .\templates\footer.html:18 .\templates\navbar.html:20
+#: .\templates\contacts.html:73
+msgid "Want to visit frequently asked questions?"
+msgstr "সচরাচর জিজ্ঞাসা করা প্রশ্নসমূহ"
+
+#: .\templates\contacts.html:75 .\templates\faq.html:11
+#: .\templates\navbar.html:37
+msgid "FAQ"
+msgstr "প্রশ্নাবলী"
+
+#: .\templates\faq.html:12
+msgid "Frequently Asked Questions"
+msgstr "সচরাচর জিজ্ঞাসা করা প্রশ্নসমূহ"
+
+#: .\templates\faq.html:13
+msgid ""
+"Welcome to our Frequently Asked Questions page! We understand that you may "
+"have questions about our website, the agricultural processes we cover, or "
+"specific topics related to farming and gardening. That's why we've compiled "
+"a list of the most common questions we receive from our users and provided "
+"detailed answers to each one. We hope that this resource will help you find "
+"the information you need quickly and easily. If you can't find the answer "
+"you're looking for, please don't hesitate to contact us. We're always here "
+"to help!"
+msgstr ""
+"আমাদের সচরাচর জিজ্ঞাসিত প্রশ্নসমূহ পৃষ্ঠাতে স্বাগতম। আমরা বুঝতে পারি যে আমাদের "
+"ওয়েবসাইট, আমরা যা প্রকাশ করি তালিকা বা কৃষিপালন এবং বাগান সম্পর্কিত বিশেষ "
+"বিষয়গুলি সম্পর্কে প্রশ্ন থাকতে পারে। সেই কারণেই আমরা আমাদের ব্যবহারকারীদের থেকে যে "
+"সবচেয়ে সাধারণ প্রশ্নগুলি পাই তাদের উত্তর সহ সংগ্রহ করেছি। আমরা আশা করি এই সম্পদটি "
+"আপনি দ্রুত এবং সহজে আবশ্যক তথ্য খুঁজে পাবেন। যদি আপনি যে উত্তরটি খুঁজছেন তা না পেলেন "
+"তবে অবশ্যই আমাদের সাথে যোগাযোগ করবেন না। আমরা সর্বদা আপনাকে সাহায্য করার জন্য "
+"এখানে রয়েছি।"
+
+#: .\templates\faq.html:23
+msgid "1. Who we are?"
+msgstr "১. আমরা কে?"
+
+#: .\templates\faq.html:29
+msgid ""
+"Agronomy is an agricultural assistant that provides correct information on "
+"crop cultivation methods, diseases, and prevention mechanisms. Besides, it "
+"also allows farmers to connect themselves with agricultural experts within a "
+"short time."
+msgstr ""
+"কৃষিবিদ্যা হল একটি কৃষি সহকারী যা ফসল চাষের পদ্ধতি, রোগ এবং প্রতিরোধ ব্যবস্থা "
+"সম্পর্কে সঠিক তথ্য প্রদান করে। এছাড়াও এটি কৃষকদের অল্প সময়ের মধ্যে কৃষি বিশেষজ্ঞদের "
+"সাথে নিজেদের সংযোগ করতে দেয়।"
+
+#: .\templates\faq.html:37
+msgid "2. What we do?"
+msgstr "২. আমরা কি করি?"
+
+#: .\templates\faq.html:43
+msgid ""
+"We are working to create long-term food security in Bangladesh by getting "
+"the community involved and giving them detailed information on certain "
+"crops, fish farming, and raising animals."
+msgstr ""
+"আমরা নির্বাচিত ফসল, মাছ চাষ এবং গবাদি পশু পালনের বিস্তারিত তথ্য প্রদানের পাশাপাশি "
+"কৃষক ও কৃষি বিশেষজ্ঞদের একই প্লাটফর্মে আনয়ণ করার মাধ্যমে বাংলাদেশে টেকসই খাদ্য "
+"নিরাপত্তা প্রতিষ্ঠার জন্য কাজ করছি।"
+
+#: .\templates\faq.html:51
+msgid "3. Why to choose us?"
+msgstr "৩. কেন আমাদের সেবা নিবেন?"
+
+#: .\templates\faq.html:57
+msgid "1. Easy to access"
+msgstr "১. সহজে প্রবেশ"
+
+#: .\templates\faq.html:58
+msgid "2. Connect to agricultural experts easily"
+msgstr "২. সহজে কৃষি বিশেষজ্ঞের পরামর্শ"
+
+#: .\templates\faq.html:59
+msgid "3. Accuracy of data"
+msgstr "৩. সঠিক তথ্যের নিশ্চয়তা"
+
+#: .\templates\faq.html:60
+msgid "4. Updated data"
+msgstr "৪. সর্বদা নতুন তথ্য"
+
+#: .\templates\footer.html:10 .\templates\navbar.html:7
+msgid "Agronomy"
+msgstr "কৃষিবিদ্যা"
+
+#: .\templates\footer.html:12
+msgid "Agricultural Assistant System"
+msgstr "কৃষি সহকারী ব্যবস্থা"
+
+#: .\templates\footer.html:14
+msgid "Phone No:"
+msgstr "ফোন নম্বর:"
+
+#: .\templates\footer.html:14
+msgid "+880123456789"
+msgstr "+৮৮০১২৩৪৫৬৭৮৯"
+
+#: .\templates\footer.html:15
+msgid "Email:"
+msgstr "ইমেইল:"
+
+#: .\templates\footer.html:16
+msgid "Location:"
+msgstr "অবস্থান:"
+
+#: .\templates\footer.html:16
+msgid "Dhaka, Bangladesh"
+msgstr "ঢাকা, বাংলাদেশ"
+
+#: .\templates\footer.html:22
+msgid "Company"
+msgstr "প্রতিষ্ঠান"
+
+#: .\templates\footer.html:24 .\templates\navbar.html:20
 #: .\templates\navbar.html:40
 msgid "About"
 msgstr "সম্পর্কিত"
 
-#: .\templates\footer.html:19 .\templates\navbar.html:34
+#: .\templates\footer.html:25 .\templates\navbar.html:34
 msgid "Contacts"
 msgstr "পরিচিতি"
+
+#: .\templates\footer.html:26
+msgid "Legacy"
+msgstr "উত্তরাধিকার"
+
+#: .\templates\footer.html:32 .\templates\navbar.html:48
+msgid "Services"
+msgstr "সেবা"
+
+#: .\templates\footer.html:34
+msgid "Support"
+msgstr "সমর্থন"
+
+#: .\templates\footer.html:35
+msgid "Blog"
+msgstr "ব্লগ"
+
+#: .\templates\footer.html:36
+msgid "News"
+msgstr "খবর"
+
+#: .\templates\footer.html:42
+msgid "Others"
+msgstr "অন্যান্য"
+
+#: .\templates\footer.html:44
+msgid "Privacy Policy"
+msgstr "গোপনীয়তা নীতি"
+
+#: .\templates\footer.html:45
+msgid "Cookies"
+msgstr "কুকিজ"
+
+#: .\templates\footer.html:46
+msgid "Legal"
+msgstr "আইনি"
+
+#: .\templates\footer.html:55
+msgid "Copyright © 2023 Agronomy"
+msgstr "কপিরাইট © 2023 কৃষিবিদ্যা"
+
+#: .\templates\index.html:36
+msgid "Agricultural"
+msgstr "কৃষি"
+
+#: .\templates\index.html:36
+msgid "Assistant System"
+msgstr "সহকারী ব্যবস্থা"
+
+#: .\templates\index.html:349
+msgid "Subscribe to our newsletter"
+msgstr "আমাদের নিউজলেটার সদস্যতা"
+
+#: .\templates\index.html:355
+msgid "Subscribe"
+msgstr "সদস্যতা"
+
+#: .\templates\index.html:365 .\templates\pricing.html:136
+msgid "Not sure which plan suits you?"
+msgstr "নিশ্চিত নন কোন পরিকল্পনা আপনার জন্য উপযুক্ত?"
+
+#: .\templates\index.html:367 .\templates\pricing.html:138
+msgid "Contact us"
+msgstr "যোগাযোগ করুন"
 
 #: .\templates\navbar.html:15
 msgid "Home"
@@ -71,23 +248,13 @@ msgstr "মূল্য নির্ধারণ"
 msgid "Testimonials"
 msgstr "প্রশংসাপত্র"
 
-#: .\templates\navbar.html:37
-msgid "FAQ"
-msgstr "প্রশ্নাবলী"
-
-#: .\templates\navbar.html:48
-msgid "Services"
-msgstr "সেবা"
-
 #: .\templates\navbar.html:51
-#, fuzzy
-#| msgid "Integrations"
-msgid "Informations"
-msgstr "ইন্টিগ্রেশন"
+msgid "Agricultural Information"
+msgstr "কৃষি তথ্য"
 
 #: .\venv\Lib\site-packages\django\contrib\messages\apps.py:15
 msgid "Messages"
-msgstr ""
+msgstr "বার্তা"
 
 #: .\venv\Lib\site-packages\django\contrib\sitemaps\apps.py:8
 msgid "Site Maps"
@@ -134,7 +301,7 @@ msgstr ""
 
 #: .\venv\Lib\site-packages\django\core\validators.py:175
 msgid "Enter a valid email address."
-msgstr ""
+msgstr "একটি বৈধ ইমেইল ঠিকানা লিখুন।"
 
 #. Translators: "letters" means latin letters: a-z and A-Z.
 #: .\venv\Lib\site-packages\django\core\validators.py:256
@@ -1292,5 +1459,8 @@ msgstr ""
 msgid "ObjectId"
 msgstr ""
 
-#~ msgid "Language"
-#~ msgstr "বাংলা"
+#~ msgid "Information"
+#~ msgstr "তথ্য"
+
+#~ msgid "Contact"
+#~ msgstr "পরিচিতি"

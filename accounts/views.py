@@ -97,7 +97,7 @@ def login_view(request, *args, **kwargs):
                     if destination:
                         return redirect(destination)
                     messages.success(request, "Successfully Logged In")
-                    return redirect('profile')
+                    return redirect('index')
             else:
                 messages.error(request, 'Invalid reCAPTCHA. Please try again.')
                 return redirect('login')

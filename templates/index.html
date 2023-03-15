@@ -33,7 +33,7 @@
             <div class="row pt-5">
                 <div class="col-md-10 text-center text-md-start mx-auto">
                     <div class="text-center">
-                        <h1 class="display-5 fw-bold mb-5"><span class="underline">Agricultural</span> Assistant System
+                        <h1 class="display-5 fw-bold mb-5"><span class="underline">{% trans 'Agricultural' %}</span> {% trans 'Assistant System' %}
                         </h1>
                     </div>
                 </div>
@@ -346,13 +346,13 @@
         <div class="container">
             <div class="text-white bg-primary border rounded border-white d-flex flex-column justify-content-between align-items-center flex-lg-row p-4 p-lg-5">
                 <div class="text-center text-lg-start py-3 py-lg-1">
-                    <h2 class="fw-bold mb-2">Subscribe to our newsletter</h2>
+                    <h2 class="fw-bold mb-2">{% trans 'Subscribe to our newsletter' %}</h2>
                 </div>
                 <form class="d-flex justify-content-center flex-wrap flex-lg-nowrap" method="post">
                     <div class="my-2"><input class="shadow-sm form-control newsInput" type="email" name="email"
                                              placeholder="Email"></div>
                     <div class="my-2">
-                        <button class="btn btn-light shadow newsBtn" type="submit">Subscribe</button>
+                        <button class="btn btn-light shadow newsBtn" type="submit">{% trans 'Subscribe' %}</button>
                     </div>
                 </form>
             </div>
@@ -362,10 +362,9 @@
         <div class="container">
             <div class="text-white bg-primary border rounded border-0 border-primary d-flex flex-column justify-content-between flex-lg-row p-4 p-md-5 text-center">
                 <div class="py-3 py-lg-2">
-                    <h2 class="fw-bold text-warning">Not sure which plan suits you?</h2>
+                    <h2 class="fw-bold text-warning">{% trans 'Not sure which plan suits you?' %}</h2>
                 </div>
-                <div class="my-2"><a class="btn btn-light fs-5 py-2 px-4" role="button" href="{% url "contacts" %}">Contact
-                    us</a></div>
+                <div class="my-2"><a class="btn btn-light fs-5 py-2 px-4 btn-style-1" role="button" href="{% url "contacts" %}">{% trans 'Contact us' %}</a></div>
             </div>
         </div>
     </section>

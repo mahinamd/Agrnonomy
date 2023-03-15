@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-15 11:50+0600\n"
+"POT-Creation-Date: 2023-03-15 22:02+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -42,13 +42,177 @@ msgstr ""
 msgid "Enter the same password as before, for verification."
 msgstr ""
 
-#: .\templates\footer.html:18 .\templates\navbar.html:20
+#: .\templates\contacts.html:73
+msgid "Want to visit frequently asked questions?"
+msgstr ""
+
+#: .\templates\contacts.html:75 .\templates\faq.html:11
+#: .\templates\navbar.html:37
+msgid "FAQ"
+msgstr ""
+
+#: .\templates\faq.html:12
+msgid "Frequently Asked Questions"
+msgstr ""
+
+#: .\templates\faq.html:13
+msgid ""
+"Welcome to our Frequently Asked Questions page! We understand that you may "
+"have questions about our website, the agricultural processes we cover, or "
+"specific topics related to farming and gardening. That's why we've compiled "
+"a list of the most common questions we receive from our users and provided "
+"detailed answers to each one. We hope that this resource will help you find "
+"the information you need quickly and easily. If you can't find the answer "
+"you're looking for, please don't hesitate to contact us. We're always here "
+"to help!"
+msgstr ""
+
+#: .\templates\faq.html:23
+msgid "1. Who we are?"
+msgstr ""
+
+#: .\templates\faq.html:29
+msgid ""
+"Agronomy is an agricultural assistant that provides correct information on "
+"crop cultivation methods, diseases, and prevention mechanisms. Besides, it "
+"also allows farmers to connect themselves with agricultural experts within a "
+"short time."
+msgstr ""
+
+#: .\templates\faq.html:37
+msgid "2. What we do?"
+msgstr ""
+
+#: .\templates\faq.html:43
+msgid ""
+"We are working to create long-term food security in Bangladesh by getting "
+"the community involved and giving them detailed information on certain "
+"crops, fish farming, and raising animals."
+msgstr ""
+
+#: .\templates\faq.html:51
+msgid "3. Why to choose us?"
+msgstr ""
+
+#: .\templates\faq.html:57
+msgid "1. Easy to access"
+msgstr ""
+
+#: .\templates\faq.html:58
+msgid "2. Connect to agricultural experts easily"
+msgstr ""
+
+#: .\templates\faq.html:59
+msgid "3. Accuracy of data"
+msgstr ""
+
+#: .\templates\faq.html:60
+msgid "4. Updated data"
+msgstr ""
+
+#: .\templates\footer.html:10 .\templates\navbar.html:7
+msgid "Agronomy"
+msgstr ""
+
+#: .\templates\footer.html:12
+msgid "Agricultural Assistant System"
+msgstr ""
+
+#: .\templates\footer.html:14
+msgid "Phone No:"
+msgstr ""
+
+#: .\templates\footer.html:14
+msgid "+880123456789"
+msgstr ""
+
+#: .\templates\footer.html:15
+msgid "Email:"
+msgstr ""
+
+#: .\templates\footer.html:16
+msgid "Location:"
+msgstr ""
+
+#: .\templates\footer.html:16
+msgid "Dhaka, Bangladesh"
+msgstr ""
+
+#: .\templates\footer.html:22
+msgid "Company"
+msgstr ""
+
+#: .\templates\footer.html:24 .\templates\navbar.html:20
 #: .\templates\navbar.html:40
 msgid "About"
 msgstr ""
 
-#: .\templates\footer.html:19 .\templates\navbar.html:34
+#: .\templates\footer.html:25 .\templates\navbar.html:34
 msgid "Contacts"
+msgstr ""
+
+#: .\templates\footer.html:26
+msgid "Legacy"
+msgstr ""
+
+#: .\templates\footer.html:32 .\templates\navbar.html:48
+msgid "Services"
+msgstr ""
+
+#: .\templates\footer.html:34
+msgid "Support"
+msgstr ""
+
+#: .\templates\footer.html:35
+msgid "Blog"
+msgstr ""
+
+#: .\templates\footer.html:36
+msgid "News"
+msgstr ""
+
+#: .\templates\footer.html:42
+msgid "Others"
+msgstr ""
+
+#: .\templates\footer.html:44
+msgid "Privacy Policy"
+msgstr ""
+
+#: .\templates\footer.html:45
+msgid "Cookies"
+msgstr ""
+
+#: .\templates\footer.html:46
+msgid "Legal"
+msgstr ""
+
+#: .\templates\footer.html:55
+msgid "Copyright © 2023 Agronomy"
+msgstr ""
+
+#: .\templates\index.html:36
+msgid "Agricultural"
+msgstr ""
+
+#: .\templates\index.html:36
+msgid "Assistant System"
+msgstr ""
+
+#: .\templates\index.html:349
+msgid "Subscribe to our newsletter"
+msgstr ""
+
+#: .\templates\index.html:355
+msgid "Subscribe"
+msgstr ""
+
+#: .\templates\index.html:365 .\templates\pricing.html:136
+msgid "Not sure which plan suits you?"
+msgstr ""
+
+#: .\templates\index.html:367 .\templates\pricing.html:138
+msgid "Contact us"
 msgstr ""
 
 #: .\templates\navbar.html:15
@@ -71,16 +235,8 @@ msgstr ""
 msgid "Testimonials"
 msgstr ""
 
-#: .\templates\navbar.html:37
-msgid "FAQ"
-msgstr ""
-
-#: .\templates\navbar.html:48
-msgid "Services"
-msgstr ""
-
 #: .\templates\navbar.html:51
-msgid "Informations"
+msgid "Agricultural Information"
 msgstr ""
 
 #: .\venv\Lib\site-packages\django\contrib\messages\apps.py:15
@@ -1289,6 +1445,3 @@ msgstr ""
 #: .\venv\Lib\site-packages\djongo\models\fields.py:630
 msgid "ObjectId"
 msgstr ""
-
-#~ msgid "Language"
-#~ msgstr "English"

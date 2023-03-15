@@ -8,8 +8,9 @@
         <div class="container py-5">
             <div class="row mb-2">
                 <div class="col-md-8 col-xl-6 text-center mx-auto">
-                    <h2 class="display-6 fw-bold mb-5"><span class="pb-3 underline">FAQ<br></span></h2>
-                    <p class="text-muted mb-5">Paragraph 1</p>
+                    <h2 class="display-6 fw-bold mb-5"><span class="pb-3 underline">{% trans 'FAQ' %}<br></span></h2>
+                    <p class="text-muted mb-5">{% trans 'Frequently Asked Questions' %}</p>
+                    <p class="text-muted mb-5">{% trans "Welcome to our Frequently Asked Questions page! We understand that you may have questions about our website, the agricultural processes we cover, or specific topics related to farming and gardening. That's why we've compiled a list of the most common questions we receive from our users and provided detailed answers to each one. We hope that this resource will help you find the information you need quickly and easily. If you can't find the answer you're looking for, please don't hesitate to contact us. We're always here to help!" %}</p>
                 </div>
             </div>
             <div class="row mb-2">
@@ -19,13 +20,13 @@
                             <h2 class="accordion-header" role="tab">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#accordion-1 .item-1" aria-expanded="false"
-                                        aria-controls="accordion-1 .item-1">Question 1?
+                                        aria-controls="accordion-1 .item-1">{% trans '1. Who we are?' %}
                                 </button>
                             </h2>
                             <div class="accordion-collapse collapse item-1" role="tabpanel"
                                  data-bs-parent="#accordion-1">
                                 <div class="accordion-body">
-                                    <p>Answer 1</p>
+                                    <p>{% trans 'Agronomy is an agricultural assistant that provides correct information on crop cultivation methods, diseases, and prevention mechanisms. Besides, it also allows farmers to connect themselves with agricultural experts within a short time.' %}</p>
                                 </div>
                             </div>
                         </div>
@@ -33,13 +34,13 @@
                             <h2 class="accordion-header" role="tab">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#accordion-1 .item-2" aria-expanded="false"
-                                        aria-controls="accordion-1 .item-2">Question 2?
+                                        aria-controls="accordion-1 .item-2">{% trans '2. What we do?' %}
                                 </button>
                             </h2>
                             <div class="accordion-collapse collapse item-2" role="tabpanel"
                                  data-bs-parent="#accordion-1">
                                 <div class="accordion-body">
-                                    <p class="mb-0">Answer 2</p>
+                                    <p class="mb-0">{% trans 'We are working to create long-term food security in Bangladesh by getting the community involved and giving them detailed information on certain crops, fish farming, and raising animals.' %}</p>
                                 </div>
                             </div>
                         </div>
@@ -47,13 +48,16 @@
                             <h2 class="accordion-header" role="tab">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#accordion-1 .item-3" aria-expanded="false"
-                                        aria-controls="accordion-1 .item-3">Question 3?
+                                        aria-controls="accordion-1 .item-3">{% trans '3. Why to choose us?' %}
                                 </button>
                             </h2>
                             <div class="accordion-collapse collapse item-3" role="tabpanel"
                                  data-bs-parent="#accordion-1">
                                 <div class="accordion-body">
-                                    <p class="mb-0">Answer 3</p>
+                                    <p class="mb-0">{% trans '1. Easy to access' %}</p>
+                                    <p class="mb-0">{% trans '2. Connect to agricultural experts easily' %}</p>
+                                    <p class="mb-0">{% trans '3. Accuracy of data' %}</p>
+                                    <p class="mb-0">{% trans '4. Updated data' %}</p>
                                 </div>
                             </div>
                         </div>
