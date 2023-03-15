@@ -35,6 +35,9 @@ ALLOWED_HOSTS = sensitive.ALLOWED_HOSTS
 ALLOWED_DOMAIN = sensitive.ALLOWED_DOMAIN
 CSRF_TRUSTED_ORIGINS = sensitive.CSRF_TRUSTED_ORIGINS
 
+# Auth User Model
+AUTH_USER_MODEL = 'accounts.Account'
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -45,6 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'pages',
+    'accounts',
 ]
 
 MIDDLEWARE = [
@@ -89,7 +93,7 @@ MESSAGE_TAGS = {
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-# DATABASES = sensitive.DATABASES
+DATABASES = sensitive.DATABASES
 
 
 # Password validation

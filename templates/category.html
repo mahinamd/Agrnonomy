@@ -1,0 +1,46 @@
+{% extends "index.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+    <section class="pt-5 mt-5">
+        <div class="container py-4 py-xl-5">
+            <div class="row mb-5">
+                <div class="col text-center"><h3 class="display-6 fw-bold pb-2 mb-2">Agriculture&nbsp;<span
+                        class="underline"><strong>Information</strong></span>&nbsp;</h3></div>
+            </div>
+            <div class="row mb-1">
+                <div class="col text-center"><h3 class="display-6 fw-bold pb-2 mb-2"><span
+                        class="underline">{{ category_title }}</span>&nbsp;
+                </h3></div>
+            </div>
+            <div class="row mb-5">
+                <div class="col text-center">
+                    <form class="d-flex justify-content-center flex-wrap flex-lg-nowrap" method="post">
+                        <div class="my-2 me-1"><input class="form-control" type="search" placeholder="Search"
+                                                      name="search">
+                        </div>
+                        <div class="my-2">
+                            <button class="btn btn-primary shadow" type="submit">Search</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3">
+                {% for title, url in categories %}
+                    <div class="col-xl-6 col-xxl-6">
+                        <div class="card border-light border-1 d-flex justify-content-center p-4">
+                            <div class="card-body data-view">
+                                <div><h4 class="fw-bold text-center">{{ title }}</h4><img class="rounded img-fluid"
+                                                                                          src={{ url }}><a
+                                        class="stretched-link" href={% url "information" forloop.counter0 %}></a></div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+        </div>
+    </section>
+{% endblock %}

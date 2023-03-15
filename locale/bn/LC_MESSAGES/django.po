@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-13 09:06+0600\n"
+"POT-Creation-Date: 2023-03-15 11:50+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,45 +18,72 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .\Agronomy\settings.py:126
+#: .\Agronomy\settings.py:134
 msgid "Bengali"
 msgstr ""
 
-#: .\Agronomy\settings.py:127
+#: .\Agronomy\settings.py:135
 msgid "English"
 msgstr ""
 
-#: .\templates\footer.html:18 .\templates\navbar.html:10
+#: .\accounts\forms.py:10
+msgid "The two password fields didn’t match."
+msgstr ""
+
+#: .\accounts\forms.py:14
+msgid "Password"
+msgstr ""
+
+#: .\accounts\forms.py:17
+msgid "Password confirmation"
+msgstr ""
+
+#: .\accounts\forms.py:19
+msgid "Enter the same password as before, for verification."
+msgstr ""
+
+#: .\templates\footer.html:18 .\templates\navbar.html:20
+#: .\templates\navbar.html:40
 msgid "About"
 msgstr "সম্পর্কিত"
 
-#: .\templates\footer.html:19 .\templates\navbar.html:15
+#: .\templates\footer.html:19 .\templates\navbar.html:34
 msgid "Contacts"
 msgstr "পরিচিতি"
 
-#: .\templates\navbar.html:8
+#: .\templates\navbar.html:15
 msgid "Home"
 msgstr "হোম"
 
-#: .\templates\navbar.html:9
+#: .\templates\navbar.html:17
 msgid "Features"
 msgstr "বৈশিষ্ট্য"
 
-#: .\templates\navbar.html:12
+#: .\templates\navbar.html:25 .\templates\navbar.html:28
 msgid "Pages"
 msgstr "অন্যান্য"
 
-#: .\templates\navbar.html:14
+#: .\templates\navbar.html:32
 msgid "Pricing"
 msgstr "মূল্য নির্ধারণ"
 
-#: .\templates\navbar.html:16
+#: .\templates\navbar.html:36
 msgid "Testimonials"
 msgstr "প্রশংসাপত্র"
 
-#: .\templates\navbar.html:17
+#: .\templates\navbar.html:37
 msgid "FAQ"
 msgstr "প্রশ্নাবলী"
+
+#: .\templates\navbar.html:48
+msgid "Services"
+msgstr "সেবা"
+
+#: .\templates\navbar.html:51
+#, fuzzy
+#| msgid "Integrations"
+msgid "Informations"
+msgstr "ইন্টিগ্রেশন"
 
 #: .\venv\Lib\site-packages\django\contrib\messages\apps.py:15
 msgid "Messages"
@@ -1264,9 +1291,6 @@ msgstr ""
 #: .\venv\Lib\site-packages\djongo\models\fields.py:630
 msgid "ObjectId"
 msgstr ""
-
-#~ msgid "Integrations"
-#~ msgstr "ইন্টিগ্রেশন"
 
 #~ msgid "Language"
 #~ msgstr "বাংলা"

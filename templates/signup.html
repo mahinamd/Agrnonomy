@@ -3,6 +3,8 @@
 {% load i18n %}
 
 {% block content %}
+    <br><br><br>
+    {% include 'message.html' %}
     <section class="py-4 py-md-5 my-5">
         <div class="container py-md-5">
             <div class="row">
@@ -16,12 +18,13 @@
                                                                     src="{% static 'assets/img/agronomy_32px.png' %}">Agronomy
                         </h4>
                         <div class="text-center">
-                            <h6 class="fw-normal mb-3">Sign up with</h6><a class="border rounded-pill shadow-sm btn"
-                                                                           href="#"><span><img
+                            <h6 class="fw-normal mb-3">Sign up with</h6><a
+                                class="border rounded-pill shadow-sm btn google-btn"
+                                href="#"><span><img
                                 src="{% static 'assets/img/google.svg' %}"></span><span>Google</span></a>
                         </div>
                         <hr>
-                        <form>
+                        <form action="{% url 'signup-form' %}" method="post"> {% csrf_token %}
                             <h6 class="fw-normal mb-3 text-center">Or sign up with credentials</h6>
                             <div><input class="form-control mb-1" type="text" name="phone" placeholder="Phone"
                                         required=""></div>
@@ -32,16 +35,26 @@
                                                                                                    placeholder="Last Name"
                                                                                                    required=""></div>
                             <div><input class="form-control my-1" type="email" name="email"
-                                        placeholder="Email (Optional)"
-                                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,15}$"></div>
-                            <div class="d-flex"><input id="mpass-id" class="form-control mb-1" type="password" name="mpass"
+                                        placeholder="Email"
+                                        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,15}$" required=""></div>
+                            <div class="d-flex"><input id="mpass-id" class="form-control mb-1" type="password"
+                                                       name="mpass"
                                                        placeholder="Password" required="">
-                                <button class="btn btn-primary viewBtn" type="button" onclick="mpass_show()"><i id="mpass-eye" class="fas fa-eye"></i>
+                                <button class="btn btn-primary viewBtn" type="button" onclick="mpass_show()"><i
+                                        id="mpass-eye" class="fas fa-eye"></i>
                                 </button>
                             </div>
-                            <div class="d-flex"><input id="cpass-id" class="form-control mb-1" type="password" name="cpass"
+                            <ul class="fa-sm text-de text-lg-start">
+                                <li>Your password can’t be too similar to your other personal information.</li>
+                                <li>Your password must contain at least 8 characters.</li>
+                                <li>Your password can’t be a commonly used password.</li>
+                                <li>Your password can’t be entirely numeric.</li>
+                            </ul>
+                            <div class="d-flex"><input id="cpass-id" class="form-control mb-1" type="password"
+                                                       name="cpass"
                                                        placeholder="Confirm Password" required="">
-                                <button class="btn btn-primary viewBtn" type="button" onclick="cpass_show()"><i id="cpass-eye" class="fas fa-eye"></i>
+                                <button class="btn btn-primary viewBtn" type="button" onclick="cpass_show()"><i
+                                        id="cpass-eye" class="fas fa-eye"></i>
                                 </button>
                             </div>
                             <div>
@@ -50,12 +63,14 @@
                                                                                   for="formCheck-2">I agree with the&nbsp;<a
                                         class="link" href="#">Privacy Policy<br></a></label></div>
                             </div>
+                            {% include 'form-message.html' %}
                             <div class="text-center">
-                                <button class="btn btn-primary my-3" type="button"><strong>Create Account</strong><br>
+                                <button class="btn btn-primary my-3" type="submit"><strong>Create Account</strong><br>
                                 </button>
                             </div>
                         </form>
-                        <div class="pb-5 mt-3"><a class="link" href="{% url "login" %}">Already have an account? Login!</a>
+                        <div class="pb-5 mt-3"><a class="link" href="{% url "login" %}">Already have an account?
+                            Login!</a>
                         </div>
                     </div>
                 </div>
@@ -65,29 +80,29 @@
 {% endblock %}
 
 {% block script %}
-<script>
-    function mpass_show() {
-        let p = document.getElementById("mpass-id");
-        let i = document.getElementById("mpass-eye");
-        if (p.type === "password") {
-            p.type = "text";
-            i.className = "fas fa-eye-slash";
-        } else {
-            p.type = "password";
-            i.className = "fas fa-eye";
+    <script>
+        function mpass_show() {
+            let p = document.getElementById("mpass-id");
+            let i = document.getElementById("mpass-eye");
+            if (p.type === "password") {
+                p.type = "text";
+                i.className = "fas fa-eye-slash";
+            } else {
+                p.type = "password";
+                i.className = "fas fa-eye";
+            }
         }
-    }
 
-    function cpass_show() {
-        let p = document.getElementById("cpass-id");
-        let i = document.getElementById("cpass-eye");
-        if (p.type === "password") {
-            p.type = "text";
-            i.className = "fas fa-eye-slash";
-        } else {
-            p.type = "password";
-            i.className = "fas fa-eye";
+        function cpass_show() {
+            let p = document.getElementById("cpass-id");
+            let i = document.getElementById("cpass-eye");
+            if (p.type === "password") {
+                p.type = "text";
+                i.className = "fas fa-eye-slash";
+            } else {
+                p.type = "password";
+                i.className = "fas fa-eye";
+            }
         }
-    }
-</script>
+    </script>
 {% endblock %}

@@ -29,6 +29,7 @@
     <!-- Start: Header -->
     <header class="pt-5">
         <div class="container pt-4 pt-xl-5">
+            {% include 'message.html' %}
             <div class="row pt-5">
                 <div class="col-md-10 text-center text-md-start mx-auto">
                     <div class="text-center">
@@ -375,8 +376,10 @@
 <!-- Start: Footer -->
 {% include 'footer.html' %}
 <!-- End: Footer -->
-
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"
+        integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
 <script src="{% static 'assets/bootstrap/js/bootstrap.min.js' %}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.7/js/tether.min.js"></script>
 <script src="{% static 'assets/js/script.min.js' %}"></script>
 {% block script %}
 {% endblock %}

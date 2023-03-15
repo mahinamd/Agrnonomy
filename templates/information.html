@@ -1,0 +1,496 @@
+{% extends "index.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+<section class="pt-5 mt-5">
+    <div class="container pt-4 pt-xl-4">
+        <div class="row mb-5">
+            <div class="col text-center"><h3 class="display-6 fw-bold pb-2 mb-2">Agriculture&nbsp;<span
+                    class="underline"><strong>Information</strong></span>&nbsp;</h3></div>
+        </div>
+        <div class="row mb-1">
+            <div class="col text-center"><h3 class="display-6 fw-bold pb-2 mb-2"><span class="underline">Category</span>&nbsp;
+            </h3></div>
+        </div>
+        <div class="row mb-5">
+            <div class="col text-center">
+                <form class="d-flex justify-content-center flex-wrap flex-lg-nowrap" method="post">
+                    <div class="my-2 me-1"><input class="form-control" type="search" placeholder="Search" name="search">
+                    </div>
+                    <div class="my-2">
+                        <button class="btn btn-primary shadow" type="submit">Search</button>
+                    </div>
+                </form>
+                <div class="my-2"><a class="btn btn-primary shadow" role="button" href={% url "category" %}>Back</a></div>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="container info-view overflow-scroll">
+        <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3 justify-content-center">
+            <div class="col-auto col-sm-auto col-md-10 col-lg-9 col-xl-8 col-xxl-7">
+                <div class="card border-light border-1 d-flex justify-content-center p-4">
+                    <div class="card-body">
+                        <div><h4 class="fw-bold text-center">Title 1</h4><img class="rounded img-fluid"
+                                                                              src="assets/img/Peddy.jpg"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-12 col-sm-12 col-md-10 col-lg-9 col-xl-8 col-xxl-7 mx-auto">
+                <div class="accordion text-muted" role="tablist" id="accordion-1">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" role="tab">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#accordion-1 .item-1" aria-expanded="false"
+                                    aria-controls="accordion-1 .item-1">Question 1?
+                            </button>
+                        </h2>
+                        <div class="accordion-collapse collapse item-1" role="tabpanel" data-bs-parent="#accordion-1">
+                            <div class="accordion-body">
+                                <div class="text-center"><h4>Heading</h4>
+                                    <p>Answer 1</p></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" role="tab">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#accordion-1 .item-2" aria-expanded="false"
+                                    aria-controls="accordion-1 .item-2">Question 1?
+                            </button>
+                        </h2>
+                        <div class="accordion-collapse collapse item-2" role="tabpanel" data-bs-parent="#accordion-1">
+                            <div class="accordion-body">
+                                <div class="text-center"><h4>Heading</h4>
+                                    <p>Answer 1</p></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" role="tab">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#accordion-1 .item-3" aria-expanded="false"
+                                    aria-controls="accordion-1 .item-3">Question 1?
+                            </button>
+                        </h2>
+                        <div class="accordion-collapse collapse item-3" role="tabpanel" data-bs-parent="#accordion-1">
+                            <div class="accordion-body">
+                                <div class="text-center"><h4>Heading</h4>
+                                    <p>Answer 1</p></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" role="tab">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#accordion-1 .item-4" aria-expanded="false"
+                                    aria-controls="accordion-1 .item-4">Question 1?
+                            </button>
+                        </h2>
+                        <div class="accordion-collapse collapse item-4" role="tabpanel" data-bs-parent="#accordion-1">
+                            <div class="accordion-body">
+                                <div class="text-center"><h4>Heading</h4>
+                                    <p>Answer 1</p></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3">
+            <div class="col-md-12 col-lg-6 col-xl-6 col-xxl-6">
+                <div class="card border-light border-1 d-flex justify-content-center p-4 card-container">
+                    <div class="card-body card-flip">
+                        <div class="front card-block text-center"><h5 class="fw-bold">Title 1</h5>
+                            <p>Paragraph 1</p><img class="rounded img-fluid" src="assets/img/Peddy.jpg"></div>
+                        <div class="back card-block"><h5 class="fw-bold text-center">Title 1</h5>
+                            <div class="col-12 col-sm-12 col-md-10 col-lg-9 col-xl-8 col-xxl-7 mx-auto">
+                                <div class="details-view overflow-scroll">
+                                    <div class="accordion text-muted" role="tablist" id="accordion-2">
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" role="tab">
+                                                <button class="accordion-button collapsed" type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#accordion-2 .item-1"
+                                                        aria-expanded="false" aria-controls="accordion-2 .item-1">
+                                                    Question 1?
+                                                </button>
+                                            </h2>
+                                            <div class="accordion-collapse collapse item-1" role="tabpanel"
+                                                 data-bs-parent="#accordion-2">
+                                                <div class="accordion-body">
+                                                    <div class="text-center"><h4>Heading</h4>
+                                                        <p>Answer 1</p></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" role="tab">
+                                                <button class="accordion-button collapsed" type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#accordion-2 .item-2"
+                                                        aria-expanded="false" aria-controls="accordion-2 .item-2">
+                                                    Question 1?
+                                                </button>
+                                            </h2>
+                                            <div class="accordion-collapse collapse item-2" role="tabpanel"
+                                                 data-bs-parent="#accordion-2">
+                                                <div class="accordion-body">
+                                                    <div class="text-center"><h4>Heading</h4>
+                                                        <p>Answer 1</p></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" role="tab">
+                                                <button class="accordion-button collapsed" type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#accordion-2 .item-3"
+                                                        aria-expanded="false" aria-controls="accordion-2 .item-3">
+                                                    Question 1?
+                                                </button>
+                                            </h2>
+                                            <div class="accordion-collapse collapse item-3" role="tabpanel"
+                                                 data-bs-parent="#accordion-2">
+                                                <div class="accordion-body">
+                                                    <div class="text-center"><h4>Heading</h4>
+                                                        <p>Answer 1</p></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-6 col-xl-6 col-xxl-6">
+                <div class="card border-light border-1 d-flex justify-content-center p-4 card-container">
+                    <div class="card-body card-flip">
+                        <div class="front card-block text-center"><h5 class="fw-bold">Title 1</h5>
+                            <p>Paragraph 1</p><img class="rounded img-fluid" src="assets/img/Tomato.jpg"></div>
+                        <div class="back card-block"><h5 class="fw-bold text-center">Title 1</h5>
+                            <div class="col-12 col-sm-12 col-md-10 col-lg-9 col-xl-8 col-xxl-7 mx-auto">
+                                <div class="details-view overflow-scroll">
+                                    <div class="accordion text-muted" role="tablist" id="accordion-3">
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" role="tab">
+                                                <button class="accordion-button collapsed" type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#accordion-3 .item-1"
+                                                        aria-expanded="false" aria-controls="accordion-3 .item-1">
+                                                    Question 1?
+                                                </button>
+                                            </h2>
+                                            <div class="accordion-collapse collapse item-1" role="tabpanel"
+                                                 data-bs-parent="#accordion-3">
+                                                <div class="accordion-body">
+                                                    <div class="text-center"><h4>Heading</h4>
+                                                        <p>Answer 1</p></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" role="tab">
+                                                <button class="accordion-button collapsed" type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#accordion-3 .item-2"
+                                                        aria-expanded="false" aria-controls="accordion-3 .item-2">
+                                                    Question 1?
+                                                </button>
+                                            </h2>
+                                            <div class="accordion-collapse collapse item-2" role="tabpanel"
+                                                 data-bs-parent="#accordion-3">
+                                                <div class="accordion-body">
+                                                    <div class="text-center"><h4>Heading</h4>
+                                                        <p>Answer 1</p></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" role="tab">
+                                                <button class="accordion-button collapsed" type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#accordion-3 .item-3"
+                                                        aria-expanded="false" aria-controls="accordion-3 .item-3">
+                                                    Question 1?
+                                                </button>
+                                            </h2>
+                                            <div class="accordion-collapse collapse item-3" role="tabpanel"
+                                                 data-bs-parent="#accordion-3">
+                                                <div class="accordion-body">
+                                                    <div class="text-center"><h4>Heading</h4>
+                                                        <p>Answer 1</p></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3">
+            <div class="col-md-12 col-lg-6 col-xl-6 col-xxl-6">
+                <div class="card border-light border-1 d-flex justify-content-center p-4 card-container">
+                    <div class="card-body card-flip">
+                        <div class="front card-block text-center"><h5 class="fw-bold">Title 1</h5>
+                            <p>Paragraph 1</p><img class="rounded img-fluid" src="assets/img/Peddy.jpg"></div>
+                        <div class="back card-block"><h5 class="fw-bold text-center">Title 1</h5>
+                            <div class="col-12 col-sm-12 col-md-10 col-lg-9 col-xl-8 col-xxl-7 mx-auto">
+                                <div class="details-view overflow-scroll">
+                                    <div class="accordion text-muted" role="tablist" id="accordion-6">
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" role="tab">
+                                                <button class="accordion-button collapsed" type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#accordion-6 .item-1"
+                                                        aria-expanded="false" aria-controls="accordion-6 .item-1">
+                                                    Question 1?
+                                                </button>
+                                            </h2>
+                                            <div class="accordion-collapse collapse item-1" role="tabpanel"
+                                                 data-bs-parent="#accordion-6">
+                                                <div class="accordion-body">
+                                                    <div class="text-center"><h4>Heading</h4>
+                                                        <p>Answer 1</p></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" role="tab">
+                                                <button class="accordion-button collapsed" type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#accordion-6 .item-2"
+                                                        aria-expanded="false" aria-controls="accordion-6 .item-2">
+                                                    Question 1?
+                                                </button>
+                                            </h2>
+                                            <div class="accordion-collapse collapse item-2" role="tabpanel"
+                                                 data-bs-parent="#accordion-6">
+                                                <div class="accordion-body">
+                                                    <div class="text-center"><h4>Heading</h4>
+                                                        <p>Answer 1</p></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" role="tab">
+                                                <button class="accordion-button collapsed" type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#accordion-6 .item-3"
+                                                        aria-expanded="false" aria-controls="accordion-6 .item-3">
+                                                    Question 1?
+                                                </button>
+                                            </h2>
+                                            <div class="accordion-collapse collapse item-3" role="tabpanel"
+                                                 data-bs-parent="#accordion-6">
+                                                <div class="accordion-body">
+                                                    <div class="text-center"><h4>Heading</h4>
+                                                        <p>Answer 1</p></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-6 col-xl-6 col-xxl-6">
+                <div class="card border-light border-1 d-flex justify-content-center p-4 card-container">
+                    <div class="card-body card-flip">
+                        <div class="front card-block text-center"><h5 class="fw-bold">Title 1</h5>
+                            <p>Paragraph 1</p><img class="rounded img-fluid" src="assets/img/Tomato.jpg"></div>
+                        <div class="back card-block"><h5 class="fw-bold text-center">Title 1</h5>
+                            <div class="col-12 col-sm-12 col-md-10 col-lg-9 col-xl-8 col-xxl-7 mx-auto">
+                                <div class="details-view overflow-scroll">
+                                    <div class="accordion text-muted" role="tablist" id="accordion-7">
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" role="tab">
+                                                <button class="accordion-button collapsed" type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#accordion-7 .item-1"
+                                                        aria-expanded="false" aria-controls="accordion-7 .item-1">
+                                                    Question 1?
+                                                </button>
+                                            </h2>
+                                            <div class="accordion-collapse collapse item-1" role="tabpanel"
+                                                 data-bs-parent="#accordion-7">
+                                                <div class="accordion-body">
+                                                    <div class="text-center"><h4>Heading</h4>
+                                                        <p>Answer 1</p></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" role="tab">
+                                                <button class="accordion-button collapsed" type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#accordion-7 .item-2"
+                                                        aria-expanded="false" aria-controls="accordion-7 .item-2">
+                                                    Question 1?
+                                                </button>
+                                            </h2>
+                                            <div class="accordion-collapse collapse item-2" role="tabpanel"
+                                                 data-bs-parent="#accordion-7">
+                                                <div class="accordion-body">
+                                                    <div class="text-center"><h4>Heading</h4>
+                                                        <p>Answer 1</p></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" role="tab">
+                                                <button class="accordion-button collapsed" type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#accordion-7 .item-3"
+                                                        aria-expanded="false" aria-controls="accordion-7 .item-3">
+                                                    Question 1?
+                                                </button>
+                                            </h2>
+                                            <div class="accordion-collapse collapse item-3" role="tabpanel"
+                                                 data-bs-parent="#accordion-7">
+                                                <div class="accordion-body">
+                                                    <div class="text-center"><h4>Heading</h4>
+                                                        <p>Answer 1</p></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3">
+            <div class="col-md-12 col-lg-6 col-xl-6 col-xxl-6">
+                <div class="card border-light border-1 d-flex justify-content-center p-4 card-container">
+                    <div class="card-body card-flip">
+                        <div class="front card-block text-center"><h5 class="fw-bold">Title 1</h5>
+                            <p>Paragraph 1</p><img class="rounded img-fluid" src="assets/img/Peddy.jpg"></div>
+                        <div class="back card-block"><h5 class="fw-bold text-center">Title 1</h5>
+                            <div class="col-12 col-sm-12 col-md-10 col-lg-9 col-xl-8 col-xxl-7 mx-auto">
+                                <div class="details-view overflow-scroll">
+                                    <div class="accordion text-muted" role="tablist" id="accordion-4">
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" role="tab">
+                                                <button class="accordion-button collapsed" type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#accordion-4 .item-1"
+                                                        aria-expanded="false" aria-controls="accordion-4 .item-1">
+                                                    Question 1?
+                                                </button>
+                                            </h2>
+                                            <div class="accordion-collapse collapse item-1" role="tabpanel"
+                                                 data-bs-parent="#accordion-4">
+                                                <div class="accordion-body">
+                                                    <div class="text-center"><h4>Heading</h4>
+                                                        <p>Answer 1</p></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" role="tab">
+                                                <button class="accordion-button collapsed" type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#accordion-4 .item-2"
+                                                        aria-expanded="false" aria-controls="accordion-4 .item-2">
+                                                    Question 1?
+                                                </button>
+                                            </h2>
+                                            <div class="accordion-collapse collapse item-2" role="tabpanel"
+                                                 data-bs-parent="#accordion-4">
+                                                <div class="accordion-body">
+                                                    <div class="text-center"><h4>Heading</h4>
+                                                        <p>Answer 1</p></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" role="tab">
+                                                <button class="accordion-button collapsed" type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#accordion-4 .item-3"
+                                                        aria-expanded="false" aria-controls="accordion-4 .item-3">
+                                                    Question 1?
+                                                </button>
+                                            </h2>
+                                            <div class="accordion-collapse collapse item-3" role="tabpanel"
+                                                 data-bs-parent="#accordion-4">
+                                                <div class="accordion-body">
+                                                    <div class="text-center"><h4>Heading</h4>
+                                                        <p>Answer 1</p></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-6 col-xl-6 col-xxl-6">
+                <div class="card border-light border-1 d-flex justify-content-center p-4 card-container">
+                    <div class="card-body card-flip">
+                        <div class="front card-block text-center"><h5 class="fw-bold">Title 1</h5>
+                            <p>Paragraph 1</p><img class="rounded img-fluid" src="assets/img/Tomato.jpg"></div>
+                        <div class="back card-block"><h5 class="fw-bold text-center">Title 1</h5>
+                            <div class="col-12 col-sm-12 col-md-10 col-lg-9 col-xl-8 col-xxl-7 mx-auto">
+                                <div class="details-view overflow-scroll">
+                                    <div class="accordion text-muted" role="tablist" id="accordion-5">
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" role="tab">
+                                                <button class="accordion-button collapsed" type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#accordion-5 .item-1"
+                                                        aria-expanded="false" aria-controls="accordion-5 .item-1">
+                                                    Question 1?
+                                                </button>
+                                            </h2>
+                                            <div class="accordion-collapse collapse item-1" role="tabpanel"
+                                                 data-bs-parent="#accordion-5">
+                                                <div class="accordion-body">
+                                                    <div class="text-center"><h4>Heading</h4>
+                                                        <p>Answer 1</p></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" role="tab">
+                                                <button class="accordion-button collapsed" type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#accordion-5 .item-2"
+                                                        aria-expanded="false" aria-controls="accordion-5 .item-2">
+                                                    Question 1?
+                                                </button>
+                                            </h2>
+                                            <div class="accordion-collapse collapse item-2" role="tabpanel"
+                                                 data-bs-parent="#accordion-5">
+                                                <div class="accordion-body">
+                                                    <div class="text-center"><h4>Heading</h4>
+                                                        <p>Answer 1</p></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" role="tab">
+                                                <button class="accordion-button collapsed" type="button"
+                                                        data-bs-toggle="collapse" data-bs-target="#accordion-5 .item-3"
+                                                        aria-expanded="false" aria-controls="accordion-5 .item-3">
+                                                    Question 1?
+                                                </button>
+                                            </h2>
+                                            <div class="accordion-collapse collapse item-3" role="tabpanel"
+                                                 data-bs-parent="#accordion-5">
+                                                <div class="accordion-body">
+                                                    <div class="text-center"><h4>Heading</h4>
+                                                        <p>Answer 1</p></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

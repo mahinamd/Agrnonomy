@@ -13,5 +13,13 @@ urlpatterns = [
     path('login', views.loginPage, name='login'),
     path('signup', views.signupPage, name='signup'),
     path('forgotten-password', views.forgottenPasswordPage, name='forgotten-password'),
+
+    path('profile', views.profilePage, name='profile'),
+    path('dashboard', views.dashboardPage, name='dashboard'),
+    path('dashboard/data-management', views.dataManagementPage, name='data-management'),
+
+    path('category', views.categoryPage, name='category'),
+    path('category/information/<int:index>', views.informationPage, name='information'),
+
     path("setLanguage/<str:language>", views.setLanguage, name="set-language"),
 ]

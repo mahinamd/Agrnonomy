@@ -1,0 +1,93 @@
+{% extends "index.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+    <br><br><br>
+    {% include 'message.html' %}
+    <div class="container pt-5"><h3 class="prof-header">Profile</h3>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col pt-1"><h6 class="ps-2 prof-cont-header">User Image:</h6></div>
+                            <div class="col prof-col">
+                                <div class="text-center pb-3"><img class="rounded-circle prof-img-view"
+                                                                   src="{{ request.user.pimg.url }}"></div>
+                            </div>
+                            <div class="col prof-col pt-3"><h6 class="ps-2 prof-cont-header">User Info:</h6></div>
+                            <div class="col prof-half-col"><h6>First Name:</h6><h6 class="text-muted mb-2 prof-cont">
+                                {{ request.user.fname }}</h6></div>
+                            <div class="col prof-half-col"><h6>Last Name:</h6><h6 class="text-muted mb-2 prof-cont">
+                                {{ request.user.lname }}</h6></div>
+                            <div class="col prof-col"><h6>Gender:</h6><h6
+                                    class="text-muted mb-2 prof-cont">{{ request.user.gender }}</h6>
+                            </div>
+                            <div class="col prof-col"><h6>Date of Birth:</h6><h6 class="text-muted mb-2 prof-cont">
+                                {{ request.user.dob }}</h6></div>
+                            <div class="col prof-col"><h6>Phone:</h6><h6
+                                    class="text-muted mb-2 prof-cont">{{ request.user }}</h6>
+                            </div>
+                            <div class="col prof-col"><h6>Email:</h6><h6
+                                    class="text-muted mb-2 prof-cont">{{ request.user.email }}</h6>
+                            </div>
+                            <div class="col prof-col"><h6>Password:</h6><h6 class="text-muted mb-2 prof-cont">
+                                ********<br>
+                            </h6></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col pt-1"><h6 class="ps-2 prof-cont-header">Contact Info:</h6></div>
+                            <div class="col prof-col"><h6>House No:</h6><h6
+                                    class="text-muted mb-2 prof-cont">{{ request.user.house_no }}</h6>
+                            </div>
+                            <div class="col prof-col"><h6>Address:</h6><h6
+                                    class="text-muted mb-2 prof-cont">{{ request.user.address_line }}</h6>
+                            </div>
+                            <div class="col prof-half-col"><h6>City:</h6><h6
+                                    class="text-muted mb-2 prof-cont">{{ request.user.city }}</h6>
+                            </div>
+                            <div class="col prof-half-col"><h6>Zip Code:</h6><h6 class="text-muted mb-2 prof-cont">
+                                {{ request.user.zip_code }}</h6></div>
+                            <div class="col prof-col"><h6>Country:</h6><h6
+                                    class="text-muted mb-2 prof-cont">{{ request.user.country }}</h6>
+                            </div>
+                            <div class="col pt-3"><h6 class="ps-2 prof-cont-header">Social Link:</h6></div>
+                            <div class="col prof-col"><h6>Linked In:</h6><h6
+                                    class="text-muted mb-2 prof-cont">{{ request.user.social_li }}</h6>
+                            </div>
+                            <div class="col prof-col"><h6>Facebook:</h6><h6
+                                    class="text-muted mb-2 prof-cont">{{ request.user.social_fb }}</h6>
+                            </div>
+                            <div class="col prof-col"><h6>Twitter:</h6><h6
+                                    class="text-muted mb-2 prof-cont">{{ request.user.social_tw }}</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col pb-5">
+                <div class="row">
+                    <div class="col pt-3"><h6 class="ps-2 prof-cont-header">Payment Method:</h6></div>
+                    <div class="col prof-col"><h6 class="text-muted mb-2 prof-cont">Payment Methods...</h6></div>
+                    <div class="col prof-col"><h6>Card No:</h6><h6 class="text-muted mb-2 prof-cont">.....</h6></div>
+                    <div class="col prof-half-col"><h6>Date:</h6><h6 class="text-muted mb-2 prof-cont">.....</h6></div>
+                    <div class="col prof-half-col"><h6>CVV:</h6><h6 class="text-muted mb-2 prof-cont">.....</h6></div>
+                    <div class="col prof-col align-self-center text-center pt-3"><a
+                            class="btn btn-primary border rounded"
+                            role="button">Add Payment Method<br></a>
+                    </div>
+                    <div class="col text-center pt-3"><h6 class="ps-2 prof-cont-header">Edit Profile:</h6><a
+                            class="btn btn-primary border rounded" role="button" href="#">Edit
+                        Profile<br></a><h6 class="my-2">Please be careful when editing your profile!<br></h6></div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

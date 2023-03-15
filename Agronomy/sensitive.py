@@ -1,4 +1,3 @@
-import sys
 import os
 
 from dotenv import load_dotenv
@@ -30,4 +29,13 @@ DEBUG = True
 ALLOWED_HOSTS = ['127.0.0.1']
 ALLOWED_DOMAIN = ALLOWED_HOSTS
 CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1:8000']
-DATABASES = {}
+DATABASES = {
+    'default': {
+        'ENGINE': selfDecode(os.environ['ENGINE']),
+        'NAME': selfDecode(os.environ['NAME']),
+        'CLIENT':
+            {
+                'host': selfDecode(os.environ['HOST_LINK']) + selfDecode(os.environ['HOST_PERMISSION']),
+            }
+    }
+}
