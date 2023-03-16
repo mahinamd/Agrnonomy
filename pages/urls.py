@@ -19,7 +19,8 @@ urlpatterns = [
     path('dashboard/data-management', views.dataManagementPage, name='data-management'),
 
     path('category', views.categoryPage, name='category'),
-    path('category/information/<int:index>', views.informationPage, name='information'),
+    path('category/<str:index>', views.subcategoryPage, name='subcategory'),
+    path('category/<str:parent>/<str:index>', views.informationPage, name='information'),
 
     path("setLanguage/<str:language>", views.setLanguage, name="set-language"),
 ]

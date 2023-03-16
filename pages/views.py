@@ -133,56 +133,245 @@ def profilePage(request):
     return redirect('index')
 
 
-def get_titles():
-    context = {}
-    collection = get_collection()
-    data = collection.find({}, {'_id': 0, 'data': 1})
+def get_category_title():
+    collection = get_collection(1)
+    data = collection.find({}, {'_id': 0, 'title': 1})
+    title = ""
 
     for result in data:
-        context['total_category'] = len(result['data'][0]['data_title']) - 1
-        context['category_title'] = result['data'][0]['data_title']['category_title']
-        context['data_title'] = [result['data'][0]['data_title']['land_title'],
-                                 result['data'][0]['data_title']['seed_title'],
-                                 result['data'][0]['data_title']['manure_title'],
-                                 result['data'][0]['data_title']['irrigation_title'],
-                                 result['data'][0]['data_title']['disease_title'],
-                                 result['data'][0]['data_title']['insects_title'],
-                                 result['data'][0]['data_title']['solution_title'],
-                                 result['data'][0]['data_title']['warning_title']]
+        title = result['title'][0]['category_title']
         break
 
-    return context
+    return title
 
 
-def get_categories_title():
-    collection = get_collection()
-    data = collection.find({}, {'_id': 0, 'data': 1})
-    categories = []
-
+def get_category():
+    collection = get_collection(1)
+    data = collection.find({}, {'_id': 0, 'title': 1, 'categories_image': 1})
+    categories_title = []
+    index_categories = []
+    categories_image = []
     for result in data:
-        categories.append(result['data'][0]['category'])
+        categories_title = [result['title'][0]['categories']['0'],
+                            result['title'][0]['categories']['1'],
+                            result['title'][0]['categories']['2'],
+                            result['title'][0]['categories']['3'],
+                            result['title'][0]['categories']['4'],
+                            result['title'][0]['categories']['5']]
+        index_categories = [result['title'][0]['index_categories']['0'],
+                            result['title'][0]['index_categories']['1'],
+                            result['title'][0]['index_categories']['2'],
+                            result['title'][0]['index_categories']['3'],
+                            result['title'][0]['index_categories']['4'],
+                            result['title'][0]['index_categories']['5']]
+        categories_image = [result['categories_image']['0'],
+                            result['categories_image']['1'],
+                            result['categories_image']['2'],
+                            result['categories_image']['3'],
+                            result['categories_image']['4'],
+                            result['categories_image']['5']]
+        break
+
+    categories = zip(categories_title, index_categories, categories_image)
 
     return categories
 
 
-def get_categories_image():
-    collection = get_collection()
-    data = collection.find({}, {'_id': 0, 'data': 1})
-    categories = []
+def get_subcategory_title():
+    collection = get_collection(1)
+    data = collection.find({}, {'_id': 0, 'title': 1})
+    title = ""
 
     for result in data:
-        categories.append(result['data'][0]['category_image'])
+        title = result['title'][0]['subcategory_title']
+        break
 
-    return categories
+    return title
+
+
+def get_information_title():
+    collection = get_collection(2)
+    data = collection.find({}, {'_id': 0, 'data': 1})
+    title = ""
+
+    for result in data:
+        title = result['data'][0]['information_title']
+        break
+
+    return title
+
+
+def find_category_index(index):
+    collection = get_collection(1)
+    data = collection.find({}, {'_id': 0, 'title.index_categories': 1})
+    dic = {}
+
+    for result in data:
+        dic.update(result['title'][0]['index_categories'])
+
+    for key, value in dic.items():
+        if value == index:
+            return [int(key), value]
+
+    return -1
+
+
+def find_subcategory_index(parent_index, index):
+    collection = get_collection(1)
+    data = collection.find({}, {'_id': 0, 'title.index_subcategories': 1})
+    dic = {}
+
+    for result in data:
+        dic.update(result['title'][0]['index_subcategories'][parent_index])
+
+    for key, value in dic.items():
+        if value == index:
+            return [int(key), value]
+
+    return -1
+
+
+def get_subcategory(index):
+    collection = get_collection(1)
+    data1 = collection.find({}, {'_id': 0, 'title.subcategories': 1})
+    data2 = collection.find({}, {'_id': 0, 'title.index_subcategories': 1})
+    data3 = collection.find({}, {'_id': 0, 'title.subcategories_image': 1})
+    subcategories_title = []
+    index_subcategories = []
+    subcategories_image = []
+    dic = {}
+
+    for result in data1:
+        dic.update(result['title'][0]['subcategories'][index])
+
+    for key, value in dic.items():
+        subcategories_title.append(value)
+
+    subcategories_title.pop(0)
+    dic = {}
+
+    for result in data2:
+        dic.update(result['title'][0]['index_subcategories'][index])
+
+    for key, value in dic.items():
+        index_subcategories.append(value)
+
+    index_subcategories.pop(0)
+    dic = {}
+
+    for result in data3:
+        dic.update(result['title'][0]['subcategories_image'][index])
+
+    for key, value in dic.items():
+        subcategories_image.append(value)
+
+    subcategories_image.pop(0)
+    subcategories = zip(subcategories_title, index_subcategories, subcategories_image)
+
+    return subcategories
+
+
+def get_information(parent_index, index):
+    collection = get_collection(2)
+    data1 = collection.find({}, {'_id': 0, 'data.information_column': 1})
+    data2 = collection.find({}, {'_id': 0, 'data.information_row': 1})
+    data3 = collection.find({}, {'_id': 0, 'data.information_row': 1})
+
+    column = []
+    row = []
+    image = []
+    found_image = False
+    dic = {}
+
+    for result in data1:
+        dic.update(result['data'][0]['information_column'][parent_index])
+
+    for key, value in dic.items():
+        column.append(value)
+
+    column.pop(0)
+    dic = {}
+
+    for result in data2:
+        dic.update(result['data'][0]['information_row'][index])
+
+    for key, value in dic.items():
+        row.append(value)
+
+    row.pop(0)
+    dic = {}
+
+    for result in data3:
+        if 'information_image' in result['data'][0]['information_row'][index]:
+            found_image = True
+            dic.update(result['data'][0]['information_row'][index]['information_image'])
+
+    if found_image:
+        for key, value in dic.items():
+            image.append(value)
+
+        dic = {}
+        disease = []
+        dic.update(row[4][0])
+        for key, value in dic.items():
+            disease.append(value)
+
+        dic = {}
+        causes = []
+        dic.update(row[5][0])
+        for key, value in dic.items():
+            causes.append(value)
+
+        dic = {}
+        solutions = []
+        dic.update(row[6][0])
+        for key, value in dic.items():
+            solutions.append(value)
+
+        dic = {}
+        warning = []
+        dic.update(row[7][0])
+        for key, value in dic.items():
+            warning.append(value)
+
+        # disease.remove('')
+        causes.remove('')
+        solutions.remove('')
+        warning.remove('')
+        image.remove('')
+
+        return [found_image, column[4], column[5], column[6], column[7], zip(causes, image),
+                zip(disease, solutions, warning), zip(column, row)]
+    else:
+        return [found_image, zip(column, row)]
+
+
+# get_information(0, 0)
+
+
+def get_subcategory_info(parent_index, index):
+    collection = get_collection(1)
+    data1 = collection.find({}, {'_id': 0, 'title.subcategories': 1})
+    data2 = collection.find({}, {'_id': 0, 'title.subcategories_image': 1})
+    title = ""
+    image = ""
+
+    for result in data1:
+        title = result['title'][0]['subcategories'][parent_index][str(index)]
+
+    for result in data2:
+        image = result['title'][0]['subcategories_image'][parent_index][str(index)]
+
+    return [title, image]
 
 
 def categoryPage(request):
     default_language = 'bn' in translation.get_language()
     context = {'default_language': default_language}
-    context.update(get_titles())
-    categories_title = get_categories_title()
-    categories_image = get_categories_image()
-    categories = zip(categories_title, categories_image)
+
+    title = get_category_title()
+    context['categories_title'] = title
+    categories = get_category()
     context['categories'] = categories
 
     user = request.user
@@ -193,9 +382,72 @@ def categoryPage(request):
     return redirect('index')
 
 
-def informationPage(request, index):
+def subcategoryPage(request, index):
     default_language = 'bn' in translation.get_language()
     context = {'default_language': default_language}
+
+    found = find_category_index(index)
+
+    if found == -1:
+        messages.error(request, "Invalid subcategory!")
+        return redirect('category')
+
+    context['parent'] = found[1]
+    title = get_subcategory_title()
+    context['subcategories_title'] = title
+    subcategories = get_subcategory(found[0])
+    context['subcategories'] = subcategories
+
+    user = request.user
+    if user.is_authenticated:
+        return render(request, 'subcategory.html', context)
+
+    messages.error(request, "You are not allow to visit the page")
+    return redirect('index')
+
+
+class Counter(object):
+    def __init__(self):
+        self.c = 0
+
+    def increase(self):
+        self.c += 1
+        return ''
+
+    def value(self):
+        return self.c
+
+
+def informationPage(request, parent, index):
+    default_language = 'bn' in translation.get_language()
+    context = {'default_language': default_language}
+
+    found_parent = find_category_index(parent)
+    found_index = find_subcategory_index(found_parent[0], index)
+
+    if found_parent == -1 or found_index == -1:
+        messages.error(request, "Invalid information!")
+        return redirect('category')
+
+    title = get_information_title()
+    context['information_title'] = title
+    context['parent'] = found_parent[1]
+    parent_info = get_subcategory_info(found_parent[0], found_index[0])
+    context['parent_title'] = parent_info[0]
+    context['parent_url'] = parent_info[1]
+    info = get_information(found_parent[0], found_index[0])
+    context['has_image'] = info[0]
+    if context['has_image']:
+        context['disease_header'] = info[1]
+        context['cause_header'] = info[2]
+        context['solution_header'] = info[3]
+        context['warning_header'] = info[4]
+        context['causes'] = info[5]
+        context['definition'] = info[6]
+
+    context['information'] = info[7]
+    context['counter'] = Counter()
+
     user = request.user
     if user.is_authenticated:
         return render(request, 'information.html', context)
