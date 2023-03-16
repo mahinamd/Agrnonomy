@@ -46,7 +46,7 @@
             <div class="row mb-2">
                 <div class="col-12 col-sm-12 col-md-10 col-lg-9 col-xl-8 col-xxl-7 mx-auto">
                     {% for col, row in information %}
-                        {% if forloop.counter0 < 4 %}
+                        {% if forloop.counter0 < 30 %}
                             <div class="accordion text-muted" role="tablist" id="accordion-{{ forloop.counter0 }}">
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" role="tab">
@@ -259,4 +259,5 @@
             {% endif %}
         </div>
     </section>
+    <div class="mt-5 pt5"></div><br><br><br>
 {% endblock %}

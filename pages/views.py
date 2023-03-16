@@ -273,13 +273,18 @@ def get_subcategory(index):
 
 def get_information(parent_index, index):
     collection = get_collection(2)
+    collection_name = "information_" + str(parent_index)
     data1 = collection.find({}, {'_id': 0, 'data.information_column': 1})
-    data2 = collection.find({}, {'_id': 0, 'data.information_row': 1})
-    data3 = collection.find({}, {'_id': 0, 'data.information_row': 1})
+    data2 = collection.find({}, {'_id': 0, 'data.' + collection_name: 1})
+    data3 = collection.find({}, {'_id': 0, 'data.' + collection_name: 1})
 
     column = []
     row = []
     image = []
+    warning = []
+    solutions = []
+    causes = []
+    disease = []
     found_image = False
     dic = {}
 
@@ -293,7 +298,7 @@ def get_information(parent_index, index):
     dic = {}
 
     for result in data2:
-        dic.update(result['data'][0]['information_row'][index])
+        dic.update(result['data'][0][collection_name][index])
 
     for key, value in dic.items():
         row.append(value)
@@ -302,51 +307,47 @@ def get_information(parent_index, index):
     dic = {}
 
     for result in data3:
-        if 'information_image' in result['data'][0]['information_row'][index]:
+        if 'information_image' in result['data'][0][collection_name][index]:
             found_image = True
-            dic.update(result['data'][0]['information_row'][index]['information_image'])
+            dic.update(result['data'][0][collection_name][index]['information_image'])
 
     if found_image:
         for key, value in dic.items():
             image.append(value)
 
         dic = {}
-        disease = []
         dic.update(row[4][0])
         for key, value in dic.items():
             disease.append(value)
 
         dic = {}
-        causes = []
         dic.update(row[5][0])
         for key, value in dic.items():
             causes.append(value)
 
         dic = {}
-        solutions = []
         dic.update(row[6][0])
         for key, value in dic.items():
             solutions.append(value)
 
         dic = {}
-        warning = []
         dic.update(row[7][0])
         for key, value in dic.items():
             warning.append(value)
 
-        # disease.remove('')
-        causes.remove('')
-        solutions.remove('')
-        warning.remove('')
-        image.remove('')
+        try:
+            disease.remove('')
+            causes.remove('')
+            solutions.remove('')
+            warning.remove('')
+            image.remove('')
+        except ValueError:
+            pass
 
         return [found_image, column[4], column[5], column[6], column[7], zip(causes, image),
                 zip(disease, solutions, warning), zip(column, row)]
     else:
         return [found_image, zip(column, row)]
-
-
-# get_information(0, 0)
 
 
 def get_subcategory_info(parent_index, index):
@@ -444,8 +445,10 @@ def informationPage(request, parent, index):
         context['warning_header'] = info[4]
         context['causes'] = info[5]
         context['definition'] = info[6]
+        context['information'] = info[7]
+    else:
+        context['information'] = info[1]
 
-    context['information'] = info[7]
     context['counter'] = Counter()
 
     user = request.user

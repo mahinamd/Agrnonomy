@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-15 22:02+0600\n"
+"POT-Creation-Date: 2023-03-16 13:32+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -251,6 +251,14 @@ msgstr "প্রশংসাপত্র"
 #: .\templates\navbar.html:51
 msgid "Agricultural Information"
 msgstr "কৃষি তথ্য"
+
+#: .\templates\navbar.html:53
+msgid "Post Questions"
+msgstr "প্রশ্ন পোস্ট করুন"
+
+#: .\templates\navbar.html:55
+msgid "Contact with Expert"
+msgstr "বিশেষজ্ঞের সাথে যোগাযোগ করুন"
 
 #: .\venv\Lib\site-packages\django\contrib\messages\apps.py:15
 msgid "Messages"
