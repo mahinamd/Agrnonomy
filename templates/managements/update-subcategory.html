@@ -1,0 +1,167 @@
+{% extends "dashboard.html" %}
+{% load static i18n %}
+
+{% block link %}
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css" integrity="sha512-cyzxRvewl+FOKTtpBzYjW6x6IAYUCZy3sGP40hn+DQkqeluGRCax7qztK2ImL64SA+C7kVWdLI6wvdlStawhyw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+{% endblock %}
+
+{% block dashboard %}
+
+    {% include 'managements/info-navbar.html' %}
+    {% include 'message.html' %}
+    <div class="container pt-1">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <form id="update-subcategory" action="{% url 'update-subcategory-form' subcategory.id %}" method="post" enctype="multipart/form-data"> {% csrf_token %}
+                            <div class="row pb-5">
+                                <div class="col prof-col pt-3">
+                                    <h6 class="dash-data-col dash-data-cat-col">Subcategory</h6>
+                                </div>
+                                <div class="col prof-col py-3">
+                                    <h6 class="dash-data-col">Category:</h6>
+                                    <label for="select-category" class="d-none dash-data-col">Category:</label>
+                                    <select id="select-category" class="form-select text-center data-input" name="category">
+                                        <option value='' disabled selected>Select Category</option>
+                                        <optgroup label='Category'>
+                                            {% for category in categories %}
+                                                <option value="{{ category.id }}" {% if subcategory.category.id == category.id %}selected{% endif %}>
+                                                    {% if default_language %}{{ category.name_bn }}{% else %}{{ category.name_en }}{% endif %}
+                                                </option>
+                                            {% endfor %}
+                                        </optgroup>
+                                    </select>
+                                </div>
+                                <div class="col pro-col pt-3">
+                                    <h6 class="dash-data-col">Subcategory&nbsp;Image:</h6>
+                                    <div class="d-none" id="img-crop-option">
+                                        <span class="float-start" id="confirm-edit">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" class="confirm-edit-style">
+                                                <path d="M10.2426 16.3137L6 12.071L7.41421 10.6568L10.2426 13.4853L15.8995 7.8284L17.3137 9.24262L10.2426 16.3137Z" fill="currentColor"></path>
+                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M1 12C1 5.92487 5.92487 1 12 1C18.0751 1 23 5.92487 23 12C23 18.0751 18.0751 23 12 23C5.92487 23 1 18.0751 1 12ZM12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21Z" fill="currentColor"></path>
+                                            </svg>
+                                        </span>
+                                        <span class="float-end" id="cancel-edit"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" class="cancel-edit-style">
+                                                <path d="M16.3394 9.32245C16.7434 8.94589 16.7657 8.31312 16.3891 7.90911C16.0126 7.50509 15.3798 7.48283 14.9758 7.85938L12.0497 10.5866L9.32245 7.66048C8.94589 7.25647 8.31312 7.23421 7.90911 7.61076C7.50509 7.98731 7.48283 8.62008 7.85938 9.0241L10.5866 11.9502L7.66048 14.6775C7.25647 15.054 7.23421 15.6868 7.61076 16.0908C7.98731 16.4948 8.62008 16.5171 9.0241 16.1405L11.9502 13.4133L14.6775 16.3394C15.054 16.7434 15.6868 16.7657 16.0908 16.3891C16.4948 16.0126 16.5171 15.3798 16.1405 14.9758L13.4133 12.0497L16.3394 9.32245Z" fill="currentColor"></path>
+                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M1 12C1 5.92487 5.92487 1 12 1C18.0751 1 23 5.92487 23 12C23 18.0751 18.0751 23 12 23C5.92487 23 1 18.0751 1 12ZM12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21Z" fill="currentColor"></path>
+                                            </svg>
+                                        </span>
+                                    </div>
+                                    <div id="img-container" class="img-container-style pb-3">
+                                        <img id="img-field" class="img-field-style" src="{{ subcategory.image.url }}">
+                                        <button class="btn btn-primary d-none img-edit-btn-style" id="img-edit-btn" type="button">Upload</button>
+                                    </div>
+                                    <input class="form-control d-none" type="file" id="img-input" name="image" accept="image/*" onchange="readImage(this)">
+                                    <input class="form-control d-none" type="hidden" id="cropping-details" name="cropping_details">
+                                </div>
+                                <div class="col prof-col pt-3">
+                                    <h6 class="dash-data-col">Subcategory name (Bangla):</h6>
+                                    <input class="form-control text-center data-input" type="text" name="name_bn" value="{{ subcategory.name_bn }}">
+                                </div>
+                                <div class="col prof-col pt-3">
+                                    <h6 class="dash-data-col">Subcategory name (English):</h6>
+                                    <input class="form-control text-center data-input" type="text" name="name_en" value="{{ subcategory.name_en }}">
+                                </div>
+                                <div id="info-fields">
+                                    {% if information %}
+                                        {% for data in information %}
+                                            <div>
+                                                <input class="form-control d-none" type="hidden" name="id[]" value="{{ data.id }}">
+                                                <div class="col prof-col pt-3">
+                                                    <h6 class="dash-data-col">{{ forloop.counter }}. Information (Bangla):</h6>
+                                                    <input class="form-control text-center data-input mb-3" type="text" name="name_bn[]" value="{{ data.name_bn }}">
+                                                    <input class="form-control text-center data-input" type="text" name="details_bn[]" value="{{ data.details_bn }}">
+                                                </div>
+                                                <div class="col prof-col pt-3">
+                                                    <h6 class="dash-data-col">{{ forloop.counter }}. Information (English):</h6>
+                                                    <input class="form-control text-center data-input mb-3" type="text" name="name_en[]" value="{{ data.name_en }}">
+                                                    <input class="form-control text-center data-input" type="text" name="details_en[]" value="{{ data.details_en }}">
+                                                </div>
+                                                <div class="col prof-col pt-3 text-center">
+                                                    <a id="delete-data-object-{{ forloop.counter }}" class="btn btn-danger" href="#" data-href="{% url "delete-form" subcategory.id data.id %}">Delete</a>
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+                                    {% else %}
+                                        <div>
+                                            <div class="col prof-col pt-3">
+                                                <h6 class="dash-data-col">Add new information (Bangla):</h6>
+                                                <input class="form-control text-center data-input mb-3" type="text" name="name_bn[]" placeholder="Information name (Bangla)">
+                                                <input class="form-control text-center data-input" type="text" name="details_bn[]" placeholder="Information details (Bangla)">
+                                            </div>
+                                            <div class="col prof-col pt-3">
+                                                <h6 class="dash-data-col">Add new information (English):</h6>
+                                                <input class="form-control text-center data-input mb-3" type="text" name="name_en[]" placeholder="Information name (English)">
+                                                <input class="form-control text-center data-input" type="text" name="details_en[]" placeholder="Information details (English)">
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                                <div class="col prof-col pt-3 text-center">
+                                    <button id="add-info-field" class="btn btn-primary me-3" type="button">Add new information field</button>
+                                    <button id="remove-info-field" class="btn btn-danger" type="button">Remove information field</button>
+                                </div>
+                                {% include 'form-message.html' %}
+                                <div id="form-alert" class="pt-3 d-none"></div>
+                                <div class="text-center py-3 d-none" id="loading-spinner">
+                                    <span class="spinner-border spinner-border-sm spinner-color" role="status"></span>
+                                </div>
+                                <div class="col prof-col pt-3 text-center">
+                                    <a class="btn btn-primary" href="{% url "view-subcategory" subcategory.category.id %}">Back</a>
+                                    <button class="btn btn-primary ms-3" type="submit">Update</button>
+                                    <button id="reset-form" class="btn btn-primary mx-3" type="reset" >Reset</button>
+                                    <a id="delete-object" class="btn btn-danger" href="#" data-href="{% url "delete-form" subcategory.id %}">Delete</a>
+                                    <div id="confirmation" class="modal fade" role="dialog" tabindex="-1">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title">Delete Subcategory</h4>
+                                                    <button class="btn-close" type="button" aria-label="Close" data-bs-dismiss="modal"></button>
+                                                </div>
+                                                <div id="modal-body" class="modal-body">
+                                                    <p>Do you want to delete the subcategory permanently?</p>
+                                                    {% if information_count > 0 %}
+                                                        <div class="alert alert-warning d-flex align-items-center" role="alert">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2" viewBox="0 0 16 16" role="img" aria-label="Warning:">
+                                                                <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"></path>
+                                                            </svg>
+                                                            <div>All other information related to this subcategory will be permanently deleted.</div>
+                                                        </div>
+                                                    {% endif %}
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button id="confirm-no" class="btn btn-light" type="button" data-bs-dismiss="modal">No</button>
+                                                    <button id="confirm-yes" class="btn btn-danger" type="button">Yes</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block script %}
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js" integrity="sha512-6lplKUSl86rUVprDIjiW8DuOniNX8UDoRATqZSds/7t6zCQZfaCe3e5zcGaQwxa8Kpn5RTM9Fvl3X2lLV4grPQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script type="text/javascript">
+
+        const form = document.getElementById("update-subcategory");
+        const informationCount = {{ information_count }};
+        const DATA_UPLOAD_MAX_MEMORY_SIZE = {{ DATA_UPLOAD_MAX_MEMORY_SIZE }};
+
+    </script>
+
+    <script src="{% static "assets/js/form.handler.js" %}"></script>
+
+{% endblock %}

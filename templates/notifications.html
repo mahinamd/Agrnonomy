@@ -1,0 +1,61 @@
+{% extends "index.html" %}
+{% load static i18n time_filters truncate_filters %}
+
+{% block content %}
+
+    <section class="py-5">
+        <div class="container mt-5 py-3">
+            {% include 'message.html' %}
+            <div class="row">
+                <div class="col-md-7">
+                    <h3 class="text-center">All notifications</h3>
+                    <h6 class="text-center">{{ notifications_count }} {% if notifications_count > 1  %}notifications{% else %}notification{% endif %}</h6>
+                </div>
+                <div class="col-md-5">
+                    <div class="d-flex justify-content-center align-items-center text-center">
+                        <div class="btn-group btn-group-sm filter-btn-group" role="group">
+                            <a class="btn btn-primary btn-sm filter-btn {% if request.GET.tab == 'Newest' or 'Newest' in request.GET.tab %}active{% endif %}" role="button" href="{% url "notifications" %}{% if request.GET.tab == 'Unread' %}?tab=Unread,Newest{% elif 'Newest' in request.GET.tab and 'Unread' in request.GET.tab %}?tab=Unread{% elif not request.GET.tab %}?tab=Newest{% endif %}">Newest</a>
+                            <a class="btn btn-primary btn-sm filter-btn {% if request.GET.tab == 'Unread' or 'Unread' in request.GET.tab %}active{% endif %}" role="button" href="{% url "notifications" %}{% if request.GET.tab == 'Newest' %}?tab=Newest,Unread{% elif 'Unread' in request.GET.tab and 'Newest' in request.GET.tab %}?tab=Newest{% elif not request.GET.tab %}?tab=Unread{% endif %}">Unread</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container mb-5 pb-5 max-h-600-px overflow-scroll">
+            {% if notifications_count > 0  %}
+                {% for notification in notifications %}
+                    <hr>
+                    <div class="row py-2">
+                        <div class="col-md-3">
+                            <div class="text-center pb-3"><span>{% trans 'Notification no' %}: {{ forloop.counter }}</span></div>
+                            <div class="text-center text-muted">
+                                <span>{% if notification.read %}Read{% else %}Unread{% endif %}</span>
+                            </div>
+                            <div class="text-center text-muted">
+                                <span>Notified {{ notification.timestamp|get_time_since }}</span>
+                            </div>
+                        </div>
+                        <div class="col-md-9">
+                            <h4>{{ notification.notification }}</h4>
+                            <div class="d-flex">
+                                {% if request.user.id == notification.account_id %}
+                                    <div class="d-flex justify-content-start align-items-center">
+                                        <span class="me-2">Mark as {% if notification.read %}read{% else %}unread{% endif %}:&nbsp;</span>
+                                        <a href="{% url "notifications" notification.id %}{% if notification.read %}?read=No{% else %}?read=Yes{% endif %}">
+                                            <i class="fas fa-check {% if notification.read %}accepted-icon{% else %}accept-icon{% endif %}"></i>
+                                        </a>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="col prof-col pt-3">
+                    <h6 class="dash-data-col">{% trans 'No notification found!' %}</h6>
+                </div>
+            {% endif %}
+        </div>
+    </section>
+
+{% endblock %}

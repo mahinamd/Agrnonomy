@@ -19,6 +19,7 @@ class MyAccountManager(BaseUserManager):
         user = self.create_user(email=self.normalize_email(email), phone=phone, password=password,)
         user.is_admin = True
         user.is_staff = True
+        user.expert = True
         user.is_superuser = True
         user.save(using=self._db)
         return user
@@ -36,10 +37,11 @@ def get_default_pimg():
 class Account(AbstractBaseUser):
     date_joined = models.DateTimeField(auto_now_add=True)
     last_login = models.DateTimeField(auto_now=True)
-    rme = models.BooleanField(default=False)
+    #rme = models.BooleanField(default=False)
     is_admin = models.BooleanField(default=False)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
+    expert = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
     is_verified = models.BooleanField(default=False)
 
@@ -47,21 +49,21 @@ class Account(AbstractBaseUser):
     pimg = models.ImageField(max_length=255, upload_to=get_pimg_filepath, null=True, blank=True, default=get_default_pimg)
     fname = models.CharField(max_length=32, blank=True, null=True)
     lname = models.CharField(max_length=32, blank=True, null=True)
-    gender = models.CharField(max_length=32, blank=True, null=True)
-    dob = models.DateField(default=None, blank=True, null=True)
+    #gender = models.CharField(max_length=32, blank=True, null=True)
+    #dob = models.DateField(default=None, blank=True, null=True)
 
     email = models.EmailField(max_length=128, unique=True)
     password = models.CharField(max_length=128)
 
-    house_no = models.CharField(max_length=128, blank=True, null=True)
-    address_line = models.CharField(max_length=128, blank=True, null=True)
-    city = models.CharField(max_length=128, blank=True, null=True)
-    zip_code = models.CharField(max_length=32, blank=True, null=True)
-    country = models.CharField(max_length=128, blank=True, null=True)
+    #house_no = models.CharField(max_length=128, blank=True, null=True)
+    #address_line = models.CharField(max_length=128, blank=True, null=True)
+    #city = models.CharField(max_length=128, blank=True, null=True)
+    #zip_code = models.CharField(max_length=32, blank=True, null=True)
+    #country = models.CharField(max_length=128, blank=True, null=True)
 
-    social_li = models.CharField(max_length=255, blank=True, null=True)
-    social_fb = models.CharField(max_length=255, blank=True, null=True)
-    social_tw = models.CharField(max_length=255, blank=True, null=True)
+    #social_li = models.CharField(max_length=255, blank=True, null=True)
+    #social_fb = models.CharField(max_length=255, blank=True, null=True)
+    #social_tw = models.CharField(max_length=255, blank=True, null=True)
 
     objects = MyAccountManager()
 
@@ -69,7 +71,17 @@ class Account(AbstractBaseUser):
     REQUIRED_FIELDS = ['phone']
 
     def __str__(self):
-        return self.phone
+        return str(self.id)
+
+    @property
+    def unread_notifications(self):
+        notifications = self.notifications.all()
+        count = 0
+        for notification in notifications:
+            if not notification.read:
+                count += 1
+
+        return count
 
     def get_name(self):
         return self.fname + ' ' + self.lname
@@ -79,3 +91,18 @@ class Account(AbstractBaseUser):
 
     def has_module_perms(self, app_label):
         return True
+
+
+# Notification model
+class Notification(models.Model):
+    timestamp = models.DateTimeField(verbose_name='Send Time', auto_now_add=True)
+    account = models.ForeignKey(Account, null=False, blank=False, on_delete=models.CASCADE, related_name='notifications')
+    created_by = models.ForeignKey(Account, null=False, blank=False, on_delete=models.CASCADE, related_name='created_notifications')
+    notification = models.CharField(verbose_name="Notification", max_length=255, null=False, blank=False)
+    read = models.BooleanField(verbose_name="Read", null=False, blank=False, default=False)
+
+    def __str__(self):
+        return str(self.id)
+
+    class Meta:
+        verbose_name_plural = "Notifications"

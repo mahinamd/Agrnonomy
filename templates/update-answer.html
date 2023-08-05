@@ -1,0 +1,96 @@
+{% extends "index.html" %}
+{% load static i18n %}
+
+{% block link %}
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css" integrity="sha512-cyzxRvewl+FOKTtpBzYjW6x6IAYUCZy3sGP40hn+DQkqeluGRCax7qztK2ImL64SA+C7kVWdLI6wvdlStawhyw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+{% endblock %}
+
+{% block content %}
+
+    <section class="py-5">
+        <div class="container mt-5 py-3">
+            {% include 'message.html' %}
+            <div class="row py-2">
+                <div class="col-md-12">
+                    <form id="update-answer" action="{% url 'update-answer' question.id answer.id %}" method="post" enctype="multipart/form-data"> {% csrf_token %}
+                        <div class="row pb-5">
+                            <div class="col prof-col pt-3"><h6 class="dash-data-col dash-data-cat-col">Your Answer</h6></div>
+                            <div class="col pro-col">
+                                <h6 class="dash-data-col">Image:</h6>
+                                <div class="d-none" id="img-crop-option">
+                                    <span class="float-start" id="confirm-edit">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" class="confirm-edit-style">
+                                            <path d="M10.2426 16.3137L6 12.071L7.41421 10.6568L10.2426 13.4853L15.8995 7.8284L17.3137 9.24262L10.2426 16.3137Z" fill="currentColor"></path>
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M1 12C1 5.92487 5.92487 1 12 1C18.0751 1 23 5.92487 23 12C23 18.0751 18.0751 23 12 23C5.92487 23 1 18.0751 1 12ZM12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21Z" fill="currentColor"></path>
+                                        </svg>
+                                    </span>
+                                    <span class="float-end" id="cancel-edit"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" class="cancel-edit-style">
+                                            <path d="M16.3394 9.32245C16.7434 8.94589 16.7657 8.31312 16.3891 7.90911C16.0126 7.50509 15.3798 7.48283 14.9758 7.85938L12.0497 10.5866L9.32245 7.66048C8.94589 7.25647 8.31312 7.23421 7.90911 7.61076C7.50509 7.98731 7.48283 8.62008 7.85938 9.0241L10.5866 11.9502L7.66048 14.6775C7.25647 15.054 7.23421 15.6868 7.61076 16.0908C7.98731 16.4948 8.62008 16.5171 9.0241 16.1405L11.9502 13.4133L14.6775 16.3394C15.054 16.7434 15.6868 16.7657 16.0908 16.3891C16.4948 16.0126 16.5171 15.3798 16.1405 14.9758L13.4133 12.0497L16.3394 9.32245Z" fill="currentColor"></path>
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M1 12C1 5.92487 5.92487 1 12 1C18.0751 1 23 5.92487 23 12C23 18.0751 18.0751 23 12 23C5.92487 23 1 18.0751 1 12ZM12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21Z" fill="currentColor"></path>
+                                        </svg>
+                                    </span>
+                                </div>
+                                <div id="img-container" class="img-container-style">
+                                    <img id="img-field" class="img-field-style" src="{{ answer.image.url }}">
+                                    <button class="btn btn-primary d-none img-edit-btn-style" id="img-edit-btn" type="button">Upload</button>
+                                </div>
+                                <input class="form-control d-none" type="file" id="img-input" name="image" accept="image/*" onchange="readImage(this)">
+                                <input class="form-control d-none" type="hidden" id="cropping-details" name="cropping_details">
+                            </div>
+                            <div class="col prof-col pt-3">
+                                <h6 class="dash-data-col">Description:</h6>
+                                <textarea class="form-control text-center data-input" name="description" required="">{{ answer.description }}</textarea>
+                            </div>
+                            {% include 'form-message.html' %}
+                            <div class="text-center py-3 d-none" id="loading-spinner">
+                                <span class="spinner-border spinner-border-sm spinner-color" role="status"></span>
+                            </div>
+                            <div class="col prof-col pt-3 text-center">
+                                <a class="btn btn-primary me-2 mt-1" role="button" href="{% url "questions" question.id %}">Back</a>
+                                <button class="btn btn-primary mt-1" type="submit">Update your answer</button>
+                                <button id="reset-form" class="btn btn-primary mx-2 mt-1" type="reset">Reset</button>
+                                <a id="delete-object" class="btn btn-danger" href="#" data-href="{% url "delete-answer" question.id answer.id %}">Delete</a>
+                                <div id="confirmation" class="modal fade" role="dialog" tabindex="-1">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">Delete Answer</h4>
+                                                <button class="btn-close" type="button" aria-label="Close" data-bs-dismiss="modal"></button>
+                                            </div>
+                                            <div id="modal-body" class="modal-body">
+                                                <p>Do you want to delete the answer permanently?</p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button id="confirm-no" class="btn btn-light" type="button" data-bs-dismiss="modal">No</button>
+                                                <button id="confirm-yes" class="btn btn-danger" type="button">Yes</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
+
+{% block script %}
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js" integrity="sha512-6lplKUSl86rUVprDIjiW8DuOniNX8UDoRATqZSds/7t6zCQZfaCe3e5zcGaQwxa8Kpn5RTM9Fvl3X2lLV4grPQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script type="text/javascript">
+
+        const form = document.getElementById("update-answer");
+        const informationCount = null;
+        const DATA_UPLOAD_MAX_MEMORY_SIZE = {{ DATA_UPLOAD_MAX_MEMORY_SIZE }};
+
+    </script>
+
+    <script src="{% static "assets/js/form.handler.js" %}"></script>
+
+{% endblock %}

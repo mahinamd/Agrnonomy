@@ -1,0 +1,252 @@
+{% extends "index.html" %}
+{% load static i18n time_filters truncate_filters %}
+
+{% block link %}
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css" integrity="sha512-cyzxRvewl+FOKTtpBzYjW6x6IAYUCZy3sGP40hn+DQkqeluGRCax7qztK2ImL64SA+C7kVWdLI6wvdlStawhyw==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
+{% endblock %}
+
+{% block content %}
+
+    <section class="py-5">
+        <div class="container mt-5 py-3">
+            {% include 'message.html' %}
+            <div class="row pt-3">
+                <div class="col-md-3 pt-3 border">
+                    <div class="text-center">
+                        <a class="btn chat-request w-100" role="button" href="{% url 'request-expert' %}">New chat</a>
+                        <hr>
+                        {% if expert_rooms_count > 0 %}
+                            {% for expert_room in expert_rooms %}
+                                {% if expert_room.problem %}
+                                    <a class="btn btn-warning active chat-head w-100 mb-2 {% if room and room.problem.id == expert_room.problem.id %}active{% endif %}" role="button" href="{% url 'chat-user' expert_room.problem.id %}">Expert case {{ forloop.counter }}: {{ expert_room.problem.title|get_truncate_content:10|safe }}</a>
+                                {% endif %}
+                            {% endfor %}
+                        {% else %}
+                            <div class="pt-3">
+                                <h6 class="dash-data-col">No expert case found!</h6>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-md-9 pt-3 border">
+                    {% if case %}
+                        <div class="text-center">
+                            <a href="{% url 'chat-expert' case.id %}"><span class="h4 fw-bold">{{ case.title }}</span></a>
+                        </div>
+                        <hr>
+                        {% if case.room %}
+                            <div id="messages-container" class="mb-5 pb-5 max-h-350-px overflow-scroll">
+                                {% if room_messages_count > 0 %}
+                                    {% for message in room_messages %}
+                                        {% if message.account.id == room.user.id %}
+                                            <div class="chat-user-style mb-3">
+                                                <div class="text-center">
+                                                    {% if "default/" not in message.image.url %}
+                                                        <img class="w-30 py-2" src="{{ message.image.url }}">
+                                                    {% endif %}
+                                                    {% if message.content %}
+                                                        <h5 class="py-2">{{ message.content }}</h5>
+                                                    {% endif %}
+                                                </div>
+                                                <div class="d-flex px-3 py-1">
+                                                    <div class="d-md-flex me-auto align-items-md-center">
+                                                        <span>send {{ message.timestamp|get_time_since }}</span>
+                                                    </div>
+                                                    <div class="text-end d-md-flex ms-auto align-items-md-center">
+                                                        <a class="d-md-flex justify-content-md-end align-items-md-center" href="#">
+                                                            <img class="questions-profile-img me-2" src="{{ message.account.pimg.url }}">{{ message.account.fname }} {{ message.account.lname }}
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% elif message.account.id == room.expert.id %}
+                                            <div class="chat-expert-style mb-3">
+                                                <div class="text-center">
+                                                    {% if "default/" not in message.image.url %}
+                                                        <img class="w-30 py-2" src="{{ message.image.url }}">
+                                                    {% endif %}
+                                                    {% if message.content %}
+                                                        <h5 class="py-2">{{ message.content }}</h5>
+                                                    {% endif %}
+                                                </div>
+                                                <div class="d-flex px-3 py-1">
+                                                    <div class="text-start d-md-flex me-auto align-items-md-center">
+                                                        <a href="#">
+                                                            <img class="questions-profile-img me-2" src="{{ message.account.pimg.url }}">{{ message.account.fname }} {{ message.account.lname }}
+                                                        </a>
+                                                    </div>
+                                                    <div class="d-md-flex ms-auto align-items-md-center">
+                                                        <span>received {{ message.timestamp|get_time_since }}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% endif %}
+                                    {% endfor %}
+                                {% else %}
+                                    <div class="pt-3">
+                                        <h6 class="dash-data-col">No message found!</h6>
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <hr class="my-5">
+                            <div>
+                                <form id="response" action="#" method="post" enctype="multipart/form-data"> {% csrf_token %}
+                                    <div class="row pb-5">
+                                        <div class="col prof-col pt-3"><h6 class="dash-data-col dash-data-cat-col">Your Response</h6></div>
+                                        <div id="img-col" class="col pro-col d-none">
+                                            <h6 class="dash-data-col">Image:</h6>
+                                            <div class="d-none" id="img-crop-option">
+                                                <span class="float-start" id="confirm-edit">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" class="confirm-edit-style">
+                                                        <path d="M10.2426 16.3137L6 12.071L7.41421 10.6568L10.2426 13.4853L15.8995 7.8284L17.3137 9.24262L10.2426 16.3137Z" fill="currentColor"></path>
+                                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M1 12C1 5.92487 5.92487 1 12 1C18.0751 1 23 5.92487 23 12C23 18.0751 18.0751 23 12 23C5.92487 23 1 18.0751 1 12ZM12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21Z" fill="currentColor"></path>
+                                                    </svg>
+                                                </span>
+                                                <span class="float-end" id="cancel-edit"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" class="cancel-edit-style">
+                                                        <path d="M16.3394 9.32245C16.7434 8.94589 16.7657 8.31312 16.3891 7.90911C16.0126 7.50509 15.3798 7.48283 14.9758 7.85938L12.0497 10.5866L9.32245 7.66048C8.94589 7.25647 8.31312 7.23421 7.90911 7.61076C7.50509 7.98731 7.48283 8.62008 7.85938 9.0241L10.5866 11.9502L7.66048 14.6775C7.25647 15.054 7.23421 15.6868 7.61076 16.0908C7.98731 16.4948 8.62008 16.5171 9.0241 16.1405L11.9502 13.4133L14.6775 16.3394C15.054 16.7434 15.6868 16.7657 16.0908 16.3891C16.4948 16.0126 16.5171 15.3798 16.1405 14.9758L13.4133 12.0497L16.3394 9.32245Z" fill="currentColor"></path>
+                                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M1 12C1 5.92487 5.92487 1 12 1C18.0751 1 23 5.92487 23 12C23 18.0751 18.0751 23 12 23C5.92487 23 1 18.0751 1 12ZM12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21Z" fill="currentColor"></path>
+                                                    </svg>
+                                                </span>
+                                            </div>
+                                            <div id="img-container" class="img-container-style">
+                                                <img id="img-field" class="img-field-style" src="{% static 'assets/img/cloud_upload.png' %}">
+                                                <button class="btn btn-primary d-none img-edit-btn-style" id="img-edit-btn" type="button">Upload</button>
+                                            </div>
+                                            <input class="form-control d-none" type="file" id="img-input" name="image" accept="image/*" onchange="readImage(this)">
+                                            <input class="form-control d-none" type="hidden" id="cropping-details" name="cropping_details">
+                                        </div>
+                                        <div class="col prof-col pt-3">
+                                            <h6 class="dash-data-col">Reply:</h6>
+                                            <textarea id="reply-field" class="form-control text-center data-input" placeholder="Reply" name="content" required=""></textarea>
+                                        </div>
+                                        {% include 'form-message.html' %}
+                                        <div class="text-center py-3 d-none" id="loading-spinner">
+                                            <span class="spinner-border spinner-border-sm spinner-color" role="status"></span>
+                                        </div>
+                                        <div class="col prof-col pt-3 text-center">
+                                            <button id="img-upload-option" class="btn btn-primary mt-1" type="button">Show Image Upload</button>
+                                            <button class="btn btn-primary mx-3 mt-1" type="submit">Send</button>
+                                            <button id="reset-form" class="btn btn-primary mt-1" type="reset">Reset</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        {% else %}
+                            <div class="pt-3">
+                                <h5 class="dash-data-col">The case is not approved yet. Wait for further updates.</h5>
+                            </div>
+                        {% endif %}
+                    {% else %}
+                        <div class="pt-3">
+                            <h4 class="dash-data-col">No case assigned for you yet</h4>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
+
+{% block script %}
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js" integrity="sha512-6lplKUSl86rUVprDIjiW8DuOniNX8UDoRATqZSds/7t6zCQZfaCe3e5zcGaQwxa8Kpn5RTM9Fvl3X2lLV4grPQ==" crossorigin="anonymous"
+            referrerpolicy="no-referrer"></script>
+
+    <script type="text/javascript">
+
+        const form = document.getElementById("response");
+        const informationCount = null;
+        const DATA_UPLOAD_MAX_MEMORY_SIZE = {{ DATA_UPLOAD_MAX_MEMORY_SIZE }};
+
+    </script>
+
+    <script src="{% static "assets/js/form.handler.js" %}"></script>
+
+    <script type="text/javascript">
+
+        const imgUploadOptionBtn = document.getElementById("img-upload-option");
+        if(imgUploadOptionBtn) {
+            imgUploadOptionBtn.addEventListener('click', function (event) {
+                const imgCol = document.getElementById("img-col");
+                if(imgCol) {
+                    if(imgCol.classList.contains("d-none")) {
+                        imgCol.classList.remove("d-none");
+                        imgUploadOptionBtn.textContent = "Hide Image Upload";
+                    } else{
+                        imgCol.classList.add("d-none");
+                        imgUploadOptionBtn.textContent = "Show Image Upload";
+                    }
+                }
+            });
+        }
+
+        const messagesContainer = document.getElementById("messages-container");
+
+        const wsURL = "{{ ws_url }}";
+        const ws = new WebSocket(wsURL);
+
+        if(ws) {
+            ws.onclose = function (event) {
+                console.log('onclose')
+            }
+
+            ws.onmessage = function (event) {
+                console.log("onmessage")
+                const data = JSON.parse(event.data);
+                console.log("data: ", data)
+
+                if (data) {
+                    if (messagesContainer) {
+                        messagesContainer.innerHTML += data["html_format"];
+                    } else {
+                        alert('Invalid response!');
+                    }
+                } else {
+                    alert('The response was empty!');
+                }
+            };
+        }
+
+        if(form) {
+            form.addEventListener('submit', function (event) {
+                event.preventDefault();
+                const formData = new FormData(form);
+                const dic = {};
+
+                for(let [key, value] of formData.entries()) {
+                    dic[key] = value;
+                }
+                dic["user_id"] = "{{ request.user.id }}";
+                dic["imgBase64Str"] = '';
+                dic["imgFormat"] = '';
+
+                if (imgField.src !== defaultImgUrl && imgBase64Str !== '') {
+                    dic["imgBase64Str"] = imgBase64Str;
+                    dic["imgFormat"] = imgFormat;
+                }
+
+                const replyField = document.getElementById("reply-field");
+                if(replyField) {
+                    if (imgField.src !== defaultImgUrl || replyField.value.trim() !== '') {
+                        ws.send(JSON.stringify(dic));
+                    } else {
+                        alert('The message was empty!');
+                    }
+                } else {
+                    alert('Invalid message!');
+                }
+
+                imgInput.value = '';
+                imgField.src = defaultImgUrl;
+                form.reset();
+                if(loadingSpinner) {
+                    loadingSpinner.classList.add("d-none");
+                }
+            });
+        }
+    </script>
+
+{% endblock %}

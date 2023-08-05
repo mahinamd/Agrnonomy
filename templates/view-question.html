@@ -1,0 +1,221 @@
+{% extends "index.html" %}
+{% load static i18n time_filters %}
+
+{% block link %}
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css" integrity="sha512-cyzxRvewl+FOKTtpBzYjW6x6IAYUCZy3sGP40hn+DQkqeluGRCax7qztK2ImL64SA+C7kVWdLI6wvdlStawhyw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+{% endblock %}
+
+{% block content %}
+
+    <section class="py-5">
+        <div class="container mt-5 py-3">
+            {% include 'message.html' %}
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="text-center"><a href="{% url "questions" question.id %}"><span class="h4 fw-bold">{{ question.title }}</span></a></div>
+                    <div class="text-center text-end text-muted pt-3">
+                        <span>Asked&nbsp;<span class="fw-bold">{{ question.created|get_time_since }}</span></span>
+                        <span class="px-3">Modified&nbsp;<span class="fw-bold">{{ question.last_modified|get_time_since }}</span></span>
+                        <span>Viewed&nbsp;<span class="fw-bold">{{ question.question_counts.views_count }} {% if question.question_counts.views_count > 1 %}times{% else %}time{% endif %}</span></span>
+                    </div>
+                </div>
+                <div class="col-md-3 d-flex justify-content-center align-items-center justify-content-md-center align-items-md-center justify-content-lg-center align-items-lg-center">
+                    <div class="text-center py-2">
+                        <a class="btn btn-primary me-1" role="button" href="{% url "ask-question" %}">Ask Question</a>
+                        {% if request.user.id == question.account_id %}
+                            <a class="btn btn-primary" role="button" href="{% url "update-question" question.id %}">Edit</a>
+                        {% endif %}
+                        <a class="btn btn-primary ms-1" role="button" href="{% url "questions" %}">Back</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container pb-5">
+            <hr>
+            <div class="row py-2">
+                <div class="col-md-12">
+                    {% if "default/" not in question.image.url %}
+                        <div class="text-center">
+                            <h5 class="fw-bold text-decoration-underline">{% trans 'Image' %}:</h5>
+                            <img class="w-30" src="{{ question.image.url }}">
+                        </div>
+                    {% endif %}
+                    <div class="{% if "default/" not in question.image.url %}py-4{% else %}pb-4{% endif %}">
+                        <h5 class="fw-bold text-decoration-underline text-center">{% trans 'Description' %}:</h5>
+                        <p class="view-block">{{ question.description }}</p>
+                    </div>
+                    <div class="d-flex">
+                        {% if question.tags %}
+                            <div class="d-inline-block">
+                                {% for tag in question.get_tags_list %}
+                                    <span class="question-tag">{{ tag }}</span>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                        <div class="d-inline-flex ms-auto">
+                            <a class="d-flex justify-content-end align-items-center me-2" href="{% url "questions" question.id %}">
+                                <img class="questions-profile-img me-2" src="{{ question.account.pimg.url }}">{{ question.account.fname }} {{ question.account.lname }}
+                            </a>
+                            <span class="d-lg-flex align-items-lg-center text-end text-muted">asked {{ question.created|get_time_since }}</span>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-start align-items-center pt-2">
+                        <span class="me-2">Vote:&nbsp;</span>
+                        {% if request.user.id != question.account_id %}
+                            <a href="{% url "questions" question.id %}?vote=Up"><i class="far fa-arrow-alt-circle-up vote-icon"></i></a>
+                            <span class="fw-bold mx-3">{{ question.question_counts.votes_count }}</span>
+                            <a href="{% url "questions" question.id %}?vote=Down"><i class="far fa-arrow-alt-circle-down vote-icon"></i></a>
+                        {% else %}
+                            <span class="fw-bold">{{ question.question_counts.votes_count }}</span>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% if answers_count > 0 %}
+                <hr>
+                <div class="row">
+                    <div class="col-md-3">
+                        <h3 class="text-center">All answers</h3>
+                        <h5 class="text-center">{{ answers_count }} {% if answers_count > 1  %}answers{% else %}answer{% endif %}</h5>
+                    </div>
+                    <div class="col-md-9 d-md-flex justify-content-md-center align-items-md-center">
+                        <div class="text-center">
+                            <div class="btn-group btn-group-sm filter-btn-group" role="group">
+                            <a class="btn btn-primary btn-sm filter-btn {% if request.GET.tab == 'Highest-vote' or 'Highest-vote' in request.GET.tab %}active{% endif %}" role="button" href="{% url "questions" question.id %}{% if request.GET.tab == 'Newest' %}?tab=Newest,Highest-vote{% elif 'Highest-vote' in request.GET.tab and 'Newest' in request.GET.tab %}?tab=Newest{% elif not request.GET.tab %}?tab=Highest-vote{% endif %}">Highest vote</a>
+                            <a class="btn btn-primary btn-sm filter-btn {% if request.GET.tab == 'Newest' or 'Newest' in request.GET.tab %}active{% endif %}" role="button" href="{% url "questions" question.id %}{% if request.GET.tab == 'Highest-vote' %}?tab=Highest-vote,Newest{% elif 'Newest' in request.GET.tab and 'Highest-vote' in request.GET.tab %}?tab=Highest-vote{% elif not request.GET.tab %}?tab=Newest{% endif %}">Newest</a>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                {% for answer in answers %}
+                    <hr>
+                    <div class="row py-2">
+                        <div class="col-md-12">
+                            {% if "default/" not in answer.image.url %}
+                                <div class="text-center pb-2">
+                                    <h5 class="fw-bold text-decoration-underline">{% trans 'Image' %}:</h5>
+                                    <img class="w-30" src="{{ answer.image.url }}">
+                                </div>
+                            {% endif %}
+                            <div class="{% if "default/" not in answer.image.url %}py-4{% else %}pb-4{% endif %}">
+                                <h5 class="fw-bold text-decoration-underline text-center">{% trans 'Answer' %}:</h5>
+                                <p class="view-block">{{ answer.description }}</p>
+                            </div>
+                            <div class="d-flex">
+                                <div class="d-flex justify-content-start align-items-center">
+                                    <span class="me-5">Answer no: {{ forloop.counter }}</span>
+                                </div>
+                                <div class="d-inline-flex ms-auto">
+                                    <a class="d-flex justify-content-end align-items-center me-2" href="{% url "questions" question.id %}">
+                                        <img class="questions-profile-img me-2" src="{{ answer.account.pimg.url }}">{{ answer.account.fname }} {{ answer.account.lname }}
+                                    </a>
+                                    <span class="d-lg-flex align-items-lg-center text-end text-muted">answered {{ answer.created|get_time_since }}</span>
+                                </div>
+                            </div>
+                            <div class="d-flex pt-3">
+                                <div class="d-flex justify-content-start align-items-center">
+                                    <span class="me-2">Vote:&nbsp;</span>
+                                    {% if request.user.id != answer.account_id %}
+                                        <a href="{% url "questions" question.id answer.id %}?vote=Up"><i class="far fa-arrow-alt-circle-up vote-icon"></i></a>
+                                        <span class="fw-bold mx-3">{{ answer.answer_counts.votes_count }}</span>
+                                        <a href="{% url "questions" question.id answer.id %}?vote=Down"><i class="far fa-arrow-alt-circle-down vote-icon"></i></a>
+                                    {% else %}
+                                        <span class="fw-bold">{{ answer.answer_counts.votes_count }}</span>
+                                    {% endif %}
+                                </div>
+                                {% if request.user.id == question.account_id %}
+                                    <div class="d-flex justify-content-start align-items-center ms-5">
+                                        <span class="me-2">Accept:&nbsp;</span>
+                                        <a href="{% url "questions" question.id answer.id %}{% if answer.is_accepted %}?accept=No{% else %}?accept=Yes{% endif %}">
+                                            <i class="fas fa-check {% if answer.is_accepted %}accepted-icon{% else %}accept-icon{% endif %}"></i>
+                                        </a>
+                                    </div>
+                                {% elif answer.is_accepted %}
+                                    <div class="d-flex justify-content-start align-items-center ms-5">
+                                        <span class="text-nowrap accepted"><i class="fas fa-check me-2"></i>Accepted</span>
+                                    </div>
+                                {% endif %}
+                                {% if request.user.id == answer.account_id %}
+                                    <div class="d-inline-flex ms-auto">
+                                        <a class="btn btn-primary" role="button" href="{% url "update-answer" question.id answer.id %}">Edit</a>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="col prof-col pt-3">
+                    <h6 class="dash-data-col">{% trans 'No answer has been posted yet.' %}</h6>
+                </div>
+            {% endif %}
+            {% if request.user.id != question.account_id and not user_has_answered %}
+                <hr>
+                <div class="row py-2">
+                    <div class="col-md-12">
+                        <form id="insert-answer" action="{% url 'questions' question.id %}" method="post" enctype="multipart/form-data"> {% csrf_token %}
+                            <div class="row pb-5">
+                                <div class="col prof-col pt-3"><h6 class="dash-data-col dash-data-cat-col">Your Answer</h6></div>
+                                <div class="col pro-col">
+                                    <h6 class="dash-data-col">Image:</h6>
+                                    <div class="d-none" id="img-crop-option">
+                                        <span class="float-start" id="confirm-edit">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" class="confirm-edit-style">
+                                                <path d="M10.2426 16.3137L6 12.071L7.41421 10.6568L10.2426 13.4853L15.8995 7.8284L17.3137 9.24262L10.2426 16.3137Z" fill="currentColor"></path>
+                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M1 12C1 5.92487 5.92487 1 12 1C18.0751 1 23 5.92487 23 12C23 18.0751 18.0751 23 12 23C5.92487 23 1 18.0751 1 12ZM12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21Z" fill="currentColor"></path>
+                                            </svg>
+                                        </span>
+                                        <span class="float-end" id="cancel-edit"><svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" fill="none" class="cancel-edit-style">
+                                                <path d="M16.3394 9.32245C16.7434 8.94589 16.7657 8.31312 16.3891 7.90911C16.0126 7.50509 15.3798 7.48283 14.9758 7.85938L12.0497 10.5866L9.32245 7.66048C8.94589 7.25647 8.31312 7.23421 7.90911 7.61076C7.50509 7.98731 7.48283 8.62008 7.85938 9.0241L10.5866 11.9502L7.66048 14.6775C7.25647 15.054 7.23421 15.6868 7.61076 16.0908C7.98731 16.4948 8.62008 16.5171 9.0241 16.1405L11.9502 13.4133L14.6775 16.3394C15.054 16.7434 15.6868 16.7657 16.0908 16.3891C16.4948 16.0126 16.5171 15.3798 16.1405 14.9758L13.4133 12.0497L16.3394 9.32245Z" fill="currentColor"></path>
+                                                <path fill-rule="evenodd" clip-rule="evenodd" d="M1 12C1 5.92487 5.92487 1 12 1C18.0751 1 23 5.92487 23 12C23 18.0751 18.0751 23 12 23C5.92487 23 1 18.0751 1 12ZM12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21Z" fill="currentColor"></path>
+                                            </svg>
+                                        </span>
+                                    </div>
+                                    <div id="img-container" class="img-container-style">
+                                        <img id="img-field" class="img-field-style" src="{% static 'assets/img/cloud_upload.png' %}">
+                                        <button class="btn btn-primary d-none img-edit-btn-style" id="img-edit-btn" type="button">Upload</button>
+                                    </div>
+                                    <input class="form-control d-none" type="file" id="img-input" name="image" accept="image/*" onchange="readImage(this)">
+                                    <input class="form-control d-none" type="hidden" id="cropping-details" name="cropping_details">
+                                </div>
+                                <div class="col prof-col pt-3">
+                                    <h6 class="dash-data-col">Answer:</h6>
+                                    <textarea class="form-control text-center data-input" placeholder="Describe your answer" name="description" required=""></textarea>
+                                </div>
+                                {% include 'form-message.html' %}
+                                <div class="text-center py-3 d-none" id="loading-spinner">
+                                    <span class="spinner-border spinner-border-sm spinner-color" role="status"></span>
+                                </div>
+                                <div class="col prof-col pt-3 text-center">
+                                    <button class="btn btn-primary" type="submit">Post your answer</button>
+                                    <button id="reset-form" class="btn btn-primary ms-3" type="reset">Reset</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </section>
+
+{% endblock %}
+
+{% block script %}
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js" integrity="sha512-6lplKUSl86rUVprDIjiW8DuOniNX8UDoRATqZSds/7t6zCQZfaCe3e5zcGaQwxa8Kpn5RTM9Fvl3X2lLV4grPQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script type="text/javascript">
+
+        const form = document.getElementById("insert-answer");
+        const informationCount = null;
+        const DATA_UPLOAD_MAX_MEMORY_SIZE = {{ DATA_UPLOAD_MAX_MEMORY_SIZE }};
+
+    </script>
+
+    <script src="{% static "assets/js/form.handler.js" %}"></script>
+
+{% endblock %}
+
+

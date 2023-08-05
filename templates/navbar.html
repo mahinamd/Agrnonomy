@@ -1,5 +1,4 @@
-{% load static %}
-{% load i18n %}
+{% load static i18n %}
 
 <nav class="navbar navbar-light navbar-expand-lg fixed-top navbar-shrink py-2" id="mainNav">
     <div class="container"><a class="navbar-brand d-flex align-items-center navBrand" data-bss-hover-animate="tada"
@@ -50,9 +49,11 @@
                                 <a class="dropdown-item navMenuItem"
                                    href={% url "category" %}><span>{% trans 'Agricultural Information' %}</span></a>
                                 <a class="dropdown-item navMenuItem"
-                                   href=#><span>{% trans 'Post Questions' %}</span></a>
-                                <a class="dropdown-item navMenuItem"
-                                   href=#><span>{% trans 'Contact with Expert' %}</span></a>
+                                   href={% url "questions" %}><span>{% trans 'Questions' %}</span></a>
+                                <a class="dropdown-item navMenuItem" href="{% url "chat-expert" %}"><span>{% trans 'Contact with Expert' %}</span></a>
+                                {% if user.expert %}
+                                    <a class="dropdown-item navMenuItem" href="{% url "chat-user" %}"><span>{% trans 'Contact with User' %}</span></a>
+                                {% endif %}
                             </div>
                         </li>
                     {% endif %}
@@ -84,30 +85,40 @@
             {% if user.is_authenticated %}
                 <ul class="navbar-nav flex-nowrap align-items-center">
                     <li class="nav-item mx-2 navItemBell">
-                        <div class="nav-item dropdown" data-bss-hover-animate="swing"><a aria-expanded="false"
-                                                                                         data-bs-toggle="dropdown"
-                                                                                         class="p-1 bellIcon"
-                                                                                         href="#"><i
-                                class="fas fa-bell"></i><span class="badge bg-danger badgeBell">+</span></a>
-                            <div class="dropdown-menu navMenu">
-                                <h6 class="dropdown-header text-center fw-bold">Alerts center</h6>
+                        <div class="nav-item dropdown">
+                            <a aria-expanded="false" data-bs-toggle="dropdown" class="p-1 bellIcon" href="#">
+                                <i class="fas fa-bell"></i>
+                                {% if request.user.unread_notifications %}
+                                    <span class="badge bg-danger badgeBell">{{ request.user.unread_notifications }}</span>
+                                {% endif %}
+                            </a>
+                            <div class="dropdown-menu navMenu text-center min-w-200-px">
+                                <h6 class="dropdown-header fw-bold">Notifications center</h6>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item navMenuItem" href="#"></a><a class="dropdown-item navMenuItem"
-                                                                                     href="#"></a><a
-                                    class="dropdown-item navMenuItem" href="#"></a>
+                                <a class="dropdown-item navMenuItem" href="{% url "notifications" %}?read=Mark-all">Mark as read</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item text-center small navMenuItem" href="#">Show All Alerts</a>
+                                {% if request.user.unread_notifications %}
+                                    {% for notification in request.user.notifications.all %}
+                                        {% if not notification.read %}
+                                            <div class="dropdown-item navMenuItem text-wrap fw-bold"><p>{{ notification.notification }}</p></div>
+                                        {% endif %}
+                                    {% endfor %}
+                                {% else %}
+                                    <div class="dropdown-item navMenuItem text-wrap"><p>There are no unread notifications</p></div>
+                                {% endif %}
+
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item text-center small navMenuItem" href="{% url "notifications" %}">Show All Notifications</a>
                             </div>
                         </div>
                     </li>
                     <li class="nav-item">
-                        <div class="nav-item dropdown navLink" data-bss-hover-animate="pulse"><a aria-expanded="false"
-                                                                                                 data-bs-toggle="dropdown"
-                                                                                                 class="py-3"
-                                                                                                 href="#"><span
-                                class="d-lg-inline me-2 small">{{ request.user.fname }} {{ request.user.lname }}<img
-                                class="border rounded-circle profImage"
-                                src="{{ request.user.pimg.url }}"></span></a>
+                        <div class="nav-item dropdown navLink" data-bss-hover-animate="pulse">
+                            <a aria-expanded="false" data-bs-toggle="dropdown" class="py-3" href="#">
+                                <span class="d-lg-inline me-5 small">{{ request.user.fname }} {{ request.user.lname }}
+                                    <img class="border rounded-circle profImage" src="{{ request.user.pimg.url }}">
+                                </span>
+                            </a>
                             <div class="dropdown-menu shadow navMenu"><a class="dropdown-item navMenuItem"
                                                                          href={% url "profile" %}><i
                                     class="fas fa-user me-2"></i>&nbsp;Profile</a>

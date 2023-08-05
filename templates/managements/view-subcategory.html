@@ -1,0 +1,99 @@
+{% extends "dashboard.html" %}
+{% load static i18n %}
+
+{% block dashboard %}
+
+    {% include 'managements/info-navbar.html' %}
+    {% include 'message.html' %}
+    <div class="container pt-1">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row pb-5">
+                            <div class="col prof-col pt-3">
+                                <h6 class="dash-data-col dash-data-cat-col">{% if is_selected and subcategories_count > 1 %}Subcategories{% else %}Subcategory{% endif %}</h6>
+                            </div>
+                            {% if categories_count > 0 %}
+                                <div class="col prof-col py-3">
+                                    <h6 class="dash-data-col">Category:</h6>
+                                    <label for="select-category" class="d-none dash-data-col">Category:</label>
+                                    <select id="select-category" class="form-select text-center data-input">
+                                        <option value='' disabled selected>Select Category</option>
+                                        <optgroup label='Category'>
+                                            {% for category in categories %}
+                                                <option value="{{ category.id }}" data-href="{% url "view-subcategory" category.id %}" {% if is_selected and selected_category.id == category.id %}selected{% endif %}>
+                                                    {% if default_language %}{{ category.name_bn }}{% else %}{{ category.name_en }}{% endif %}
+                                                </option>
+                                            {% endfor %}
+                                        </optgroup>
+                                    </select>
+                                </div>
+                                {% if is_selected %}
+                                    {% if subcategories_count > 0 %}
+                                        {% for subcategory in subcategories_information %}
+                                            <div class="col prof-col pt-3">
+                                                <h6 class="dash-data-col fw-bold">Subcategory&nbsp;{{ forloop.counter }}:</h6>
+                                                <h6 class="dash-data-col">Subcategory&nbsp;Image:</h6>
+                                                <div class="img-container-style">
+                                                    <img class="img-field-style" src="{{ subcategory.image.url }}" alt="Subcategory Image">
+                                                </div>
+                                            </div>
+                                            <div class="col prof-col pt-3">
+                                                <h6 class="dash-data-col">Subcategory name (Bangla):</h6>
+                                                <span class="form-control text-center data-input">{{ subcategory.name_bn }}</span>
+                                            </div>
+                                            <div class="col prof-col pt-3">
+                                                <h6 class="dash-data-col">Subcategory name (English):</h6>
+                                                <span class="form-control text-center data-input">{{ subcategory.name_en }}</span>
+                                            </div>
+                                            {% for data in subcategory.information.all %}
+                                                <div>
+                                                    <div class="col prof-col pt-3">
+                                                        <h6 class="dash-data-col">{{ forloop.counter }}. Information (Bangla):</h6>
+                                                        <h6 class="dash-data-col">{{ data.name_bn }}:</h6>
+                                                        <span class="form-control text-center data-input">{{ data.details_bn }}</span>
+                                                    </div>
+                                                    <div class="col prof-col pt-3">
+                                                        <h6 class="dash-data-col">{{ forloop.counter }}. Information (English):</h6>
+                                                        <h6 class="dash-data-col">{{ data.name_en }}:</h6>
+                                                        <span class="form-control text-center data-input">{{ data.details_en }}</span>
+                                                    </div>
+                                                </div>
+                                            {% endfor %}
+                                            <div class="col prof-col py-3 text-center">
+                                                <a class="btn btn-primary" href="{% url "update-subcategory-form" subcategory.id %}">Edit</a>
+                                            </div>
+                                            {% if forloop.counter < subcategories_count  %}
+                                                <hr class="pb-3">
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% else %}
+                                        {{ html_content|safe }}
+                                    {% endif %}
+                                {% endif %}
+                            {% else %}
+                                {{ html_content|safe }}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block script %}
+
+    <script type="text/javascript">
+
+        const form = null;
+        const informationCount = null;
+        const DATA_UPLOAD_MAX_MEMORY_SIZE = null;
+
+    </script>
+
+    <script src="{% static "assets/js/form.handler.js" %}"></script>
+
+{% endblock %}

@@ -1,263 +1,149 @@
 {% extends "index.html" %}
-{% load static %}
-{% load i18n %}
+{% load static i18n %}
 
 {% block content %}
+
     <section class="pt-5 mt-5">
         <div class="container pt-4 pt-xl-4">
             {% include 'message.html' %}
             <div class="row mb-5">
-                <div class="col text-center"><h3 class="display-6 fw-bold pb-2 mb-2">Agriculture&nbsp;<span
-                        class="underline"><strong>Information</strong></span>&nbsp;</h3></div>
+                <div class="col text-center">
+                    <h3 class="display-6 fw-bold pb-2 mb-2">Agriculture&nbsp;<span class="underline"><strong>Information</strong></span></h3>
+                </div>
             </div>
             <div class="row mb-1">
-                <div class="col text-center"><h3 class="display-6 fw-bold pb-2 mb-2"><span
-                        class="underline">{{ information_title }}</span>&nbsp;
-                </h3></div>
+                <div class="col text-center">
+                    <h3 class="display-6 fw-bold pb-2 mb-2">
+                        <span class="underline">{% trans 'Information' %}</span>
+                    </h3>
+                </div>
             </div>
             <div class="row mb-5">
                 <div class="col text-center">
                     <form class="d-flex justify-content-center flex-wrap flex-lg-nowrap" method="post">
-                        <div class="my-2 me-1"><input class="form-control" type="search" placeholder="Search"
-                                                      name="search">
+                        <div class="my-2 me-1">
+                            <input class="form-control" type="search" placeholder="Search" name="search">
                         </div>
                         <div class="my-2">
                             <button class="btn btn-primary shadow" type="submit">Search</button>
                         </div>
                     </form>
-                    <div class="my-2"><a class="btn btn-primary shadow" role="button"
-                                         href={% url "subcategory" parent %}>Back</a></div>
+                    <div class="my-2">
+                        <a class="btn btn-primary shadow" role="button" href={% url "subcategory" category.id %}>Back</a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
+
     <section>
         <div class="container info-view overflow-scroll">
             <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3 justify-content-center">
-                <div class="col-auto col-sm-auto col-md-10 col-lg-9 col-xl-8 col-xxl-7">
+                <div class="col-auto col-sm-auto col-md-10 col-lg-9 col-xl-6 col-xxl-5">
                     <div class="card border-light border-1 d-flex justify-content-center p-4">
                         <div class="card-body">
-                            <div><h4 class="fw-bold text-center">{{ parent_title }}</h4><img class="rounded img-fluid"
-                                                                                             src={{ parent_url }}></div>
+                            <div>
+                                <h4 class="fw-bold text-center">{% if default_language %}{{ subcategory.name_bn }}{% else %}{{ subcategory.name_en }}{% endif %}</h4>
+                                <img class="rounded img-fluid" src="{{ subcategory.image.url }}">
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="row mb-2">
                 <div class="col-12 col-sm-12 col-md-10 col-lg-9 col-xl-8 col-xxl-7 mx-auto">
-                    {% for col, row in information %}
-                        {% if forloop.counter0 < 30 %}
-                            <div class="accordion text-muted" role="tablist" id="accordion-{{ forloop.counter0 }}">
+                    {% if subcategory.information.all.count > 0  %}
+                        {% for data in subcategory.information.all %}
+                            <div class="accordion text-muted" role="tablist" id="accordion-{{ forloop.counter }}">
                                 <div class="accordion-item">
                                     <h2 class="accordion-header" role="tab">
-                                        <button class="accordion-button collapsed" type="button"
-                                                data-bs-toggle="collapse"
-                                                data-bs-target="#accordion-{{ forloop.counter0 }} .item-1"
-                                                aria-expanded="false"
-                                                aria-controls="accordion-{{ forloop.counter0 }} .item-1">{{ col }}
-                                        </button>
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#accordion-{{ forloop.counter }} .item-1" aria-expanded="false" aria-controls="accordion-{{ forloop.counter }} .item-1">{% if default_language %}{{ data.name_bn }}{% else %}{{ data.name_en }}{% endif %}</button>
                                     </h2>
-                                    <div class="accordion-collapse collapse item-1" role="tabpanel"
-                                         data-bs-parent="#accordion-{{ forloop.counter0 }}">
+                                    <div class="accordion-collapse collapse item-1" role="tabpanel" data-bs-parent="#accordion-{{ forloop.counter }}">
                                         <div class="accordion-body">
-                                            <div class="text-center">
-                                                <p>{{ row }}</p></div>
+                                            <div><p>{% if default_language %}{{ data.details_bn }}{% else %}{{ data.details_en }}{% endif %}</p></div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        {% endif %}
-                    {% endfor %}
+                        {% endfor %}
+                    {% else %}
+                        <div class="col prof-col pt-3">
+                            <h6 class="dash-data-col">{% trans 'No information found!' %}</h6>
+                        </div>
+                    {% endif %}
                 </div>
             </div>
-            {% if has_image %}
-                <h4 class="my-3 fw-bold text-center">{{ cause_header }}</h4>
+            {% if diseases_problems_count > 0 %}
+                <h4 class="my-3 fw-bold text-center pt-3">{% if diseases_problems_count > 1 %}{% trans 'Diseases/Problems' %}{% else %}{% trans 'Disease/Problem' %}{% endif %}</h4>
                 <div class="row mb-5 pb-5 gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3">
+                {% for disease_problem in diseases_problems %}
                     <div class="col-md-12 col-lg-6 col-xl-6 col-xxl-6">
-                        {% for cause, url in causes %}
-                            <div class="card border-light border-1 d-flex justify-content-center p-4 card-container">
-                                <div class="card-body card-flip">
-                                    <div class="front card-block text-center"><h5 class="fw-bold">{{ cause }}</h5>
-                                        <img class="rounded img-fluid" src={{ url }}>
-                                    </div>
-                                    <div class="back card-block"><h5 class="fw-bold text-center">{{ cause }}</h5>
-                                        <div class="col-12 col-sm-12 col-md-10 col-lg-9 col-xl-8 col-xxl-7 mx-auto">
-                                            <div class="details-view overflow-scroll">
-                                                {% for disease, solution, warning in definition %}
-                                                    {% if forloop.parentloop.counter0 == counter.value %}
-                                                        <div class="accordion text-muted" role="tablist"
-                                                             id="accordion-1-{{ forloop.counter0 }}">
-                                                            <div class="accordion-item">
-                                                                <h2 class="accordion-header" role="tab">
-                                                                    <button class="accordion-button collapsed"
-                                                                            type="button"
-                                                                            data-bs-toggle="collapse"
-                                                                            data-bs-target="#accordion-1-{{ forloop.counter0 }} .item-1"
-                                                                            aria-expanded="false"
-                                                                            aria-controls="accordion-1-{{ forloop.counter0 }} .item-1">
-                                                                        {{ disease_header }}
-                                                                    </button>
-                                                                </h2>
-                                                                <div class="accordion-collapse collapse item-1"
-                                                                     role="tabpanel"
-                                                                     data-bs-parent="#accordion-1-{{ forloop.counter0 }}">
-                                                                    <div class="accordion-body">
-                                                                        <div class="text-center">
-                                                                            <p>{{ disease }}</p></div>
-                                                                    </div>
-                                                                </div>
+                        <div class="card border-light border-1 d-flex justify-content-center p-4 card-container">
+                            <div class="card-body card-flip">
+                                <div class="front card-block text-center">
+                                    <h5 class="fw-bold">{% trans 'Insects/Causes' %}:</h5>
+                                    <h5 class="fw-bold">{% if default_language %}{{ disease_problem.insects_causes_bn }}{% else %}{{ disease_problem.insects_causes_en }}{% endif %}</h5>
+                                    <img class="rounded img-fluid" src="{{ disease_problem.image.url }}">
+                                </div>
+                                <div class="back card-block">
+                                    <h4 class="fw-bold text-center">{% trans 'Insects/Causes' %}:</h4>
+                                    <h5 class="fw-bold text-center">{% if default_language %}{{ disease_problem.insects_causes_bn }}{% else %}{{ disease_problem.insects_causes_en }}{% endif %}</h5>
+                                    <div class="col-12 col-sm-12 col-md-10 col-lg-9 col-xl-8 col-xxl-7 mx-auto">
+                                        <div class="details-view overflow-scroll">
+                                            {% if disease_problem.name_bn or disease_problem.name_en %}
+                                                <div class="accordion text-muted" role="tablist" id="accordion-1-{{ forloop.counter }}">
+                                                    <div class="accordion-item">
+                                                        <h2 class="accordion-header" role="tab">
+                                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#accordion-1-{{ forloop.counter }} .item-1" aria-expanded="false" aria-controls="accordion-1-{{ forloop.counter }} .item-1">{% trans 'DiseaseProblem' %}</button>
+                                                        </h2>
+                                                        <div class="accordion-collapse collapse item-1" role="tabpanel" data-bs-parent="#accordion-1-{{ forloop.counter }}">
+                                                            <div class="accordion-body">
+                                                                <div><p>{% if default_language %}{{ disease_problem.name_bn }}{% else %}{{ disease_problem.name_en }}{% endif %}</p></div>
                                                             </div>
                                                         </div>
-                                                        <div class="accordion text-muted" role="tablist"
-                                                             id="accordion-2-{{ forloop.counter0 }}">
-                                                            <div class="accordion-item">
-                                                                <h2 class="accordion-header" role="tab">
-                                                                    <button class="accordion-button collapsed"
-                                                                            type="button"
-                                                                            data-bs-toggle="collapse"
-                                                                            data-bs-target="#accordion-2-{{ forloop.counter0 }} .item-1"
-                                                                            aria-expanded="false"
-                                                                            aria-controls="accordion-2-{{ forloop.counter0 }} .item-1">
-                                                                        {{ solution_header }}
-                                                                    </button>
-                                                                </h2>
-                                                                <div class="accordion-collapse collapse item-1"
-                                                                     role="tabpanel"
-                                                                     data-bs-parent="#accordion-2-{{ forloop.counter0 }}">
-                                                                    <div class="accordion-body">
-                                                                        <div class="text-center">
-                                                                            <p>{{ solution }}</p></div>
-                                                                    </div>
-                                                                </div>
+                                                    </div>
+                                                </div>
+                                            {% endif %}
+                                            {% if disease_problem.solution_bn or disease_problem.solution_en %}
+                                                <div class="accordion text-muted" role="tablist" id="accordion-2-{{ forloop.counter }}">
+                                                    <div class="accordion-item">
+                                                        <h2 class="accordion-header" role="tab">
+                                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#accordion-2-{{ forloop.counter }} .item-1" aria-expanded="false" aria-controls="accordion-2-{{ forloop.counter }} .item-1">{% trans 'Solution' %}</button>
+                                                        </h2>
+                                                        <div class="accordion-collapse collapse item-1" role="tabpanel" data-bs-parent="#accordion-2-{{ forloop.counter }}">
+                                                            <div class="accordion-body">
+                                                                <div><p>{% if default_language %}{{ disease_problem.solution_bn }}{% else %}{{ disease_problem.solution_en }}{% endif %}</p></div>
                                                             </div>
                                                         </div>
-                                                        <div class="accordion text-muted" role="tablist"
-                                                             id="accordion-3-{{ forloop.counter0 }}">
-                                                            <div class="accordion-item">
-                                                                <h2 class="accordion-header" role="tab">
-                                                                    <button class="accordion-button collapsed"
-                                                                            type="button"
-                                                                            data-bs-toggle="collapse"
-                                                                            data-bs-target="#accordion-3-{{ forloop.counter0 }} .item-1"
-                                                                            aria-expanded="false"
-                                                                            aria-controls="accordion-3-{{ forloop.counter0 }} .item-1">
-                                                                        {{ warning_header }}
-                                                                    </button>
-                                                                </h2>
-                                                                <div class="accordion-collapse collapse item-1"
-                                                                     role="tabpanel"
-                                                                     data-bs-parent="#accordion-3-{{ forloop.counter0 }}">
-                                                                    <div class="accordion-body">
-                                                                        <div class="text-center">
-                                                                            <p>{{ warning }}</p></div>
-                                                                    </div>
-                                                                </div>
+                                                    </div>
+                                                </div>
+                                            {% endif %}
+                                            {% if disease_problem.warning_bn or disease_problem.warning_en %}
+                                                <div class="accordion text-muted" role="tablist" id="accordion-3-{{ forloop.counter }}">
+                                                    <div class="accordion-item">
+                                                        <h2 class="accordion-header" role="tab">
+                                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#accordion-3-{{ forloop.counter }} .item-1" aria-expanded="false" aria-controls="accordion-3-{{ forloop.counter }} .item-1">{% trans 'Warning' %}</button>
+                                                        </h2>
+                                                        <div class="accordion-collapse collapse item-1" role="tabpanel" data-bs-parent="#accordion-3-{{ forloop.counter }}">
+                                                            <div class="accordion-body">
+                                                                <div><p>{% if default_language %}{{ disease_problem.warning_bn }}{% else %}{{ disease_problem.warning_en }}{% endif %}</p></div>
                                                             </div>
                                                         </div>
-                                                        {{ counter.increase }}
-                                                    {% endif %}
-                                                {% endfor %}
-                                            </div>
+                                                    </div>
+                                                </div>
+                                            {% endif %}
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        {% endfor %}
+                        </div>
                     </div>
-                    <div class="col-md-12 col-lg-6 col-xl-6 col-xxl-6">
-                        {% for cause, url in causes %}
-                            <div class="card border-light border-1 d-flex justify-content-center p-4 card-container">
-                                <div class="card-body card-flip">
-                                    <div class="front card-block text-center"><h5 class="fw-bold">{{ cause }}</h5>
-                                        <img class="rounded img-fluid" src={{ url }}>
-                                    </div>
-                                    <div class="back card-block"><h5 class="fw-bold text-center">{{ cause }}</h5>
-                                        <div class="col-12 col-sm-12 col-md-10 col-lg-9 col-xl-8 col-xxl-7 mx-auto">
-                                            <div class="details-view overflow-scroll">
-                                                {% for disease, solution, warning in definition %}
-                                                    {% if forloop.parentloop.counter0 == counter.value %}
-                                                        <div class="accordion text-muted" role="tablist"
-                                                             id="accordion-1-{{ forloop.counter0 }}">
-                                                            <div class="accordion-item">
-                                                                <h2 class="accordion-header" role="tab">
-                                                                    <button class="accordion-button collapsed"
-                                                                            type="button"
-                                                                            data-bs-toggle="collapse"
-                                                                            data-bs-target="#accordion-1-{{ forloop.counter0 }} .item-1"
-                                                                            aria-expanded="false"
-                                                                            aria-controls="accordion-1-{{ forloop.counter0 }} .item-1">
-                                                                        {{ disease_header }}
-                                                                    </button>
-                                                                </h2>
-                                                                <div class="accordion-collapse collapse item-1"
-                                                                     role="tabpanel"
-                                                                     data-bs-parent="#accordion-1-{{ forloop.counter0 }}">
-                                                                    <div class="accordion-body">
-                                                                        <div class="text-center">
-                                                                            <p>{{ disease }}</p></div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="accordion text-muted" role="tablist"
-                                                             id="accordion-2-{{ forloop.counter0 }}">
-                                                            <div class="accordion-item">
-                                                                <h2 class="accordion-header" role="tab">
-                                                                    <button class="accordion-button collapsed"
-                                                                            type="button"
-                                                                            data-bs-toggle="collapse"
-                                                                            data-bs-target="#accordion-2-{{ forloop.counter0 }} .item-1"
-                                                                            aria-expanded="false"
-                                                                            aria-controls="accordion-2-{{ forloop.counter0 }} .item-1">
-                                                                        {{ solution_header }}
-                                                                    </button>
-                                                                </h2>
-                                                                <div class="accordion-collapse collapse item-1"
-                                                                     role="tabpanel"
-                                                                     data-bs-parent="#accordion-2-{{ forloop.counter0 }}">
-                                                                    <div class="accordion-body">
-                                                                        <div class="text-center">
-                                                                            <p>{{ solution }}</p></div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="accordion text-muted" role="tablist"
-                                                             id="accordion-3-{{ forloop.counter0 }}">
-                                                            <div class="accordion-item">
-                                                                <h2 class="accordion-header" role="tab">
-                                                                    <button class="accordion-button collapsed"
-                                                                            type="button"
-                                                                            data-bs-toggle="collapse"
-                                                                            data-bs-target="#accordion-3-{{ forloop.counter0 }} .item-1"
-                                                                            aria-expanded="false"
-                                                                            aria-controls="accordion-3-{{ forloop.counter0 }} .item-1">
-                                                                        {{ warning_header }}
-                                                                    </button>
-                                                                </h2>
-                                                                <div class="accordion-collapse collapse item-1"
-                                                                     role="tabpanel"
-                                                                     data-bs-parent="#accordion-3-{{ forloop.counter0 }}">
-                                                                    <div class="accordion-body">
-                                                                        <div class="text-center">
-                                                                            <p>{{ warning }}</p></div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        {{ counter.increase }}
-                                                    {% endif %}
-                                                {% endfor %}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        {% endfor %}
-                    </div>
+                {% endfor %}
                 </div>
             {% endif %}
         </div>
     </section>
-    <div class="mt-5 pt5"></div><br><br><br>
+    <div class="my-5 py-5">
+
 {% endblock %}

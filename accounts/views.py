@@ -1,12 +1,12 @@
 from django.shortcuts import render, HttpResponse, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
-from .models import Account
+from .models import Account, Notification
 from .forms import (
     AccountForm, AccountUpdateForm, AccountAuthenticationForm
 )
+from django.urls.base import resolve, reverse
 from django.utils import translation
-from pages.views import setLanguage, indexPage
 
 
 # Create your views here.
@@ -108,3 +108,80 @@ def login_view(request, *args, **kwargs):
         form = AccountAuthenticationForm()
     context['form'] = form
     return render(request, "login.html", context)
+
+
+def create_notification(request, user, account_id, notification):
+    if user.is_authenticated and user and account_id:
+        account = Account.objects.get(id=account_id)
+        Notification.objects.create(account=account, created_by=user, notification=notification)
+        messages.success(request, "The notification has been created successfully")
+        return True
+
+    messages.error(request, "You are not allow to create notification")
+    return False
+
+
+def notifications_page(request, notification_id=None, context=None):
+    if context is None:
+        context = {}
+    default_language = 'bn' in translation.get_language()
+    context["default_language"] = default_language
+
+    user = request.user
+    if user.is_authenticated:
+        if request.method == "GET" and notification_id and len(context) == 1:
+            notification = Notification.objects.get(id=notification_id)
+            filters = request.GET.get('read')
+            if filters:
+                if filters == "Yes" and not notification.read:
+                    notification.read = True
+                    notification.save()
+                    messages.success(request, "The notification has been marked as read successfully")
+                elif filters == "No" and notification.read:
+                    notification.read = False
+                    notification.save()
+                    messages.success(request, "The notification has been marked as unread successfully")
+                else:
+                    messages.error(request, "Invalid read request, failed to mark the notification")
+
+            return redirect(reverse('notifications'))
+        else:
+            notifications = Notification.objects.filter(account=user)
+            notifications_count = notifications.count()
+            filters = request.GET.get('read')
+            if filters:
+                if filters == "Mark-all":
+                    flag = False
+                    for notification in notifications:
+                        if not notification.read:
+                            notification.read = True
+                            notification.save()
+                            flag = True
+
+                    if flag:
+                        messages.success(request, "The notifications has been marked as read successfully")
+
+            filters = request.GET.get('tab')
+            if filters:
+                filters = filters.split(',') if ',' in filters else filters
+                if isinstance(filters, list) and len(filters) == 2 and "Newest" in filters and "Unread" in filters:
+                    notifications = Notification.objects.filter(account=user).order_by('-timestamp')
+                    notifications = [notification for notification in notifications if not notification.read]
+                    notifications_count = len(notifications)
+                elif filters == "Newest":
+                    notifications = Notification.objects.filter(account=user).order_by('-timestamp')
+                    notifications_count = notifications.count()
+                elif filters == "Unread":
+                    notifications = Notification.objects.filter(account=user)
+                    notifications = [notification for notification in notifications if not notification.read]
+                    notifications_count = len(notifications)
+                else:
+                    messages.error(request, "Invalid tab request, failed to load the notifications")
+                    return redirect(reverse("notifications"))
+
+            context["notifications"] = notifications
+            context["notifications_count"] = notifications_count
+            return render(request, 'notifications.html', context)
+
+    messages.error(request, "You are not allow to visit the page")
+    return redirect(reverse('index'))

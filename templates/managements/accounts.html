@@ -1,0 +1,103 @@
+{% extends "dashboard.html" %}
+{% load static i18n %}
+
+{% block link %}
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css" integrity="sha512-cyzxRvewl+FOKTtpBzYjW6x6IAYUCZy3sGP40hn+DQkqeluGRCax7qztK2ImL64SA+C7kVWdLI6wvdlStawhyw==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
+{% endblock %}
+
+{% block dashboard %}
+
+    {% include 'message.html' %}
+    <section>
+        <div class="container py-5">
+            <h3 class="fw-bold text-center">Accounts Management</h3>
+            <div class="row py-2">
+                <div class="col-md-12 pt-3 pb-5">
+                    <h6 class="dash-data-col dash-data-cat-col">Accounts</h6>
+                    {% if accounts_count > 0  %}
+                        <div class="table-responsive overflow-table-container text-center">
+                            <table class="table table-striped table-hover table-sm table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>ID</th>
+                                    <th>Admin</th>
+                                    <th>Active</th>
+                                    <th>Staff</th>
+                                    <th>Expert</th>
+                                    <th>Superuser</th>
+                                    <th>verified</th>
+                                    <th>Image</th>
+                                    <th>Name</th>
+                                    <th>phone</th>
+                                    <th>Email</th>
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    {% for account in accounts %}
+                                        <tr>
+                                            <td>{{ forloop.counter }}</td>
+                                            <td>{{ account.id }}</td>
+                                            <td>{{ account.is_admin }}</td>
+                                            <td>{{ account.is_active }}</td>
+                                            <td>{{ account.is_staff }}</td>
+                                            <td>{{ account.expert }}</td>
+                                            <td>{{ account.is_superuser }}</td>
+                                            <td>{{ account.is_verified }}</td>
+                                            <td><img class="questions-profile-img me-2" src="{{ account.pimg.url }}"></td>
+                                            <td>{{ account.fname }} {{ account.lname }}</td>
+                                            <td>{{ account.phone }}</td>
+                                            <td>{{ account.email }}</td>
+                                            <td>
+                                                <div class="btn-group navBtnBg">
+                                                    <a class="btn btn-sm" role="button">Actions</a>
+                                                    <button class="btn btn-primary btn-sm dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false" type="button"></button>
+                                                    <div class="dropdown-menu navMenu">
+                                                        {% if account.is_staff %}
+                                                            <a class="dropdown-item btn-danger navMenuItem" href="{% url "accounts" account.id %}?action=Demote-staff">Demote staff</a>
+                                                        {% else %}
+                                                            <a class="dropdown-item navMenuItem" href="{% url "accounts" account.id %}?action=Promote-staff">Promote staff</a>
+                                                        {% endif %}
+                                                        {% if account.expert %}
+                                                            <a class="dropdown-item btn-danger navMenuItem" href="{% url "accounts" account.id %}?action=Demote-expert">Demote expert</a>
+                                                        {% else %}
+                                                            <a class="dropdown-item navMenuItem" href="{% url "accounts" account.id %}?action=Promote-expert">Promote expert</a>
+                                                        {% endif %}
+                                                        <a class="dropdown-item btn-danger navMenuItem" href="{% url "accounts" account.id %}?action=Delete">Delete</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    {% else %}
+                        <div class="pt-3">
+                            <h6 class="dash-data-col">No account found!</h6>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block script %}
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js" integrity="sha512-6lplKUSl86rUVprDIjiW8DuOniNX8UDoRATqZSds/7t6zCQZfaCe3e5zcGaQwxa8Kpn5RTM9Fvl3X2lLV4grPQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script type="text/javascript">
+
+        const form = document.getElementById("insert-room");
+        const informationCount = null;
+        const DATA_UPLOAD_MAX_MEMORY_SIZE = null;
+
+    </script>
+
+    <script src="{% static "assets/js/form.handler.js" %}"></script>
+
+{% endblock %}

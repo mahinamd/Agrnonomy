@@ -1,0 +1,71 @@
+{% extends "index.html" %}
+{% load static i18n time_filters truncate_filters %}
+
+{% block content %}
+
+    <section class="py-5">
+        <div class="container mt-5 py-3">
+            {% include 'message.html' %}
+            <div class="row">
+                <div class="col-md-4">
+                    <h3 class="text-center">All questions</h3>
+                    <h6 class="text-center">{{ questions_count }} {% if questions_count > 1  %}questions{% else %}question{% endif %}</h6>
+                </div>
+                <div class="col-md-8">
+                    <div class="text-center"><a class="btn btn-primary" role="button" href={% url "ask-question" %}>Ask Question</a></div>
+                    <div class="text-center pt-3">
+                        <div class="btn-group btn-group-sm filter-btn-group" role="group">
+                            <a class="btn btn-primary btn-sm filter-btn {% if request.GET.tab == 'Newest' or 'Newest' in request.GET.tab %}active{% endif %}" role="button" href="{% url "questions" %}{% if request.GET.tab == 'Unanswered' %}?tab=Unanswered,Newest{% elif 'Newest' in request.GET.tab and 'Unanswered' in request.GET.tab %}?tab=Unanswered{% elif not request.GET.tab %}?tab=Newest{% endif %}">Newest</a>
+                            <a class="btn btn-primary btn-sm filter-btn {% if request.GET.tab == 'Unanswered' or 'Unanswered' in request.GET.tab %}active{% endif %}" role="button" href="{% url "questions" %}{% if request.GET.tab == 'Newest' %}?tab=Newest,Unanswered{% elif 'Unanswered' in request.GET.tab and 'Newest' in request.GET.tab %}?tab=Newest{% elif not request.GET.tab %}?tab=Unanswered{% endif %}">Unanswered</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container mb-5 pb-5 max-h-600-px overflow-scroll">
+            {% if questions_count > 0  %}
+                {% for question in questions %}
+                    <hr>
+                    <div class="row py-2">
+                        <div class="col-md-2">
+                            <div class="text-center pb-3"><span>{% trans 'Question no' %}: {{ forloop.counter }}</span></div>
+                            <div class="text-center text-muted">
+                                <span>{{ question.question_counts.votes_count }} {% if question.question_counts.votes_count > 1 %}votes{% else %}vote{% endif %}</span>
+                            </div>
+                            <div class="text-center text-muted">
+                                <span class="text-nowrap d-inline-flex justify-content-center align-items-center{% if question.has_accepted_answer %} accepted{% elif question.answers.count > 0 %} answered{% endif %}">{% if question.has_accepted_answer %}<i class="fas fa-check me-2"></i>{% endif %}{{ question.answers.count }} {% if question.answers.count > 1 %}answers{% else %}answer{% endif %}</span>
+                            </div>
+                            <div class="text-center text-muted">
+                                <span>{{ question.question_counts.views_count }} {% if question.question_counts.views_count > 1 %}views{% else %}view{% endif %}</span>
+                            </div>
+                        </div>
+                        <div class="col-md-10">
+                            <a href="{% url "questions" question.id %}"><span class="h4 fw-bold">{{ question.title }}</span></a>
+                            <p>{{ question.description|get_truncate_content:300|safe }}</p>
+                            <div class="d-flex">
+                                {% if question.tags %}
+                                    <div class="d-inline-block">
+                                        {% for tag in question.get_tags_list %}
+                                            <span class="question-tag">{{ tag }}</span>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                                <div class="d-inline-flex ms-auto">
+                                    <a class="d-flex justify-content-end align-items-center me-2" href="{% url "questions" question.id %}">
+                                        <img class="questions-profile-img me-2" src="{{ question.account.pimg.url }}">{{ question.account.fname }} {{ question.account.lname }}
+                                    </a>
+                                    <span class="d-lg-flex align-items-lg-center text-end text-muted">asked {{ question.created|get_time_since }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="col prof-col pt-3">
+                    <h6 class="dash-data-col">{% trans 'No question found!' %}</h6>
+                </div>
+            {% endif %}
+        </div>
+    </section>
+
+{% endblock %}

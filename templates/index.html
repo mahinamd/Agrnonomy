@@ -1,8 +1,7 @@
-{% load static %}
-{% load i18n %}
+{% load static i18n %}
 
 <!DOCTYPE html>
-<html>
+<html lang="{% get_current_language as current_language %}{{ current_language }}">
 
 <head>
     <meta charset="utf-8">
@@ -17,6 +16,8 @@
     <link rel="stylesheet" href="{% static 'assets/fonts/material-icons.min.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/styles.min.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/animate.min.min.css' %}">
+    {% block link %}
+    {% endblock %}
 </head>
 
 <body id="page-top">
@@ -375,11 +376,10 @@
 <!-- Start: Footer -->
 {% include 'footer.html' %}
 <!-- End: Footer -->
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"
-        integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
-<script src="{% static 'assets/bootstrap/js/bootstrap.min.js' %}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.7/js/tether.min.js"></script>
-<script src="{% static 'assets/js/script.min.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
+    <script src="{% static 'assets/bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.7/js/tether.min.js"></script>
+    <script src="{% static 'assets/js/script.min.js' %}"></script>
 {% block script %}
 {% endblock %}
 </body>

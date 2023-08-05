@@ -1,0 +1,30 @@
+<!-- Start: Information Navbar -->
+<nav class="navbar navbar-light navbar-expand-lg navbar-shrink py-2" id="DMNav">
+    <div class="container">
+        <h3 class="text-dark mb-0 fw-bold">Data Management</h3>
+        <button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#toggler-1">
+            <span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="toggler-1">
+            <ul class="navbar-nav mx-auto text-center">
+                <li class="nav-item dropdown">
+                    <a class="dropdown-toggle nav-link dash-link navLink" aria-expanded="false" data-bs-toggle="dropdown" href="#">Insert</a>
+                    <div class="dropdown-menu navMenu">
+                        <a class="dropdown-item navMenuItem" href={% url "insert-category-form" %}><span>Category</span></a>
+                        <a class="dropdown-item navMenuItem" href="{% url "insert-subcategory-form" %}"><span>Subcategory</span></a>
+                        <a class="dropdown-item navMenuItem" href="{% url "insert-disease-problem-form" %}"><span>Disease/Problem</span></a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="dropdown-toggle nav-link dash-link navLink" aria-expanded="false" data-bs-toggle="dropdown" href="#">View</a>
+                    <div class="dropdown-menu navMenu">
+                        <a class="dropdown-item navMenuItem" href="{% url "view-category" %}"><span>Category</span></a>
+                        <a class="dropdown-item navMenuItem" href="{% url "view-subcategory" %}"><span>Subcategory</span></a>
+                        <a class="dropdown-item navMenuItem" href="{% url "view-disease-problem" %}"><span>Disease/Problem</span></a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- End: Information Navbar -->

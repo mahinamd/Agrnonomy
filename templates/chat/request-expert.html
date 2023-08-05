@@ -1,0 +1,79 @@
+{% extends "index.html" %}
+{% load static i18n %}
+
+{% block link %}
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css" integrity="sha512-cyzxRvewl+FOKTtpBzYjW6x6IAYUCZy3sGP40hn+DQkqeluGRCax7qztK2ImL64SA+C7kVWdLI6wvdlStawhyw==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
+{% endblock %}
+
+{% block content %}
+
+    <section class="py-5">
+        <div class="container mt-5 py-3">
+            {% include 'message.html' %}
+            <div class="row">
+                <div class="col-md-12">
+                    <h3 class="fw-bold text-center">Request for expert help</h3>
+                    <div class="help-text-question py-3 ps-3">
+                        <h5 class="fw-bold">Writing a good problem case</h5>
+                        <p>You can ask for expert help with an agronomy-related question.</p>
+                        <p class="fw-bold">Steps:</p>
+                        <ul>
+                            <li>Summarize your problem in a one-line title.</li>
+                            <li>Add “tags” which help surface your problem to members of the community.</li>
+                            <li>Review your problem and submit the request.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container pb-5">
+            <hr>
+            <div class="row py-2">
+                <div class="col-md-12">
+                    <form id="insert-expert-request" action="{% url 'request-expert' %}" method="post"> {% csrf_token %}
+                        <div class="row pb-5">
+                            <div class="col prof-col pt-3"><h6 class="dash-data-col dash-data-cat-col">Your Problem</h6></div>
+                            <div class="col prof-col pt-3">
+                                <h6 class="dash-data-col">Title:</h6>
+                                <input class="form-control text-center data-input" type="text" placeholder="Title" name="title" required="">
+                            </div>
+                            <div class="col prof-col pt-3">
+                                <h6 class="dash-data-col">Tags:</h6>
+                                <input class="form-control text-center data-input" type="text" name="tags" placeholder="Tags (Comma separated: crop, fruit, fish)">
+                            </div>
+                            {% include 'form-message.html' %}
+                            <div class="text-center py-3 d-none" id="loading-spinner">
+                                <span class="spinner-border spinner-border-sm spinner-color" role="status"></span>
+                            </div>
+                            <div class="col prof-col pt-3 text-center">
+                                <button class="btn btn-primary mt-1" type="submit">Submit your request</button>
+                                <button id="reset-form" class="btn btn-primary mx-3 mt-1" type="reset">Reset</button>
+                                <a class="btn btn-primary mt-1" role="button" href="{% url "chat-expert" %}">Back</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
+
+{% block script %}
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js" integrity="sha512-6lplKUSl86rUVprDIjiW8DuOniNX8UDoRATqZSds/7t6zCQZfaCe3e5zcGaQwxa8Kpn5RTM9Fvl3X2lLV4grPQ==" crossorigin="anonymous"
+            referrerpolicy="no-referrer"></script>
+
+    <script type="text/javascript">
+
+        const form = document.getElementById("insert-expert-request");
+        const informationCount = null;
+        const DATA_UPLOAD_MAX_MEMORY_SIZE = null;
+
+    </script>
+
+    <script src="{% static "assets/js/form.handler.js" %}"></script>
+
+{% endblock %}

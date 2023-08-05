@@ -1,49 +1,59 @@
 {% extends "index.html" %}
-{% load static %}
-{% load i18n %}
+{% load static i18n %}
 
 {% block content %}
+
     <section class="pt-5 mt-5">
         <div class="container py-4 py-xl-5">
             {% include 'message.html' %}
             <div class="row mb-5">
-                <div class="col text-center"><h3 class="display-6 fw-bold pb-2 mb-2">Agriculture&nbsp;<span
-                        class="underline"><strong>Information</strong></span>&nbsp;</h3></div>
+                <div class="col text-center">
+                    <h3 class="display-6 fw-bold pb-2 mb-2">Agriculture&nbsp;<span class="underline"><strong>Information</strong></span>&nbsp;</h3>
+                </div>
             </div>
             <div class="row mb-1">
-                <div class="col text-center"><h3 class="display-6 fw-bold pb-2 mb-2"><span
-                        class="underline">{{ subcategories_title }}</span>&nbsp;
-                </h3></div>
+                <div class="col text-center"><h3 class="display-6 fw-bold pb-2 mb-2">
+                    <span class="underline">{% trans 'Subategory' %}</span>&nbsp;</h3>
+                </div>
             </div>
             <div class="row mb-5">
                 <div class="col text-center">
                     <form class="d-flex justify-content-center flex-wrap flex-lg-nowrap" method="post">
-                        <div class="my-2 me-1"><input class="form-control" type="search" placeholder="Search"
-                                                      name="search">
+                        <div class="my-2 me-1">
+                            <input class="form-control" type="search" placeholder="Search" name="search">
                         </div>
                         <div class="my-2">
                             <button class="btn btn-primary shadow" type="submit">Search</button>
                         </div>
                     </form>
-                    <div class="my-2"><a class="btn btn-primary shadow" role="button" href={% url "category" %}>Back</a>
+                    <div class="my-2">
+                        <a class="btn btn-primary shadow" role="button" href={% url "category" %}>Back</a>
                     </div>
                 </div>
             </div>
 
             <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3">
-                {% for title, index, url in subcategories %}
-                    <div class="col-xl-6 col-xxl-6">
-                        <div class="card border-light border-1 d-flex justify-content-center p-4">
-                            <div class="card-body data-view">
-                                <div><h4 class="fw-bold text-center">{{ title }}</h4><img class="rounded img-fluid"
-                                                                                          src={{ url }}><a
-                                        class="stretched-link" href={% url "information" parent index %}></a></div>
+                {% if subcategories_count > 0  %}
+                    {% for subcategory in subcategories_information %}
+                        <div class="col-xl-4 col-xxl-4">
+                            <div class="card border-light border-1 d-flex justify-content-center p-4">
+                                <div class="card-body data-view">
+                                    <div>
+                                        <h4 class="fw-bold text-center">{% if default_language %}{{ subcategory.name_bn }}{% else %}{{ subcategory.name_en }}{% endif %}</h4>
+                                        <img class="rounded img-fluid" src="{{ subcategory.image.url }}">
+                                        <a class="stretched-link" href={% url "information" category.id subcategory.id %}></a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="col prof-col pt-3">
+                        <h6 class="dash-data-col">{% trans 'No subcategory found!' %}</h6>
                     </div>
-                {% endfor %}
+                {% endif %}
             </div>
-
         </div>
     </section>
+
 {% endblock %}

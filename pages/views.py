@@ -1,4 +1,7 @@
-from django.shortcuts import render, HttpResponse, redirect
+import os
+import traceback
+
+from django.shortcuts import render, HttpResponse, redirect, get_object_or_404
 from urllib.parse import urlparse
 from django.conf import settings
 from django.http import HttpResponseRedirect
@@ -8,8 +11,17 @@ from django.utils import translation
 from django.contrib import messages
 from Agronomy.connection import get_collection
 
+from accounts.models import Account
+from accounts.views import create_notification
+from managements.models import Category, Subcategory, Information, DiseaseProblem
+from managements.views import cropping_image, get_categories, get_categories_subcategories, get_subcategories_information, get_diseases_problems
 
-# Create your views here.
+from .models import Question, QuestionCounts, Answer, AnswerCounts, Vote, Problem
+from .forms import QuestionForm, AnswerForm, ProblemForm
+from django.db import models
+import copy
+
+
 def setLanguage(request, language):
     view = None
     for lang, _ in settings.LANGUAGES:
@@ -366,27 +378,31 @@ def get_subcategory_info(parent_index, index):
     return [title, image]
 
 
-def categoryPage(request):
+def category_page(request):
     default_language = 'bn' in translation.get_language()
-    context = {'default_language': default_language}
+    context = {"default_language": default_language}
 
+    '''
     title = get_category_title()
     context['categories_title'] = title
     categories = get_category()
     context['categories'] = categories
+    '''
 
     user = request.user
     if user.is_authenticated:
-        return render(request, 'category.html', context)
+        context.update(get_categories())
+        return render(request, "category.html", context)
 
     messages.error(request, "You are not allow to visit the page")
-    return redirect('index')
+    return redirect(reverse('index'))
 
 
-def subcategoryPage(request, index):
+def subcategory_page(request, category_id):
     default_language = 'bn' in translation.get_language()
-    context = {'default_language': default_language}
+    context = {"default_language": default_language}
 
+    '''
     found = find_category_index(index)
 
     if found == -1:
@@ -398,13 +414,25 @@ def subcategoryPage(request, index):
     context['subcategories_title'] = title
     subcategories = get_subcategory(found[0])
     context['subcategories'] = subcategories
+    '''
 
     user = request.user
     if user.is_authenticated:
-        return render(request, 'subcategory.html', context)
+        try:
+            category = Category.objects.get(id=category_id)
+            context.update(get_subcategories_information(category))
+            context["category"] = category
+            return render(request, 'subcategory.html', context)
+        except Exception as e:
+            messages.error(request, "Invalid category, failed to load the subcategory")
+            print("Exception: " + str(e))
+            print("Traceback: ")
+            traceback.print_exc()
+
+        return redirect(reverse("category"))
 
     messages.error(request, "You are not allow to visit the page")
-    return redirect('index')
+    return redirect(reverse('index'))
 
 
 class Counter(object):
@@ -419,9 +447,34 @@ class Counter(object):
         return self.c
 
 
+def information_page(request, category_id, subcategory_id):
+    default_language = 'bn' in translation.get_language()
+    context = {"default_language": default_language}
+
+    user = request.user
+    if user.is_authenticated:
+        try:
+            category = Category.objects.get(id=category_id)
+            subcategory = Subcategory.objects.get(id=subcategory_id)
+            context.update(get_diseases_problems(subcategory))
+            context["category"] = category
+            context["subcategory"] = subcategory
+            return render(request, 'information.html', context)
+        except Exception as e:
+            messages.error(request, "Invalid category, failed to load the subcategory")
+            print("Exception: " + str(e))
+            print("Traceback: ")
+            traceback.print_exc()
+
+        return redirect(reverse("subcategory", kwargs={"category_id": category_id}))
+
+    messages.error(request, "You are not allow to visit the page")
+    return redirect(reverse('index'))
+
+
 def informationPage(request, parent, index):
     default_language = 'bn' in translation.get_language()
-    context = {'default_language': default_language}
+    context = {"default_language": default_language}
 
     found_parent = find_category_index(parent)
     found_index = find_subcategory_index(found_parent[0], index)
@@ -457,3 +510,588 @@ def informationPage(request, parent, index):
 
     messages.error(request, "You are not allow to visit the page")
     return redirect('index')
+
+
+# Supporting functions
+def save_form(request, form, context, form_name, question=None):
+    if form.is_valid():
+        instance = form.save(commit=False)
+        instance.account = request.user
+        if form_name == 'answer':
+            if question:
+                instance.question = question
+            else:
+                messages.error(request, "Invalid request for question, failed to post the " + form_name.replace('_', '/'))
+
+        instance.save()
+        img_dir_filepath = ''
+        temp_img_filename = ''
+        img_filename = ''
+
+        try:
+            img_id = str(instance.id)
+
+            original_img_file = form.cleaned_data.get('image')
+            cropping_details = request.POST.get("cropping_details")
+
+            if form_name == 'question':
+                tags = form.cleaned_data.get("tags")
+                if tags:
+                    split_list = tags.split(',')
+                    cleaned_list = [' '.join(item.strip().split()) for item in split_list if item != '']
+                    tags_list = ['#' + item for item in cleaned_list]
+                    tags = ", ".join(tags_list)
+                    instance.tags = tags
+                    instance.save()
+
+            if original_img_file and "default/" not in str(original_img_file) and cropping_details:
+                img_dir_filepath = os.path.join(settings.MEDIA_ROOT, form_name + "_img")
+                img_filename = img_id + '_' + form_name + "_img.jpg"
+                temp_img_filename = "temp_" + form_name + "_img" + '.' + original_img_file.name.split('.')[-1]
+
+                valid = cropping_image(cropping_details, img_dir_filepath, img_filename, temp_img_filename)
+
+                if valid:
+                    instance.image = form_name + "_img/" + img_filename
+                    instance.save()
+                    messages.success(request, "The " + form_name.replace('_', '/') + " has been posted successfully")
+                else:
+                    # rollback_save(instance, img_dir_filepath, img_filename, temp_img_filename)
+                    messages.error(request, "Invalid image, failed to post the " + form_name.replace('_', '/'))
+            elif "default/" in str(original_img_file):
+                messages.success(request, "The " + form_name.replace('_', '/') + " has been posted successfully")
+            else:
+                # rollback_save(instance, img_dir_filepath, img_filename, temp_img_filename)
+                messages.error(request, "Invalid request, failed to post the " + form_name.replace('_', '/'))
+
+            if form_name == 'question':
+                return redirect(reverse("questions", kwargs={"question_id": instance.id}))
+            elif question and form_name == 'answer':
+                return redirect(reverse("questions", kwargs={"question_id": question.id}))
+
+        except Exception as e:
+            # rollback_save(instance, img_dir_filepath, img_filename, temp_img_filename)
+            print("Exception: " + str(e))
+            print("Traceback: ")
+            traceback.print_exc()
+    else:
+        context['form'] = form
+
+    messages.error(request, "Invalid request, failed to post the " + form_name.replace('_', '/'))
+    if form_name == 'question':
+        return ask_question_page(request, context)
+    elif question and form_name == 'answer':
+        return view_question_page(request, question.id, context)
+    else:
+        messages.error(request, "Invalid " + form_name.replace('_', '/') + " form, try again")
+        return questions_page(request)
+
+
+# Question functions
+def questions_page(request):
+    default_language = 'bn' in translation.get_language()
+    context = {"default_language": default_language}
+
+    user = request.user
+    if user.is_authenticated:
+        try:
+            filters = request.GET.get('tab')
+            if filters:
+                filters = filters.split(',') if ',' in filters else filters
+                if isinstance(filters, list) and len(filters) == 2 and "Newest" in filters and "Unanswered" in filters:
+                    questions = Question.objects.filter(answers__isnull=True).order_by('-created')
+                elif filters == "Newest":
+                    questions = Question.objects.order_by('-created')
+                elif filters == "Unanswered":
+                    questions = Question.objects.filter(answers__isnull=True)
+                else:
+                    messages.error(request, "Invalid tab request, failed to load the questions")
+                    return redirect(reverse("questions"))
+            else:
+                questions = Question.objects.all()
+
+            context["questions"] = questions
+            context["questions_count"] = questions.count()
+            return render(request, 'questions.html', context)
+        except Exception as e:
+            messages.error(request, "Invalid request, failed to load questions")
+            print("Exception: " + str(e))
+            print("Traceback: ")
+            traceback.print_exc()
+
+        return redirect(reverse("questions"))
+
+    messages.error(request, "You are not allow to visit the page")
+    return redirect(reverse('index'))
+
+
+def ask_question_page(request, context=None):
+    if context is None:
+        context = {}
+    default_language = 'bn' in translation.get_language()
+    context["default_language"] = default_language
+
+    user = request.user
+    if user.is_authenticated:
+        if request.POST and len(context) == 1:
+            form = QuestionForm(request.POST, request.FILES)
+            return save_form(request, form, context, 'question')
+        else:
+            url_parse = urlparse(request.META.get("HTTP_REFERER"))
+            question_id = None
+            if url_parse.path:
+                resolve_kwargs = resolve(url_parse.path).kwargs
+                if resolve_kwargs:
+                    for key, value in resolve_kwargs.items():
+                        if key == "question_id":
+                            question_id = value
+
+            context["question_id"] = question_id
+            context["DATA_UPLOAD_MAX_MEMORY_SIZE"] = settings.DATA_UPLOAD_MAX_MEMORY_SIZE
+            return render(request, 'ask-question.html', context)
+
+    messages.error(request, "You are not allow to visit the page")
+    return redirect(reverse('index'))
+
+
+def view_question_page(request, question_id, answer_id=None, context=None):
+    if context is None:
+        context = {}
+    default_language = 'bn' in translation.get_language()
+    context["default_language"] = default_language
+
+    user = request.user
+    if user.is_authenticated:
+        try:
+            if request.POST and len(context) == 1:
+                form = AnswerForm(request.POST, request.FILES)
+                question = Question.objects.get(id=question_id)
+                return save_form(request, form, context, 'answer', question)
+            else:
+                print(question_id)
+                question = Question.objects.get(id=question_id)
+                question.question_counts.views_count += 1
+                question.question_counts.save()
+
+                filters = request.GET.get('tab')
+                if filters:
+                    filters = filters.split(',') if ',' in filters else filters
+                    if isinstance(filters, list) and len(filters) == 2 and "Newest" in filters and "Highest-vote" in filters:
+                        answers = question.answers.order_by('-answer_counts__votes_count', '-created')
+                    elif filters == "Newest":
+                        answers = question.answers.order_by('-created')
+                    elif filters == "Highest-vote":
+                        answers = question.answers.order_by('-answer_counts__votes_count')
+                    else:
+                        messages.error(request, "Invalid tab request, failed to load answers of the question")
+                        return redirect(reverse("questions", kwargs={"question_id": question_id}))
+                else:
+                    answers = question.answers.all()
+
+                user_has_answered = any(answer.account == user for answer in answers)
+
+                filters = request.GET.get('vote')
+                if filters:
+                    if question.account_id != user.id and not answer_id:
+                        account_ids = question.question_counts.voted_by.values_list('id', flat=True)
+                        user_exists = user.id in account_ids
+                        if filters == "Up":
+                            if not user_exists:
+                                question.question_counts.votes_count += 1
+                                question.question_counts.save()
+                                Vote.objects.create(account=user, question_vote=question.question_counts, upvote=True)
+                            else:
+                                vote = Vote.objects.get(account=user, question_vote=question.question_counts)
+                                if not vote.upvote:
+                                    question.question_counts.votes_count += 1
+                                    question.question_counts.save()
+                                    vote.delete()
+                                else:
+                                    messages.error(request, "Invalid up vote request, failed to up vote for the question")
+                        elif filters == "Down":
+                            if not user_exists:
+                                question.question_counts.votes_count -= 1
+                                question.question_counts.save()
+                                Vote.objects.create(account=user, question_vote=question.question_counts)
+                            else:
+                                vote = Vote.objects.get(account=user, question_vote=question.question_counts)
+                                if vote.upvote:
+                                    question.question_counts.votes_count -= 1
+                                    question.question_counts.save()
+                                    vote.delete()
+                                else:
+                                    messages.error(request, "Invalid down vote request, failed to down vote for the question")
+                        else:
+                            messages.error(request, "Invalid vote request, failed to vote for the question")
+                    elif answer_id:
+                        answer = Answer.objects.get(id=answer_id)
+                        if answer.account_id != user.id:
+                            user_exists = False
+                            for temp_answer in answers:
+                                account_ids = temp_answer.answer_counts.voted_by.values_list('id', flat=True)
+                                if user.id in account_ids:
+                                    user_exists = True
+                                    break
+
+                            if filters == "Up":
+                                account_ids = answer.answer_counts.voted_by.values_list('id', flat=True)
+                                if not user_exists:
+                                    answer.answer_counts.votes_count += 1
+                                    answer.answer_counts.save()
+                                    Vote.objects.create(account=user, answer_vote=answer.answer_counts, upvote=True)
+                                elif user.id in account_ids:
+                                    vote = Vote.objects.get(account=user, answer_vote=answer.answer_counts)
+                                    if not vote.upvote:
+                                        answer.answer_counts.votes_count += 1
+                                        answer.answer_counts.save()
+                                        vote.delete()
+                                    else:
+                                        messages.error(request, "Invalid up vote request, you already up vote the answer")
+                                else:
+                                    messages.error(request, "Invalid up vote request, failed to up vote for the answer")
+                            elif filters == "Down":
+                                account_ids = answer.answer_counts.voted_by.values_list('id', flat=True)
+                                if not user_exists:
+                                    answer.answer_counts.votes_count -= 1
+                                    answer.answer_counts.save()
+                                    Vote.objects.create(account=user, answer_vote=answer.answer_counts)
+                                elif user.id in account_ids:
+                                    vote = Vote.objects.get(account=user, answer_vote=answer.answer_counts)
+                                    if vote.upvote:
+                                        answer.answer_counts.votes_count -= 1
+                                        answer.answer_counts.save()
+                                        vote.delete()
+                                    else:
+                                        messages.error(request, "Invalid down vote request, you already down vote the answer")
+                                else:
+                                    messages.error(request, "Invalid down vote request, failed to down vote for the answer")
+                            else:
+                                messages.error(request, "Invalid vote request, failed to vote for the answer")
+                        else:
+                            messages.error(request, "Invalid vote request, you are not allowed to vote for the answer")
+                    else:
+                        messages.error(request, "Invalid vote request, you are not allowed to vote")
+
+                    return redirect(reverse("questions", kwargs={"question_id": question_id}))
+
+                filters = request.GET.get('accept')
+                if filters:
+                    if question.account_id == user.id and answer_id:
+                        answer = question.answers.get(id=answer_id)
+                        if filters == "Yes" and answer and not answer.is_accepted and not question.has_accepted_answer:
+                            answer.is_accepted = True
+                            answer.save()
+                        elif filters == "No" and answer and answer.is_accepted and question.has_accepted_answer:
+                            answer.is_accepted = False
+                            answer.save()
+                        else:
+                            messages.error(request, "Invalid accept request, failed to accept the answer")
+                    else:
+                        messages.error(request, "Invalid accept request, you are not allowed to accept the answer")
+
+                    return redirect(reverse("questions", kwargs={"question_id": question_id}))
+
+                context["question"] = question
+                context["answers"] = answers
+                context["answers_count"] = answers.count()
+                context["user_has_answered"] = user_has_answered
+                context["DATA_UPLOAD_MAX_MEMORY_SIZE"] = settings.DATA_UPLOAD_MAX_MEMORY_SIZE
+                return render(request, 'view-question.html', context)
+        except Exception as e:
+            messages.error(request, "Invalid request, failed to load the question")
+            print("Exception: " + str(e))
+            print("Traceback: ")
+            traceback.print_exc()
+
+        return redirect(reverse("questions"))
+
+    messages.error(request, "You are not allow to visit the page")
+    return redirect(reverse('index'))
+
+
+def update_form(request, context, form_name, object_id, parent_id=None):
+    update_object = None
+    form = None
+    if form_name == 'question':
+        update_object = Question.objects.get(pk=object_id)
+        form = QuestionForm(request.POST, request.FILES, instance=update_object)
+    elif form_name == 'answer':
+        update_object = Answer.objects.get(pk=object_id)
+        form = AnswerForm(request.POST, request.FILES, instance=update_object)
+
+    old_object = copy.deepcopy(update_object)
+    if update_object is not None and form.is_valid():
+        instance = form.save()
+        img_dir_filepath = ''
+        img_filename = ''
+        old_img_filename = ''
+        temp_img_filename = ''
+
+        try:
+            img_id = str(object_id)
+
+            original_img_file = form.cleaned_data.get('image')
+            cropping_details = request.POST.get("cropping_details")
+            title = tags = ''
+            if form_name == 'question':
+                title = form.cleaned_data.get("title")
+
+            if form_name == 'question':
+                tags = form.cleaned_data.get("tags")
+                if tags and old_object.tags != tags:
+                    split_list = tags.split(',')
+                    cleaned_list = [' '.join(item.strip().split()) for item in split_list if item != '']
+                    tags_list = ['#' + item for item in cleaned_list]
+                    tags = ", ".join(tags_list)
+                    instance.tags = tags
+                    instance.save()
+
+            description = form.cleaned_data.get("description")
+            img_filename = img_id + '_' + form_name + "_img.jpg"
+
+            if original_img_file and cropping_details:
+                img_dir_filepath = os.path.join(settings.MEDIA_ROOT, form_name + "_img")
+                old_img_filename = img_id + '_' + form_name + "_img_old.jpg"
+                temp_img_filename = "temp_" + form_name + "_img" + "." + original_img_file.name.split('.')[-1]
+
+                valid = cropping_image(cropping_details, img_dir_filepath, img_filename, temp_img_filename, old_img_filename)
+
+                if valid:
+                    instance.image = form_name + "_img/" + img_filename
+                    instance.save()
+                    messages.success(request, "The " + form_name.replace('_', '/') + " has been updated successfully")
+                else:
+                    #rollback_update(instance, old_object, form_name, img_dir_filepath, img_filename, temp_img_filename, old_img_filename)
+                    messages.error(request, "Invalid image, failed to update the " + form_name.replace('_', '/'))
+            elif (form_name == 'question' and old_object.description == description and old_object.title == title and old_object.tags == tags) or (form_name == 'answer' and old_object.description == description):
+                messages.error(request, "Invalid input, failed to update the " + form_name.replace('_', '/'))
+            elif not original_img_file or not cropping_details or old_object.description != description:
+                messages.success(request, "The " + form_name.replace('_', '/') + " has been updated successfully")
+            else:
+                #rollback_update(instance, old_object, form_name, img_dir_filepath, img_filename, temp_img_filename, old_img_filename)
+                messages.error(request, "Invalid request, failed to update the " + form_name.replace('_', '/'))
+
+            if form_name == 'question':
+                return redirect(reverse("questions", kwargs={"question_id": object_id}))
+            if form_name == 'answer' and parent_id:
+                return redirect(reverse("questions", kwargs={"question_id": parent_id}))
+
+
+        except Exception as e:
+            #rollback_update(instance, old_object, form_name, img_dir_filepath, img_filename, temp_img_filename, old_img_filename)
+            print("Exception: " + str(e))
+            print("Traceback: ")
+            traceback.print_exc()
+
+    else:
+        context['form'] = form
+
+    messages.error(request, "Invalid request, failed to updated the " + form_name.replace('_', '/'))
+    if form_name == 'question':
+        return update_question_page(request, object_id, context)
+    elif form_name == 'answer' and parent_id:
+        return update_answer_page(request, parent_id, object_id, context)
+    else:
+        messages.error(request, "Invalid " + form_name.replace('_', '/') + " form, try again")
+        return questions_page(request)
+
+
+def update_question_page(request, question_id, context=None):
+    if context is None:
+        context = {}
+    default_language = 'bn' in translation.get_language()
+    context["default_language"] = default_language
+
+    user = request.user
+    if user.is_authenticated:
+        if request.POST and len(context) == 1:
+            return update_form(request, context, 'question', question_id)
+        else:
+            question = Question.objects.get(id=question_id)
+            context["question"] = question
+            context["DATA_UPLOAD_MAX_MEMORY_SIZE"] = settings.DATA_UPLOAD_MAX_MEMORY_SIZE
+            return render(request, 'update-question.html', context)
+
+    messages.error(request, "You are not allow to visit the page")
+    return redirect(reverse('index'))
+
+
+def delete_question_page(request, question_id, context=None):
+    if context is None:
+        context = {}
+    default_language = 'bn' in translation.get_language()
+    context["default_language"] = default_language
+
+    user = request.user
+    if user.is_authenticated:
+        if request.POST and len(context) == 1:
+            Question.objects.get(id=question_id).delete()
+            messages.success(request, "The question has been deleted successfully")
+            return redirect(reverse("questions"))
+        else:
+            messages.error(request, "Invalid request, failed to delete the question")
+            question = Question.objects.get(id=question_id)
+            context["question"] = question
+            context["DATA_UPLOAD_MAX_MEMORY_SIZE"] = settings.DATA_UPLOAD_MAX_MEMORY_SIZE
+            return render(request, 'update-question.html', context)
+
+    messages.error(request, "You are not allow to visit the page")
+    return redirect(reverse('index'))
+
+
+def update_answer_page(request, question_id, answer_id, context=None):
+    if context is None:
+        context = {}
+    default_language = 'bn' in translation.get_language()
+    context["default_language"] = default_language
+
+    user = request.user
+    if user.is_authenticated:
+        if request.POST and len(context) == 1:
+            return update_form(request, context, 'answer', answer_id, question_id)
+        else:
+            question = Question.objects.get(id=question_id)
+            answer = Answer.objects.get(id=answer_id)
+            context["question"] = question
+            context["answer"] = answer
+            context["DATA_UPLOAD_MAX_MEMORY_SIZE"] = settings.DATA_UPLOAD_MAX_MEMORY_SIZE
+            return render(request, 'update-answer.html', context)
+
+    messages.error(request, "You are not allow to visit the page")
+    return redirect(reverse('index'))
+
+
+def delete_answer_page(request, question_id, answer_id, context=None):
+    if context is None:
+        context = {}
+    default_language = 'bn' in translation.get_language()
+    context["default_language"] = default_language
+
+    user = request.user
+    if user.is_authenticated:
+        if request.POST and len(context) == 1:
+            Answer.objects.get(id=answer_id).delete()
+            messages.success(request, "The answer has been deleted successfully")
+            return redirect(reverse("questions", kwargs={"question_id": question_id}))
+        else:
+            messages.error(request, "Invalid request, failed to delete the answer")
+            question = Question.objects.get(id=question_id)
+            answer = Answer.objects.get(id=answer_id)
+            context["question"] = question
+            context["answer"] = answer
+            context["DATA_UPLOAD_MAX_MEMORY_SIZE"] = settings.DATA_UPLOAD_MAX_MEMORY_SIZE
+            return render(request, 'update-answer.html', context)
+
+    messages.error(request, "You are not allow to visit the page")
+    return redirect(reverse('index'))
+
+
+def chat_expert_page(request, problem_id=None, context=None):
+    if context is None:
+        context = {}
+    default_language = 'bn' in translation.get_language()
+    context["default_language"] = default_language
+
+    user = request.user
+    if user.is_authenticated:
+        if request.method == "GET" and len(context) == 1:
+            account = Account.objects.get(id=user.id)
+            if problem_id:
+                case = Problem.objects.get(id=problem_id)
+                context["case"] = case
+                if default_language:
+                    ws_url = "ws://" + request.get_host() + "/chat/room/" + str(case.room.id)
+                else:
+                    ws_url = "ws://" + request.get_host() + "/en/chat/room/" + str(case.room.id)
+
+                context["ws_url"] = ws_url
+                room = account.user_rooms.get(problem_id=problem_id)
+                room_messages = room.room_messages.all()
+                context["room"] = room
+                context["room_messages"] = room_messages
+                context["room_messages_count"] = room_messages.count()
+
+            problems = account.chat_problems.all()
+            context["problems"] = problems
+            context["problems_count"] = problems.count()
+            context["DATA_UPLOAD_MAX_MEMORY_SIZE"] = settings.DATA_UPLOAD_MAX_MEMORY_SIZE
+            return render(request, 'chat/chat-expert.html', context)
+
+    messages.error(request, "You are not allow to visit the page")
+    return redirect(reverse('index'))
+
+
+def chat_user_page(request, problem_id=None, context=None):
+    if context is None:
+        context = {}
+    default_language = 'bn' in translation.get_language()
+    context["default_language"] = default_language
+
+    user = request.user
+    if user.is_authenticated:
+        if request.method == "GET" and len(context) == 1:
+            account = Account.objects.get(id=user.id)
+            if problem_id:
+                case = Problem.objects.get(id=problem_id)
+                context["case"] = case
+                if default_language:
+                    ws_url = "ws://" + request.get_host() + "/chat/room/" + str(case.room.id)
+                else:
+                    ws_url = "ws://" + request.get_host() + "/en/chat/room/" + str(case.room.id)
+
+                context["ws_url"] = ws_url
+                room = account.expert_rooms.get(problem_id=problem_id)
+
+                room_messages = room.room_messages.all()
+                context["room"] = room
+                context["room_messages"] = room_messages
+                context["room_messages_count"] = room_messages.count()
+
+            expert_rooms = account.expert_rooms.all()
+            context["expert_rooms"] = expert_rooms
+            context["expert_rooms_count"] = expert_rooms.count()
+            context["DATA_UPLOAD_MAX_MEMORY_SIZE"] = settings.DATA_UPLOAD_MAX_MEMORY_SIZE
+            return render(request, 'chat/chat-user.html', context)
+
+    messages.error(request, "You are not allow to visit the page")
+    return redirect(reverse('index'))
+
+
+def request_expert_page(request, context=None):
+    if context is None:
+        context = {}
+    default_language = 'bn' in translation.get_language()
+    context["default_language"] = default_language
+
+    user = request.user
+    if user.is_authenticated:
+        if request.POST and len(context) == 1:
+            form = ProblemForm(request.POST)
+            if form.is_valid():
+                instance = form.save(commit=False)
+                instance.account = user
+                tags = form.cleaned_data.get("tags")
+                if tags:
+                    split_list = tags.split(',')
+                    cleaned_list = [' '.join(item.strip().split()) for item in split_list if item != '']
+                    tags_list = ['#' + item for item in cleaned_list]
+                    tags = ", ".join(tags_list)
+                    instance.tags = tags
+
+                instance.save()
+                messages.success(request, "The expert request has been send successfully")
+                return redirect(reverse('chat-expert'))
+            else:
+                context['form'] = form
+
+            messages.error(request, "Invalid expert request, failed to send the request")
+            return request_expert_page(request, context)
+        else:
+            return render(request, 'chat/request-expert.html', context)
+
+    messages.error(request, "You are not allow to visit the page")
+    return redirect(reverse('index'))
+
+
+
+

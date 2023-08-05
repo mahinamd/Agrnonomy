@@ -1,0 +1,55 @@
+{% extends "dashboard.html" %}
+{% load static i18n %}
+
+{% block dashboard %}
+    {% include 'managements/info-navbar.html' %}
+    {% include 'message.html' %}
+    <div class="container pt-1">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row pb-5">
+                            <div class="col prof-col pt-3">
+                                {% if categories_count > 1  %}
+                                    <h6 class="dash-data-col dash-data-cat-col">Categories</h6>
+                                {% else %}
+                                    <h6 class="dash-data-col dash-data-cat-col">Category</h6>
+                                {% endif %}
+                            </div>
+                            {% if categories_count > 0  %}
+                                {% for category in categories %}
+                                    <div class="col prof-col pt-3">
+                                        <h6 class="dash-data-col fw-bold">Category&nbsp;{{ forloop.counter }}:</h6>
+                                        <h6 class="dash-data-col">Category&nbsp;Image:</h6>
+                                        <div class="img-container-style">
+                                            <img class="img-field-style" src="{{ category.image.url }}" alt="Category Image">
+                                        </div>
+                                    </div>
+                                    <div class="col prof-col pt-3">
+                                        <h6 class="dash-data-col">Category name (Bangla):</h6>
+                                        <span class="form-control text-center data-input">{{ category.name_bn }}</span>
+                                    </div>
+                                    <div class="col prof-col pt-3">
+                                        <h6 class="dash-data-col">Category name (English):</h6>
+                                        <span class="form-control text-center data-input">{{ category.name_en }}</span>
+                                    </div>
+                                    <div class="col prof-col py-3 text-center">
+                                        <a class="btn btn-primary" href="{% url "update-category-form" category.id %}">Edit</a>
+                                    </div>
+                                    {% if forloop.counter < categories_count  %}
+                                        <hr class="pb-3">
+                                    {% endif %}
+                                {% endfor %}
+                            {% else %}
+                                <div class="col prof-col pt-3">
+                                    <h6 class="dash-data-col">No category found!</h6>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

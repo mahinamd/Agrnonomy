@@ -11,21 +11,14 @@
                 </button>
                 <div class="collapse navbar-collapse" id="toggler-2">
                     <ul class="navbar-nav mx-auto text-center">
-                        <li class="nav-item dropdown"><a class="dropdown-toggle nav-link dash-link navLink"
-                                                         aria-expanded="false" data-bs-toggle="dropdown"
-                                                         href="#">Management</a>
-                            <div class="dropdown-menu navMenu"><a class="dropdown-item navMenuItem"
-                                                                  href="#"><span>User</span></a><a
-                                    class="dropdown-item navMenuItem" href="{% url "data-management" %}"><span>Data</span></a><a
-                                    class="dropdown-item navMenuItem" href="#"><span>Requests</span></a></div>
-                        </li>
-                        <li class="nav-item dropdown"><a class="dropdown-toggle nav-link dash-link navLink"
-                                                         aria-expanded="false" data-bs-toggle="dropdown"
-                                                         href="#">View</a>
-                            <div class="dropdown-menu navMenu"><a class="dropdown-item navMenuItem"
-                                                                  href="#"><span>User</span></a><a
-                                    class="dropdown-item navMenuItem" href="#"><span>Data</span></a><a
-                                    class="dropdown-item navMenuItem" href="#"><span>Requests</span></a></div>
+                        <li class="nav-item dropdown">
+                            <a class="dropdown-toggle nav-link dash-link navLink" aria-expanded="false" data-bs-toggle="dropdown" href="#">Management</a>
+                            <div class="dropdown-menu navMenu">
+                                {% if request.user.is_admin %}
+                                    <a class="dropdown-item navMenuItem" href="{% url "accounts" %}"><span>User</span></a>
+                                {% endif %}
+                                <a class="dropdown-item navMenuItem" href="{% url "view-category" %}"><span>Data</span></a>
+                                <a class="dropdown-item navMenuItem" href="{% url "expert-requests" %}"><span>Expert requests</span></a></div>
                         </li>
                     </ul>
                 </div>

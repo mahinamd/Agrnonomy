@@ -73,7 +73,7 @@ class AccountUpdateForm(forms.ModelForm):
 
     class Meta:
         model = Account
-        fields = ('pimg', 'fname', 'lname', 'gender', 'dob', 'house_no', 'address_line', 'city', 'zip_code', 'country', 'social_li', 'social_fb', 'social_tw')
+        fields = ('pimg', 'fname', 'lname')
 
     def set_initial(self, initial):
         self.initial = initial
@@ -83,17 +83,6 @@ class AccountUpdateForm(forms.ModelForm):
 
         fname = self.cleaned_data['fname']
         lname = self.cleaned_data['lname']
-        gender = self.cleaned_data['gender']
-        dob = self.cleaned_data['dob']
-        mobile = self.cleaned_data['mobile']
-        house_no = self.cleaned_data['house_no']
-        address_line = self.cleaned_data['address_line']
-        city = self.cleaned_data['city']
-        zip_code = self.cleaned_data['zip_code']
-        country = self.cleaned_data['country']
-        social_li = self.cleaned_data['social_li']
-        social_fb = self.cleaned_data['social_fb']
-        social_tw = self.cleaned_data['social_tw']
 
         if fname and fname != '':
             account.fname = fname
@@ -105,56 +94,6 @@ class AccountUpdateForm(forms.ModelForm):
         else:
             account.lname = self.initial['lname']
 
-        if gender and gender != '':
-            account.gender = gender
-        else:
-            account.gender = self.initial['gender']
-
-        if dob and dob != '':
-            account.dob = dob
-        else:
-            account.dob = self.initial['dob']
-
-        if house_no and house_no != '':
-            account.house_no = house_no
-        else:
-            account.house_no = self.initial['house_no']
-
-        if address_line and address_line != '':
-            account.address_line = address_line
-        else:
-            account.address_line = self.initial['address_line']
-
-        if city and city != '':
-            account.city = city
-        else:
-            account.city = self.initial['city']
-
-        if zip_code and zip_code != '':
-            account.zip_code = zip_code
-        else:
-            account.zip_code = self.initial['zip_code']
-
-        if country and country != '':
-            account.country = country
-        else:
-            account.country = self.initial['country']
-
-        if social_li and social_li != '':
-            account.social_li = social_li
-        else:
-            account.social_li = self.initial['social_li']
-
-        if social_fb and social_fb != '':
-            account.social_fb = social_fb
-        else:
-            account.social_fb = self.initial['social_fb']
-
-        if social_tw and social_tw != '':
-            account.social_tw = social_tw
-        else:
-            account.social_tw = self.initial['social_tw']
-
         if commit:
             account.save()
         return account
@@ -165,7 +104,7 @@ class AccountAuthenticationForm(forms.ModelForm):
 
     class Meta:
         model = Account
-        fields = ('email', 'password', 'rme')
+        fields = ('email', 'password')
 
     def clean(self):
         if self.is_valid():

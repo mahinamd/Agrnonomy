@@ -1,0 +1,111 @@
+{% extends "dashboard.html" %}
+{% load static i18n %}
+
+{% block dashboard %}
+
+    {% include 'managements/info-navbar.html' %}
+    {% include 'message.html' %}
+    <div class="container pt-1">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row pb-5">
+                            <div class="col prof-col pt-3">
+                                <h6 class="dash-data-col dash-data-cat-col">{% if is_selected and diseases_problems_count > 1 %}Diseases/Problems{% else %}Disease/Problem{% endif %}</h6>
+                            </div>
+                            {% if subcategories_count > 0 %}
+                                <div class="col prof-col py-3">
+                                    <h6 class="dash-data-col">Subcategory:</h6>
+                                    <label for="select-subcategory" class="d-none dash-data-col">Subcategory:</label>
+                                    <select id="select-subcategory" class="form-select text-center data-input" name="subcategory" required="">
+                                        <option value='' disabled selected>Select Subcategory</option>
+                                        {% for category in categories_subcategories %}
+                                            <optgroup label='Category: {% if default_language %}{{ category.name_bn }}{% else %}{{ category.name_en }}{% endif %}'>
+                                                {% for subcategory in category.subcategories.all %}
+                                                    <option value="{{ subcategory.id }}" data-href="{% url "view-disease-problem" subcategory.id %}" {% if is_selected and selected_subcategory.id == subcategory.id %}selected{% endif %}>
+                                                        {% if default_language %}{{ subcategory.name_bn }}{% else %}{{ subcategory.name_en }}{% endif %}
+                                                    </option>
+                                                {% endfor %}
+                                            </optgroup>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                {% if is_selected %}
+                                    {% if diseases_problems_count > 0 %}
+                                        {% for disease_problem in diseases_problems %}
+                                            <div class="col prof-col pt-3">
+                                                <h6 class="dash-data-col fw-bold">Disease/Problem&nbsp;{{ forloop.counter }}:</h6>
+                                                <h6 class="dash-data-col">Disease/Problem&nbsp;Image:</h6>
+                                                <div class="img-container-style">
+                                                    <img class="img-field-style" src="{{ disease_problem.image.url }}" alt="Subcategory Image">
+                                                </div>
+                                            </div>
+                                            <div class="col prof-col pt-3">
+                                                <h6 class="dash-data-col">Disease/Problem name (Bangla):</h6>
+                                                <span class="form-control text-center data-input">{{ disease_problem.name_bn }}</span>
+                                            </div>
+                                            <div class="col prof-col pt-3">
+                                                <h6 class="dash-data-col">Insects/Causes (Bangla):</h6>
+                                                <span class="form-control text-center data-input">{{ disease_problem.insects_causes_bn }}</span>
+                                            </div>
+                                            <div class="col prof-col pt-3">
+                                                <h6 class="dash-data-col">Solution (Bangla):</h6>
+                                                <span class="form-control text-center data-input">{{ disease_problem.solution_bn }}</span>
+                                            </div>
+                                            <div class="col prof-col pt-3">
+                                                <h6 class="dash-data-col">Warning (Bangla):</h6>
+                                                <span class="form-control text-center data-input">{{ disease_problem.warning_bn }}</span>
+                                            </div>
+                                            <div class="col prof-col pt-3">
+                                                <h6 class="dash-data-col">Disease/Problem name (English):</h6>
+                                                <span class="form-control text-center data-input">{{ disease_problem.name_en }}</span>
+                                            </div>
+                                            <div class="col prof-col pt-3">
+                                                <h6 class="dash-data-col">Insects/Causes (English):</h6>
+                                                <span class="form-control text-center data-input">{{ disease_problem.insects_causes_en }}</span>
+                                            </div>
+                                            <div class="col prof-col pt-3">
+                                                <h6 class="dash-data-col">Solution (English):</h6>
+                                                <span class="form-control text-center data-input">{{ disease_problem.solution_en }}</span>
+                                            </div>
+                                            <div class="col prof-col pt-3">
+                                                <h6 class="dash-data-col">Warning (English):</h6>
+                                                <span class="form-control text-center data-input">{{ disease_problem.warning_en }}</span>
+                                            </div>
+                                            <div class="col prof-col py-3 text-center">
+                                                <a class="btn btn-primary" href="{% url "update-disease-problem-form" disease_problem.id %}">Edit</a>
+                                            </div>
+                                            {% if forloop.counter < diseases_problems_count  %}
+                                                <hr class="pb-3">
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% else %}
+                                        {{ html_content|safe }}
+                                    {% endif %}
+                                {% endif %}
+                            {% else %}
+                                {{ html_content|safe }}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block script %}
+
+    <script type="text/javascript">
+
+        const form = null;
+        const informationCount = null;
+        const DATA_UPLOAD_MAX_MEMORY_SIZE = null;
+
+    </script>
+
+    <script src="{% static "assets/js/form.handler.js" %}"></script>
+
+{% endblock %}

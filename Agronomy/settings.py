@@ -47,8 +47,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'channels',
     'pages',
     'accounts',
+    'managements',
 ]
 
 MIDDLEWARE = [
@@ -81,6 +83,13 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'Agronomy.wsgi.application'
+ASGI_APPLICATION = 'Agronomy.asgi.application'
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels.layers.InMemoryChannelLayer'
+    }
+}
 
 MESSAGE_TAGS = {
     messages.DEBUG: 'alert-secondary',
@@ -118,6 +127,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
+# For Bengali words support
+DEFAULT_CHARSET = 'utf-8'
+
 LANGUAGE_CODE = 'bn'
 
 TIME_ZONE = 'Asia/Dacca'
@@ -153,3 +165,6 @@ MEDIA_URL = 'media/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# 10mb = 10 * 1024 * 1024
+DATA_UPLOAD_MAX_MEMORY_SIZE = 10485760
