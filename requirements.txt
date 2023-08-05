@@ -8,7 +8,7 @@ python-gettext
 python-dotenv
 Pillow
 whitenoise
-opencv-python==4.7.0.72
+opencv-python-headless==4.7.0.72
 channels==3.0.5
 openai
 asgiref
