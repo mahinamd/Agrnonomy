@@ -34,6 +34,13 @@
                     {% if case %}
                         <div class="text-center">
                             <a href="{% url 'chat-expert' case.id %}"><span class="h4 fw-bold">{{ case.title }}</span></a>
+                            {% if case.tags %}
+                                <div class="pt-3">
+                                    {% for tag in case.get_tags_list %}
+                                        <span class="question-tag">{{ tag }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
                         </div>
                         <hr>
                         {% if case.room %}
