@@ -193,66 +193,68 @@
         const messagesContainer = document.getElementById("messages-container");
 
         const wsURL = "{{ ws_url }}";
-        const ws = new WebSocket(wsURL);
+        if (wsURL !== '') {
+            const ws = new WebSocket(wsURL);
 
-        if(ws) {
-            ws.onclose = function (event) {
-                console.log('onclose')
+            if (ws) {
+                ws.onclose = function (event) {
+                    console.log('onclose')
+                }
+
+                ws.onmessage = function (event) {
+                    console.log("onmessage")
+                    const data = JSON.parse(event.data);
+                    console.log("data: ", data)
+
+                    if (data) {
+                        if (messagesContainer) {
+                            messagesContainer.innerHTML += data["html_format"];
+                        } else {
+                            alert('Invalid response!');
+                        }
+                    } else {
+                        alert('The response was empty!');
+                    }
+                };
             }
 
-            ws.onmessage = function (event) {
-                console.log("onmessage")
-                const data = JSON.parse(event.data);
-                console.log("data: ", data)
+            if (form) {
+                form.addEventListener('submit', function (event) {
+                    event.preventDefault();
+                    const formData = new FormData(form);
+                    const dic = {};
 
-                if (data) {
-                    if (messagesContainer) {
-                        messagesContainer.innerHTML += data["html_format"];
-                    } else {
-                        alert('Invalid response!');
+                    for (let [key, value] of formData.entries()) {
+                        dic[key] = value;
                     }
-                } else {
-                    alert('The response was empty!');
-                }
-            };
-        }
+                    dic["user_id"] = "{{ request.user.id }}";
+                    dic["imgBase64Str"] = '';
+                    dic["imgFormat"] = '';
 
-        if(form) {
-            form.addEventListener('submit', function (event) {
-                event.preventDefault();
-                const formData = new FormData(form);
-                const dic = {};
-
-                for(let [key, value] of formData.entries()) {
-                    dic[key] = value;
-                }
-                dic["user_id"] = "{{ request.user.id }}";
-                dic["imgBase64Str"] = '';
-                dic["imgFormat"] = '';
-
-                if (imgField.src !== defaultImgUrl && imgBase64Str !== '') {
-                    dic["imgBase64Str"] = imgBase64Str;
-                    dic["imgFormat"] = imgFormat;
-                }
-
-                const replyField = document.getElementById("reply-field");
-                if(replyField) {
-                    if (imgField.src !== defaultImgUrl || replyField.value.trim() !== '') {
-                        ws.send(JSON.stringify(dic));
-                    } else {
-                        alert('The message was empty!');
+                    if (imgField.src !== defaultImgUrl && imgBase64Str !== '') {
+                        dic["imgBase64Str"] = imgBase64Str;
+                        dic["imgFormat"] = imgFormat;
                     }
-                } else {
-                    alert('Invalid message!');
-                }
 
-                imgInput.value = '';
-                imgField.src = defaultImgUrl;
-                form.reset();
-                if(loadingSpinner) {
-                    loadingSpinner.classList.add("d-none");
-                }
-            });
+                    const replyField = document.getElementById("reply-field");
+                    if (replyField) {
+                        if (imgField.src !== defaultImgUrl || replyField.value.trim() !== '') {
+                            ws.send(JSON.stringify(dic));
+                        } else {
+                            alert('The message was empty!');
+                        }
+                    } else {
+                        alert('Invalid message!');
+                    }
+
+                    imgInput.value = '';
+                    imgField.src = defaultImgUrl;
+                    form.reset();
+                    if (loadingSpinner) {
+                        loadingSpinner.classList.add("d-none");
+                    }
+                });
+            }
         }
     </script>
 

@@ -145,57 +145,59 @@
         const messagesContainer = document.getElementById("messages-container");
 
         const wsURL = "{{ ws_url }}";
-        const ws = new WebSocket(wsURL);
+        if (wsURL !== '') {
+            const ws = new WebSocket(wsURL);
 
-        if(ws) {
-            ws.onclose = function (event) {
-                console.log('onclose')
+            if (ws) {
+                ws.onclose = function (event) {
+                    console.log('onclose')
+                }
+
+                ws.onmessage = function (event) {
+                    console.log("onmessage")
+                    const data = JSON.parse(event.data);
+                    console.log("data: ", data)
+
+                    if (data) {
+                        if (messagesContainer) {
+                            messagesContainer.innerHTML += data["html_format"];
+                        } else {
+                            alert('Invalid response!');
+                        }
+                    } else {
+                        alert('The response was empty!');
+                    }
+                    if (loadingSpinner) {
+                        loadingSpinner.classList.add("d-none");
+                    }
+                };
             }
 
-            ws.onmessage = function (event) {
-                console.log("onmessage")
-                const data = JSON.parse(event.data);
-                console.log("data: ", data)
+            if (form) {
+                form.addEventListener('submit', function (event) {
+                    event.preventDefault();
+                    const formData = new FormData(form);
+                    const dic = {};
 
-                if (data) {
-                    if (messagesContainer) {
-                        messagesContainer.innerHTML += data["html_format"];
-                    } else {
-                        alert('Invalid response!');
+                    for (let [key, value] of formData.entries()) {
+                        dic[key] = value;
                     }
-                } else {
-                    alert('The response was empty!');
-                }
-                if(loadingSpinner) {
-                    loadingSpinner.classList.add("d-none");
-                }
-            };
-        }
+                    dic["user_id"] = "{{ request.user.id }}";
 
-        if(form) {
-            form.addEventListener('submit', function (event) {
-                event.preventDefault();
-                const formData = new FormData(form);
-                const dic = {};
-
-                for(let [key, value] of formData.entries()) {
-                    dic[key] = value;
-                }
-                dic["user_id"] = "{{ request.user.id }}";
-
-                const replyField = document.getElementById("reply-field");
-                if(replyField) {
-                    if (replyField.value.trim() !== '') {
-                        ws.send(JSON.stringify(dic));
+                    const replyField = document.getElementById("reply-field");
+                    if (replyField) {
+                        if (replyField.value.trim() !== '') {
+                            ws.send(JSON.stringify(dic));
+                        } else {
+                            alert('The message was empty!');
+                        }
                     } else {
-                        alert('The message was empty!');
+                        alert('Invalid message!');
                     }
-                } else {
-                    alert('Invalid message!');
-                }
 
-                form.reset();
-            });
+                    form.reset();
+                });
+            }
         }
     </script>
 
