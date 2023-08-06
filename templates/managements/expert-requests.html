@@ -106,7 +106,7 @@
                                                             </select>
                                                         </div>
                                                         <div class="col-md-5 text-center py-1">
-                                                            {% if not problem.room.expert.id %}
+                                                            {% if not problem.room.expert.id or not problem.room.ai %}
                                                                 <button class="btn btn-primary me-2" type="submit">Assign</button>
                                                             {% endif %}
                                                             <a id="delete-object" class="btn btn-danger" href="#" data-href="{% url "delete-problem" problem.id %}">Delete</a>

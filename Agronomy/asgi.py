@@ -23,9 +23,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Agronomy.production' if os.envi
 
 application = ProtocolTypeRouter({
     "http": get_asgi_application(),
-    "websocket": AuthMiddlewareStack(
-        URLRouter(
-            websocket_urlpatterns
-        )
+    "websocket": URLRouter(
+        websocket_urlpatterns
     )
 })

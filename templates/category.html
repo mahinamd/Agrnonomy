@@ -8,7 +8,7 @@
             {% include 'message.html' %}
             <div class="row mb-5">
                 <div class="col text-center">
-                    <h3 class="display-6 fw-bold pb-2 mb-2">Agriculture&nbsp;<span class="underline"><strong>Information</strong></span>&nbsp;</h3>
+                    <h3 class="display-6 fw-bold pb-2 mb-2">{% trans 'Agriculture' %}&nbsp;<span class="underline"><strong>{% trans 'Information' %}</strong></span>&nbsp;</h3>
                 </div>
             </div>
             <div class="row mb-1">
@@ -16,6 +16,7 @@
                     <span class="underline">{% trans 'Category' %}</span>&nbsp;</h3>
                 </div>
             </div>
+            <!--
             <div class="row mb-5">
                 <div class="col text-center">
                     <form class="d-flex justify-content-center flex-wrap flex-lg-nowrap" method="post">
@@ -28,6 +29,7 @@
                     </form>
                 </div>
             </div>
+            -->
             <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3">
                 {% if categories_count > 0  %}
                     {% for category in categories %}

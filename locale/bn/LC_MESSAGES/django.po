@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-06 11:42+0600\n"
+"POT-Creation-Date: 2023-08-06 12:31+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -42,11 +42,21 @@ msgstr "পাসওয়ার্ড নিশ্চিতকরণ"
 msgid "Enter the same password as before, for verification."
 msgstr "যাচাইয়ের জন্য আগের মতোই পাসওয়ার্ড দিন।"
 
+#: .\templates\category.html:11 .\templates\information.html:11
+#: .\templates\subcategory.html:11
+msgid "Agriculture"
+msgstr "কৃষি"
+
+#: .\templates\category.html:11 .\templates\information.html:11
+#: .\templates\information.html:17 .\templates\subcategory.html:11
+msgid "Information"
+msgstr "তথ্য"
+
 #: .\templates\category.html:16
 msgid "Category"
 msgstr "শ্রেণীবিভাগ"
 
-#: .\templates\category.html:48
+#: .\templates\category.html:50
 msgid "No category found!"
 msgstr "কোন শ্রেণীবিভাগ পাওয়া যায়নি!"
 
@@ -276,31 +286,27 @@ msgstr "নিশ্চিত নন কোন পরিকল্পনা আ�
 msgid "Contact us"
 msgstr "যোগাযোগ করুন"
 
-#: .\templates\information.html:17
-msgid "Information"
-msgstr "তথ্য"
-
-#: .\templates\information.html:72
+#: .\templates\information.html:64
 msgid "No information was found!"
 msgstr "কোন তথ্য পাওয়া যায়নি!"
 
-#: .\templates\information.html:78
+#: .\templates\information.html:70
 msgid "Diseases/Problems"
 msgstr "রোগ/সমস্যা"
 
-#: .\templates\information.html:78 .\templates\information.html:98
+#: .\templates\information.html:70 .\templates\information.html:90
 msgid "Disease/Problem"
 msgstr "রোগ/সমস্যা"
 
-#: .\templates\information.html:85 .\templates\information.html:90
+#: .\templates\information.html:77 .\templates\information.html:82
 msgid "Insects/Causes"
 msgstr "পোকামাকড়/কারণ"
 
-#: .\templates\information.html:112
+#: .\templates\information.html:104
 msgid "Solution"
 msgstr "সমাধান"
 
-#: .\templates\information.html:126
+#: .\templates\information.html:118
 msgid "Warning"
 msgstr "সতর্কতা"
 
@@ -396,7 +402,7 @@ msgstr "কোন প্রশ্ন পাওয়া যায়নি!"
 msgid "Subcategory"
 msgstr "উপশ্রেণী"
 
-#: .\templates\subcategory.html:52
+#: .\templates\subcategory.html:54
 msgid "No subcategory was found!"
 msgstr "কোন উপশ্রেণী পাওয়া যায়নি!"
 

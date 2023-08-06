@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-06 11:42+0600\n"
+"POT-Creation-Date: 2023-08-06 12:31+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -42,11 +42,21 @@ msgstr ""
 msgid "Enter the same password as before, for verification."
 msgstr ""
 
+#: .\templates\category.html:11 .\templates\information.html:11
+#: .\templates\subcategory.html:11
+msgid "Agriculture"
+msgstr ""
+
+#: .\templates\category.html:11 .\templates\information.html:11
+#: .\templates\information.html:17 .\templates\subcategory.html:11
+msgid "Information"
+msgstr ""
+
 #: .\templates\category.html:16
 msgid "Category"
 msgstr ""
 
-#: .\templates\category.html:48
+#: .\templates\category.html:50
 msgid "No category found!"
 msgstr ""
 
@@ -263,31 +273,27 @@ msgstr ""
 msgid "Contact us"
 msgstr ""
 
-#: .\templates\information.html:17
-msgid "Information"
-msgstr ""
-
-#: .\templates\information.html:72
+#: .\templates\information.html:64
 msgid "No information was found!"
 msgstr ""
 
-#: .\templates\information.html:78
+#: .\templates\information.html:70
 msgid "Diseases/Problems"
 msgstr ""
 
-#: .\templates\information.html:78 .\templates\information.html:98
+#: .\templates\information.html:70 .\templates\information.html:90
 msgid "Disease/Problem"
 msgstr ""
 
-#: .\templates\information.html:85 .\templates\information.html:90
+#: .\templates\information.html:77 .\templates\information.html:82
 msgid "Insects/Causes"
 msgstr ""
 
-#: .\templates\information.html:112
+#: .\templates\information.html:104
 msgid "Solution"
 msgstr ""
 
-#: .\templates\information.html:126
+#: .\templates\information.html:118
 msgid "Warning"
 msgstr ""
 
@@ -383,7 +389,7 @@ msgstr ""
 msgid "Subcategory"
 msgstr ""
 
-#: .\templates\subcategory.html:52
+#: .\templates\subcategory.html:54
 msgid "No subcategory was found!"
 msgstr ""
 

@@ -8,7 +8,7 @@
             {% include 'message.html' %}
             <div class="row mb-5">
                 <div class="col text-center">
-                    <h3 class="display-6 fw-bold pb-2 mb-2">Agriculture&nbsp;<span class="underline"><strong>Information</strong></span></h3>
+                    <h3 class="display-6 fw-bold pb-2 mb-2">{% trans 'Agriculture' %}&nbsp;<span class="underline"><strong>{% trans 'Information' %}</strong></span></h3>
                 </div>
             </div>
             <div class="row mb-1">
@@ -20,14 +20,6 @@
             </div>
             <div class="row mb-5">
                 <div class="col text-center">
-                    <form class="d-flex justify-content-center flex-wrap flex-lg-nowrap" method="post">
-                        <div class="my-2 me-1">
-                            <input class="form-control" type="search" placeholder="Search" name="search">
-                        </div>
-                        <div class="my-2">
-                            <button class="btn btn-primary shadow" type="submit">Search</button>
-                        </div>
-                    </form>
                     <div class="my-2">
                         <a class="btn btn-primary shadow" role="button" href={% url "subcategory" category.id %}>Back</a>
                     </div>
