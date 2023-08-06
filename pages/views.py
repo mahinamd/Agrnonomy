@@ -991,16 +991,16 @@ def get_websocket_url(request, case, default_language, path=None):
         path = ''
 
     ws_url = ''
-    if request.scheme == "http":
-        if default_language:
-            ws_url = "ws://" + request.get_host() + "/chat/" + path + "room/" + str(case.room.id)
-        else:
-            ws_url = "ws://" + request.get_host() + "/en/chat/" + path + "room/" + str(case.room.id)
-    elif request.scheme == "https":
+    if request.scheme == "https" or os.environ['PRODUCTION'] == 'Yes':
         if default_language:
             ws_url = "wss://" + request.get_host() + "/chat/" + path + "room/" + str(case.room.id)
         else:
             ws_url = "wss://" + request.get_host() + "/en/chat/" + path + "room/" + str(case.room.id)
+    elif request.scheme == "http":
+        if default_language:
+            ws_url = "ws://" + request.get_host() + "/chat/" + path + "room/" + str(case.room.id)
+        else:
+            ws_url = "ws://" + request.get_host() + "/en/chat/" + path + "room/" + str(case.room.id)
 
     return ws_url
 
