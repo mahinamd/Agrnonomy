@@ -861,14 +861,14 @@ def update_form(request, context, form_name, object_id, parent_id=None):
                     instance.save()
                     messages.success(request, "The " + form_name.replace('_', '/') + " has been updated successfully")
                 else:
-                    #rollback_update(instance, old_object, form_name, img_dir_filepath, img_filename, temp_img_filename, old_img_filename)
+                    # rollback_update(instance, old_object, form_name, img_dir_filepath, img_filename, temp_img_filename, old_img_filename)
                     messages.error(request, "Invalid image, failed to update the " + form_name.replace('_', '/'))
             elif (form_name == 'question' and old_object.description == description and old_object.title == title and old_object.tags == tags) or (form_name == 'answer' and old_object.description == description):
                 messages.error(request, "Invalid input, failed to update the " + form_name.replace('_', '/'))
             elif not original_img_file or not cropping_details or old_object.description != description:
                 messages.success(request, "The " + form_name.replace('_', '/') + " has been updated successfully")
             else:
-                #rollback_update(instance, old_object, form_name, img_dir_filepath, img_filename, temp_img_filename, old_img_filename)
+                # rollback_update(instance, old_object, form_name, img_dir_filepath, img_filename, temp_img_filename, old_img_filename)
                 messages.error(request, "Invalid request, failed to update the " + form_name.replace('_', '/'))
 
             if form_name == 'question':
@@ -878,7 +878,7 @@ def update_form(request, context, form_name, object_id, parent_id=None):
 
 
         except Exception as e:
-            #rollback_update(instance, old_object, form_name, img_dir_filepath, img_filename, temp_img_filename, old_img_filename)
+            # rollback_update(instance, old_object, form_name, img_dir_filepath, img_filename, temp_img_filename, old_img_filename)
             print("Exception: " + str(e))
             print("Traceback: ")
             traceback.print_exc()
@@ -986,6 +986,25 @@ def delete_answer_page(request, question_id, answer_id, context=None):
     return redirect(reverse('index'))
 
 
+def get_websocket_url(request, case, default_language, path=None):
+    if path is None:
+        path = ''
+
+    ws_url = ''
+    if request.scheme == "http":
+        if default_language:
+            ws_url = "ws://" + request.get_host() + "/chat/" + path + "room/" + str(case.room.id)
+        else:
+            ws_url = "ws://" + request.get_host() + "/en/chat/" + path + "room/" + str(case.room.id)
+    elif request.scheme == "https":
+        if default_language:
+            ws_url = "wss://" + request.get_host() + "/chat/" + path + "room/" + str(case.room.id)
+        else:
+            ws_url = "wss://" + request.get_host() + "/en/chat/" + path + "room/" + str(case.room.id)
+
+    return ws_url
+
+
 def chat_expert_page(request, problem_id=None, context=None):
     if context is None:
         context = {}
@@ -1001,11 +1020,7 @@ def chat_expert_page(request, problem_id=None, context=None):
                 context["case"] = case
 
                 if case.has_room:
-                    if default_language:
-                        ws_url = "wss://" + request.get_host() + "/chat/room/" + str(case.room.id)
-                    else:
-                        ws_url = "wss://" + request.get_host() + "/en/chat/room/" + str(case.room.id)
-
+                    ws_url = get_websocket_url(request, case, default_language)
                     context["ws_url"] = ws_url
                     room = account.user_rooms.get(problem_id=problem_id)
                     room_messages = room.room_messages.all()
@@ -1037,11 +1052,7 @@ def chat_user_page(request, problem_id=None, context=None):
             if problem_id:
                 case = Problem.objects.get(id=problem_id)
                 context["case"] = case
-                if default_language:
-                    ws_url = "wss://" + request.get_host() + "/chat/room/" + str(case.room.id)
-                else:
-                    ws_url = "wss://" + request.get_host() + "/en/chat/room/" + str(case.room.id)
-
+                ws_url = get_websocket_url(request, case, default_language)
                 context["ws_url"] = ws_url
                 room = account.expert_rooms.get(problem_id=problem_id)
 
@@ -1148,11 +1159,7 @@ def chat_ai_page(request, problem_id=None, context=None):
             if problem_id:
                 case = Problem.objects.get(id=problem_id)
                 context["case"] = case
-                if default_language:
-                    ws_url = "wss://" + request.get_host() + "/chat/ai/room/" + str(case.room.id)
-                else:
-                    ws_url = "wss://" + request.get_host() + "/en/chat/ai/room/" + str(case.room.id)
-
+                ws_url = get_websocket_url(request, case, default_language, "ai/")
                 context["ws_url"] = ws_url
                 room = account.user_rooms.get(problem_id=problem_id)
                 room_messages = room.room_messages.all()
@@ -1169,4 +1176,3 @@ def chat_ai_page(request, problem_id=None, context=None):
 
     messages.error(request, "You are not allow to visit the page")
     return redirect(reverse('index'))
-

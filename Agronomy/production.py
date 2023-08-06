@@ -4,7 +4,7 @@ import os
 # Configure the domain name using the environment variable that Azure automatically creates for us.
 ALLOWED_HOSTS = [os.environ['WEBSITE_HOSTNAME'], 'agronomy.live', 'www.agronomy.live'] if os.environ['PRODUCTION'] == 'Yes' else []
 ALLOWED_DOMAIN = ALLOWED_HOSTS
-CSRF_TRUSTED_ORIGINS = ['https://' + os.environ['WEBSITE_HOSTNAME'], 'https://agronomy.live', 'wss://agronomy.live', 'https://www.agronomy.live', 'wss://www.agronomy.live'] if os.environ['PRODUCTION'] == 'Yes' else []
+CSRF_TRUSTED_ORIGINS = ['https://' + os.environ['WEBSITE_HOSTNAME'], 'https://agronomy.live', 'https://www.agronomy.live'] if os.environ['PRODUCTION'] == 'Yes' else []
 
 # WhiteNoise configuration
 MIDDLEWARE = [
