@@ -54,7 +54,7 @@
                                 {% if user.expert %}
                                     <a class="dropdown-item navMenuItem" href="{% url "chat-user" %}"><span>{% trans 'Contact with User' %}</span></a>
                                 {% endif %}
-
+                                <a class="dropdown-item navMenuItem" href="{% url "chat-ai" %}"><span>{% trans 'Chat with Ai' %}</span></a>
                             </div>
                         </li>
                     {% endif %}

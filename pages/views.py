@@ -16,7 +16,7 @@ from accounts.views import create_notification
 from managements.models import Category, Subcategory, Information, DiseaseProblem
 from managements.views import cropping_image, get_categories, get_categories_subcategories, get_subcategories_information, get_diseases_problems
 
-from .models import Question, QuestionCounts, Answer, AnswerCounts, Vote, Problem
+from .models import Question, QuestionCounts, Answer, AnswerCounts, Vote, Problem, Room, Message
 from .forms import QuestionForm, AnswerForm, ProblemForm
 from django.db import models
 import copy
@@ -986,41 +986,6 @@ def delete_answer_page(request, question_id, answer_id, context=None):
     return redirect(reverse('index'))
 
 
-def chat_ai_page(request, problem_id=None, context=None):
-    if context is None:
-        context = {}
-    default_language = 'bn' in translation.get_language()
-    context["default_language"] = default_language
-
-    user = request.user
-    if user.is_authenticated:
-        if request.method == "GET" and len(context) == 1:
-            account = Account.objects.get(id=user.id)
-            if problem_id:
-                case = Problem.objects.get(id=problem_id)
-                context["case"] = case
-                if default_language:
-                    ws_url = "ws://" + request.get_host() + "/chat/room/" + str(case.room.id)
-                else:
-                    ws_url = "ws://" + request.get_host() + "/en/chat/room/" + str(case.room.id)
-
-                context["ws_url"] = ws_url
-                room = account.user_rooms.get(problem_id=problem_id)
-                room_messages = room.room_messages.all()
-                context["room"] = room
-                context["room_messages"] = room_messages
-                context["room_messages_count"] = room_messages.count()
-
-            problems = account.chat_problems.all()
-            context["problems"] = problems
-            context["problems_count"] = problems.count()
-            context["DATA_UPLOAD_MAX_MEMORY_SIZE"] = settings.DATA_UPLOAD_MAX_MEMORY_SIZE
-            return render(request, 'chat/chat-ai.html', context)
-
-    messages.error(request, "You are not allow to visit the page")
-    return redirect(reverse('index'))
-
-
 def chat_expert_page(request, problem_id=None, context=None):
     if context is None:
         context = {}
@@ -1047,8 +1012,9 @@ def chat_expert_page(request, problem_id=None, context=None):
                 context["room_messages_count"] = room_messages.count()
 
             problems = account.chat_problems.all()
+            problems = [problem for problem in problems if not problem.room.ai]
             context["problems"] = problems
-            context["problems_count"] = problems.count()
+            context["problems_count"] = len(problems)
             context["DATA_UPLOAD_MAX_MEMORY_SIZE"] = settings.DATA_UPLOAD_MAX_MEMORY_SIZE
             return render(request, 'chat/chat-expert.html', context)
 
@@ -1128,5 +1094,77 @@ def request_expert_page(request, context=None):
     return redirect(reverse('index'))
 
 
+def request_ai_page(request, context=None):
+    if context is None:
+        context = {}
+    default_language = 'bn' in translation.get_language()
+    context["default_language"] = default_language
 
+    user = request.user
+    if user.is_authenticated:
+        if request.POST and len(context) == 1:
+            form = ProblemForm(request.POST)
+            if form.is_valid():
+                problem = form.save(commit=False)
+                problem.account = user
+                tags = form.cleaned_data.get("tags")
+                if tags:
+                    split_list = tags.split(',')
+                    cleaned_list = [' '.join(item.strip().split()) for item in split_list if item != '']
+                    tags_list = ['#' + item for item in cleaned_list]
+                    tags = ", ".join(tags_list)
+                    problem.tags = tags
+
+                problem.save()
+                room = Room.objects.create(problem=problem, user=user, ai=True, assigned=True)
+                Message.objects.create(room=room, content="Please describe your problem.")
+                create_notification(request, user, user.id, "The AI (ChatGPT) request has been approved successfully")
+                messages.success(request, "The AI (ChatGPT) request has been approved successfully")
+                return redirect(reverse('chat-ai'))
+            else:
+                context['form'] = form
+
+            messages.error(request, "Invalid AI request, failed to approve the request")
+            return request_expert_page(request, context)
+        else:
+            return render(request, 'chat/request-ai.html', context)
+
+    messages.error(request, "You are not allow to visit the page")
+    return redirect(reverse('index'))
+
+
+def chat_ai_page(request, problem_id=None, context=None):
+    if context is None:
+        context = {}
+    default_language = 'bn' in translation.get_language()
+    context["default_language"] = default_language
+
+    user = request.user
+    if user.is_authenticated:
+        if request.method == "GET" and len(context) == 1:
+            account = Account.objects.get(id=user.id)
+            if problem_id:
+                case = Problem.objects.get(id=problem_id)
+                context["case"] = case
+                if default_language:
+                    ws_url = "ws://" + request.get_host() + "/chat/ai/room/" + str(case.room.id)
+                else:
+                    ws_url = "ws://" + request.get_host() + "/en/chat/ai/room/" + str(case.room.id)
+
+                context["ws_url"] = ws_url
+                room = account.user_rooms.get(problem_id=problem_id)
+                room_messages = room.room_messages.all()
+                context["room"] = room
+                context["room_messages"] = room_messages
+                context["room_messages_count"] = room_messages.count()
+
+            problems = account.chat_problems.all()
+            problems = [problem for problem in problems if problem.room.ai]
+            context["problems"] = problems
+            context["problems_count"] = len(problems)
+            context["DATA_UPLOAD_MAX_MEMORY_SIZE"] = settings.DATA_UPLOAD_MAX_MEMORY_SIZE
+            return render(request, 'chat/chat-ai.html', context)
+
+    messages.error(request, "You are not allow to visit the page")
+    return redirect(reverse('index'))
 

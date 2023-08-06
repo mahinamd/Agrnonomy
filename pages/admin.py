@@ -77,7 +77,7 @@ admin.site.register(Problem, ProblemAdmin)
 
 
 class RoomAdmin(admin.ModelAdmin):
-    list_display = ('id', 'created', 'last_modified', "problem", "user", "expert", "bot", "assigned")
+    list_display = ('id', 'created', 'last_modified', "problem", "user", "expert", "ai", "assigned")
     search_fields = ('id', 'created', 'last_modified')
     readonly_fields = ('id', 'created', 'last_modified')
     ordering = ('id', 'created', 'last_modified')

@@ -168,7 +168,7 @@ class Room(models.Model):
     problem = models.OneToOneField(Problem, null=True, blank=True, on_delete=models.SET_NULL, related_name='room')
     user = models.ForeignKey(Account, null=True, blank=True, on_delete=models.SET_NULL, related_name='user_rooms')
     expert = models.ForeignKey(Account, null=True, blank=True, on_delete=models.SET_NULL, related_name='expert_rooms')
-    bot = models.BooleanField(verbose_name="Bot", null=False, blank=False, default=False)
+    ai = models.BooleanField(verbose_name="AI", null=False, blank=False, default=False)
     assigned = models.BooleanField(verbose_name="Assigned", null=False, blank=False, default=False)
 
     def __str__(self):

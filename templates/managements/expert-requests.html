@@ -26,7 +26,7 @@
                                     <th>Problem</th>
                                     <th>User</th>
                                     <th>Expert</th>
-                                    <th>Bot</th>
+                                    <th>AI</th>
                                     <th>Assigned</th>
                                     <th>Action</th>
                                 </tr>
@@ -39,7 +39,7 @@
                                             <td>{{ room.problem }}</td>
                                             <td>{{ room.user }}</td>
                                             <td>{{ room.expert }}</td>
-                                            <td>{{ room.bot }}</td>
+                                            <td>{{ room.ai }}</td>
                                             <td>{{ room.assigned }}</td>
                                             <td><a class="btn btn-danger btn-sm" role="button" href="{% url "delete-room" room.id %}">Delete</a></td>
                                         </tr>
