@@ -146,6 +146,10 @@ class Problem(models.Model):
         return str(self.id)
 
     @property
+    def has_room(self):
+        return self.room is not None
+
+    @property
     def get_tags(self):
         tags = self.tags
         tags = tags.replace('#', '')

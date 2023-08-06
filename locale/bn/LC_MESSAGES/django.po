@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-06 11:03+0600\n"
+"POT-Creation-Date: 2023-08-06 11:42+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -44,15 +44,57 @@ msgstr "যাচাইয়ের জন্য আগের মতোই প�
 
 #: .\templates\category.html:16
 msgid "Category"
-msgstr ""
+msgstr "শ্রেণীবিভাগ"
 
 #: .\templates\category.html:48
 msgid "No category found!"
-msgstr ""
+msgstr "কোন শ্রেণীবিভাগ পাওয়া যায়নি!"
+
+#: .\templates\chat\chat-ai.html:22
+msgid "AI case"
+msgstr "এআই কেস"
+
+#: .\templates\chat\chat-ai.html:26
+msgid "No AI case found!"
+msgstr "কোনো এআই মামলা পাওয়া যায়নি!"
+
+#: .\templates\chat\chat-ai.html:57
+msgid "send"
+msgstr "পাঠান"
+
+#: .\templates\chat\chat-ai.html:80
+msgid "received"
+msgstr "প্রাপ্ত"
+
+#: .\templates\chat\chat-ai.html:88
+#, fuzzy
+#| msgid "Information"
+msgid "No message was found!"
+msgstr "কোন বার্তা পাওয়া যায়নি!"
+
+#: .\templates\chat\chat-ai.html:96
+msgid "Your Response"
+msgstr "আপনার প্রতিক্রিয়া"
+
+#: .\templates\chat\chat-ai.html:98
+msgid "Reply"
+msgstr "উত্তর দিন"
+
+#: .\templates\chat\chat-ai.html:106
+msgid "Send"
+msgstr "পাঠান"
+
+#: .\templates\chat\chat-ai.html:107
+msgid "Reset"
+msgstr "রিসেট"
+
+#: .\templates\chat\chat-ai.html:114
+msgid "The AI case is not approved yet. Wait for further updates."
+msgstr "AI কেস এখনও অনুমোদিত হয়নি। পরবর্তী আপডেটের জন্য অপেক্ষা করুন।"
 
 #: .\templates\contacts.html:73
 msgid "Want to visit frequently asked questions?"
-msgstr "সচরাচর জিজ্ঞাসা করা প্রশ্নসমূহ"
+msgstr "প্রায়শই জিজ্ঞাসিত প্রশ্ন দেখতে চান?"
 
 #: .\templates\contacts.html:75 .\templates\faq.html:11
 #: .\templates\navbar.html:36
@@ -243,32 +285,28 @@ msgstr "তথ্য"
 #: .\templates\information.html:72
 #, fuzzy
 #| msgid "Information"
-msgid "No information found!"
-msgstr "তথ্য"
+msgid "No information was found!"
+msgstr "কোন তথ্য পাওয়া যায়নি!"
 
 #: .\templates\information.html:78
 msgid "Diseases/Problems"
-msgstr ""
+msgstr "রোগ/সমস্যা"
 
-#: .\templates\information.html:78
+#: .\templates\information.html:78 .\templates\information.html:98
 msgid "Disease/Problem"
-msgstr ""
+msgstr "রোগ/সমস্যা"
 
 #: .\templates\information.html:85 .\templates\information.html:90
 msgid "Insects/Causes"
-msgstr ""
-
-#: .\templates\information.html:98
-msgid "DiseaseProblem"
-msgstr ""
+msgstr "পোকামাকড়/কারণ"
 
 #: .\templates\information.html:112
 msgid "Solution"
-msgstr ""
+msgstr "সমাধান"
 
 #: .\templates\information.html:126
 msgid "Warning"
-msgstr ""
+msgstr "সতর্কতা"
 
 #: .\templates\navbar.html:14
 msgid "Home"
@@ -308,54 +346,92 @@ msgstr "বিশেষজ্ঞের সাথে যোগাযোগ কর
 #, fuzzy
 #| msgid "Contact with Expert"
 msgid "Contact with User"
-msgstr "বিশেষজ্ঞের সাথে যোগাযোগ করুন"
+msgstr "ব্যবহারকারীর সাথে যোগাযোগ করুন"
 
 #: .\templates\navbar.html:57
+#, fuzzy
+#| msgid "Chat with AI"
 msgid "Chat with Ai"
-msgstr ""
+msgstr "এআই-এর সাথে চ্যাট করুন"
+
+#: .\templates\navbar.html:112
+msgid "Show All Notifications"
+msgstr "সমস্ত বিজ্ঞপ্তি দেখান"
+
+#: .\templates\navbar.html:125
+msgid "Profile"
+msgstr "প্রোফাইল"
+
+#: .\templates\navbar.html:128
+msgid "Dashboard"
+msgstr "ড্যাশবোর্ড"
+
+#: .\templates\navbar.html:130
+msgid "Settings"
+msgstr "সেটিংস"
+
+#: .\templates\navbar.html:131
+msgid "Activity"
+msgstr "কার্যকলাপ"
+
+#: .\templates\navbar.html:135
+msgid "Logout"
+msgstr "প্রস্থান"
+
+#: .\templates\navbar.html:142
+msgid "Login"
+msgstr "প্রবেশ করুন"
+
+#: .\templates\navbar.html:143
+msgid "Sign up"
+msgstr "নিবন্ধন করুন"
 
 #: .\templates\notifications.html:30
 msgid "Notification no"
-msgstr ""
+msgstr "বিজ্ঞপ্তি নং"
 
 #: .\templates\notifications.html:55
-msgid "No notification found!"
-msgstr ""
+#, fuzzy
+#| msgid "No notification found!"
+msgid "No notification was found!"
+msgstr "কোন বিজ্ঞপ্তি পাওয়া যায়নি!"
 
 #: .\templates\questions.html:31
 #, fuzzy
 #| msgid "Post Questions"
 msgid "Question no"
-msgstr "প্রশ্ন পোস্ট করুন"
+msgstr "প্রশ্ন নং"
 
 #: .\templates\questions.html:65
 msgid "No question found!"
-msgstr ""
+msgstr "কোন প্রশ্ন পাওয়া যায়নি!"
 
 #: .\templates\subcategory.html:16
-msgid "Subategory"
-msgstr ""
+#, fuzzy
+#| msgid "Subategory"
+msgid "Subcategory"
+msgstr "উপশ্রেণী"
 
 #: .\templates\subcategory.html:52
-msgid "No subcategory found!"
-msgstr ""
+msgid "No subcategory was found!"
+msgstr "কোন উপশ্রেণী পাওয়া যায়নি!"
 
 #: .\templates\view-question.html:41 .\templates\view-question.html:98
 #: .\venv\Lib\site-packages\django\db\models\fields\files.py:391
 msgid "Image"
-msgstr ""
+msgstr "ছবি"
 
 #: .\templates\view-question.html:46
 msgid "Description"
-msgstr ""
+msgstr "বর্ণনা"
 
 #: .\templates\view-question.html:103
 msgid "Answer"
-msgstr ""
+msgstr "উত্তর"
 
 #: .\templates\view-question.html:151
 msgid "No answer has been posted yet."
-msgstr ""
+msgstr "কোন উত্তর এখনও পোস্ট করা হয়নি."
 
 #: .\venv\Lib\site-packages\django\contrib\messages\apps.py:15
 msgid "Messages"

@@ -1012,7 +1012,7 @@ def chat_expert_page(request, problem_id=None, context=None):
                 context["room_messages_count"] = room_messages.count()
 
             problems = account.chat_problems.all()
-            problems = [problem for problem in problems if not problem.room.exists() or (problem.room.exists() and not problem.room.ai)]
+            problems = [problem for problem in problems if not problem.has_room or (problem.has_room and not problem.room.ai)]
             context["problems"] = problems
             context["problems_count"] = len(problems)
             context["DATA_UPLOAD_MAX_MEMORY_SIZE"] = settings.DATA_UPLOAD_MAX_MEMORY_SIZE
@@ -1159,7 +1159,7 @@ def chat_ai_page(request, problem_id=None, context=None):
                 context["room_messages_count"] = room_messages.count()
 
             problems = account.chat_problems.all()
-            problems = [problem for problem in problems if problem.room.exists() and problem.room.ai]
+            problems = [problem for problem in problems if problem.has_room and problem.room.ai]
             context["problems"] = problems
             context["problems_count"] = len(problems)
             context["DATA_UPLOAD_MAX_MEMORY_SIZE"] = settings.DATA_UPLOAD_MAX_MEMORY_SIZE

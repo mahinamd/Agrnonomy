@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-06 11:03+0600\n"
+"POT-Creation-Date: 2023-08-06 11:42+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -48,6 +48,46 @@ msgstr ""
 
 #: .\templates\category.html:48
 msgid "No category found!"
+msgstr ""
+
+#: .\templates\chat\chat-ai.html:22
+msgid "AI case"
+msgstr ""
+
+#: .\templates\chat\chat-ai.html:26
+msgid "No AI case found!"
+msgstr ""
+
+#: .\templates\chat\chat-ai.html:57
+msgid "send"
+msgstr ""
+
+#: .\templates\chat\chat-ai.html:80
+msgid "received"
+msgstr ""
+
+#: .\templates\chat\chat-ai.html:88
+msgid "No message was found!"
+msgstr ""
+
+#: .\templates\chat\chat-ai.html:96
+msgid "Your Response"
+msgstr ""
+
+#: .\templates\chat\chat-ai.html:98
+msgid "Reply"
+msgstr ""
+
+#: .\templates\chat\chat-ai.html:106
+msgid "Send"
+msgstr ""
+
+#: .\templates\chat\chat-ai.html:107
+msgid "Reset"
+msgstr ""
+
+#: .\templates\chat\chat-ai.html:114
+msgid "The AI case is not approved yet. Wait for further updates."
 msgstr ""
 
 #: .\templates\contacts.html:73
@@ -228,23 +268,19 @@ msgid "Information"
 msgstr ""
 
 #: .\templates\information.html:72
-msgid "No information found!"
+msgid "No information was found!"
 msgstr ""
 
 #: .\templates\information.html:78
 msgid "Diseases/Problems"
 msgstr ""
 
-#: .\templates\information.html:78
+#: .\templates\information.html:78 .\templates\information.html:98
 msgid "Disease/Problem"
 msgstr ""
 
 #: .\templates\information.html:85 .\templates\information.html:90
 msgid "Insects/Causes"
-msgstr ""
-
-#: .\templates\information.html:98
-msgid "DiseaseProblem"
 msgstr ""
 
 #: .\templates\information.html:112
@@ -295,12 +331,44 @@ msgstr ""
 msgid "Chat with Ai"
 msgstr ""
 
+#: .\templates\navbar.html:112
+msgid "Show All Notifications"
+msgstr ""
+
+#: .\templates\navbar.html:125
+msgid "Profile"
+msgstr ""
+
+#: .\templates\navbar.html:128
+msgid "Dashboard"
+msgstr ""
+
+#: .\templates\navbar.html:130
+msgid "Settings"
+msgstr ""
+
+#: .\templates\navbar.html:131
+msgid "Activity"
+msgstr ""
+
+#: .\templates\navbar.html:135
+msgid "Logout"
+msgstr ""
+
+#: .\templates\navbar.html:142
+msgid "Login"
+msgstr ""
+
+#: .\templates\navbar.html:143
+msgid "Sign up"
+msgstr ""
+
 #: .\templates\notifications.html:30
 msgid "Notification no"
 msgstr ""
 
 #: .\templates\notifications.html:55
-msgid "No notification found!"
+msgid "No notification was found!"
 msgstr ""
 
 #: .\templates\questions.html:31
@@ -312,11 +380,11 @@ msgid "No question found!"
 msgstr ""
 
 #: .\templates\subcategory.html:16
-msgid "Subategory"
+msgid "Subcategory"
 msgstr ""
 
 #: .\templates\subcategory.html:52
-msgid "No subcategory found!"
+msgid "No subcategory was found!"
 msgstr ""
 
 #: .\templates\view-question.html:41 .\templates\view-question.html:98
