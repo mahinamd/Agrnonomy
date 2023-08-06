@@ -999,17 +999,19 @@ def chat_expert_page(request, problem_id=None, context=None):
             if problem_id:
                 case = Problem.objects.get(id=problem_id)
                 context["case"] = case
-                if default_language:
-                    ws_url = "ws://" + request.get_host() + "/chat/room/" + str(case.room.id)
-                else:
-                    ws_url = "ws://" + request.get_host() + "/en/chat/room/" + str(case.room.id)
 
-                context["ws_url"] = ws_url
-                room = account.user_rooms.get(problem_id=problem_id)
-                room_messages = room.room_messages.all()
-                context["room"] = room
-                context["room_messages"] = room_messages
-                context["room_messages_count"] = room_messages.count()
+                if case.has_room:
+                    if default_language:
+                        ws_url = "ws://" + request.get_host() + "/chat/room/" + str(case.room.id)
+                    else:
+                        ws_url = "ws://" + request.get_host() + "/en/chat/room/" + str(case.room.id)
+
+                    context["ws_url"] = ws_url
+                    room = account.user_rooms.get(problem_id=problem_id)
+                    room_messages = room.room_messages.all()
+                    context["room"] = room
+                    context["room_messages"] = room_messages
+                    context["room_messages_count"] = room_messages.count()
 
             problems = account.chat_problems.all()
             problems = [problem for problem in problems if not problem.has_room or (problem.has_room and not problem.room.ai)]

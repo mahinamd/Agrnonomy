@@ -67,8 +67,6 @@ msgid "received"
 msgstr "প্রাপ্ত"
 
 #: .\templates\chat\chat-ai.html:88
-#, fuzzy
-#| msgid "Information"
 msgid "No message was found!"
 msgstr "কোন বার্তা পাওয়া যায়নি!"
 
@@ -283,8 +281,6 @@ msgid "Information"
 msgstr "তথ্য"
 
 #: .\templates\information.html:72
-#, fuzzy
-#| msgid "Information"
 msgid "No information was found!"
 msgstr "কোন তথ্য পাওয়া যায়নি!"
 
@@ -333,24 +329,18 @@ msgid "Agricultural Information"
 msgstr "কৃষি তথ্য"
 
 #: .\templates\navbar.html:52
-#, fuzzy
-#| msgid "Post Questions"
 msgid "Questions"
-msgstr "প্রশ্ন পোস্ট করুন"
+msgstr "জিজ্ঞাসা"
 
 #: .\templates\navbar.html:53
 msgid "Contact with Expert"
 msgstr "বিশেষজ্ঞের সাথে যোগাযোগ করুন"
 
 #: .\templates\navbar.html:55
-#, fuzzy
-#| msgid "Contact with Expert"
 msgid "Contact with User"
 msgstr "ব্যবহারকারীর সাথে যোগাযোগ করুন"
 
 #: .\templates\navbar.html:57
-#, fuzzy
-#| msgid "Chat with AI"
 msgid "Chat with Ai"
 msgstr "এআই-এর সাথে চ্যাট করুন"
 
@@ -391,14 +381,10 @@ msgid "Notification no"
 msgstr "বিজ্ঞপ্তি নং"
 
 #: .\templates\notifications.html:55
-#, fuzzy
-#| msgid "No notification found!"
 msgid "No notification was found!"
 msgstr "কোন বিজ্ঞপ্তি পাওয়া যায়নি!"
 
 #: .\templates\questions.html:31
-#, fuzzy
-#| msgid "Post Questions"
 msgid "Question no"
 msgstr "প্রশ্ন নং"
 
@@ -407,8 +393,6 @@ msgid "No question found!"
 msgstr "কোন প্রশ্ন পাওয়া যায়নি!"
 
 #: .\templates\subcategory.html:16
-#, fuzzy
-#| msgid "Subategory"
 msgid "Subcategory"
 msgstr "উপশ্রেণী"
 

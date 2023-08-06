@@ -147,7 +147,7 @@ class Problem(models.Model):
 
     @property
     def has_room(self):
-        return self.room is not None
+        return hasattr(self, 'room') and self.room is not None
 
     @property
     def get_tags(self):
