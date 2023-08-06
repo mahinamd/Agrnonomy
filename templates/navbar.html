@@ -109,7 +109,7 @@
                                 {% endif %}
 
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item text-center small navMenuItem" href="{% url "notifications" %}">Show All Notifications</a>
+                                <a class="dropdown-item text-center small navMenuItem" href="{% url "notifications" %}">{% trans 'Show All Notifications' %}</a>
                             </div>
                         </div>
                     </li>
@@ -122,25 +122,25 @@
                             </a>
                             <div class="dropdown-menu shadow navMenu"><a class="dropdown-item navMenuItem"
                                                                          href={% url "profile" %}><i
-                                    class="fas fa-user me-2"></i>&nbsp;Profile</a>
+                                    class="fas fa-user me-2"></i>&nbsp;{% trans 'Profile' %}</a>
                                 {% if request.user.is_admin %}
                                     <a class="dropdown-item navMenuItem" href={% url "dashboard" %}><i
-                                            class="fas fa-tachometer-alt me-2"></i>&nbsp;Dashboard<br></a>
+                                            class="fas fa-tachometer-alt me-2"></i>&nbsp;{% trans 'Dashboard' %}<br></a>
                                 {% endif %}
-                                <a class="dropdown-item navMenuItem" href="#"><i class="fas fa-cogs me-2"></i>&nbsp;Settings</a><a
-                                        class="dropdown-item navMenuItem" href="#"><i class="fas fa-list me-2"></i>&nbsp;Activity
+                                <a class="dropdown-item navMenuItem" href="#"><i class="fas fa-cogs me-2"></i>&nbsp;{% trans 'Settings' %}</a><a
+                                        class="dropdown-item navMenuItem" href="#"><i class="fas fa-list me-2"></i>&nbsp;{% trans 'Activity' %}
                                     log</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item navMenuItem" href={% url "logout" %}><i
-                                        class="fas fa-sign-out-alt me-2"></i>&nbsp;Logout</a>
+                                        class="fas fa-sign-out-alt me-2"></i>&nbsp;{% trans 'Logout' %}</a>
                             </div>
                         </div>
                     </li>
                 </ul>
             {% else %}
                 <div class="navBtnBg text-center">
-                    <a class="btn btn-primary shadow" role="button" href={% url "login" %}>Login</a>
-                    <a class="btn btn-primary shadow" role="button" href={% url "signup" %}>Sign up</a>
+                    <a class="btn btn-primary shadow" role="button" href={% url "login" %}>{% trans 'Login' %}</a>
+                    <a class="btn btn-primary shadow" role="button" href={% url "signup" %}>{% trans 'Sign up' %}</a>
                 </div>
             {% endif %}
         </div>

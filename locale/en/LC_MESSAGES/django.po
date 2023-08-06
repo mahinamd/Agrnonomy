@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-16 13:32+0600\n"
+"POT-Creation-Date: 2023-08-06 11:03+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,11 +18,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .\Agronomy\settings.py:134
+#: .\Agronomy\settings.py:146
 msgid "Bengali"
 msgstr ""
 
-#: .\Agronomy\settings.py:135
+#: .\Agronomy\settings.py:147
 msgid "English"
 msgstr ""
 
@@ -42,12 +42,20 @@ msgstr ""
 msgid "Enter the same password as before, for verification."
 msgstr ""
 
+#: .\templates\category.html:16
+msgid "Category"
+msgstr ""
+
+#: .\templates\category.html:48
+msgid "No category found!"
+msgstr ""
+
 #: .\templates\contacts.html:73
 msgid "Want to visit frequently asked questions?"
 msgstr ""
 
 #: .\templates\contacts.html:75 .\templates\faq.html:11
-#: .\templates\navbar.html:37
+#: .\templates\navbar.html:36
 msgid "FAQ"
 msgstr ""
 
@@ -110,7 +118,7 @@ msgstr ""
 msgid "4. Updated data"
 msgstr ""
 
-#: .\templates\footer.html:10 .\templates\navbar.html:7
+#: .\templates\footer.html:10 .\templates\navbar.html:6
 msgid "Agronomy"
 msgstr ""
 
@@ -142,12 +150,12 @@ msgstr ""
 msgid "Company"
 msgstr ""
 
-#: .\templates\footer.html:24 .\templates\navbar.html:20
-#: .\templates\navbar.html:40
+#: .\templates\footer.html:24 .\templates\navbar.html:19
+#: .\templates\navbar.html:39
 msgid "About"
 msgstr ""
 
-#: .\templates\footer.html:25 .\templates\navbar.html:34
+#: .\templates\footer.html:25 .\templates\navbar.html:33
 msgid "Contacts"
 msgstr ""
 
@@ -155,7 +163,7 @@ msgstr ""
 msgid "Legacy"
 msgstr ""
 
-#: .\templates\footer.html:32 .\templates\navbar.html:48
+#: .\templates\footer.html:32 .\templates\navbar.html:47
 msgid "Services"
 msgstr ""
 
@@ -191,60 +199,141 @@ msgstr ""
 msgid "Copyright © 2023 Agronomy"
 msgstr ""
 
-#: .\templates\index.html:36
+#: .\templates\index.html:37
 msgid "Agricultural"
 msgstr ""
 
-#: .\templates\index.html:36
+#: .\templates\index.html:37
 msgid "Assistant System"
 msgstr ""
 
-#: .\templates\index.html:349
+#: .\templates\index.html:350
 msgid "Subscribe to our newsletter"
 msgstr ""
 
-#: .\templates\index.html:355
+#: .\templates\index.html:356
 msgid "Subscribe"
 msgstr ""
 
-#: .\templates\index.html:365 .\templates\pricing.html:136
+#: .\templates\index.html:366 .\templates\pricing.html:136
 msgid "Not sure which plan suits you?"
 msgstr ""
 
-#: .\templates\index.html:367 .\templates\pricing.html:138
+#: .\templates\index.html:368 .\templates\pricing.html:138
 msgid "Contact us"
 msgstr ""
 
-#: .\templates\navbar.html:15
+#: .\templates\information.html:17
+msgid "Information"
+msgstr ""
+
+#: .\templates\information.html:72
+msgid "No information found!"
+msgstr ""
+
+#: .\templates\information.html:78
+msgid "Diseases/Problems"
+msgstr ""
+
+#: .\templates\information.html:78
+msgid "Disease/Problem"
+msgstr ""
+
+#: .\templates\information.html:85 .\templates\information.html:90
+msgid "Insects/Causes"
+msgstr ""
+
+#: .\templates\information.html:98
+msgid "DiseaseProblem"
+msgstr ""
+
+#: .\templates\information.html:112
+msgid "Solution"
+msgstr ""
+
+#: .\templates\information.html:126
+msgid "Warning"
+msgstr ""
+
+#: .\templates\navbar.html:14
 msgid "Home"
 msgstr ""
 
-#: .\templates\navbar.html:17
+#: .\templates\navbar.html:16
 msgid "Features"
 msgstr ""
 
-#: .\templates\navbar.html:25 .\templates\navbar.html:28
+#: .\templates\navbar.html:24 .\templates\navbar.html:27
 msgid "Pages"
 msgstr ""
 
-#: .\templates\navbar.html:32
+#: .\templates\navbar.html:31
 msgid "Pricing"
 msgstr ""
 
-#: .\templates\navbar.html:36
+#: .\templates\navbar.html:35
 msgid "Testimonials"
 msgstr ""
 
-#: .\templates\navbar.html:51
+#: .\templates\navbar.html:50
 msgid "Agricultural Information"
 msgstr ""
 
+#: .\templates\navbar.html:52
+msgid "Questions"
+msgstr ""
+
 #: .\templates\navbar.html:53
-msgid "Post Questions"
+msgid "Contact with Expert"
 msgstr ""
 
 #: .\templates\navbar.html:55
-msgid "Contract with Expert"
+msgid "Contact with User"
+msgstr ""
+
+#: .\templates\navbar.html:57
+msgid "Chat with Ai"
+msgstr ""
+
+#: .\templates\notifications.html:30
+msgid "Notification no"
+msgstr ""
+
+#: .\templates\notifications.html:55
+msgid "No notification found!"
+msgstr ""
+
+#: .\templates\questions.html:31
+msgid "Question no"
+msgstr ""
+
+#: .\templates\questions.html:65
+msgid "No question found!"
+msgstr ""
+
+#: .\templates\subcategory.html:16
+msgid "Subategory"
+msgstr ""
+
+#: .\templates\subcategory.html:52
+msgid "No subcategory found!"
+msgstr ""
+
+#: .\templates\view-question.html:41 .\templates\view-question.html:98
+#: .\venv\Lib\site-packages\django\db\models\fields\files.py:391
+msgid "Image"
+msgstr ""
+
+#: .\templates\view-question.html:46
+msgid "Description"
+msgstr ""
+
+#: .\templates\view-question.html:103
+msgid "Answer"
+msgstr ""
+
+#: .\templates\view-question.html:151
+msgid "No answer has been posted yet."
 msgstr ""
 
 #: .\venv\Lib\site-packages\django\contrib\messages\apps.py:15
@@ -648,10 +737,6 @@ msgstr ""
 
 #: .\venv\Lib\site-packages\django\db\models\fields\files.py:231
 msgid "File"
-msgstr ""
-
-#: .\venv\Lib\site-packages\django\db\models\fields\files.py:391
-msgid "Image"
 msgstr ""
 
 #: .\venv\Lib\site-packages\django\db\models\fields\json.py:18
