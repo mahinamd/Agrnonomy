@@ -986,6 +986,41 @@ def delete_answer_page(request, question_id, answer_id, context=None):
     return redirect(reverse('index'))
 
 
+def chat_ai_page(request, problem_id=None, context=None):
+    if context is None:
+        context = {}
+    default_language = 'bn' in translation.get_language()
+    context["default_language"] = default_language
+
+    user = request.user
+    if user.is_authenticated:
+        if request.method == "GET" and len(context) == 1:
+            account = Account.objects.get(id=user.id)
+            if problem_id:
+                case = Problem.objects.get(id=problem_id)
+                context["case"] = case
+                if default_language:
+                    ws_url = "ws://" + request.get_host() + "/chat/room/" + str(case.room.id)
+                else:
+                    ws_url = "ws://" + request.get_host() + "/en/chat/room/" + str(case.room.id)
+
+                context["ws_url"] = ws_url
+                room = account.user_rooms.get(problem_id=problem_id)
+                room_messages = room.room_messages.all()
+                context["room"] = room
+                context["room_messages"] = room_messages
+                context["room_messages_count"] = room_messages.count()
+
+            problems = account.chat_problems.all()
+            context["problems"] = problems
+            context["problems_count"] = problems.count()
+            context["DATA_UPLOAD_MAX_MEMORY_SIZE"] = settings.DATA_UPLOAD_MAX_MEMORY_SIZE
+            return render(request, 'chat/chat-ai.html', context)
+
+    messages.error(request, "You are not allow to visit the page")
+    return redirect(reverse('index'))
+
+
 def chat_expert_page(request, problem_id=None, context=None):
     if context is None:
         context = {}

@@ -17,7 +17,7 @@ from django.core.files.storage import default_storage
 from django.core.files.storage import FileSystemStorage
 import os
 import copy
-import cv2
+#import cv2
 import json
 import base64
 import requests

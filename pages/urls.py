@@ -39,6 +39,9 @@ urlpatterns = [
     path('chat/user', views.chat_user_page, name='chat-user'),
     path('chat/user/<int:problem_id>', views.chat_user_page, name='chat-user'),
 
+    path('chat/ai', views.chat_ai_page, name='chat-ai'),
+    path('chat/ai/<int:problem_id>', views.chat_ai_page, name='chat-ai'),
+
     path('chat/request-expert', views.request_expert_page, name='request-expert'),
 
     path("setLanguage/<str:language>", views.setLanguage, name="set-language"),
