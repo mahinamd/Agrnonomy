@@ -2,7 +2,6 @@ import os
 
 from dotenv import load_dotenv
 
-
 def selfDecode(_key_):
     _check_ = False
     _en_ = ''
@@ -39,3 +38,20 @@ DATABASES = {
             }
     }
 }
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_redis.core.RedisChannelLayer",
+        "CONFIG": {
+            "hosts": [os.environ['REDIS_HOST']],
+        },
+    },
+}
+
+'''
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels.layers.InMemoryChannelLayer'
+    }
+}
+'''

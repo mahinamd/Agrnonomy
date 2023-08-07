@@ -86,11 +86,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'Agronomy.wsgi.application'
 ASGI_APPLICATION = 'Agronomy.asgi.application'
 
-CHANNEL_LAYERS = {
-    'default': {
-        'BACKEND': 'channels.layers.InMemoryChannelLayer'
-    }
-}
+CHANNEL_LAYERS = sensitive.CHANNEL_LAYERS
 
 MESSAGE_TAGS = {
     messages.DEBUG: 'alert-secondary',

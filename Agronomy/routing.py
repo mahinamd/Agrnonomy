@@ -1,6 +1,6 @@
 from django.urls import path
-from pages.expert import ChatExpert
-from pages.ai import ChatAI
+from pages.consumers import ChatExpert, ChatAI
+
 
 websocket_urlpatterns = [
     path('chat/room/<int:room_id>', ChatExpert.as_asgi()),
