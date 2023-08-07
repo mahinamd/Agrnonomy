@@ -21,7 +21,7 @@ load_dotenv()
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Agronomy.production' if os.environ['PRODUCTION'] == 'Yes' else 'Agronomy.settings')
 
 # application = get_asgi_application()
-
+'''
 application = ProtocolTypeRouter({
     "http": get_asgi_application(),
     "websocket": AllowedHostsOriginValidator(
@@ -30,5 +30,12 @@ application = ProtocolTypeRouter({
                 websocket_urlpatterns
             )
         )
+    )
+})
+'''
+application = ProtocolTypeRouter({
+    "http": get_asgi_application(),
+    "websocket": URLRouter(
+        websocket_urlpatterns
     )
 })

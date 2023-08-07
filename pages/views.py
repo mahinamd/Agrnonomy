@@ -1160,6 +1160,7 @@ def chat_ai_page(request, problem_id=None, context=None):
                 case = Problem.objects.get(id=problem_id)
                 context["case"] = case
                 ws_url = get_websocket_url(request, case, default_language, "ai/")
+                print(ws_url)
                 context["ws_url"] = ws_url
                 room = account.user_rooms.get(problem_id=problem_id)
                 room_messages = room.room_messages.all()
