@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/4.1/howto/deployment/wsgi/
 
 import os
 import django
+from django.conf import settings
 from django.core.wsgi import get_wsgi_application
 from dotenv import load_dotenv
 
@@ -16,6 +17,6 @@ load_dotenv()
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Agronomy.production' if os.environ['PRODUCTION'] == 'Yes' else 'Agronomy.settings')
 
-django.setup()
-
+#django.setup()
+settings.configure()
 application = get_wsgi_application()
