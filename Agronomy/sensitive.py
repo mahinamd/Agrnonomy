@@ -2,6 +2,7 @@ import os
 
 from dotenv import load_dotenv
 
+
 def selfDecode(_key_):
     _check_ = False
     _en_ = ''
