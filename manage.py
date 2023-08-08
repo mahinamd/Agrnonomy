@@ -20,8 +20,9 @@ def main():
         ) from exc
     execute_from_command_line(sys.argv)
 
-    command = "daphne -b 0.0.0.0 -p $PORT Agronomy.asgi:application"
-    subprocess.run(command, shell=True)
+    if os.environ['PRODUCTION'] == 'Yes':
+        command = "daphne -b '0.0.0.0' -p " + os.environ['PORT'] + " Agronomy.asgi:application"
+        subprocess.run(command, shell=True)
 
 
 if __name__ == '__main__':
