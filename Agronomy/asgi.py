@@ -7,25 +7,14 @@ For more information on this file, see
 https://docs.djangoproject.com/en/4.1/howto/deployment/asgi/
 """
 
-import os
-
-import django
 from channels.auth import AuthMiddlewareStack
 from channels.routing import ProtocolTypeRouter, URLRouter
 from channels.security.websocket import AllowedHostsOriginValidator
-from django.core.asgi import get_asgi_application
-from dotenv import load_dotenv
-from .routing import websocket_urlpatterns
+from .routing import asgi_application, websocket_urlpatterns
 
-load_dotenv()
-
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Agronomy.production' if os.environ['PRODUCTION'] == 'Yes' else 'Agronomy.settings')
-
-# application = get_asgi_application()
-# asgi_application = get_asgi_application()
 
 application = ProtocolTypeRouter({
-    "http": get_asgi_application(),
+    "http": asgi_application,
     "websocket": AllowedHostsOriginValidator(
         AuthMiddlewareStack(
             URLRouter(
@@ -34,12 +23,3 @@ application = ProtocolTypeRouter({
         )
     )
 })
-
-'''
-application = ProtocolTypeRouter({
-    "http": get_asgi_application(),
-    "websocket": URLRouter(
-        websocket_urlpatterns
-    )
-})
-'''
