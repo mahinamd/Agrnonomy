@@ -668,10 +668,10 @@ def view_question_page(request, question_id, answer_id=None, context=None):
                 question = Question.objects.get(id=question_id)
                 return save_form(request, form, context, 'answer', question)
             else:
-                print(question_id)
                 question = Question.objects.get(id=question_id)
-                question.question_counts.views_count += 1
-                question.question_counts.save()
+                if question.account_id != user.id:
+                    question.question_counts.views_count += 1
+                    question.question_counts.save()
 
                 filters = request.GET.get('tab')
                 if filters:

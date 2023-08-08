@@ -2,16 +2,14 @@ import base64
 import json
 import os
 
-from PIL import Image
-from channels.generic.websocket import AsyncWebsocketConsumer
+import openai
 from asgiref.sync import sync_to_async
-
+from channels.generic.websocket import AsyncWebsocketConsumer
 from django.conf import settings
-from accounts.models import Account
+
+from managements.views import cropping_image
 from .models import Room, Message
 from .templatetags.time_filters import get_time_since
-from managements.views import cropping_image
-import openai
 
 
 class ChatExpert(AsyncWebsocketConsumer):
@@ -179,7 +177,9 @@ class ChatAI(AsyncWebsocketConsumer):
 
                     html_format = ''
                     if message and response["from"] == "user":
-                        html_format = "<div class='chat-user-style mb-3'><div class='text-center'><h5 class='py-2'>" + data["content"] + "</h5></div><div class='d-flex px-3 py-1'><div class='d-md-flex me-auto align-items-md-center'><span>send " + get_time_since(message.timestamp) + "</span></div><div class='text-end d-md-flex ms-auto align-items-md-center'><a class='d-md-flex justify-content-md-end align-items-md-center' href='#'><img class='questions-profile-img me-2' src=" + account.pimg.url + ">" + account.fname + " " + account.lname + "</a></div></div></div>"
+                        html_format = "<div class='chat-user-style mb-3'><div class='text-center'><h5 class='py-2'>" + data[
+                            "content"] + "</h5></div><div class='d-flex px-3 py-1'><div class='d-md-flex me-auto align-items-md-center'><span>send " + get_time_since(
+                            message.timestamp) + "</span></div><div class='text-end d-md-flex ms-auto align-items-md-center'><a class='d-md-flex justify-content-md-end align-items-md-center' href='#'><img class='questions-profile-img me-2' src=" + account.pimg.url + ">" + account.fname + " " + account.lname + "</a></div></div></div>"
 
                     response["html_format"] = html_format
 
