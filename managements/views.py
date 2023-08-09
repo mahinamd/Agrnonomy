@@ -709,3 +709,23 @@ def delete_problem(request, problem_id):
 
     messages.error(request, "You are not allow to visit the page")
     return redirect(reverse('index'))
+
+
+def view_conversation(request, room_id=None, context=None):
+    if context is None:
+        context = {}
+    default_language = 'bn' in translation.get_language()
+    context["default_language"] = default_language
+
+    user = request.user
+    if user.is_authenticated:
+        if request.method == "GET" and len(context) == 1:
+            room = Room.objects.get(id=room_id)
+            room_messages = room.room_messages.all()
+            context["room"] = room
+            context["room_messages"] = room_messages
+            context["room_messages_count"] = room_messages.count()
+            return render(request, 'managements/view-conversation.html', context)
+
+    messages.error(request, "You are not allow to visit the page")
+    return redirect(reverse('index'))

@@ -1,0 +1,95 @@
+{% extends "index.html" %}
+{% load static i18n time_filters truncate_filters %}
+
+{% block content %}
+
+    <section class="py-5">
+        <div class="container mt-5 py-3">
+            {% include 'message.html' %}
+            <div class="row pt-3">
+                <div class="col-md-12 pt-3 border">
+                    {% if room %}
+                        <div class="text-center">
+                            <a href="#"><span class="h4 fw-bold">{{ room.problem.title }}</span></a>
+                            {% if case.tags %}
+                                <div class="pt-3">
+                                    {% for tag in room.problem.get_tags_list %}
+                                        <span class="question-tag">{{ tag }}</span>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <hr>
+                        {% if room.expert or room.ai %}
+                            <div id="messages-container" class="mb-5 pb-5 max-h-350-px overflow-scroll">
+                                {% if room_messages_count > 0 %}
+                                    {% for message in room_messages %}
+                                        {% if message.account.id == room.user.id %}
+                                            <div class="chat-user-style mb-3">
+                                                <div class="text-center">
+                                                    {% if "default/" not in message.image.url %}
+                                                        <img class="w-25 py-2" src="{{ message.image.url }}">
+                                                    {% endif %}
+                                                    {% if message.content %}
+                                                        <h5 class="py-2">{{ message.content }}</h5>
+                                                    {% endif %}
+                                                </div>
+                                                <div class="d-flex px-3 py-1">
+                                                    <div class="d-md-flex me-auto align-items-md-center">
+                                                        <span>send {{ message.timestamp|get_time_since }}</span>
+                                                    </div>
+                                                    <div class="text-end d-md-flex ms-auto align-items-md-center">
+                                                        <a class="d-md-flex justify-content-md-end align-items-md-center" href="#">
+                                                            <img class="questions-profile-img me-2" src="{{ message.account.pimg.url }}">{{ message.account.fname }} {{ message.account.lname }}
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% elif message.account.id == room.expert.id %}
+                                            <div class="chat-expert-style mb-3">
+                                                <div class="text-center">
+                                                    {% if "default/" not in message.image.url %}
+                                                        <img class="w-25 py-2" src="{{ message.image.url }}">
+                                                    {% endif %}
+                                                    {% if message.content %}
+                                                        <h5 class="py-2">{{ message.content }}</h5>
+                                                    {% endif %}
+                                                </div>
+                                                <div class="d-flex px-3 py-1">
+                                                    <div class="text-start d-md-flex me-auto align-items-md-center">
+                                                        <a href="#">
+                                                            <img class="questions-profile-img me-2" src="{{ message.account.pimg.url }}">{{ message.account.fname }} {{ message.account.lname }}
+                                                        </a>
+                                                    </div>
+                                                    <div class="d-md-flex ms-auto align-items-md-center">
+                                                        <span>received {{ message.timestamp|get_time_since }}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% endif %}
+                                    {% endfor %}
+                                {% else %}
+                                    <div class="pt-3">
+                                        <h6 class="dash-data-col">No message found!</h6>
+                                    </div>
+                                {% endif %}
+                            </div>
+                        {% else %}
+                            <div class="pt-3">
+                                <h5 class="dash-data-col">The case is not approved yet. Wait for further updates.</h5>
+                            </div>
+                        {% endif %}
+                    {% else %}
+                        <div class="pt-3">
+                            <h4 class="dash-data-col">{% trans "Invalid room" %}</h4>
+                        </div>
+                    {% endif %}
+                    <div class="pt-3">
+                        <a class="btn btn-primary btn-sm mt-1" role="button" href="{% url "expert-requests" %}">Back</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

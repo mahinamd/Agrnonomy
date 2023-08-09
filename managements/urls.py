@@ -23,6 +23,8 @@ urlpatterns = [
     path("delete-form/<int:object_id>", views.delete_form, name="delete-form"),
     path("delete-form/<int:object_id>/<int:data_id>", views.delete_form, name="delete-form"),
 
+    path('conversation/room/<int:room_id>', views.view_conversation, name='view-conversation'),
+
     path('requests/expert', views.expert_requests_page, name='expert-requests'),
     path('requests/room/<int:room_id>/delete', views.delete_room, name='delete-room'),
     path('requests/problem/<int:problem_id>/delete', views.delete_problem, name='delete-problem'),
