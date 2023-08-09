@@ -1,6 +1,5 @@
 {% extends "index.html" %}
-{% load static %}
-{% load i18n %}
+{% load static i18n %}
 
 {% block content %}
 <section class="pt-5 pb-2 mt-5">
@@ -8,8 +7,8 @@
         <div class="row gy-4 gy-md-0">
             <div class="col-md-6 text-center text-md-start d-flex d-sm-flex d-md-flex justify-content-center align-items-center justify-content-md-start align-items-md-center justify-content-xl-center">
                 <div style="max-width: 350px;">
-                    <h1 class="display-5 fw-bold mb-4"><span class="underline">Header</span>&nbsp;1</h1>
-                    <p class="text-muted my-4">Paragraph 1</p>
+                    <h2 class="display-6 fw-bold mb-4"><span class="underline">{% trans "Fostering Growth and Knowledge" %}</span></h2>
+                    <p class="text-muted my-4">{% trans "Our shared passion at Agronomy is transforming agriculture with technology. Our journey started with a straightforward yet impactful idea: to close the knowledge gap in agriculture and strengthen rural communities. We have created a comprehensive platform with a committed team of experts that offers farmers and hobbyists across the globe accurate, current information and individualized solutions." %}</p>
                 </div>
             </div>
             <div class="col-md-6">
@@ -24,8 +23,8 @@
             <div class="col mb-5"><img class="rounded img-fluid" src="{% static 'assets/img/aboutBg2.jpg' %}"></div>
             <div class="col d-md-flex align-items-md-end align-items-lg-center mb-5">
                 <div>
-                    <h5 class="fs-3 fw-bold mb-4">Title 1</h5>
-                    <p class="text-muted mb-4">Paragraph 2</p><a class="fw-bold link-primary mb-3" href="#"><br><strong>Learn more&nbsp;</strong>
+                    <h5 class="fs-3 fw-bold mb-4">{% trans "Connecting Farmers to Success is Our Mission" %}</h5>
+                    <p class="text-muted mb-4">{% trans "Our goal is to arm farmers with the information and resources they need to prosper. Through agronomy, we hope to foster a vibrant sense of community where farmers may exchange knowledge, advice, and experiences. Our website is a center for agricultural knowledge, where innovation coexists with tradition and sustainable techniques are praised." %}</p><a class="fw-bold link-primary mb-3" href="#"><br><strong>{% trans "Learn more" %}&nbsp;</strong>
                         <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icon-tabler-arrow-narrow-right fs-3">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                             <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -37,12 +36,15 @@
             </div>
         </div>
         <div class="row row-cols-1 row-cols-md-2 mx-auto aboutContainer">
-            <div class="col order-md-last mb-5"><img class="rounded img-fluid" src="{% static 'assets/img/aboutBg3.jpg' %}"></div>
+            <div class="col order-md-last d-md-flex align-items-md-end align-items-lg-center mb-5"><img class="rounded img-fluid" src="{% static 'assets/img/aboutBg3.jpg' %}"></div>
             <div class="col d-md-flex align-items-md-end align-items-lg-center mb-5">
                 <div class="ms-md-3">
-                    <h5 class="fs-3 fw-bold mb-4">Title 2</h5>
-                    <p class="text-muted mb-4">Paragraph 3</p><a class="fw-bold link-primary" href="#"><br><strong>Learn
-                            more</strong>&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icon-tabler-arrow-narrow-right fs-3">
+                    <h5 class="fs-3 fw-bold mb-4 underline">{% trans "Our Goal: To Promote Sustainable Futures" %}</h5>
+                    <p class="fs-3 fw-bold mb-4">{% trans "Empowering Through Information" %}</p>
+                    <p class="text-muted mb-4">{% trans "We see a world in which every farmer has access to reliable and timely agricultural information, irrespective of their location or resources. We're creating a world where knowledge fuels progress by bridging the knowledge gap between conventional wisdom and contemporary technology." %}</p>
+                    <p class="fs-3 fw-bold mb-4">{% trans "Fostering Community Resilience" %}</p>
+                    <p class="text-muted mb-4">{% trans "Building a flourishing community of farmers that support one another, share knowledge, and work together to create a more sustainable agricultural environment is a key component of our strategy for fostering community resilience. Together, we're planting the seeds of transformation for future generations." %}</p>
+                    <a class="fw-bold link-primary" href="#"><br><strong>{% trans "Learn more" %}</strong>&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icon-tabler-arrow-narrow-right fs-3">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                             <line x1="5" y1="12" x2="19" y2="12"></line>
                             <line x1="15" y1="16" x2="19" y2="12"></line>
@@ -56,9 +58,10 @@
             <div class="col mb-5"><img class="rounded img-fluid" src="{% static 'assets/img/aboutBg4.jpg' %}"></div>
             <div class="col d-md-flex align-items-md-end align-items-lg-center mb-5">
                 <div>
-                    <h5 class="fs-3 fw-bold mb-4"><strong>Title 3</strong></h5>
-                    <p class="text-muted mb-4">Paragraph 4</p><a class="fw-bold link-primary" href="#"><strong>Learn
-                            more</strong>&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icon-tabler-arrow-narrow-right fs-3">
+                    <h5 class="fs-3 fw-bold mb-4"><strong>{% trans "Leading the Way to Sustainability" %}Title 3</strong></h5>
+                    <p class="text-muted mb-4">{% trans "At Agronomy, sustainability is a way of life, not simply a trendy term. We are dedicated to encouraging environmentally responsible behaviors that improve soil health, conserve resources, and guarantee the long-term sustainability of our world." %}</p>
+                    <p class="text-muted mb-4">{% trans "Come along with us as we improve agriculture. We are nurturing a future where knowledge grows, crops thrive, and farming communities thrive together." %}</p>
+                    <a class="fw-bold link-primary" href="#"><strong>{% trans "Learn more" %}</strong>&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icon-tabler-arrow-narrow-right fs-3">
                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                             <line x1="5" y1="12" x2="19" y2="12"></line>
                             <line x1="15" y1="16" x2="19" y2="12"></line>

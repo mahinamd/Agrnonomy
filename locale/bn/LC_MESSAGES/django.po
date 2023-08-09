@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-06 12:31+0600\n"
+"POT-Creation-Date: 2023-08-09 07:48+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,11 +18,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .\Agronomy\settings.py:146
+#: .\Agronomy\settings.py:142
 msgid "Bengali"
 msgstr "বাংলা"
 
-#: .\Agronomy\settings.py:147
+#: .\Agronomy\settings.py:143
 msgid "English"
 msgstr "ইংরেজি"
 
@@ -41,6 +41,112 @@ msgstr "পাসওয়ার্ড নিশ্চিতকরণ"
 #: .\accounts\forms.py:19
 msgid "Enter the same password as before, for verification."
 msgstr "যাচাইয়ের জন্য আগের মতোই পাসওয়ার্ড দিন।"
+
+#: .\templates\about.html:10
+msgid "Fostering Growth and Knowledge"
+msgstr "বৃদ্ধি এবং জ্ঞান লালনপালন"
+
+#: .\templates\about.html:11
+msgid ""
+"Our shared passion at Agronomy is transforming agriculture with technology. "
+"Our journey started with a straightforward yet impactful idea: to close the "
+"knowledge gap in agriculture and strengthen rural communities. We have "
+"created a comprehensive platform with a committed team of experts that "
+"offers farmers and hobbyists across the globe accurate, current information "
+"and individualized solutions."
+msgstr ""
+"কৃষিবিদ্যায় আমাদের ভাগ করা আবেগ প্রযুক্তির মাধ্যমে কৃষিকে রূপান্তরিত করছে। আমাদের "
+"যাত্রা শুরু হয়েছিল একটি সরল অথচ কার্যকর ধারণা নিয়ে: কৃষিতে জ্ঞানের ব্যবধান বন্ধ করা "
+"এবং গ্রামীণ জনগোষ্ঠীকে শক্তিশালী করা। আমরা বিশেষজ্ঞদের একটি প্রতিশ্রুতিবদ্ধ দলের "
+"সাথে একটি বিস্তৃত প্ল্যাটফর্ম তৈরি করেছি যা সারা বিশ্ব জুড়ে কৃষক এবং শৌখিনদের সঠিক, "
+"বর্তমান তথ্য এবং স্বতন্ত্র সমাধান প্রদান করে।"
+
+#: .\templates\about.html:26
+msgid "Connecting Farmers to Success is Our Mission"
+msgstr "কৃষকদের সফলতার সাথে সংযুক্ত করাই আমাদের লক্ষ্য"
+
+#: .\templates\about.html:27
+msgid ""
+"Our goal is to arm farmers with the information and resources they need to "
+"prosper. Through agronomy, we hope to foster a vibrant sense of community "
+"where farmers may exchange knowledge, advice, and experiences. Our website "
+"is a center for agricultural knowledge, where innovation coexists with "
+"tradition and sustainable techniques are praised."
+msgstr ""
+"আমাদের লক্ষ্য হল কৃষকদের তাদের উন্নতির জন্য প্রয়োজনীয় তথ্য এবং সংস্থান দিয়ে সজ্জিত "
+"করা। কৃষিবিদ্যার মাধ্যমে, আমরা আশা করি একটি প্রাণবন্ত সম্প্রদায়ের অনুভূতি গড়ে তুলব "
+"যেখানে কৃষকরা জ্ঞান, পরামর্শ এবং অভিজ্ঞতা বিনিময় করতে পারে। আমাদের ওয়েবসাইট কৃষি "
+"জ্ঞানের একটি কেন্দ্র, যেখানে উদ্ভাবন ঐতিহ্যের সাথে সহাবস্থান করে এবং টেকসই প্রযুক্তির "
+"প্রশংসা করা হয়।"
+
+#: .\templates\about.html:27 .\templates\about.html:47
+#: .\templates\about.html:64 .\templates\features.html:44
+#: .\templates\features.html:72 .\templates\features.html:103
+#: .\templates\features.html:124 .\templates\features.html:151
+#: .\templates\features.html:172
+msgid "Learn more"
+msgstr "আরও জানুন"
+
+#: .\templates\about.html:42
+msgid "Our Goal: To Promote Sustainable Futures"
+msgstr "আমাদের লক্ষ্য: টেকসই ভবিষ্যতের প্রচার করা"
+
+#: .\templates\about.html:43
+msgid "Empowering Through Information"
+msgstr "তথ্যের মাধ্যমে ক্ষমতায়ন"
+
+#: .\templates\about.html:44
+msgid ""
+"We see a world in which every farmer has access to reliable and timely "
+"agricultural information, irrespective of their location or resources. We're "
+"creating a world where knowledge fuels progress by bridging the knowledge "
+"gap between conventional wisdom and contemporary technology."
+msgstr ""
+"আমরা এমন একটি বিশ্ব দেখতে পাচ্ছি যেখানে প্রতিটি কৃষক তাদের অবস্থান বা সম্পদ "
+"নির্বিশেষে নির্ভরযোগ্য এবং সময়োপযোগী কৃষি তথ্যের অ্যাক্সেস পায়। আমরা এমন একটি বিশ্ব "
+"তৈরি করছি যেখানে জ্ঞান প্রচলিত প্রজ্ঞা এবং সমসাময়িক প্রযুক্তির মধ্যে জ্ঞানের ব্যবধান "
+"পূরণ করে অগ্রগতি ঘটায়।"
+
+#: .\templates\about.html:45
+msgid "Fostering Community Resilience"
+msgstr "সম্প্রদায়ের স্থিতিস্থাপকতা বৃদ্ধি করা"
+
+#: .\templates\about.html:46
+msgid ""
+"Building a flourishing community of farmers that support one another, share "
+"knowledge, and work together to create a more sustainable agricultural "
+"environment is a key component of our strategy for fostering community "
+"resilience. Together, we're planting the seeds of transformation for future "
+"generations."
+msgstr ""
+"কৃষকদের একটি সমৃদ্ধ সম্প্রদায় গড়ে তোলা যা একে অপরকে সমর্থন করে, জ্ঞান ভাগ করে এবং "
+"আরও টেকসই কৃষি পরিবেশ তৈরি করতে একসাথে কাজ করে সম্প্রদায়ের স্থিতিস্থাপকতা বৃদ্ধির "
+"জন্য আমাদের কৌশলের একটি মূল উপাদান। একসাথে, আমরা ভবিষ্যত প্রজন্মের জন্য রূপান্তরের "
+"বীজ রোপণ করছি।"
+
+#: .\templates\about.html:61
+msgid "Leading the Way to Sustainability"
+msgstr "স্থায়িত্বের পথে নেতৃত্ব দেওয়া"
+
+#: .\templates\about.html:62
+msgid ""
+"At Agronomy, sustainability is a way of life, not simply a trendy term. We "
+"are dedicated to encouraging environmentally responsible behaviors that "
+"improve soil health, conserve resources, and guarantee the long-term "
+"sustainability of our world."
+msgstr ""
+"কৃষিবিদ্যায়, স্থায়িত্ব জীবনের একটি উপায়, কেবল একটি প্রচলিত শব্দ নয়। আমরা "
+"পরিবেশগতভাবে দায়িত্বশীল আচরণ উৎসাহিত করার জন্য নিবেদিত যা মাটির স্বাস্থ্যের উন্নতি "
+"করে, সম্পদ সংরক্ষণ করে এবং আমাদের বিশ্বের দীর্ঘমেয়াদী স্থায়িত্বের গ্যারান্টি দেয়।"
+
+#: .\templates\about.html:63
+msgid ""
+"Come along with us as we improve agriculture. We are nurturing a future "
+"where knowledge grows, crops thrive, and farming communities thrive together."
+msgstr ""
+"আমরা কৃষির উন্নতির সাথে সাথে আমাদের সাথে আসুন। আমরা এমন একটি ভবিষ্যৎ গড়ে তুলেছে "
+"যেখানে জ্ঞান বৃদ্ধি পায়, ফসলের উন্নতি হয় এবং চাষী সম্প্রদায়গুলি একসাথে উন্নতি লাভ "
+"করে।"
 
 #: .\templates\category.html:11 .\templates\information.html:11
 #: .\templates\subcategory.html:11
@@ -88,11 +194,11 @@ msgstr "আপনার প্রতিক্রিয়া"
 msgid "Reply"
 msgstr "উত্তর দিন"
 
-#: .\templates\chat\chat-ai.html:106
+#: .\templates\chat\chat-ai.html:106 .\templates\contacts.html:59
 msgid "Send"
 msgstr "পাঠান"
 
-#: .\templates\chat\chat-ai.html:107
+#: .\templates\chat\chat-ai.html:107 .\templates\weather.html:80
 msgid "Reset"
 msgstr "রিসেট"
 
@@ -100,11 +206,44 @@ msgstr "রিসেট"
 msgid "The AI case is not approved yet. Wait for further updates."
 msgstr "AI কেস এখনও অনুমোদিত হয়নি। পরবর্তী আপডেটের জন্য অপেক্ষা করুন।"
 
-#: .\templates\contacts.html:73
+#: .\templates\contacts.html:18
+msgid "Phone"
+msgstr "ফোন নম্বর:"
+
+#: .\templates\contacts.html:25
+msgid "Email"
+msgstr "ইমেইল:"
+
+#: .\templates\contacts.html:32
+msgid "Location"
+msgstr "অবস্থান:"
+
+#: .\templates\contacts.html:33 .\templates\footer.html:16
+msgid "Dhaka, Bangladesh"
+msgstr "ঢাকা, বাংলাদেশ"
+
+#: .\templates\contacts.html:43
+msgid "Contact"
+msgstr "যোগাযোগ করুন"
+
+#: .\templates\contacts.html:43
+msgid "us"
+msgstr "করুন"
+
+#: .\templates\contacts.html:44
+msgid ""
+"If you want any assistance, please do not hesitate to contact us. Our "
+"support team will get in touch with you as soon as possible to provide "
+"assistance."
+msgstr ""
+"আপনি যদি কোন সাহায্য চান, আমাদের সাথে যোগাযোগ করতে দ্বিধা করবেন না দয়া করে. "
+"আমাদের সহায়তা দল যত তাড়াতাড়ি সম্ভব সহায়তা প্রদানের জন্য আপনার সাথে যোগাযোগ করবে।"
+
+#: .\templates\contacts.html:71
 msgid "Want to visit frequently asked questions?"
 msgstr "প্রায়শই জিজ্ঞাসিত প্রশ্ন দেখতে চান?"
 
-#: .\templates\contacts.html:75 .\templates\faq.html:11
+#: .\templates\contacts.html:73 .\templates\faq.html:11
 #: .\templates\navbar.html:36
 msgid "FAQ"
 msgstr "প্রশ্নাবলী"
@@ -181,6 +320,128 @@ msgstr "৩. সঠিক তথ্যের নিশ্চয়তা"
 msgid "4. Updated data"
 msgstr "৪. সর্বদা নতুন তথ্য"
 
+#: .\templates\features.html:10
+msgid "Get Relevant Information Whenever You Need It"
+msgstr "আপনার যখনই প্রয়োজন প্রাসঙ্গিক তথ্য পান"
+
+#: .\templates\features.html:12
+msgid ""
+"Agronomy is the key to unlocking the potential of real-time agricultural "
+"knowledge. Our system gives you access to real-time data on the state of "
+"your crops, soil, and climate. Get ahead of the curve by using up-to-date "
+"information to guide your decision-making. The timely insights provided by "
+"Agronomy provide farmers of all experience levels with the tools they need "
+"to optimize their practices and maximize yields."
+msgstr ""
+"কৃষিবিদ্যা হল রিয়েল-টাইম কৃষি জ্ঞানের সম্ভাবনাকে আনলক করার চাবিকাঠি। আমাদের "
+"সিস্টেম আপনাকে আপনার ফসল, মাটি এবং জলবায়ুর অবস্থার রিয়েল-টাইম ডেটাতে অ্যাক্সেস "
+"দেয়। আপনার সিদ্ধান্ত নেওয়ার জন্য আপ-টু-ডেট তথ্য ব্যবহার করে বক্ররেখা থেকে এগিয়ে "
+"যান। কৃষিবিদ্যা দ্বারা প্রদত্ত সময়োপযোগী অন্তর্দৃষ্টি গুলি সমস্ত অভিজ্ঞতা স্তরের কৃষকদের "
+"তাদের অনুশীলনগুলি অপ্টিমাইজ করতে এবং সর্বাধিক ফলন করার জন্য প্রয়োজনীয় সরঞ্জাম গুলো "
+"সরবরাহ করে।"
+
+#: .\templates\features.html:26
+msgid "Customized Answers for Your Farming Needs"
+msgstr "আপনার চাষের প্রয়োজনের জন্য কাস্টমাইজড উত্তর"
+
+#: .\templates\features.html:42
+msgid "Personalized Recommendations"
+msgstr "ব্যক্তিগতকৃত সুপারিশ"
+
+#: .\templates\features.html:43
+msgid ""
+"Customized advice that takes into account your geographic area, crop type, "
+"and individual requirements is provided. With the help of agronomy, you can "
+"find the methods that will work best under your specific conditions."
+msgstr ""
+"আপনার ভৌগলিক এলাকা, ফসলের ধরন এবং ব্যক্তিগত প্রয়োজনীয়তা বিবেচনা করে কাস্টমাইজড "
+"পরামর্শ প্রদান করা হয়। কৃষিবিদ্যার সাহায্যে, আপনি এমন পদ্ধতিগুলি খুঁজে পেতে পারেন যা "
+"আপনার নির্দিষ্ট পরিস্থিতিতে সবচেয়ে ভাল কাজ করবে।"
+
+#: .\templates\features.html:70
+msgid "Crop Management Made Easy"
+msgstr "শস্য ব্যবস্থাপনা সহজ করা হয়েছে"
+
+#: .\templates\features.html:71
+msgid ""
+"Simplify your crop management with these straightforward applications. To "
+"ensure the success of your crops, it is important to keep tabs on their "
+"development, keep an eye out for pests, and receive timely warnings."
+msgstr ""
+"এই সহজবোধ্য অ্যাপ্লিকেশনগুলির মাধ্যমে আপনার ফসল ব্যবস্থাপনাকে সরল করুন। আপনার ফসলের "
+"সাফল্য নিশ্চিত করতে, তাদের বিকাশের উপর নজর রাখা, কীটপতঙ্গের জন্য নজর রাখা এবং "
+"সময়মত সতর্কতা গ্রহণ করা গুরুত্বপূর্ণ।"
+
+#: .\templates\features.html:101
+msgid "Expert Questionnaires"
+msgstr "বিশেষজ্ঞ প্রশ্নাবলী"
+
+#: .\templates\features.html:102
+msgid ""
+"Discover the knowledge you need by completing our expert surveys. Gain "
+"access to insightful advice and suggestions from knowledgeable agricultural "
+"professionals, helping you to decide wisely and improve your farming methods."
+msgstr ""
+"আমাদের বিশেষজ্ঞ সমীক্ষা সম্পূর্ণ করে আপনার প্রয়োজনীয় জ্ঞান আবিষ্কার করুন। জ্ঞানী কৃষি "
+"পেশাদারদের কাছ থেকে অন্তর্দৃষ্টিপূর্ণ পরামর্শ এবং পরামর্শ এগুলিতে অ্যাক্সেস লাভ করুন, "
+"আপনাকে বিজ্ঞতার সাথে সিদ্ধান্ত নিতে এবং আপনার চাষের পদ্ধতি গুলো উন্নত করতে সহায়তা "
+"করে।"
+
+#: .\templates\features.html:122
+msgid "Weather Integration"
+msgstr "আবহাওয়া সংহতকরণ"
+
+#: .\templates\features.html:123
+msgid ""
+"Using reliable weather forecasts, farmers may efficiently plan their day's "
+"work. Plan your activities so that they coincide with the expected weather."
+msgstr ""
+"নির্ভরযোগ্য আবহাওয়ার পূর্বাভাস ব্যবহার করে, কৃষকরা তাদের দিনের কাজের পরিকল্পনা করতে "
+"পারে। আপনার ক্রিয়াকলাপগুলি পরিকল্পনা করুন যাতে সেগুলোর প্রত্যাশিত আবহাওয়ার সাথে "
+"মিলে যায়।"
+
+#: .\templates\features.html:149
+msgid "AI Chatbot"
+msgstr "এ আই চ্যাটবট"
+
+#: .\templates\features.html:150
+msgid ""
+"Your agricultural journey will benefit from an additional layer of "
+"assistance provided by our AI chatbot. Our chatbot is your educated "
+"companion, ready to answer questions and offer insightful commentary "
+"whenever you need it with prompt responses and personalized guidance."
+msgstr ""
+"আমাদের এ আই চ্যাটবট দ্বারা প্রদত্ত সহায়তার একটি অতিরিক্ত স্তর থেকে আপনার কৃষি যাত্রা "
+"উপকৃত হবে। আমাদের চ্যাটবট হল আপনার শিক্ষিত সঙ্গী, প্রশ্নের উত্তর দিতে প্রস্তুত এবং "
+"আপনার যখনই প্রয়োজন তখনই তাৎক্ষণিক প্রতিক্রিয়া এবং ব্যক্তিগতকৃত নির্দেশিকা সহ "
+"অন্তর্দৃষ্টিপূর্ণ ভাষ্য অফার করতে।"
+
+#: .\templates\features.html:170
+msgid "Mobile Convenience"
+msgstr "মোবাইল সুবিধা"
+
+#: .\templates\features.html:171
+msgid ""
+"Access Agronomy's functionalities from anywhere with our intuitive mobile "
+"app. You can keep all the information you need to run a farm in your pocket "
+"and use it to make educated decisions whenever you like."
+msgstr ""
+"আমাদের স্বজ্ঞাত মোবাইল অ্যাপের মাধ্যমে যে কোনো জায়গা থেকে কৃষিবিদ্যার কার্যকারিতা "
+"অ্যাক্সেস করুন। আপনি আপনার পকেটে একটি খামার চালানোর জন্য প্রয়োজনীয় সমস্ত তথ্য রাখতে "
+"পারেন এবং যখনই আপনি চান শিক্ষিত সিদ্ধান্ত নিতে এটি ব্যবহার করতে পারেন।"
+
+#: .\templates\features.html:196 .\templates\index.html:254
+msgid "Used by"
+msgstr "বিশ্বের সেরা"
+
+#: .\templates\features.html:197 .\templates\index.html:255
+msgid "100"
+msgstr "১০০"
+
+#: .\templates\features.html:197 .\templates\index.html:255
+msgid "of the best institutions in the world."
+msgstr "টি প্রতিষ্ঠান ব্যবহার করে।"
+
 #: .\templates\footer.html:10 .\templates\navbar.html:6
 msgid "Agronomy"
 msgstr "কৃষিবিদ্যা"
@@ -205,10 +466,6 @@ msgstr "ইমেইল:"
 msgid "Location:"
 msgstr "অবস্থান:"
 
-#: .\templates\footer.html:16
-msgid "Dhaka, Bangladesh"
-msgstr "ঢাকা, বাংলাদেশ"
-
 #: .\templates\footer.html:22
 msgid "Company"
 msgstr "প্রতিষ্ঠান"
@@ -226,7 +483,7 @@ msgstr "পরিচিতি"
 msgid "Legacy"
 msgstr "উত্তরাধিকার"
 
-#: .\templates\footer.html:32 .\templates\navbar.html:47
+#: .\templates\footer.html:32 .\templates\navbar.html:50
 msgid "Services"
 msgstr "সেবা"
 
@@ -270,19 +527,180 @@ msgstr "কৃষি"
 msgid "Assistant System"
 msgstr "সহকারী ব্যবস্থা"
 
-#: .\templates\index.html:350
+#: .\templates\index.html:93
+msgid "Stay Current"
+msgstr "বর্তমান থাকুন"
+
+#: .\templates\index.html:94
+msgid ""
+"Explore agriculture with Agronomy's latest knowledge. Our platform provides "
+"accurate and updated crop, livestock, pest, and other information. Stay "
+"ahead and make smart decisions to succeed on your farm."
+msgstr ""
+"কৃষিবিদ্যার সর্বশেষ জ্ঞানের সাথে কৃষি অন্বেষণ করুন। আমাদের প্ল্যাটফর্ম সঠিক এবং আপডেট "
+"ফসল, পশুসম্পদ, কীটপতঙ্গ এবং অন্যান্য তথ্য প্রদান করে। এগিয়ে থাকুন এবং আপনার খামারে "
+"সফল হওয়ার জন্য স্মার্ট সিদ্ধান্ত নিন।"
+
+#: .\templates\index.html:110
+msgid "Your Farming Partner"
+msgstr "আপনার কৃষি অংশীদার"
+
+#: .\templates\index.html:111
+msgid ""
+"Customized Solutions at Your Fingertips: For successful farming, agronomy is "
+"your trusty partner. We tailor solutions to your area, crop type, and goals. "
+"Easy yields and sustainable practices with user-friendly equipment and "
+"skilled assistance."
+msgstr ""
+"আপনার হাতের নাগালে কাস্টমাইজড সমাধান: সফল চাষের জন্য, কৃষিবিদ্যা হল আপনার বিশ্বস্ত "
+"অংশীদার। আমরা আপনার এলাকা, ফসলের ধরন এবং লক্ষ্যগুলি জন্য সমাধান তৈরি করি। "
+"ব্যবহারকারী-বান্ধব সরঞ্জাম এবং দক্ষ সহায়তা সহ সহজ ফলন এবং টেকসই অনুশীলন।"
+
+#: .\templates\index.html:128
+msgid "Join the Agronomy Community"
+msgstr "এগ্রোনমি কমিউনিটিতে যোগ দিন"
+
+#: .\templates\index.html:129
+msgid ""
+"To learn, share, succeed Engage with farmers and experts in our vibrant "
+"Agronomy community. Participate in discussions and learn from others' "
+"triumphs. Our interactive forums allow you to seek advice and connect with "
+"like-minded people, ensuring your farming efforts are supported."
+msgstr ""
+"শিখতে, শেয়ার করতে, সফল হতে আমাদের প্রাণবন্ত কৃষিবিদ্যা সম্প্রদায়ের কৃষক এবং "
+"বিশেষজ্ঞদের সাথে যুক্ত হন। আলোচনায় অংশগ্রহণ করুন এবং অন্যদের বিজয় থেকে শিখুন। "
+"আমাদের ইন্টারেক্টিভ ফোরামগুলো আপনার পরামর্শ চাই এবং সমমনা ব্যক্তির সাথে সংযোগ করার "
+"অনুমতি দেয়, নিশ্চিত করে যে আপনার চাষের প্রচেষ্টা সমর্থনযোগ্য।"
+
+#: .\templates\index.html:141 .\templates\index.html:165
+#: .\templates\index.html:178 .\templates\navbar.html:16
+msgid "Features"
+msgstr "বৈশিষ্ট্য"
+
+#: .\templates\index.html:141
+msgid "1"
+msgstr "১"
+
+#: .\templates\index.html:147
+msgid ""
+"Welcome to Agronomy, your trusted source for timely and accurate "
+"agricultural information. To provide you with the most up-to-date "
+"information possible, our website compiles information from a wide variety "
+"of reputable sources in the agricultural, veterinary, and animal sciences. "
+"You no longer have to waste time sorting through irrelevant data, because "
+"Agronomy provides insight into modern farming practices."
+msgstr ""
+"সময়োপযোগী এবং সঠিক কৃষি তথ্যের জন্য আপনার বিশ্বস্ত উৎস, কৃষিবিজ্ঞানে স্বাগতম। আপনাকে "
+"সম্ভাব্য সর্বাধিক আপ-টু-ডেট তথ্য সরবরাহ করার জন্য, আমাদের ওয়েবসাইট কৃষি, পশু চিকিৎসা "
+"এবং প্রাণী বিজ্ঞানের বিভিন্ন সম্মানজনক উৎস থেকে তথ্য সংকলন করে। আপনাকে আর "
+"অপ্রাসঙ্গিক ডেটার মধ্যে বাছাই করতে সময় নষ্ট করতে হবে না, কারণ কৃষিবিদ্যা আধুনিক কৃষি "
+"পদ্ধতির অন্তর্দৃষ্টি প্রদান করে।"
+
+#: .\templates\index.html:165
+msgid "2"
+msgstr "২"
+
+#: .\templates\index.html:166
+msgid ""
+"Agronomy's individualized approaches can help farmers achieve greater "
+"precision in their work. To better serve you, our platform takes into "
+"account your geographical area, crop kind, and individual requirements. "
+"Whether you're an experienced farmer or just getting started, Agronomy's "
+"straightforward interface will lead you through the steps you need to take "
+"to maximize your harvest, improve your soil's health, and adopt "
+"environmentally responsible methods."
+msgstr ""
+"কৃষিবিদ্যার স্বতন্ত্র পন্থা কৃষকদের তাদের কাজে আরও নির্ভুলতা অর্জনে সহায়তা করতে পারে। "
+"আপনাকে আরও ভালোভাবে পরিবেশন করার জন্য, আমাদের প্ল্যাটফর্ম আপনার ভৌগলিক এলাকা, "
+"ফসলের ধরন এবং ব্যক্তিগত প্রয়োজনীয়তা বিবেচনা করে। আপনি একজন অভিজ্ঞ কৃষক হোন বা "
+"সবেমাত্র শুরু করছেন, কৃষিবিদ্যার সহজবোধ্য ইন্টারফেস আপনাকে আপনার ফসলের সর্বোচ্চ ফলন, "
+"আপনার মাটির স্বাস্থ্যের উন্নতি এবং পরিবেশগতভাবে দায়িত্বশীল পদ্ধতিগুলি গ্রহণ করার জন্য "
+"আপনাকে যে পদক্ষেপগুলো গ্রহণ করতে হবে তার মধ্যে নিয়ে যাবে।"
+
+#: .\templates\index.html:178
+msgid "3"
+msgstr "৩"
+
+#: .\templates\index.html:179
+msgid ""
+"Agronomy is more than simply a website; it's also a lively online "
+"neighborhood filled with agricultural novices and gurus eager to share their "
+"knowledge with one another. Have deep conversations, teach and be taught by "
+"your fellow farmers. Our discussion boards are a great place to meet others "
+"who share your interests and get answers to your questions. In addition, the "
+"expert subscription model provided by Agronomy gives you instant access to "
+"seasoned professionals who can answer your unique questions and keep you on "
+"the road to success."
+msgstr ""
+"কৃষিবিদ্যা কেবল একটি ওয়েবসাইট নয়; এটি একটি প্রাণবন্ত অনলাইন আশেপাশের এলাকা "
+"যেখানে কৃষি নবীন এবং গুরুরা তাদের জ্ঞান একে অপরের সাথে ভাগ করে নিতে আগ্রহী। গভীর "
+"কথোপকথন করুন, আপনার সহকর্মী কৃষকদের দ্বারা দেখান এবং শেখান। আমাদের আলোচনা "
+"বোর্ডগুলো অন্যদের সাথে দেখা করার জন্য একটি দুর্দান্ত জায়গা যারা আপনার আগ্রহগুলি ভাগ "
+"করে এবং আপনার প্রশ্নের উত্তর পেতে পারেন এছাড়াও, অ্যাগ্রোনমি দ্বারা প্রদত্ত বিশেষজ্ঞ "
+"সাবস্ক্রিপশন মডেল আপনাকে অভিজ্ঞ পেশাদারদের কাছে তাত্ক্ষণিক অ্যাক্সেস দেয় যারা আপনার "
+"অনন্য প্রশ্নের উত্তর দিতে পারে এবং আপনাকে সাফল্যের পথে রাখতে পারে।"
+
+#: .\templates\index.html:194 .\templates\testimonials.html:9
+msgid "What people say"
+msgstr "মানুষ কি বলে"
+
+#: .\templates\index.html:194 .\templates\testimonials.html:9
+msgid "about us"
+msgstr "আমাদের সম্পর্কে"
+
+#: .\templates\index.html:205 .\templates\testimonials.html:20
+msgid ""
+"Agronomy changed my farming style. The precise insights and specific advice "
+"have greatly increased my crop output. Like having an agricultural expert in "
+"my pocket!"
+msgstr ""
+"কৃষিবিদ্যা আমার চাষের ধরন বদলে দিয়েছে। সুনির্দিষ্ট অন্তর্দৃষ্টি এবং সুনির্দিষ্ট পরামর্শ "
+"আমার ফসলের উৎপাদন অনেক বাড়িয়ে দিয়েছে। আমার পকেটে একজন কৃষি বিশেষজ্ঞ থাকার মতো!"
+
+#: .\templates\index.html:208 .\templates\testimonials.html:23
+msgid "Karim, farmer"
+msgstr "করিম, কৃষক"
+
+#: .\templates\index.html:221 .\templates\testimonials.html:36
+msgid ""
+"Agronomy has helped my studies. The platform's detailed information and "
+"interactive features made complex farming principles easy to grasp."
+msgstr ""
+"কৃষিবিদ্যা আমার পড়াশোনায় সাহায্য করেছে। প্ল্যাটফর্মের বিস্তারিত তথ্য এবং ইন্টারেক্টিভ "
+"বৈশিষ্ট্য জটিল চাষের নীতিগুলোকে সহজে উপলব্ধি করতে পেরেছে।"
+
+#: .\templates\index.html:224 .\templates\testimonials.html:39
+msgid "Abir, agricultural student"
+msgstr "আবির, কৃষি ছাত্র"
+
+#: .\templates\index.html:237 .\templates\testimonials.html:52
+msgid ""
+"Agronomy is my go-to source for solid data after years in the industry. "
+"Community forums are great for sharing expertise, and the platform's user-"
+"friendly design makes content easy to find."
+msgstr ""
+"শিল্পে বছরের পর বছর ধরে শক্ত তথ্যের জন্য কৃষিবিদ্যা আমার কাছে যাওয়ার উৎস। কমিউনিটি "
+"ফোরাম গুলি দক্ষতা ভাগ করে নেওয়ার জন্য দুর্দান্ত, এবং প্ল্যাটফর্মের ব্যবহারকারী-বান্ধব "
+"ডিজাইন সামগ্রী খুঁজে পাওয়া সহজ করে তোলে।"
+
+#: .\templates\index.html:240 .\templates\testimonials.html:55
+msgid "Mr. Rezaul, agricultural consultant"
+msgstr "কৃষি পরামর্শদাতা মিঃ রেজাউল"
+
+#: .\templates\index.html:268
 msgid "Subscribe to our newsletter"
 msgstr "আমাদের নিউজলেটার সদস্যতা"
 
-#: .\templates\index.html:356
+#: .\templates\index.html:274 .\templates\pricing.html:47
+#: .\templates\pricing.html:93 .\templates\pricing.html:146
 msgid "Subscribe"
 msgstr "সদস্যতা"
 
-#: .\templates\index.html:366 .\templates\pricing.html:136
+#: .\templates\index.html:284 .\templates\pricing.html:158
 msgid "Not sure which plan suits you?"
 msgstr "নিশ্চিত নন কোন পরিকল্পনা আপনার জন্য উপযুক্ত?"
 
-#: .\templates\index.html:368 .\templates\pricing.html:138
+#: .\templates\index.html:286 .\templates\pricing.html:160
 msgid "Contact us"
 msgstr "যোগাযোগ করুন"
 
@@ -314,10 +732,6 @@ msgstr "সতর্কতা"
 msgid "Home"
 msgstr "হোম"
 
-#: .\templates\navbar.html:16
-msgid "Features"
-msgstr "বৈশিষ্ট্য"
-
 #: .\templates\navbar.html:24 .\templates\navbar.html:27
 msgid "Pages"
 msgstr "অন্যান্য"
@@ -330,55 +744,63 @@ msgstr "মূল্য নির্ধারণ"
 msgid "Testimonials"
 msgstr "প্রশংসাপত্র"
 
-#: .\templates\navbar.html:50
+#: .\templates\navbar.html:46 .\templates\pricing.html:28
+#: .\templates\pricing.html:66 .\templates\pricing.html:111
 msgid "Agricultural Information"
 msgstr "কৃষি তথ্য"
 
-#: .\templates\navbar.html:52
+#: .\templates\navbar.html:52 .\templates\pricing.html:36
+#: .\templates\pricing.html:74 .\templates\pricing.html:119
+msgid "Weather"
+msgstr "আবহাওয়া"
+
+#: .\templates\navbar.html:54 .\templates\pricing.html:44
+#: .\templates\pricing.html:82 .\templates\pricing.html:127
 msgid "Questions"
 msgstr "জিজ্ঞাসা"
 
-#: .\templates\navbar.html:53
+#: .\templates\navbar.html:55 .\templates\pricing.html:90
+#: .\templates\pricing.html:135
 msgid "Contact with Expert"
 msgstr "বিশেষজ্ঞের সাথে যোগাযোগ করুন"
 
-#: .\templates\navbar.html:55
+#: .\templates\navbar.html:57
 msgid "Contact with User"
 msgstr "ব্যবহারকারীর সাথে যোগাযোগ করুন"
 
-#: .\templates\navbar.html:57
+#: .\templates\navbar.html:59 .\templates\pricing.html:143
 msgid "Chat with Ai"
 msgstr "এআই-এর সাথে চ্যাট করুন"
 
-#: .\templates\navbar.html:112
+#: .\templates\navbar.html:114
 msgid "Show All Notifications"
 msgstr "সমস্ত বিজ্ঞপ্তি দেখান"
 
-#: .\templates\navbar.html:125
+#: .\templates\navbar.html:127
 msgid "Profile"
 msgstr "প্রোফাইল"
 
-#: .\templates\navbar.html:128
+#: .\templates\navbar.html:130
 msgid "Dashboard"
 msgstr "ড্যাশবোর্ড"
 
-#: .\templates\navbar.html:130
+#: .\templates\navbar.html:132
 msgid "Settings"
 msgstr "সেটিংস"
 
-#: .\templates\navbar.html:131
+#: .\templates\navbar.html:133
 msgid "Activity"
 msgstr "কার্যকলাপ"
 
-#: .\templates\navbar.html:135
+#: .\templates\navbar.html:137
 msgid "Logout"
 msgstr "প্রস্থান"
 
-#: .\templates\navbar.html:142
+#: .\templates\navbar.html:144
 msgid "Login"
 msgstr "প্রবেশ করুন"
 
-#: .\templates\navbar.html:143
+#: .\templates\navbar.html:145
 msgid "Sign up"
 msgstr "নিবন্ধন করুন"
 
@@ -389,6 +811,38 @@ msgstr "বিজ্ঞপ্তি নং"
 #: .\templates\notifications.html:55
 msgid "No notification was found!"
 msgstr "কোন বিজ্ঞপ্তি পাওয়া যায়নি!"
+
+#: .\templates\pricing.html:10
+msgid "Check out"
+msgstr "চেক আউট"
+
+#: .\templates\pricing.html:10
+msgid "amazing plans"
+msgstr "আশ্চর্যজনক পরিকল্পনা"
+
+#: .\templates\pricing.html:18
+msgid "Standard"
+msgstr "স্ট্যান্ডার্ড"
+
+#: .\templates\pricing.html:19
+msgid "$2"
+msgstr "200৳"
+
+#: .\templates\pricing.html:56
+msgid "Pro"
+msgstr "প্রো"
+
+#: .\templates\pricing.html:57
+msgid "$5"
+msgstr "500৳"
+
+#: .\templates\pricing.html:101
+msgid "Enterprise"
+msgstr "এন্টারপ্রাইজ"
+
+#: .\templates\pricing.html:102
+msgid "$10"
+msgstr "1000৳"
 
 #: .\templates\questions.html:31
 msgid "Question no"
@@ -423,21 +877,65 @@ msgstr "উত্তর"
 msgid "No answer has been posted yet."
 msgstr "কোন উত্তর এখনও পোস্ট করা হয়নি."
 
+#: .\templates\weather.html:8
+msgid "According to your current location"
+msgstr "আপনার বর্তমান অবস্থান অনুযায়ী"
+
+#: .\templates\weather.html:26
+msgid "Show forecast"
+msgstr "পূর্বাভাস দেখান"
+
+#: .\templates\weather.html:30
+msgid "No weather data was found!"
+msgstr "কোন আবহাওয়ার তথ্য পাওয়া যায়নি!"
+
+#: .\templates\weather.html:37 .\templates\weather.html:118
+msgid "3-hour Forecast 5 days"
+msgstr "৩-ঘণ্টার পূর্বাভাস ৫ দিন"
+
+#: .\templates\weather.html:59
+msgid "No forecast data was found!"
+msgstr "কোন পূর্বাভাস তথ্য পাওয়া যায়নি!"
+
+#: .\templates\weather.html:68
+msgid "Search city"
+msgstr "শহর অনুসন্ধান করুন"
+
+#: .\templates\weather.html:79
+msgid "Search"
+msgstr "অনুসন্ধান করুন"
+
+#: .\templates\weather.html:89
+msgid "Searched location"
+msgstr "অবস্থান অনুসন্ধান করা হয়েছে"
+
+#: .\templates\weather.html:107
+msgid "Show Forecast"
+msgstr "পূর্বাভাস দেখান"
+
+#: .\templates\weather.html:111
+msgid "No search weather data was found!"
+msgstr "কোন অনুসন্ধান আবহাওয়া তথ্য পাওয়া যায়নি!"
+
+#: .\templates\weather.html:140
+msgid "No search forecast data was found!"
+msgstr "কোন অনুসন্ধান পূর্বাভাস তথ্য পাওয়া যায়নি!"
+
 #: .\venv\Lib\site-packages\django\contrib\messages\apps.py:15
 msgid "Messages"
 msgstr "বার্তা"
 
 #: .\venv\Lib\site-packages\django\contrib\sitemaps\apps.py:8
 msgid "Site Maps"
-msgstr ""
+msgstr "সাইট ম্যাপ"
 
 #: .\venv\Lib\site-packages\django\contrib\staticfiles\apps.py:9
 msgid "Static Files"
-msgstr ""
+msgstr "স্ট্যাটিক ফাইল"
 
 #: .\venv\Lib\site-packages\django\contrib\syndication\apps.py:7
 msgid "Syndication"
-msgstr ""
+msgstr "সিন্ডিকেশন"
 
 #. Translators: String used to replace omitted page numbers in elided page
 #. range generated by paginators, e.g. [1, 2, '…', 5, 6, 7, '…', 9, 10].
@@ -1625,6 +2123,3 @@ msgstr ""
 #: .\venv\Lib\site-packages\djongo\models\fields.py:630
 msgid "ObjectId"
 msgstr ""
-
-#~ msgid "Contact"
-#~ msgstr "পরিচিতি"

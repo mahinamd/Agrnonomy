@@ -1,0 +1,313 @@
+{% extends "index.html" %}
+{% load static i18n %}
+
+{% block content %}
+
+    <section class="py-5 mt-5">
+        <div class="container">
+            <h3 class="text-center text-decoration-underline fw-bold pb-3">{% trans 'According to your current location' %}</h3>
+            <div class="row">
+                {% if weather_data %}
+                    <div id="current-address" class="d-flex justify-content-center align-items-center text-center"></div>
+                {% endif %}
+                {% if weather_data %}
+                    <div class="col-md-12 d-flex justify-content-center align-items-center">
+                        <div class="card border-2 shadow media-max-w-80 media-w-35-45">
+                            <div class="card-body text-center">
+                                <h4 class="card-title fw-bold">{{ weather_data.city }}</h4>
+                                <h5 class="card-subtitle mb-2">{{ weather_data.temp }}°C</h5>
+                                <h5 class="card-subtitle mb-2">{{ weather_data.min_temp }} - {{ weather_data.max_temp }}</h5>
+                                <p>{{ weather_data.description }}</p>
+                                <img src="http://openweathermap.org/img/w/{{ weather_data.icon }}.png" alt="{{ weather_data.description }}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center pt-5">
+                        <button id="current-forecast-btn" class="btn btn-primary" type="button">{% trans 'Show forecast' %}</button>
+                    </div>
+                {% else %}
+                    <div class="col prof-col pt-3">
+                        <h6 class="dash-data-col">{% trans 'No weather data was found!' %}</h6>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        <hr id="current-forecast-hr" class="my-5 d-none">
+        <div id="current-forecast" class="container d-none">
+            <h3 class="text-center fw-bold text-decoration-underline">{% trans "3-hour Forecast 5 days" %}</h3>
+            <div class="overflow-scroll max-h-350-px">
+                {% if forecasts_data %}
+                    {% for forecasts in forecasts_data %}
+                        <div class="row">
+                            {% for forecast in forecasts %}
+                                <div class="col-md-3 d-flex justify-content-center align-items-center">
+                                    <div class="card border-2 shadow media-max-w-80 media-min-w-45 media-min-w-60 my-3">
+                                        <div class="card-body text-center">
+                                            <h4 class="card-title fw-bold">{{ forecast.day }}</h4>
+                                            <h5 class="card-subtitle mb-2">{{ forecast.temp }}</h5>
+                                            <h5 class="card-subtitle mb-2">{{ forecast.min_temp }} - {{ forecast.max_temp }}</h5>
+                                            <p>{{ forecast.description }}</p>
+                                            <img src="http://openweathermap.org/img/w/{{ forecast.icon }}.png" alt="{{ forecast.description }}">
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="col prof-col pt-3">
+                        <h6 class="dash-data-col">{% trans 'No forecast data was found!' %}</h6>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        <hr class="my-5">
+        <div>
+            <form id="search-city-form" action="{% url 'weather' %}" method="post"> {% csrf_token %}
+                <div class="row pb-5">
+                    <div class="col prof-col pt-3"><h6 class="dash-data-col dash-data-cat-col">{% trans 'Search city' %}</h6></div>
+                    <div class="col prof-col pt-3">
+                        <input id="search-city-input" class="form-control text-center data-input" type="text" placeholder="Search city" name="city" required="">
+                        <input id="search-city-lat-lon" class="form-control d-none" type="hidden" name="city_lat_lon">
+                        <div id="city-suggestions-container" class="text-center data-input mt-1 d-none"></div>
+                    </div>
+                    {% include 'form-message.html' %}
+                    <div class="text-center py-3 d-none" id="loading-spinner">
+                        <span class="spinner-border spinner-border-sm spinner-color" role="status"></span>
+                    </div>
+                    <div class="col prof-col pt-3 text-center">
+                        <button class="btn btn-primary me-3 mt-1" type="submit">{% trans 'Search' %}</button>
+                        <button id="reset-form" class="btn btn-primary mt-1" type="reset">{% trans 'Reset' %}</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        {% if searched %}
+            <hr class="my-5">
+            <div class="container">
+                <h3 class="text-center text-decoration-underline fw-bold pb-3">{% trans 'Searched location' %}</h3>
+                <div class="row">
+                    {% if search_weather_data %}
+                        <div id="search-address" class="d-flex justify-content-center align-items-center text-center"></div>
+                    {% endif %}
+                    {% if search_weather_data %}
+                        <div class="col-md-12 d-flex justify-content-center align-items-center">
+                            <div class="card border-2 shadow media-max-w-80 media-w-35-45">
+                                <div class="card-body text-center">
+                                    <h4 class="card-title fw-bold">{{ search_weather_data.city }}</h4>
+                                    <h5 class="card-subtitle mb-2">{{ search_weather_data.temp }}°C</h5>
+                                    <h5 class="card-subtitle mb-2">{{ search_weather_data.min_temp }} - {{ search_weather_data.max_temp }}</h5>
+                                    <p>{{ search_weather_data.description }}</p>
+                                    <img src="http://openweathermap.org/img/w/{{ search_weather_data.icon }}.png" alt="{{ search_weather_data.description }}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center pt-5">
+                            <button id="search-forecast-btn" class="btn btn-primary" type="button">{% trans "Show Forecast" %}</button>
+                        </div>
+                    {% else %}
+                        <div class="col prof-col pt-3">
+                            <h6 class="dash-data-col">{% trans 'No search weather data was found!' %}</h6>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+            <hr id="search-forecast-hr" class="my-5 d-none">
+            <div id="search-forecast" class="container d-none">
+                <h3 class="text-center fw-bold text-decoration-underline">{% trans "3-hour Forecast 5 days" %}</h3>
+                <div class="overflow-scroll max-h-350-px">
+                    {% if search_forecasts_data %}
+                        {% for forecasts in search_forecasts_data %}
+                            <div class="row">
+                                {% for forecast in forecasts %}
+                                    <div class="col-md-3 d-flex justify-content-center align-items-center">
+                                        <div class="card border-2 shadow media-max-w-80 media-min-w-45 media-min-w-60 my-3">
+                                            <div class="card-body text-center">
+                                                <h4 class="card-title fw-bold">{{ forecast.day }}</h4>
+                                                <h5 class="card-subtitle mb-2">{{ forecast.temp }}</h5>
+                                                <h5 class="card-subtitle mb-2">{{ forecast.min_temp }} - {{ forecast.max_temp }}</h5>
+                                                <p>{{ forecast.description }}</p>
+                                                <img src="http://openweathermap.org/img/w/{{ forecast.icon }}.png" alt="{{ forecast.description }}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <div class="col prof-col pt-3">
+                            <h6 class="dash-data-col">{% trans 'No search forecast data was found!' %}</h6>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        {% endif %}
+
+    </section>
+
+{% endblock %}
+
+{% block script %}
+
+    <script type="text/javascript">
+
+        const form = document.getElementById("search-city-form");
+        const informationCount = null;
+        const DATA_UPLOAD_MAX_MEMORY_SIZE = null;
+
+    </script>
+
+    <script src="{% static "assets/js/form.handler.js" %}"></script>
+
+    <script type="text/javascript">
+        const countryFlag = document.getElementById('country-flag');
+        const searchCityInput = document.getElementById('search-city-input');
+        const searchCityLatLon = document.getElementById('search-city-lat-lon');
+        const citySuggestionsContainer = document.getElementById('city-suggestions-container');
+        const currentAddress = document.getElementById('current-address');
+        const searchAddress = document.getElementById('search-address');
+        const currentForecastBtn = document.getElementById("current-forecast-btn");
+        const searchForecastBtn = document.getElementById("search-forecast-btn");
+
+        if(currentForecastBtn) {
+            currentForecastBtn.addEventListener('click', function (event) {
+                const currentForecastHr = document.getElementById("current-forecast-hr");
+                const currentForecast = document.getElementById("current-forecast");
+                if(currentForecastHr && currentForecast) {
+                    if(currentForecastHr.classList.contains("d-none")) {
+                        currentForecastHr.classList.remove("d-none");
+                    } else {
+                        currentForecastHr.classList.add("d-none");
+                    }
+                    if(currentForecast.classList.contains("d-none")) {
+                        currentForecast.classList.remove("d-none");
+                        currentForecastBtn.textContent = "Hide forecast";
+                    } else{
+                        currentForecast.classList.add("d-none");
+                        currentForecastBtn.textContent = "Show forecast";
+                    }
+                }
+            });
+        }
+
+        if(searchForecastBtn) {
+            searchForecastBtn.addEventListener('click', function (event) {
+                const searchForecastHr = document.getElementById("search-forecast-hr");
+                const searchForecast = document.getElementById("search-forecast");
+                if(searchForecastHr && searchForecast) {
+                    if(searchForecastHr.classList.contains("d-none")) {
+                        searchForecastHr.classList.remove("d-none");
+                    } else {
+                        searchForecastHr.classList.add("d-none");
+                    }
+                    if(searchForecast.classList.contains("d-none")) {
+                        searchForecast.classList.remove("d-none");
+                        searchForecastBtn.textContent = "Hide forecast";
+                    } else{
+                        searchForecast.classList.add("d-none");
+                        searchForecastBtn.textContent = "Show forecast";
+                    }
+                }
+            });
+        }
+
+        function getCountryLogoImgElement(countryCode) {
+            const countryLogoContainer = document.createElement('img');
+            countryLogoContainer.src = `https://flagcdn.com/32x24/${countryCode.toLowerCase()}.png`;
+            return countryLogoContainer;
+        }
+
+        try {
+            function fetchCoordinates(lat, lon, mode) {
+                const apiReverseUrl = `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json`;
+                fetch(apiReverseUrl)
+                    .then(response => response.json())
+                    .then(data => {
+                        const address = data.display_name;
+                        const countryCode = data.address.country_code;
+                        const addressHeading = document.createElement('h4');
+                        addressHeading.classList.add('fw-bold');
+                        addressHeading.textContent = address + " ";
+                        addressHeading.appendChild(getCountryLogoImgElement(countryCode));
+                        if(mode === 'current-address') {
+                            currentAddress.appendChild(addressHeading);
+                        } else if(mode === 'search-address') {
+                            searchCityInput.value = address;
+                            searchAddress.appendChild(addressHeading);
+                        }
+                    })
+                    .catch(error => {
+                        alert('Error in fetching reverse data: ' + error);
+                    });
+            }
+
+            {% if weather_data %}
+                fetchCoordinates({{ current_lat }}, {{ current_lon }}, "current-address");
+            {% endif %}
+
+            {% if searched %}
+                fetchCoordinates({{ search_lat }}, {{ search_lon }}, "search-address");
+            {% endif %}
+
+            function fetchCitySuggestions(searchQuery) {
+                const apiSearchUrl = `https://nominatim.openstreetmap.org/search?q=${searchQuery}&format=json&limit=5`;
+                fetch(apiSearchUrl)
+                    .then(response => response.json())
+                    .then(data => {
+                        citySuggestionsContainer.innerHTML = '';
+
+                        data.forEach(suggestion => {
+                            const suggestionItem = document.createElement('div');
+                            suggestionItem.classList.add('suggestion');
+                            suggestionItem.textContent = suggestion.display_name;
+
+                            suggestionItem.addEventListener('click', () => {
+                                searchCityInput.value = suggestion.display_name;
+                                citySuggestionsContainer.innerHTML = '';
+                                citySuggestionsContainer.classList.add('d-none');
+
+                                const apiSelectedSearchUrl = `https://nominatim.openstreetmap.org/search?q=${suggestion.display_name}&format=json&limit=1`;
+
+                                fetch(apiSelectedSearchUrl)
+                                    .then(response => response.json())
+                                    .then(data => {
+                                        if (data.length > 0) {
+                                            const selectedCity = data[0];
+                                            const latitude = selectedCity.lat;
+                                            const longitude = selectedCity.lon;
+                                            searchCityLatLon.value = latitude + "," + longitude;
+                                        } else {
+                                            alert('City not found!');
+                                        }
+                                    })
+                                    .catch(error => {
+                                        alert('Error: ' + error);
+                                    });
+                            });
+
+                            citySuggestionsContainer.appendChild(suggestionItem);
+                        });
+                    })
+                    .catch(error => {
+                        alert('Error in fetching search data: ' + error);
+                    });
+            }
+
+            searchCityInput.addEventListener('input', () => {
+                const searchQuery = searchCityInput.value.trim();
+
+                if (searchQuery.length > 0) {
+                    citySuggestionsContainer.classList.remove('d-none');
+                    fetchCitySuggestions(searchQuery);
+                } else {
+                    citySuggestionsContainer.innerHTML = '';
+                    citySuggestionsContainer.classList.add('d-none');
+                }
+            });
+        } catch (error) {
+            alert('Error: ' + error);
+        }
+    </script>
+
+{% endblock %}

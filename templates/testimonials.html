@@ -1,14 +1,12 @@
 {% extends "index.html" %}
-{% load static %}
-{% load i18n %}
+{% load static i18n %}
 
 {% block content %}
-    <!-- Start: Testimonials -->
     <section class="py-5 mt-5">
         <div class="container py-5">
             <div class="row mb-5">
                 <div class="col-md-8 col-xl-6 text-center mx-auto">
-                    <h2 class="fw-bold">What people say<br><span class="underline pb-2">about us</span></h2>
+                    <h2 class="fw-bold">{% trans "What people say" %}<br><span class="underline pb-2">{% trans "about us" %}</span></h2>
                 </div>
             </div>
             <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 d-sm-flex justify-content-sm-center">
@@ -19,10 +17,10 @@
                             <path d="M12 12a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1h-1.388c0-.351.021-.703.062-1.054.062-.372.166-.703.31-.992.145-.29.331-.517.559-.683.227-.186.516-.279.868-.279V3c-.579 0-1.085.124-1.52.372a3.322 3.322 0 0 0-1.085.992 4.92 4.92 0 0 0-.62 1.458A7.712 7.712 0 0 0 9 7.558V11a1 1 0 0 0 1 1h2Zm-6 0a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1H4.612c0-.351.021-.703.062-1.054.062-.372.166-.703.31-.992.145-.29.331-.517.559-.683.227-.186.516-.279.868-.279V3c-.579 0-1.085.124-1.52.372a3.322 3.322 0 0 0-1.085.992 4.92 4.92 0 0 0-.62 1.458A7.712 7.712 0 0 0 3 7.558V11a1 1 0 0 0 1 1h2Z"></path>
                         </svg>
                         <div>
-                            <p class="fs-6 mb-3 ms-2">Paragraph 15</p>
+                            <p class="fs-6 mb-3 ms-2">{% trans "Agronomy changed my farming style. The precise insights and specific advice have greatly increased my crop output. Like having an agricultural expert in my pocket!" %}</p>
                             <div class="d-flex ms-2">
                                 <div class="d-flex">
-                                    <p class="fw-bold me-2">Asif Mahmud</p>
+                                    <p class="fw-bold me-2">{% trans "Karim, farmer" %}</p>
                                 </div>
                             </div>
                         </div>
@@ -35,10 +33,10 @@
                             <path d="M12 12a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1h-1.388c0-.351.021-.703.062-1.054.062-.372.166-.703.31-.992.145-.29.331-.517.559-.683.227-.186.516-.279.868-.279V3c-.579 0-1.085.124-1.52.372a3.322 3.322 0 0 0-1.085.992 4.92 4.92 0 0 0-.62 1.458A7.712 7.712 0 0 0 9 7.558V11a1 1 0 0 0 1 1h2Zm-6 0a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1H4.612c0-.351.021-.703.062-1.054.062-.372.166-.703.31-.992.145-.29.331-.517.559-.683.227-.186.516-.279.868-.279V3c-.579 0-1.085.124-1.52.372a3.322 3.322 0 0 0-1.085.992 4.92 4.92 0 0 0-.62 1.458A7.712 7.712 0 0 0 3 7.558V11a1 1 0 0 0 1 1h2Z"></path>
                         </svg>
                         <div>
-                            <p class="fs-6 mb-3 ms-2">Paragraph 16</p>
+                            <p class="fs-6 mb-3 ms-2">{% trans "Agronomy has helped my studies. The platform's detailed information and interactive features made complex farming principles easy to grasp." %}</p>
                             <div class="d-flex ms-2">
                                 <div class="d-flex">
-                                    <p class="fw-bold me-2">Asif Mahmud</p>
+                                    <p class="fw-bold me-2">{% trans "Abir, agricultural student" %}</p>
                                 </div>
                             </div>
                         </div>
@@ -51,10 +49,10 @@
                             <path d="M12 12a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1h-1.388c0-.351.021-.703.062-1.054.062-.372.166-.703.31-.992.145-.29.331-.517.559-.683.227-.186.516-.279.868-.279V3c-.579 0-1.085.124-1.52.372a3.322 3.322 0 0 0-1.085.992 4.92 4.92 0 0 0-.62 1.458A7.712 7.712 0 0 0 9 7.558V11a1 1 0 0 0 1 1h2Zm-6 0a1 1 0 0 0 1-1V8.558a1 1 0 0 0-1-1H4.612c0-.351.021-.703.062-1.054.062-.372.166-.703.31-.992.145-.29.331-.517.559-.683.227-.186.516-.279.868-.279V3c-.579 0-1.085.124-1.52.372a3.322 3.322 0 0 0-1.085.992 4.92 4.92 0 0 0-.62 1.458A7.712 7.712 0 0 0 3 7.558V11a1 1 0 0 0 1 1h2Z"></path>
                         </svg>
                         <div>
-                            <p class="fs-6 mb-3 ms-2">Paragraph 17</p>
+                            <p class="fs-6 mb-3 ms-2">{% trans "Agronomy is my go-to source for solid data after years in the industry. Community forums are great for sharing expertise, and the platform's user-friendly design makes content easy to find." %}</p>
                             <div class="d-flex ms-2">
                                 <div class="d-flex">
-                                    <p class="fw-bold me-2"><strong>Asif Mahmud</strong></p>
+                                    <p class="fw-bold me-2"><strong>{% trans "Mr. Rezaul, agricultural consultant" %}</strong></p>
                                 </div>
                             </div>
                         </div>

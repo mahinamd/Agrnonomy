@@ -93,20 +93,25 @@
                                                             </select>
                                                             <label for="select-expert" class="d-none dash-data-col">Expert:</label>
                                                             <select class="form-select text-center data-input" name="expert">
-                                                                <option value='' disabled selected>Select expert</option>
-                                                                <optgroup label='Expert'>
-                                                                    {% for account in accounts %}
-                                                                        {% if request.user.id != account.id %}
-                                                                            <option value="{{ account }}" {% if account.id == problem.room.expert.id %}selected{% endif %}>
-                                                                                {{ account.fname }} {{ account.lname }}
-                                                                            </option>
-                                                                        {% endif %}
-                                                                    {% endfor %}
+                                                                <option value='' selected{% if problem.has_room and problem.room.ai %} disabled{% endif %}>Select expert</option>
+                                                                <optgroup label='Expert' disabled>
+                                                                    {% if problem.has_room and problem.room.ai %}
+                                                                        <option value="" selected disabled>AI (ChatGPT)</option>
+                                                                    {% else %}
+                                                                        {% for account in accounts %}
+                                                                            {% if problem.account.id != account.id %}
+                                                                                    <option value="{{ account }}" {% if account.id == problem.room.expert.id %}selected{% endif %}>
+                                                                                    {{ account.fname }} {{ account.lname }}
+                                                                                </option>
+                                                                            {% endif %}
+                                                                        {% endfor %}
+                                                                    {% endif %}
                                                                 </optgroup>
                                                             </select>
                                                         </div>
                                                         <div class="col-md-5 text-center py-1">
-                                                            {% if not problem.room.expert.id or not problem.room.ai %}
+                                                            <!-- Bug -->
+                                                            {% if not problem.has_room %}
                                                                 <button class="btn btn-primary me-2" type="submit">Assign</button>
                                                             {% endif %}
                                                             <a id="delete-object" class="btn btn-danger" href="#" data-href="{% url "delete-problem" problem.id %}">Delete</a>

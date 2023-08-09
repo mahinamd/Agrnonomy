@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-06 12:31+0600\n"
+"POT-Creation-Date: 2023-08-09 07:48+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,11 +18,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .\Agronomy\settings.py:146
+#: .\Agronomy\settings.py:142
 msgid "Bengali"
 msgstr ""
 
-#: .\Agronomy\settings.py:147
+#: .\Agronomy\settings.py:143
 msgid "English"
 msgstr ""
 
@@ -40,6 +40,88 @@ msgstr ""
 
 #: .\accounts\forms.py:19
 msgid "Enter the same password as before, for verification."
+msgstr ""
+
+#: .\templates\about.html:10
+msgid "Fostering Growth and Knowledge"
+msgstr ""
+
+#: .\templates\about.html:11
+msgid ""
+"Our shared passion at Agronomy is transforming agriculture with technology. "
+"Our journey started with a straightforward yet impactful idea: to close the "
+"knowledge gap in agriculture and strengthen rural communities. We have "
+"created a comprehensive platform with a committed team of experts that "
+"offers farmers and hobbyists across the globe accurate, current information "
+"and individualized solutions."
+msgstr ""
+
+#: .\templates\about.html:26
+msgid "Connecting Farmers to Success is Our Mission"
+msgstr ""
+
+#: .\templates\about.html:27
+msgid ""
+"Our goal is to arm farmers with the information and resources they need to "
+"prosper. Through agronomy, we hope to foster a vibrant sense of community "
+"where farmers may exchange knowledge, advice, and experiences. Our website "
+"is a center for agricultural knowledge, where innovation coexists with "
+"tradition and sustainable techniques are praised."
+msgstr ""
+
+#: .\templates\about.html:27 .\templates\about.html:47
+#: .\templates\about.html:64 .\templates\features.html:44
+#: .\templates\features.html:72 .\templates\features.html:103
+#: .\templates\features.html:124 .\templates\features.html:151
+#: .\templates\features.html:172
+msgid "Learn more"
+msgstr ""
+
+#: .\templates\about.html:42
+msgid "Our Goal: To Promote Sustainable Futures"
+msgstr ""
+
+#: .\templates\about.html:43
+msgid "Empowering Through Information"
+msgstr ""
+
+#: .\templates\about.html:44
+msgid ""
+"We see a world in which every farmer has access to reliable and timely "
+"agricultural information, irrespective of their location or resources. We're "
+"creating a world where knowledge fuels progress by bridging the knowledge "
+"gap between conventional wisdom and contemporary technology."
+msgstr ""
+
+#: .\templates\about.html:45
+msgid "Fostering Community Resilience"
+msgstr ""
+
+#: .\templates\about.html:46
+msgid ""
+"Building a flourishing community of farmers that support one another, share "
+"knowledge, and work together to create a more sustainable agricultural "
+"environment is a key component of our strategy for fostering community "
+"resilience. Together, we're planting the seeds of transformation for future "
+"generations."
+msgstr ""
+
+#: .\templates\about.html:61
+msgid "Leading the Way to Sustainability"
+msgstr ""
+
+#: .\templates\about.html:62
+msgid ""
+"At Agronomy, sustainability is a way of life, not simply a trendy term. We "
+"are dedicated to encouraging environmentally responsible behaviors that "
+"improve soil health, conserve resources, and guarantee the long-term "
+"sustainability of our world."
+msgstr ""
+
+#: .\templates\about.html:63
+msgid ""
+"Come along with us as we improve agriculture. We are nurturing a future "
+"where knowledge grows, crops thrive, and farming communities thrive together."
 msgstr ""
 
 #: .\templates\category.html:11 .\templates\information.html:11
@@ -88,11 +170,11 @@ msgstr ""
 msgid "Reply"
 msgstr ""
 
-#: .\templates\chat\chat-ai.html:106
+#: .\templates\chat\chat-ai.html:106 .\templates\contacts.html:59
 msgid "Send"
 msgstr ""
 
-#: .\templates\chat\chat-ai.html:107
+#: .\templates\chat\chat-ai.html:107 .\templates\weather.html:80
 msgid "Reset"
 msgstr ""
 
@@ -100,11 +182,42 @@ msgstr ""
 msgid "The AI case is not approved yet. Wait for further updates."
 msgstr ""
 
-#: .\templates\contacts.html:73
+#: .\templates\contacts.html:18
+msgid "Phone"
+msgstr ""
+
+#: .\templates\contacts.html:25
+msgid "Email"
+msgstr ""
+
+#: .\templates\contacts.html:32
+msgid "Location"
+msgstr ""
+
+#: .\templates\contacts.html:33 .\templates\footer.html:16
+msgid "Dhaka, Bangladesh"
+msgstr ""
+
+#: .\templates\contacts.html:43
+msgid "Contact"
+msgstr ""
+
+#: .\templates\contacts.html:43
+msgid "us"
+msgstr ""
+
+#: .\templates\contacts.html:44
+msgid ""
+"If you want any assistance, please do not hesitate to contact us. Our "
+"support team will get in touch with you as soon as possible to provide "
+"assistance."
+msgstr ""
+
+#: .\templates\contacts.html:71
 msgid "Want to visit frequently asked questions?"
 msgstr ""
 
-#: .\templates\contacts.html:75 .\templates\faq.html:11
+#: .\templates\contacts.html:73 .\templates\faq.html:11
 #: .\templates\navbar.html:36
 msgid "FAQ"
 msgstr ""
@@ -168,6 +281,102 @@ msgstr ""
 msgid "4. Updated data"
 msgstr ""
 
+#: .\templates\features.html:10
+msgid "Get Relevant Information Whenever You Need It"
+msgstr ""
+
+#: .\templates\features.html:12
+msgid ""
+"Agronomy is the key to unlocking the potential of real-time agricultural "
+"knowledge. Our system gives you access to real-time data on the state of "
+"your crops, soil, and climate. Get ahead of the curve by using up-to-date "
+"information to guide your decision-making. The timely insights provided by "
+"Agronomy provide farmers of all experience levels with the tools they need "
+"to optimize their practices and maximize yields."
+msgstr ""
+
+#: .\templates\features.html:26
+msgid "Customized Answers for Your Farming Needs"
+msgstr ""
+
+#: .\templates\features.html:42
+msgid "Personalized Recommendations"
+msgstr ""
+
+#: .\templates\features.html:43
+msgid ""
+"Customized advice that takes into account your geographic area, crop type, "
+"and individual requirements is provided. With the help of agronomy, you can "
+"find the methods that will work best under your specific conditions."
+msgstr ""
+
+#: .\templates\features.html:70
+msgid "Crop Management Made Easy"
+msgstr ""
+
+#: .\templates\features.html:71
+msgid ""
+"Simplify your crop management with these straightforward applications. To "
+"ensure the success of your crops, it is important to keep tabs on their "
+"development, keep an eye out for pests, and receive timely warnings."
+msgstr ""
+
+#: .\templates\features.html:101
+msgid "Expert Questionnaires"
+msgstr ""
+
+#: .\templates\features.html:102
+msgid ""
+"Discover the knowledge you need by completing our expert surveys. Gain "
+"access to insightful advice and suggestions from knowledgeable agricultural "
+"professionals, helping you to decide wisely and improve your farming methods."
+msgstr ""
+
+#: .\templates\features.html:122
+msgid "Weather Integration"
+msgstr ""
+
+#: .\templates\features.html:123
+msgid ""
+"Using reliable weather forecasts, farmers may efficiently plan their day's "
+"work. Plan your activities so that they coincide with the expected weather."
+msgstr ""
+
+#: .\templates\features.html:149
+msgid "AI Chatbot"
+msgstr ""
+
+#: .\templates\features.html:150
+msgid ""
+"Your agricultural journey will benefit from an additional layer of "
+"assistance provided by our AI chatbot. Our chatbot is your educated "
+"companion, ready to answer questions and offer insightful commentary "
+"whenever you need it with prompt responses and personalized guidance."
+msgstr ""
+
+#: .\templates\features.html:170
+msgid "Mobile Convenience"
+msgstr ""
+
+#: .\templates\features.html:171
+msgid ""
+"Access Agronomy's functionalities from anywhere with our intuitive mobile "
+"app. You can keep all the information you need to run a farm in your pocket "
+"and use it to make educated decisions whenever you like."
+msgstr ""
+
+#: .\templates\features.html:196 .\templates\index.html:254
+msgid "Used by"
+msgstr ""
+
+#: .\templates\features.html:197 .\templates\index.html:255
+msgid "100"
+msgstr ""
+
+#: .\templates\features.html:197 .\templates\index.html:255
+msgid "of the best institutions in the world."
+msgstr ""
+
 #: .\templates\footer.html:10 .\templates\navbar.html:6
 msgid "Agronomy"
 msgstr ""
@@ -192,10 +401,6 @@ msgstr ""
 msgid "Location:"
 msgstr ""
 
-#: .\templates\footer.html:16
-msgid "Dhaka, Bangladesh"
-msgstr ""
-
 #: .\templates\footer.html:22
 msgid "Company"
 msgstr ""
@@ -213,7 +418,7 @@ msgstr ""
 msgid "Legacy"
 msgstr ""
 
-#: .\templates\footer.html:32 .\templates\navbar.html:47
+#: .\templates\footer.html:32 .\templates\navbar.html:50
 msgid "Services"
 msgstr ""
 
@@ -257,19 +462,145 @@ msgstr ""
 msgid "Assistant System"
 msgstr ""
 
-#: .\templates\index.html:350
+#: .\templates\index.html:93
+msgid "Stay Current"
+msgstr ""
+
+#: .\templates\index.html:94
+msgid ""
+"Explore agriculture with Agronomy's latest knowledge. Our platform provides "
+"accurate and updated crop, livestock, pest, and other information. Stay "
+"ahead and make smart decisions to succeed on your farm."
+msgstr ""
+
+#: .\templates\index.html:110
+msgid "Your Farming Partner"
+msgstr ""
+
+#: .\templates\index.html:111
+msgid ""
+"Customized Solutions at Your Fingertips: For successful farming, agronomy is "
+"your trusty partner. We tailor solutions to your area, crop type, and goals. "
+"Easy yields and sustainable practices with user-friendly equipment and "
+"skilled assistance."
+msgstr ""
+
+#: .\templates\index.html:128
+msgid "Join the Agronomy Community"
+msgstr ""
+
+#: .\templates\index.html:129
+msgid ""
+"To learn, share, succeed Engage with farmers and experts in our vibrant "
+"Agronomy community. Participate in discussions and learn from others' "
+"triumphs. Our interactive forums allow you to seek advice and connect with "
+"like-minded people, ensuring your farming efforts are supported."
+msgstr ""
+
+#: .\templates\index.html:141 .\templates\index.html:165
+#: .\templates\index.html:178 .\templates\navbar.html:16
+msgid "Features"
+msgstr ""
+
+#: .\templates\index.html:141
+msgid "1"
+msgstr ""
+
+#: .\templates\index.html:147
+msgid ""
+"Welcome to Agronomy, your trusted source for timely and accurate "
+"agricultural information. To provide you with the most up-to-date "
+"information possible, our website compiles information from a wide variety "
+"of reputable sources in the agricultural, veterinary, and animal sciences. "
+"You no longer have to waste time sorting through irrelevant data, because "
+"Agronomy provides insight into modern farming practices."
+msgstr ""
+
+#: .\templates\index.html:165
+msgid "2"
+msgstr ""
+
+#: .\templates\index.html:166
+msgid ""
+"Agronomy's individualized approaches can help farmers achieve greater "
+"precision in their work. To better serve you, our platform takes into "
+"account your geographical area, crop kind, and individual requirements. "
+"Whether you're an experienced farmer or just getting started, Agronomy's "
+"straightforward interface will lead you through the steps you need to take "
+"to maximize your harvest, improve your soil's health, and adopt "
+"environmentally responsible methods."
+msgstr ""
+
+#: .\templates\index.html:178
+msgid "3"
+msgstr ""
+
+#: .\templates\index.html:179
+msgid ""
+"Agronomy is more than simply a website; it's also a lively online "
+"neighborhood filled with agricultural novices and gurus eager to share their "
+"knowledge with one another. Have deep conversations, teach and be taught by "
+"your fellow farmers. Our discussion boards are a great place to meet others "
+"who share your interests and get answers to your questions. In addition, the "
+"expert subscription model provided by Agronomy gives you instant access to "
+"seasoned professionals who can answer your unique questions and keep you on "
+"the road to success."
+msgstr ""
+
+#: .\templates\index.html:194 .\templates\testimonials.html:9
+msgid "What people say"
+msgstr ""
+
+#: .\templates\index.html:194 .\templates\testimonials.html:9
+msgid "about us"
+msgstr ""
+
+#: .\templates\index.html:205 .\templates\testimonials.html:20
+msgid ""
+"Agronomy changed my farming style. The precise insights and specific advice "
+"have greatly increased my crop output. Like having an agricultural expert in "
+"my pocket!"
+msgstr ""
+
+#: .\templates\index.html:208 .\templates\testimonials.html:23
+msgid "Karim, farmer"
+msgstr ""
+
+#: .\templates\index.html:221 .\templates\testimonials.html:36
+msgid ""
+"Agronomy has helped my studies. The platform's detailed information and "
+"interactive features made complex farming principles easy to grasp."
+msgstr ""
+
+#: .\templates\index.html:224 .\templates\testimonials.html:39
+msgid "Abir, agricultural student"
+msgstr ""
+
+#: .\templates\index.html:237 .\templates\testimonials.html:52
+msgid ""
+"Agronomy is my go-to source for solid data after years in the industry. "
+"Community forums are great for sharing expertise, and the platform's user-"
+"friendly design makes content easy to find."
+msgstr ""
+
+#: .\templates\index.html:240 .\templates\testimonials.html:55
+msgid "Mr. Rezaul, agricultural consultant"
+msgstr ""
+
+#: .\templates\index.html:268
 msgid "Subscribe to our newsletter"
 msgstr ""
 
-#: .\templates\index.html:356
+#: .\templates\index.html:274 .\templates\pricing.html:47
+#: .\templates\pricing.html:93 .\templates\pricing.html:146
 msgid "Subscribe"
 msgstr ""
 
-#: .\templates\index.html:366 .\templates\pricing.html:136
+#: .\templates\index.html:284 .\templates\pricing.html:158
 msgid "Not sure which plan suits you?"
 msgstr ""
 
-#: .\templates\index.html:368 .\templates\pricing.html:138
+#: .\templates\index.html:286 .\templates\pricing.html:160
 msgid "Contact us"
 msgstr ""
 
@@ -301,10 +632,6 @@ msgstr ""
 msgid "Home"
 msgstr ""
 
-#: .\templates\navbar.html:16
-msgid "Features"
-msgstr ""
-
 #: .\templates\navbar.html:24 .\templates\navbar.html:27
 msgid "Pages"
 msgstr ""
@@ -317,55 +644,63 @@ msgstr ""
 msgid "Testimonials"
 msgstr ""
 
-#: .\templates\navbar.html:50
+#: .\templates\navbar.html:46 .\templates\pricing.html:28
+#: .\templates\pricing.html:66 .\templates\pricing.html:111
 msgid "Agricultural Information"
 msgstr ""
 
-#: .\templates\navbar.html:52
+#: .\templates\navbar.html:52 .\templates\pricing.html:36
+#: .\templates\pricing.html:74 .\templates\pricing.html:119
+msgid "Weather"
+msgstr ""
+
+#: .\templates\navbar.html:54 .\templates\pricing.html:44
+#: .\templates\pricing.html:82 .\templates\pricing.html:127
 msgid "Questions"
 msgstr ""
 
-#: .\templates\navbar.html:53
+#: .\templates\navbar.html:55 .\templates\pricing.html:90
+#: .\templates\pricing.html:135
 msgid "Contact with Expert"
 msgstr ""
 
-#: .\templates\navbar.html:55
+#: .\templates\navbar.html:57
 msgid "Contact with User"
 msgstr ""
 
-#: .\templates\navbar.html:57
+#: .\templates\navbar.html:59 .\templates\pricing.html:143
 msgid "Chat with Ai"
 msgstr ""
 
-#: .\templates\navbar.html:112
+#: .\templates\navbar.html:114
 msgid "Show All Notifications"
 msgstr ""
 
-#: .\templates\navbar.html:125
+#: .\templates\navbar.html:127
 msgid "Profile"
 msgstr ""
 
-#: .\templates\navbar.html:128
+#: .\templates\navbar.html:130
 msgid "Dashboard"
 msgstr ""
 
-#: .\templates\navbar.html:130
+#: .\templates\navbar.html:132
 msgid "Settings"
 msgstr ""
 
-#: .\templates\navbar.html:131
+#: .\templates\navbar.html:133
 msgid "Activity"
 msgstr ""
 
-#: .\templates\navbar.html:135
+#: .\templates\navbar.html:137
 msgid "Logout"
 msgstr ""
 
-#: .\templates\navbar.html:142
+#: .\templates\navbar.html:144
 msgid "Login"
 msgstr ""
 
-#: .\templates\navbar.html:143
+#: .\templates\navbar.html:145
 msgid "Sign up"
 msgstr ""
 
@@ -375,6 +710,38 @@ msgstr ""
 
 #: .\templates\notifications.html:55
 msgid "No notification was found!"
+msgstr ""
+
+#: .\templates\pricing.html:10
+msgid "Check out"
+msgstr ""
+
+#: .\templates\pricing.html:10
+msgid "amazing plans"
+msgstr ""
+
+#: .\templates\pricing.html:18
+msgid "Standard"
+msgstr ""
+
+#: .\templates\pricing.html:19
+msgid "$2"
+msgstr ""
+
+#: .\templates\pricing.html:56
+msgid "Pro"
+msgstr ""
+
+#: .\templates\pricing.html:57
+msgid "$5"
+msgstr ""
+
+#: .\templates\pricing.html:101
+msgid "Enterprise"
+msgstr ""
+
+#: .\templates\pricing.html:102
+msgid "$10"
 msgstr ""
 
 #: .\templates\questions.html:31
@@ -408,6 +775,50 @@ msgstr ""
 
 #: .\templates\view-question.html:151
 msgid "No answer has been posted yet."
+msgstr ""
+
+#: .\templates\weather.html:8
+msgid "According to your current location"
+msgstr ""
+
+#: .\templates\weather.html:26
+msgid "Show forecast"
+msgstr ""
+
+#: .\templates\weather.html:30
+msgid "No weather data was found!"
+msgstr ""
+
+#: .\templates\weather.html:37 .\templates\weather.html:118
+msgid "3-hour Forecast 5 days"
+msgstr ""
+
+#: .\templates\weather.html:59
+msgid "No forecast data was found!"
+msgstr ""
+
+#: .\templates\weather.html:68
+msgid "Search city"
+msgstr ""
+
+#: .\templates\weather.html:79
+msgid "Search"
+msgstr ""
+
+#: .\templates\weather.html:89
+msgid "Searched location"
+msgstr ""
+
+#: .\templates\weather.html:107
+msgid "Show Forecast"
+msgstr ""
+
+#: .\templates\weather.html:111
+msgid "No search weather data was found!"
+msgstr ""
+
+#: .\templates\weather.html:140
+msgid "No search forecast data was found!"
 msgstr ""
 
 #: .\venv\Lib\site-packages\django\contrib\messages\apps.py:15

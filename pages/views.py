@@ -1,25 +1,26 @@
+import copy
+import json
 import os
 import traceback
-
-from django.shortcuts import render, HttpResponse, redirect, get_object_or_404
 from urllib.parse import urlparse
+from urllib.request import urlopen
+import requests
+import datetime
 from django.conf import settings
+from django.contrib import messages
 from django.http import HttpResponseRedirect
+from django.shortcuts import render, redirect
 from django.urls.base import resolve, reverse
 from django.urls.exceptions import Resolver404
 from django.utils import translation
-from django.contrib import messages
-from Agronomy.connection import get_collection
 
+from Agronomy.connection import get_collection
 from accounts.models import Account
 from accounts.views import create_notification
-from managements.models import Category, Subcategory, Information, DiseaseProblem
-from managements.views import cropping_image, get_categories, get_categories_subcategories, get_subcategories_information, get_diseases_problems
-
-from .models import Question, QuestionCounts, Answer, AnswerCounts, Vote, Problem, Room, Message
+from managements.models import Category, Subcategory
+from managements.views import cropping_image, get_categories, get_subcategories_information, get_diseases_problems
 from .forms import QuestionForm, AnswerForm, ProblemForm
-from django.db import models
-import copy
+from .models import Question, Answer, Vote, Problem, Room, Message
 
 
 def setLanguage(request, language):
@@ -1174,6 +1175,85 @@ def chat_ai_page(request, problem_id=None, context=None):
             context["problems_count"] = len(problems)
             context["DATA_UPLOAD_MAX_MEMORY_SIZE"] = settings.DATA_UPLOAD_MAX_MEMORY_SIZE
             return render(request, 'chat/chat-ai.html', context)
+
+    messages.error(request, "You are not allow to visit the page")
+    return redirect(reverse('index'))
+
+
+def fetch_weather_and_forecast(lat, lon):
+    api_key = os.environ['OPENWEATHER_API_KEY']
+    weather_url = 'https://api.openweathermap.org/data/2.5/weather?lat={}&lon={}&appid={}'
+    forecast_url = 'https://api.openweathermap.org/data/2.5/forecast?lat={}&lon={}&appid={}'
+
+    weather_response = requests.get(weather_url.format(lat, lon, api_key)).json()
+
+    weather_data = {
+        'city': weather_response['name'],
+        'temp': round(weather_response['main']['temp'] - 273.15, 2),
+        'min_temp': round(weather_response['main']['temp_min'] - 273.15, 2),
+        'max_temp': round(weather_response['main']['temp_max'] - 273.15, 2),
+        'description': weather_response['weather'][0]['description'],
+        'icon': weather_response['weather'][0]['icon'],
+    }
+
+    forecast_response = requests.get(forecast_url.format(lat, lon, api_key)).json()
+
+    forecasts = []
+    for forecast in forecast_response['list']:
+        forecasts.append({
+            'day': datetime.datetime.fromtimestamp(forecast['dt']).strftime('%A - %I:%M:%S %p'),
+            'temp': round(forecast['main']['temp'] - 273.15, 2),
+            'min_temp': round(forecast['main']['temp_min'] - 273.15, 2),
+            'max_temp': round(forecast['main']['temp_max'] - 273.15, 2),
+            'description': forecast['weather'][0]['description'],
+            'icon': forecast['weather'][0]['icon'],
+        })
+
+    forecasts_data = []
+    for i in range(0, len(forecasts), 4):
+        sublist = forecasts[i:i + 4]
+        forecasts_data.append(sublist)
+
+    return weather_data, forecasts_data
+
+
+def weather_page(request, context=None):
+    if context is None:
+        context = {}
+    default_language = 'bn' in translation.get_language()
+    context["default_language"] = default_language
+
+    user = request.user
+    if user.is_authenticated:
+        if request.POST and len(context) == 1:
+            city_lat_lon = request.POST.get("city_lat_lon")
+            search_loc = city_lat_lon.split(",")
+            search_weather_data, search_forecasts_data = fetch_weather_and_forecast(search_loc[0], search_loc[1])
+            searched = True
+        else:
+            searched = False
+            search_loc = [None, None]
+            search_weather_data = None
+            search_forecasts_data = None
+
+        context["searched"] = searched
+        context["search_lat"] = search_loc[0]
+        context["search_lon"] = search_loc[1]
+        context["search_weather_data"] = search_weather_data
+        context["search_forecasts_data"] = search_forecasts_data
+
+        url = "https://ipinfo.io/json"
+        url_response = requests.get(url).json()
+        current_loc = url_response["loc"].split(",")
+        current_country = url_response["country"].lower()
+        context["current_lat"] = current_loc[0]
+        context["current_lon"] = current_loc[1]
+
+        weather_data, forecasts_data = fetch_weather_and_forecast(current_loc[0], current_loc[1])
+
+        context["weather_data"] = weather_data
+        context["forecasts_data"] = forecasts_data
+        return render(request, 'weather.html', context)
 
     messages.error(request, "You are not allow to visit the page")
     return redirect(reverse('index'))

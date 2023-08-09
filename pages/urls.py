@@ -44,5 +44,7 @@ urlpatterns = [
     path('chat/ai/<int:problem_id>', views.chat_ai_page, name='chat-ai'),
     path('chat/request-ai', views.request_ai_page, name='request-ai'),
 
+    path('weather', views.weather_page, name='weather'),
+
     path("setLanguage/<str:language>", views.setLanguage, name="set-language"),
 ]

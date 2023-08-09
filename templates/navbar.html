@@ -42,12 +42,14 @@
                     </li>
 
                     {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link navLink {% if url_name == 'category' or url_name == 'subcategory' or url_name == 'information' %}active{% endif %}" href={% url "category" %}><span>{% trans 'Agricultural Information' %}</span></a>
+                        </li>
                         <li class="nav-item dropdown">
                             <a class="dropdown-toggle nav-link navLink {% if url_name == 'category' %}active{% endif %}"
                                aria-expanded="false" data-bs-toggle="dropdown" href="#">{% trans 'Services' %}</a>
                             <div class="dropdown-menu navMenu">
-                                <a class="dropdown-item navMenuItem"
-                                   href={% url "category" %}><span>{% trans 'Agricultural Information' %}</span></a>
+                                <a class="dropdown-item navMenuItem" href="{% url "weather" %}"><span>{% trans 'Weather' %}</span></a>
                                 <a class="dropdown-item navMenuItem"
                                    href={% url "questions" %}><span>{% trans 'Questions' %}</span></a>
                                 <a class="dropdown-item navMenuItem" href="{% url "chat-expert" %}"><span>{% trans 'Contact with Expert' %}</span></a>
