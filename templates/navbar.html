@@ -46,7 +46,7 @@
                             <a class="nav-link navLink {% if url_name == 'category' or url_name == 'subcategory' or url_name == 'information' %}active{% endif %}" href={% url "category" %}><span>{% trans 'Agricultural Information' %}</span></a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="dropdown-toggle nav-link navLink {% if url_name == 'category' %}active{% endif %}"
+                            <a class="dropdown-toggle nav-link navLink {% if url_name == 'weather' or url_name == 'questions' or url_name == 'chat-expert' or url_name == 'chat-user' or url_name == 'chat-ai' %}active{% endif %}"
                                aria-expanded="false" data-bs-toggle="dropdown" href="#">{% trans 'Services' %}</a>
                             <div class="dropdown-menu navMenu">
                                 <a class="dropdown-item navMenuItem" href="{% url "weather" %}"><span>{% trans 'Weather' %}</span></a>

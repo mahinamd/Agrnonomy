@@ -1242,8 +1242,11 @@ def weather_page(request, context=None):
         context["search_weather_data"] = search_weather_data
         context["search_forecasts_data"] = search_forecasts_data
 
-        url = "https://ipinfo.io/json"
+        client_ip = request.META.get('REMOTE_ADDR')
+        print(client_ip)
+        url = "https://ipinfo.io/client_ip?json"
         url_response = requests.get(url).json()
+        print(url_response)
         current_loc = url_response["loc"].split(",")
         current_country = url_response["country"].lower()
         context["current_lat"] = current_loc[0]
