@@ -1,13 +1,13 @@
 import copy
-import json
+import datetime
 import os
 import traceback
 from urllib.parse import urlparse
-from urllib.request import urlopen
+
 import requests
-import datetime
 from django.conf import settings
 from django.contrib import messages
+from django.db import models
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls.base import resolve, reverse
@@ -611,8 +611,23 @@ def questions_page(request):
             else:
                 questions = Question.objects.all()
 
-            context["questions"] = questions
-            context["questions_count"] = questions.count()
+            if request.POST and len(context) == 1:
+                search_query = request.POST.get('search_query')
+                if search_query:
+                    search_questions = []
+                    for question in questions:
+                        if search_query in question.title or search_query in question.description or (question.tags is not None and search_query in question.tags):
+                            search_questions.append(question)
+
+                    context["questions"] = search_questions
+                    context["questions_count"] = len(search_questions)
+                else:
+                    messages.error(request, "Invalid search request, failed to search questions")
+                    return redirect(reverse("questions"))
+            else:
+                context["questions"] = questions
+                context["questions_count"] = questions.count()
+
             return render(request, 'questions.html', context)
         except Exception as e:
             messages.error(request, "Invalid request, failed to load questions")
@@ -1225,16 +1240,35 @@ def weather_page(request, context=None):
 
     user = request.user
     if user.is_authenticated:
+        current_lat = None
+        current_lon = None
+        weather_data = None
+        forecasts_data = None
+        searched = False
+        search_loc = [None, None]
+        search_weather_data = None
+        search_forecasts_data = None
         if request.POST and len(context) == 1:
+            print(request.POST)
+            current_location_data = request.POST.get('current_location_lat_lon')
+            if current_location_data:
+                current_location = current_location_data.split(",")
+                if current_location[0] == "True":
+                    current_lat = current_location[1]
+                    current_lon = current_location[2]
+
+                    weather_data, forecasts_data = fetch_weather_and_forecast(current_lat, current_lon)
+
             city_lat_lon = request.POST.get("city_lat_lon")
-            search_loc = city_lat_lon.split(",")
-            search_weather_data, search_forecasts_data = fetch_weather_and_forecast(search_loc[0], search_loc[1])
-            searched = True
-        else:
-            searched = False
-            search_loc = [None, None]
-            search_weather_data = None
-            search_forecasts_data = None
+            if city_lat_lon:
+                search_loc = city_lat_lon.split(",")
+                search_weather_data, search_forecasts_data = fetch_weather_and_forecast(search_loc[0], search_loc[1])
+                searched = True
+                if len(search_loc) == 4:
+                    current_lat = search_loc[2]
+                    current_lon = search_loc[3]
+
+                    weather_data, forecasts_data = fetch_weather_and_forecast(current_lat, current_lon)
 
         context["searched"] = searched
         context["search_lat"] = search_loc[0]
@@ -1242,18 +1276,19 @@ def weather_page(request, context=None):
         context["search_weather_data"] = search_weather_data
         context["search_forecasts_data"] = search_forecasts_data
 
-        client_ip = request.META.get('REMOTE_ADDR')
-        print(client_ip)
-        url = "https://ipinfo.io/client_ip?json"
+        '''
+        url = "https://ipinfo.io/json"
         url_response = requests.get(url).json()
-        print(url_response)
         current_loc = url_response["loc"].split(",")
         current_country = url_response["country"].lower()
         context["current_lat"] = current_loc[0]
         context["current_lon"] = current_loc[1]
 
         weather_data, forecasts_data = fetch_weather_and_forecast(current_loc[0], current_loc[1])
+        '''
 
+        context["current_lat"] = current_lat
+        context["current_lon"] = current_lon
         context["weather_data"] = weather_data
         context["forecasts_data"] = forecasts_data
         return render(request, 'weather.html', context)

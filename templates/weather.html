@@ -29,6 +29,20 @@
                     <div class="col prof-col pt-3">
                         <h6 class="dash-data-col">{% trans 'No weather data was found!' %}</h6>
                     </div>
+                    <form id="location-form" action="{% url 'weather' %}" method="post"> {% csrf_token %}
+                        <div class="row pb-3">
+                            <div class="col prof-col pt-3">
+                                <input id="location-input" class="form-control d-none" type="hidden" name="current_location_lat_lon">
+                            </div>
+                            {% include 'form-message.html' %}
+                            <div class="text-center py-3 d-none" id="loading-spinner">
+                                <span class="spinner-border spinner-border-sm spinner-color" role="status"></span>
+                            </div>
+                            <div class="col prof-col pt-3 text-center">
+                                <button class="btn btn-primary me-3 mt-1" type="submit">{% trans 'Get My Location' %}</button>
+                            </div>
+                        </div>
+                    </form>
                 {% endif %}
             </div>
         </div>
@@ -161,6 +175,8 @@
     <script src="{% static "assets/js/form.handler.js" %}"></script>
 
     <script type="text/javascript">
+        const locationForm = document.getElementById('location-form');
+        const locationInput = document.getElementById('location-input');
         const countryFlag = document.getElementById('country-flag');
         const searchCityInput = document.getElementById('search-city-input');
         const searchCityLatLon = document.getElementById('search-city-lat-lon');
@@ -170,20 +186,20 @@
         const currentForecastBtn = document.getElementById("current-forecast-btn");
         const searchForecastBtn = document.getElementById("search-forecast-btn");
 
-        if(currentForecastBtn) {
+        if (currentForecastBtn) {
             currentForecastBtn.addEventListener('click', function (event) {
                 const currentForecastHr = document.getElementById("current-forecast-hr");
                 const currentForecast = document.getElementById("current-forecast");
-                if(currentForecastHr && currentForecast) {
-                    if(currentForecastHr.classList.contains("d-none")) {
+                if (currentForecastHr && currentForecast) {
+                    if (currentForecastHr.classList.contains("d-none")) {
                         currentForecastHr.classList.remove("d-none");
                     } else {
                         currentForecastHr.classList.add("d-none");
                     }
-                    if(currentForecast.classList.contains("d-none")) {
+                    if (currentForecast.classList.contains("d-none")) {
                         currentForecast.classList.remove("d-none");
                         currentForecastBtn.textContent = "Hide forecast";
-                    } else{
+                    } else {
                         currentForecast.classList.add("d-none");
                         currentForecastBtn.textContent = "Show forecast";
                     }
@@ -191,20 +207,20 @@
             });
         }
 
-        if(searchForecastBtn) {
+        if (searchForecastBtn) {
             searchForecastBtn.addEventListener('click', function (event) {
                 const searchForecastHr = document.getElementById("search-forecast-hr");
                 const searchForecast = document.getElementById("search-forecast");
-                if(searchForecastHr && searchForecast) {
-                    if(searchForecastHr.classList.contains("d-none")) {
+                if (searchForecastHr && searchForecast) {
+                    if (searchForecastHr.classList.contains("d-none")) {
                         searchForecastHr.classList.remove("d-none");
                     } else {
                         searchForecastHr.classList.add("d-none");
                     }
-                    if(searchForecast.classList.contains("d-none")) {
+                    if (searchForecast.classList.contains("d-none")) {
                         searchForecast.classList.remove("d-none");
                         searchForecastBtn.textContent = "Hide forecast";
-                    } else{
+                    } else {
                         searchForecast.classList.add("d-none");
                         searchForecastBtn.textContent = "Show forecast";
                     }
@@ -219,91 +235,130 @@
         }
 
         try {
-            function fetchCoordinates(lat, lon, mode) {
-                const apiReverseUrl = `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json`;
-                fetch(apiReverseUrl)
-                    .then(response => response.json())
-                    .then(data => {
-                        const address = data.display_name;
-                        const countryCode = data.address.country_code;
-                        const addressHeading = document.createElement('h4');
-                        addressHeading.classList.add('fw-bold');
-                        addressHeading.textContent = address + " ";
-                        addressHeading.appendChild(getCountryLogoImgElement(countryCode));
-                        if(mode === 'current-address') {
-                            currentAddress.appendChild(addressHeading);
-                        } else if(mode === 'search-address') {
-                            searchCityInput.value = address;
-                            searchAddress.appendChild(addressHeading);
-                        }
-                    })
-                    .catch(error => {
-                        alert('Error in fetching reverse data: ' + error);
-                    });
-            }
-
-            {% if weather_data %}
-                fetchCoordinates({{ current_lat }}, {{ current_lon }}, "current-address");
-            {% endif %}
-
-            {% if searched %}
-                fetchCoordinates({{ search_lat }}, {{ search_lon }}, "search-address");
-            {% endif %}
-
-            function fetchCitySuggestions(searchQuery) {
-                const apiSearchUrl = `https://nominatim.openstreetmap.org/search?q=${searchQuery}&format=json&limit=5`;
-                fetch(apiSearchUrl)
-                    .then(response => response.json())
-                    .then(data => {
-                        citySuggestionsContainer.innerHTML = '';
-
-                        data.forEach(suggestion => {
-                            const suggestionItem = document.createElement('div');
-                            suggestionItem.classList.add('suggestion');
-                            suggestionItem.textContent = suggestion.display_name;
-
-                            suggestionItem.addEventListener('click', () => {
-                                searchCityInput.value = suggestion.display_name;
-                                citySuggestionsContainer.innerHTML = '';
-                                citySuggestionsContainer.classList.add('d-none');
-
-                                const apiSelectedSearchUrl = `https://nominatim.openstreetmap.org/search?q=${suggestion.display_name}&format=json&limit=1`;
-
-                                fetch(apiSelectedSearchUrl)
-                                    .then(response => response.json())
-                                    .then(data => {
-                                        if (data.length > 0) {
-                                            const selectedCity = data[0];
-                                            const latitude = selectedCity.lat;
-                                            const longitude = selectedCity.lon;
-                                            searchCityLatLon.value = latitude + "," + longitude;
-                                        } else {
-                                            alert('City not found!');
-                                        }
-                                    })
-                                    .catch(error => {
-                                        alert('Error: ' + error);
-                                    });
+            document.addEventListener("DOMContentLoaded", function() {
+                if(locationForm) {
+                    locationForm.addEventListener('submit', function (event) {
+                        if ("geolocation" in navigator) {
+                            navigator.geolocation.getCurrentPosition(function (position) {
+                                const lat = position.coords.latitude;
+                                const lon = position.coords.longitude;
+                                locationInput.value = "True," + lat + "," + lon;
+                                locationForm.submit();
                             });
-
-                            citySuggestionsContainer.appendChild(suggestionItem);
-                        });
-                    })
-                    .catch(error => {
-                        alert('Error in fetching search data: ' + error);
+                            if(locationInput.value.trim() === '') {
+                                event.preventDefault();
+                            }
+                        } else {
+                            event.preventDefault();
+                            alert("Geolocation is not available in your browser.");
+                        }
                     });
-            }
-
-            searchCityInput.addEventListener('input', () => {
-                const searchQuery = searchCityInput.value.trim();
-
-                if (searchQuery.length > 0) {
-                    citySuggestionsContainer.classList.remove('d-none');
-                    fetchCitySuggestions(searchQuery);
-                } else {
-                    citySuggestionsContainer.innerHTML = '';
-                    citySuggestionsContainer.classList.add('d-none');
                 }
+
+
+                function fetchCoordinates(lat, lon, mode) {
+                    const apiReverseUrl = `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json`;
+                    fetch(apiReverseUrl)
+                        .then(response => response.json())
+                        .then(data => {
+                            const address = data.display_name;
+                            const countryCode = data.address.country_code;
+                            const addressHeading = document.createElement('h4');
+                            addressHeading.classList.add('fw-bold');
+                            addressHeading.textContent = address + " ";
+                            addressHeading.appendChild(getCountryLogoImgElement(countryCode));
+                            if (mode === 'current-address') {
+                                currentAddress.appendChild(addressHeading);
+                            } else if (mode === 'search-address') {
+                                searchCityInput.value = address;
+                                searchAddress.appendChild(addressHeading);
+                            }
+                        })
+                        .catch(error => {
+                            alert('Error in fetching reverse data: ' + error);
+                        });
+                }
+
+                {% if weather_data %}
+                    fetchCoordinates({{ current_lat }}, {{ current_lon }}, "current-address");
+                {% endif %}
+
+                {% if searched %}
+                    fetchCoordinates({{ search_lat }}, {{ search_lon }}, "search-address");
+                {% endif %}
+
+                function fetchCitySuggestions(searchQuery) {
+                    const apiSearchUrl = `https://nominatim.openstreetmap.org/search?q=${searchQuery}&format=json&limit=5`;
+                    fetch(apiSearchUrl)
+                        .then(response => response.json())
+                        .then(data => {
+                            citySuggestionsContainer.innerHTML = '';
+
+                            data.forEach(suggestion => {
+                                const suggestionItem = document.createElement('div');
+                                suggestionItem.classList.add('suggestion');
+                                suggestionItem.textContent = suggestion.display_name;
+
+                                suggestionItem.addEventListener('click', () => {
+                                    searchCityInput.value = suggestion.display_name;
+                                    citySuggestionsContainer.innerHTML = '';
+                                    citySuggestionsContainer.classList.add('d-none');
+
+                                    const apiSelectedSearchUrl = `https://nominatim.openstreetmap.org/search?q=${suggestion.display_name}&format=json&limit=1`;
+
+                                    fetch(apiSelectedSearchUrl)
+                                        .then(response => response.json())
+                                        .then(data => {
+                                            if (data.length > 0) {
+                                                const selectedCity = data[0];
+                                                const latitude = selectedCity.lat;
+                                                const longitude = selectedCity.lon;
+                                                let currentLocation = "False";
+                                                {% if weather_data %}
+                                                    currentLocation = "True";
+                                                {% endif %}
+
+                                                if(currentLocation === "True") {
+                                                    if ("geolocation" in navigator) {
+                                                        navigator.geolocation.getCurrentPosition(function (position) {
+                                                            const lat = position.coords.latitude;
+                                                            const lon = position.coords.longitude;
+                                                            searchCityLatLon.value = latitude + "," + longitude + "," + lat + "," + lon;
+                                                        });
+                                                    } else {
+                                                        alert("Geolocation is not available in your browser.");
+                                                    }
+                                                } else {
+                                                    searchCityLatLon.value = latitude + "," + longitude;
+                                                }
+                                            } else {
+                                                alert('City not found!');
+                                            }
+                                        })
+                                        .catch(error => {
+                                            alert('Error: ' + error);
+                                        });
+                                });
+
+                                citySuggestionsContainer.appendChild(suggestionItem);
+                            });
+                        })
+                        .catch(error => {
+                            alert('Error in fetching search data: ' + error);
+                        });
+                }
+
+                searchCityInput.addEventListener('input', () => {
+                    const searchQuery = searchCityInput.value.trim();
+
+                    if (searchQuery.length > 0) {
+                        citySuggestionsContainer.classList.remove('d-none');
+                        fetchCitySuggestions(searchQuery);
+                    } else {
+                        citySuggestionsContainer.innerHTML = '';
+                        citySuggestionsContainer.classList.add('d-none');
+                    }
+                });
             });
         } catch (error) {
             alert('Error: ' + error);
