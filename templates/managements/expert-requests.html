@@ -96,14 +96,14 @@
                                                             </select>
                                                             <label for="select-expert" class="d-none dash-data-col">Expert:</label>
                                                             <select class="form-select text-center data-input" name="expert">
-                                                                <option value='' selected{% if problem.has_room and problem.room.ai %} disabled{% endif %}>Select expert</option>
-                                                                <optgroup label='Expert' disabled>
+                                                                <option value='' selected disabled>Select expert</option>
+                                                                <optgroup label='Expert'>
                                                                     {% if problem.has_room and problem.room.ai %}
                                                                         <option value="" selected disabled>AI (ChatGPT)</option>
                                                                     {% else %}
                                                                         {% for account in accounts %}
                                                                             {% if problem.account.id != account.id %}
-                                                                                    <option value="{{ account }}" {% if account.id == problem.room.expert.id %}selected{% endif %}>
+                                                                                <option value="{{ account }}"{% if account.id == problem.room.expert.id %} selected{% endif %}{% if problem.has_room %} disabled{% endif %}>
                                                                                     {{ account.fname }} {{ account.lname }}
                                                                                 </option>
                                                                             {% endif %}
@@ -113,7 +113,6 @@
                                                             </select>
                                                         </div>
                                                         <div class="col-md-5 text-center py-1">
-                                                            <!-- Bug -->
                                                             {% if not problem.has_room %}
                                                                 <button class="btn btn-primary me-2" type="submit">Assign</button>
                                                             {% endif %}

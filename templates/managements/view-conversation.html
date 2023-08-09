@@ -11,7 +11,7 @@
                     {% if room %}
                         <div class="text-center">
                             <a href="#"><span class="h4 fw-bold">{{ room.problem.title }}</span></a>
-                            {% if case.tags %}
+                            {% if room.problem.tags %}
                                 <div class="pt-3">
                                     {% for tag in room.problem.get_tags_list %}
                                         <span class="question-tag">{{ tag }}</span>
@@ -84,8 +84,8 @@
                             <h4 class="dash-data-col">{% trans "Invalid room" %}</h4>
                         </div>
                     {% endif %}
-                    <div class="pt-3">
-                        <a class="btn btn-primary btn-sm mt-1" role="button" href="{% url "expert-requests" %}">Back</a>
+                    <div class="text-center py-3">
+                        <a class="btn btn-primary mt-1" role="button" href="{% url "expert-requests" %}">Back</a>
                     </div>
                 </div>
             </div>
