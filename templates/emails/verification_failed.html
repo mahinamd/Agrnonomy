@@ -1,0 +1,31 @@
+{% extends "index.html" %}
+{% load static i18n %}
+
+{% block content %}
+
+    <section class="my-5 py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 align-self-center">
+                    <div class="text-center">
+                        <h2 class="fw-bold text-danger">{% trans "Verification Failed" %}!</h2>
+                        {% if is_valid_verification_link %}
+                            <h6 class="fw-normal mb-4">{% trans "The account has invalid credentials or has already been verified Please check and try again later." %}</h6>
+                        {% else %}
+                            <h6 class="fw-normal mb-4">{% trans "The verification link is invalid or has expired Please check and try again later." %}<br></h6>
+                        {% endif %}
+                        <img src="{% static 'assets/img/reject.png' %}">
+                        <div class="pt-5 pb-5">
+                            <a class="float-start link" href={% url "login" %}>{% trans "Already have an account? Login!" %}</a>
+                            <a class="float-end link" href={% url "signup" %}>{% trans "Create new account" %}</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 text-center">
+                    <img class="img-fluid" src="{% static 'assets/img/verification-failed-bg.jpg' %}">
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

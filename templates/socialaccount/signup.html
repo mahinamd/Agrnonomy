@@ -1,0 +1,43 @@
+{% extends "index.html" %}
+{% load static i18n %}
+
+{% block content %}
+
+    <section class="my-5 py-5">
+        {% include 'message.html' %}
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 align-self-center">
+                    <div class="text-center">
+                        <h2 class="fw-bold mb-2">{% trans "Signup with" %}&nbsp;{% blocktrans with provider_name=account.get_provider.name %}{{ provider_name }}{% endblocktrans %}</h2>
+                        <h6 class="fw-normal mb-2">
+                            {% trans "You are about to use your" %}&nbsp;{% blocktrans with provider_name=account.get_provider.name %}{{ provider_name }}{% endblocktrans %}&nbsp;{% trans "account to login to Agronomy. As a final step, please complete the following form" %}:
+                        </h6>
+                        <form class="signup" id="signup_form" method="post" action="{% url 'socialaccount_signup' %}"> {% csrf_token %}
+                            {% for field in form %}
+                                <div class="mt-2">
+                                    <label for="{{ field.id_for_label }}"></label>
+                                    <input id="{{ field.id_for_label }}" class="form-control" type="{{ field.field.widget.input_type }}" name="{{ field.name }}" placeholder="{% trans field.label %}" value="{{ field.value|default:'' }}" pattern="^[a-z0-9._-]+@[a-z0-9.]+\.[a-z]{2,15}$" autocomplete="email" required="">
+                                </div>
+                            {% endfor %}
+                            {% if redirect_field_value %}
+                                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                            {% endif %}
+                            {% include 'form-message.html' %}
+                            <button class="btn btn-primary my-4" type="submit">{% trans "Signup" %}&nbsp;&raquo;</button>
+                        </form>
+                        <div class="pb-5">
+                            <a class="float-start link" href={% url "login" %}>{% trans "Login with credentials?" %}</a>
+                            <a class="float-end link" href={% url "signup" %}>{% trans "Create new account" %}</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 text-center">
+                    <img class="img-fluid" src="{% static 'assets/img/verification-failed-bg.jpg' %}">
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
+

@@ -2,13 +2,12 @@
 {% load static i18n %}
 
 {% block content %}
-    <section class="my-5 pt-5">
-        <div class="container">
+    <section class="py-5">
+        <div class="container mt-5 py-3">
+            {% include 'message.html' %}
             <div class="row my-3">
                 <div class="col-md-6">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.4062057395427!2d90.42331591488204!3d23.76854529399997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c7892dcf0001%3A0x853ad729be4edc71!2sEast%20West%20University!5e0!3m2!1sen!2sbd!4v1678680502650!5m2!1sen!2sbd"
-                            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"
-                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.4062057395427!2d90.42331591488204!3d23.76854529399997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c7892dcf0001%3A0x853ad729be4edc71!2sEast%20West%20University!5e0!3m2!1sen!2sbd!4v1678680502650!5m2!1sen!2sbd" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
                 <div class="col-md-6 py-3">
                     <div class="text-truncate ps-2">
@@ -39,23 +38,29 @@
             <div class="row my-5">
                 <div class="col-md-12">
                     <div class="text-center">
-                        <form class="p-3" method="post">
-                            <h3 class="fw-bold mb-4">{% trans "Contact" %}&nbsp;<span class="underline">{% trans "us" %}</span>?</h3>
-                            <p class="text-muted">{% trans "If you want any assistance, please do not hesitate to contact us. Our support team will get in touch with you as soon as possible to provide assistance." %}</p>
-                            <hr>
-                            <div class="mb-1"><input class="form-control" type="text" name="name" placeholder="Name"
-                                                     required=""></div>
-                            <div class="mb-1"><input class="form-control" type="text" name="subject"
-                                                     placeholder="Subject" required=""></div>
-                            <div class="mb-1"><input class="form-control" type="email" name="email" placeholder="Email"
-                                                     required="" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,15}$">
+                        <h3 class="fw-bold mb-4">{% trans "Contact" %}&nbsp;<span class="underline">{% trans "us" %}</span>?</h3>
+                        <p class="text-muted">{% trans "If you want any assistance, please do not hesitate to contact us. Our support team will get in touch with you as soon as possible to provide assistance." %}</p>
+                        <hr>
+                        <form id="contact-form" action="{% url 'ask-question' %}" method="post"> {% csrf_token %}
+                            <div class="mb-2">
+                                <input class="form-control text-center data-input" type="text" name="name" placeholder="Name" required="">
                             </div>
-                            <div class="mb-1"><input class="form-control" type="text" name="phone" placeholder="Phone"
-                                                     minlength="10" maxlength="15"></div>
-                            <div class="mb-1"><textarea class="form-control" name="message" rows="6"
-                                                        placeholder="Message" required="" minlength="10"></textarea>
+                            <div class="mb-2">
+                                <input class="form-control text-center data-input" type="text" name="subject" placeholder="Subject" required="">
                             </div>
-                            <div class="mb-1">
+                            <div class="mb-2">
+                                <input class="form-control text-center data-input" type="email" name="email" placeholder="Email" required="" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,15}$">
+                            </div>
+                            <div class="mb-2">
+                                <input class="form-control text-center data-input" type="text" name="phone" placeholder="Phone" minlength="10" maxlength="15"></div>
+                            <div class="mb-2">
+                                <textarea class="form-control text-center data-input" name="message" rows="6" placeholder="Message" required="" minlength="10"></textarea>
+                            </div>
+                            {% include 'form-message.html' %}
+                            <div class="text-center py-3 d-none" id="loading-spinner">
+                                <span class="spinner-border spinner-border-sm spinner-color" role="status"></span>
+                            </div>
+                            <div class="mb-2">
                                 <button class="btn btn-primary" type="submit">{% trans "Send" %}</button>
                             </div>
                         </form>
@@ -63,7 +68,8 @@
                 </div>
             </div>
         </div>
-    </section><!-- Start: Contact Us Banner -->
+    </section>
+
     <section class="py-4 py-xl-5">
         <div class="container">
             <div class="text-white bg-primary border rounded border-0 border-primary d-flex flex-column justify-content-between flex-lg-row p-4 p-md-5 text-center">
@@ -74,5 +80,21 @@
             </div>
         </div>
     </section>
-    <!-- End: Contact Us Banner -->
+
+{% endblock %}
+
+{% block script %}
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js" integrity="sha512-6lplKUSl86rUVprDIjiW8DuOniNX8UDoRATqZSds/7t6zCQZfaCe3e5zcGaQwxa8Kpn5RTM9Fvl3X2lLV4grPQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script type="text/javascript">
+
+        const form = document.getElementById("contact-form");
+        const informationCount = null;
+        const DATA_UPLOAD_MAX_MEMORY_SIZE = null;
+
+    </script>
+
+    <script src="{% static "assets/js/form_handler.js" %}"></script>
+
 {% endblock %}

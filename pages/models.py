@@ -200,3 +200,23 @@ class Message(models.Model):
 
     class Meta:
         verbose_name_plural = "Messages"
+
+'''
+# Contact model
+class Contact(models.Model):
+    created = models.DateTimeField(verbose_name='Created', auto_now_add=True)
+    last_modified = models.DateTimeField(verbose_name="Last Modified", auto_now=True)
+    account = models.ForeignKey(Account, null=True, blank=True, on_delete=models.SET_NULL, related_name='user_contacts')
+    name = models.CharField(verbose_name="Name", max_length=255, null=False, blank=False)
+    subject = models.CharField(verbose_name="Subject", max_length=255, null=False, blank=False)
+    email = models.CharField(verbose_name="Email", max_length=255, null=False, blank=False)
+    phone = models.CharField(verbose_name="Phone", max_length=255, null=False, blank=False)
+    message = models.TextField(verbose_name="Message", null=True, blank=True)
+    contacted = models.BooleanField(verbose_name="Contacted", null=False, blank=False, default=False)
+
+    def __str__(self):
+        return str(self.id)
+
+    class Meta:
+        verbose_name_plural = "Contacts"
+'''

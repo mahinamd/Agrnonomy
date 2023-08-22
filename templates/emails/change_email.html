@@ -1,0 +1,61 @@
+{% extends "index.html" %}
+
+{% block content %}
+
+    <br><br><br><br><br>
+    {% include 'message.html' %}
+    <section class="team-boxed">
+        <div class="container">
+            <div class="row people">
+                <div class="col-md-6 col-lg-4 item">
+                    <div class="fo-mtb"><h2 class="text-de fw-bold"><strong>Change Your Email?</strong><br></h2>
+                        <h6 class="fw-normal mb-4 text-de">Enter your new email address below:<br></h6>
+                        <form action="/edit_profile/change_email_form" method="post" class="form-sup-mar" id="id_change_email"> {% csrf_token %}
+                            <div>
+                                <input class="form-control mb-1" type="email" name="email" placeholder="New Email" required="" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,15}$">
+                            </div>
+                            <div><input class="form-control mb-1" type="password" name="password" placeholder="Password"
+                                        required=""></div>
+                            {% for field in form %}
+                                {% for error in field.errors %}
+                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                        {{ field.label }}: {{ error }}
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                                aria-label="Close"></button>
+                                    </div>
+                                {% endfor %}
+                            {% endfor %}
+                            {% if form.non_field_errors %}
+                                {% for field in form.non_field_errors %}
+                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                        {{ field }}
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                                aria-label="Close"></button>
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+{#                            <button class="btn btn-primary border rounded m-3 sup-b" type="submit">Update Email<br>#}
+{#                            </button>#}
+                        <button class="g-recaptcha btn btn-primary border rounded m-3 sup-b"
+                                    type="submit" data-action='submit' data-callback='onSubmit'
+                                    data-sitekey={{ site_key }}>Update Email<br></button>
+                        </form>
+                        <div class="pb-5"><a class="float-start link-col" href={% url "profile" %}>Go to
+                            Profile</a><a class="float-end link-col" href={% url "edit_profile" %}>Cancle</a></div>
+                    </div>
+                </div>
+                <div class="col ce-bg-i">
+                    <div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+{% block extra_script %}
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+    <script>
+        function onSubmit(token) {
+            document.getElementById("id_change_email").submit();
+        }
+    </script>
+{% endblock extra_script %}

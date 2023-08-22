@@ -1,0 +1,17 @@
+{% autoescape off %}
+Hi {{ username }},
+Your account Email Address has been changed successfully.
+Your old email address: {{ old_email }}
+Your new email address: {{ new_email }}
+
+If you didn't make this change, please contact CTMS support. Do not share your information.
+
+Use the below link to login to your account:
+{{ protocol }}://{{ domain }}{% url 'signin' %}
+
+If clicking on the link above does not work for you, please copy and paste the URL into a new browser window to try again.
+Thank you for using our service.
+
+Sincerely,
+Cargo Transportation Management System
+{% endautoescape %}

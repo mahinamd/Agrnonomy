@@ -21,6 +21,7 @@ from managements.models import Category, Subcategory
 from managements.views import cropping_image, get_categories, get_subcategories_information, get_diseases_problems
 from .forms import QuestionForm, AnswerForm, ProblemForm
 from .models import Question, Answer, Vote, Problem, Room, Message
+from allauth.account.models import EmailAddress
 
 
 def setLanguage(request, language):
@@ -46,6 +47,7 @@ def setLanguage(request, language):
 def indexPage(request):
     default_language = 'bn' in translation.get_language()
     context = {'default_language': default_language}
+
     return render(request, 'index.html', context)
 
 
@@ -83,28 +85,6 @@ def faqPage(request):
     default_language = 'bn' in translation.get_language()
     context = {'default_language': default_language}
     return render(request, 'faq.html', context)
-
-
-def loginPage(request):
-    default_language = 'bn' in translation.get_language()
-    context = {'default_language': default_language}
-    user = request.user
-    if user.is_authenticated:
-        messages.error(request, "You are already authenticated as " + str(user.email))
-        return redirect('index')
-
-    return render(request, 'login.html', context)
-
-
-def signupPage(request):
-    default_language = 'bn' in translation.get_language()
-    context = {'default_language': default_language}
-    user = request.user
-    if user.is_authenticated:
-        messages.error(request, "You are already authenticated as " + str(user.email))
-        return redirect('index')
-
-    return render(request, 'signup.html', context)
 
 
 def forgottenPasswordPage(request):
@@ -1176,7 +1156,6 @@ def chat_ai_page(request, problem_id=None, context=None):
                 case = Problem.objects.get(id=problem_id)
                 context["case"] = case
                 ws_url = get_websocket_url(request, case, default_language, "ai/")
-                print(ws_url)
                 context["ws_url"] = ws_url
                 room = account.user_rooms.get(problem_id=problem_id)
                 room_messages = room.room_messages.all()
@@ -1249,7 +1228,6 @@ def weather_page(request, context=None):
         search_weather_data = None
         search_forecasts_data = None
         if request.POST and len(context) == 1:
-            print(request.POST)
             current_location_data = request.POST.get('current_location_lat_lon')
             if current_location_data:
                 current_location = current_location_data.split(",")

@@ -5,20 +5,12 @@ from django.db import models
 from djongo import models as djongo_models
 from django.dispatch import receiver
 from django.db.models.signals import pre_delete
+from accounts.models import remove_temp_files
 
 
 # Supporting functions
 def get_default_img_filepath():
     return "default/cloud_upload.png"
-
-
-def remove_temp_files(img_dir_filepath):
-    dir_filepath = os.path.join(settings.MEDIA_ROOT, img_dir_filepath)
-    if os.path.exists(dir_filepath):
-        for filename in os.listdir(dir_filepath):
-            if "temp_" + img_dir_filepath in str(filename):
-                file_path = os.path.join(dir_filepath, filename)
-                os.remove(file_path)
 
 
 # Category model

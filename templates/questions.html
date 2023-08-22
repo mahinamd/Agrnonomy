@@ -62,7 +62,7 @@
                                 {% endif %}
                                 <div class="d-inline-flex ms-auto">
                                     <a class="d-flex justify-content-end align-items-center me-2" href="{% url "questions" question.id %}">
-                                        <img class="questions-profile-img me-2" src="{{ question.account.pimg.url }}">{{ question.account.fname }} {{ question.account.lname }}
+                                        <img class="questions-profile-img me-2" src="{{ question.account.image.url }}">{{ question.account.get_name }}
                                     </a>
                                     <span class="d-lg-flex align-items-lg-center text-end text-muted">asked {{ question.created|get_time_since }}</span>
                                 </div>

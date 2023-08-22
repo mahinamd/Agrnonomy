@@ -17,6 +17,4 @@ load_dotenv()
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Agronomy.production' if os.environ['PRODUCTION'] == 'Yes' else 'Agronomy.settings')
 
-#django.setup()
-#settings.configure()
 application = get_wsgi_application()

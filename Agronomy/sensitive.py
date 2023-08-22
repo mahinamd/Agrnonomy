@@ -31,11 +31,11 @@ ALLOWED_DOMAIN = ALLOWED_HOSTS
 CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1:8000']
 DATABASES = {
     'default': {
-        'ENGINE': selfDecode(os.environ['ENGINE']),
-        'NAME': selfDecode(os.environ['NAME']),
+        'ENGINE': os.environ['DATABASES_DEFAULT_ENGINE'],
+        'NAME': os.environ['DATABASES_DEFAULT_NAME'],
         'CLIENT':
             {
-                'host': selfDecode(os.environ['HOST_LINK']) + selfDecode(os.environ['HOST_PERMISSION']),
+                'host': os.environ['DATABASES_DEFAULT_CLIENT_HOST'],
             }
     }
 }
@@ -56,3 +56,16 @@ CHANNEL_LAYERS = {
     }
 }
 '''
+
+# Google reCAPTCHA
+# v2
+RECAPTCHA_V2_SITE_KEY = os.environ['RECAPTCHA_V2_SITE_KEY']
+RECAPTCHA_V2_SECRET_KEY = os.environ['RECAPTCHA_V2_SECRET_KEY']
+
+# v3
+RECAPTCHA_V3_SITE_KEY = os.environ['RECAPTCHA_V3_SITE_KEY']
+RECAPTCHA_V3_SECRET_KEY = os.environ['RECAPTCHA_V3_SECRET_KEY']
+
+# SMTP Email Configuration
+EMAIL_HOST_USER = os.environ['EMAIL_HOST_USER']
+EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']

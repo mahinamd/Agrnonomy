@@ -1,0 +1,156 @@
+DEBUG 2023-08-22 15:52:03,279 base Asynchronous middleware Agronomy.middleware.PreventGoogleOauthMiddleware adapted.
+DEBUG 2023-08-22 15:52:03,688 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\django\db\models\sql\compiler.py first seen with mtime 1692556069.547395
+DEBUG 2023-08-22 15:52:05,229 autoreload File C:\Users\Asif\AppData\Roaming\Python\Python311\site-packages\channels\auth.py first seen with mtime 1691220504.5984979
+DEBUG 2023-08-22 15:52:05,230 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\aiohttp\hdrs.py first seen with mtime 1690721537.482469
+DEBUG 2023-08-22 15:52:05,231 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\yarl\_url.py first seen with mtime 1690721537.386458
+DEBUG 2023-08-22 15:52:05,232 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\openai\datalib\common.py first seen with mtime 1690721537.8823335
+DEBUG 2023-08-22 15:52:05,232 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\openai\api_resources\__init__.py first seen with mtime 1690721537.859395
+DEBUG 2023-08-22 15:52:05,233 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\openai\api_resources\embedding.py first seen with mtime 1690721537.865379
+DEBUG 2023-08-22 15:52:05,236 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\openai\api_resources\image.py first seen with mtime 1690721537.8693686
+DEBUG 2023-08-22 15:52:05,236 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\openai\api_resources\moderation.py first seen with mtime 1690721537.871363
+DEBUG 2023-08-22 15:52:05,237 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\aiohttp\formdata.py first seen with mtime 1690721537.482469
+DEBUG 2023-08-22 15:52:05,237 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\aiohttp\client_exceptions.py first seen with mtime 1690721537.4765122
+DEBUG 2023-08-22 15:52:05,238 autoreload File C:\Users\Asif\PycharmProjects\Capstone\Agronomy\Agronomy\routing.py first seen with mtime 1691477771.0502408
+DEBUG 2023-08-22 15:52:05,239 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\async_timeout\__init__.py first seen with mtime 1690721537.351186
+DEBUG 2023-08-22 15:52:05,239 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\aiohttp\client.py first seen with mtime 1690721537.4765122
+DEBUG 2023-08-22 15:52:05,240 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\multidict\_compat.py first seen with mtime 1690721537.268353
+DEBUG 2023-08-22 15:52:05,240 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\openai\__init__.py first seen with mtime 1690721537.8464296
+DEBUG 2023-08-22 15:52:05,242 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\openai\api_resources\edit.py first seen with mtime 1690721537.864382
+DEBUG 2023-08-22 15:52:05,243 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\aiohttp\payload_streamer.py first seen with mtime 1690721537.4933436
+DEBUG 2023-08-22 15:52:05,243 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\yarl\__init__.py first seen with mtime 1690721537.3804715
+DEBUG 2023-08-22 15:52:05,243 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\openai\datalib\numpy_helper.py first seen with mtime 1690721537.8833308
+DEBUG 2023-08-22 15:52:05,245 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\openai\api_resources\abstract\deletable_api_resource.py first seen with mtime 1690721537.8753521
+DEBUG 2023-08-22 15:52:05,245 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\aiohttp\tracing.py first seen with mtime 1690721537.4983304
+DEBUG 2023-08-22 15:52:05,246 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\openai\openai_object.py first seen with mtime 1690721537.8524137
+DEBUG 2023-08-22 15:52:05,247 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\yarl\_quoting_c.cp311-win_amd64.pyd first seen with mtime 1690721537.382459
+DEBUG 2023-08-22 15:52:05,248 autoreload File C:\Program Files\Python\Python311\Lib\pydoc.py first seen with mtime 1680631450.0
+DEBUG 2023-08-22 15:52:05,248 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\frozenlist\__init__.py first seen with mtime 1690721537.318274
+DEBUG 2023-08-22 15:52:05,249 autoreload File C:\Users\Asif\AppData\Roaming\Python\Python311\site-packages\channels\sessions.py first seen with mtime 1691220504.6074731
+DEBUG 2023-08-22 15:52:05,251 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\django\contrib\sessions\backends\db.py first seen with mtime 1692556068.7605233
+DEBUG 2023-08-22 15:52:05,252 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\aiohttp\resolver.py first seen with mtime 1690721537.4953382
+DEBUG 2023-08-22 15:52:05,252 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\openai\api_resources\file.py first seen with mtime 1690721537.868371
+DEBUG 2023-08-22 15:52:05,253 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\openai\api_resources\abstract\nested_resource_class_methods.py first seen with mtime 1690721537.878344
+DEBUG 2023-08-22 15:52:05,253 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\openai\util.py first seen with mtime 1690721537.855406
+DEBUG 2023-08-22 15:52:05,254 autoreload File C:\Users\Asif\AppData\Roaming\Python\Python311\site-packages\channels\security\websocket.py first seen with mtime 1691220504.620438
+DEBUG 2023-08-22 15:52:05,256 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\openai\api_resources\customer.py first seen with mtime 1690721537.8623867
+DEBUG 2023-08-22 15:52:05,256 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\yarl\_quoting.py first seen with mtime 1690721537.3814409
+DEBUG 2023-08-22 15:52:05,257 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\openai\api_resources\deployment.py first seen with mtime 1690721537.8633842
+DEBUG 2023-08-22 15:52:05,257 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\aiohttp\cookiejar.py first seen with mtime 1690721537.4815056
+DEBUG 2023-08-22 15:52:05,258 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\openai\datalib\__init__.py first seen with mtime 1690721537.8813362
+DEBUG 2023-08-22 15:52:05,260 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\aiohttp\abc.py first seen with mtime 1690721537.4745162
+DEBUG 2023-08-22 15:52:05,261 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\openai\api_resources\abstract\engine_api_resource.py first seen with mtime 1690721537.8763494
+DEBUG 2023-08-22 15:52:05,262 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\openai\api_resources\fine_tune.py first seen with mtime 1690721537.868371
+DEBUG 2023-08-22 15:52:05,262 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\openai\api_resources\abstract\updateable_api_resource.py first seen with mtime 1690721537.8793418
+DEBUG 2023-08-22 15:52:05,263 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\aiohttp\http_writer.py first seen with mtime 1690721537.4880452
+DEBUG 2023-08-22 15:52:05,264 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\openai\api_resources\abstract\createable_api_resource.py first seen with mtime 1690721537.8743556
+DEBUG 2023-08-22 15:52:05,265 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\aiohttp\client_proto.py first seen with mtime 1690721537.4774823
+DEBUG 2023-08-22 15:52:05,265 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\openai\api_resources\model.py first seen with mtime 1690721537.870366
+DEBUG 2023-08-22 15:52:05,265 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\aiohttp\_helpers.cp311-win_amd64.pyd first seen with mtime 1690721537.464246
+DEBUG 2023-08-22 15:52:05,266 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\aiohttp\base_protocol.py first seen with mtime 1690721537.4754877
+DEBUG 2023-08-22 15:52:05,266 autoreload File C:\Users\Asif\AppData\Roaming\Python\Python311\site-packages\channels\generic\__init__.py first seen with mtime 1691220504.6124601
+DEBUG 2023-08-22 15:52:05,266 autoreload File C:\Users\Asif\AppData\Roaming\Python\Python311\site-packages\channels\generic\websocket.py first seen with mtime 1691220504.6144545
+DEBUG 2023-08-22 15:52:05,267 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\openai\api_resources\chat_completion.py first seen with mtime 1690721537.8613896
+DEBUG 2023-08-22 15:52:05,268 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\django\core\asgi.py first seen with mtime 1692556069.3349617
+DEBUG 2023-08-22 15:52:05,269 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\multidict\_multidict.cp311-win_amd64.pyd first seen with mtime 1690721537.269372
+DEBUG 2023-08-22 15:52:05,271 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\aiohttp\__init__.py first seen with mtime 1690721537.4602573
+DEBUG 2023-08-22 15:52:05,271 autoreload File C:\Users\Asif\PycharmProjects\Capstone\Agronomy\Agronomy\asgi.py first seen with mtime 1691481354.5409446
+DEBUG 2023-08-22 15:52:05,272 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\aiohttp\_http_writer.cp311-win_amd64.pyd first seen with mtime 1690721537.4705012
+DEBUG 2023-08-22 15:52:05,273 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\openai\api_resources\abstract\listable_api_resource.py first seen with mtime 1690721537.877347
+DEBUG 2023-08-22 15:52:05,274 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\multidict\_multidict_base.py first seen with mtime 1690721537.271346
+DEBUG 2023-08-22 15:52:05,276 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\aiohttp\streams.py first seen with mtime 1690721537.4963357
+DEBUG 2023-08-22 15:52:05,276 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\aiohttp\helpers.py first seen with mtime 1690721537.4834847
+DEBUG 2023-08-22 15:52:05,277 autoreload File C:\Users\Asif\PycharmProjects\Capstone\Agronomy\pages\consumers.py first seen with mtime 1691467837.4324281
+DEBUG 2023-08-22 15:52:05,277 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\multidict\_abc.py first seen with mtime 1690721537.2673833
+DEBUG 2023-08-22 15:52:05,278 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\multidict\__init__.py first seen with mtime 1690721537.2653832
+DEBUG 2023-08-22 15:52:05,278 autoreload File C:\Users\Asif\AppData\Roaming\Python\Python311\site-packages\channels\middleware.py first seen with mtime 1691220504.6054785
+DEBUG 2023-08-22 15:52:05,278 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\openai\api_resources\audio.py first seen with mtime 1690721537.860392
+DEBUG 2023-08-22 15:52:05,279 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\aiohttp\_websocket.cp311-win_amd64.pyd first seen with mtime 1690721537.472528
+DEBUG 2023-08-22 15:52:05,283 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\frozenlist\_frozenlist.cp311-win_amd64.pyd first seen with mtime 1690721537.3202689
+DEBUG 2023-08-22 15:52:05,285 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\aiohttp\typedefs.py first seen with mtime 1690721537.499328
+DEBUG 2023-08-22 15:52:05,285 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\aiohttp\multipart.py first seen with mtime 1690721537.4913487
+DEBUG 2023-08-22 15:52:05,286 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\openai\api_resources\completion.py first seen with mtime 1690721537.8623867
+DEBUG 2023-08-22 15:52:05,287 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\aiohttp\locks.py first seen with mtime 1690721537.4890451
+DEBUG 2023-08-22 15:52:05,287 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\aiohttp\http.py first seen with mtime 1690721537.4844913
+DEBUG 2023-08-22 15:52:05,290 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\openai\api_requestor.py first seen with mtime 1690721537.8484242
+DEBUG 2023-08-22 15:52:05,291 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\aiohttp\log.py first seen with mtime 1690721537.4903498
+DEBUG 2023-08-22 15:52:05,291 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\openai\error.py first seen with mtime 1690721537.8504188
+DEBUG 2023-08-22 15:52:05,292 autoreload File C:\Users\Asif\AppData\Roaming\Python\Python311\site-packages\channels\consumer.py first seen with mtime 1691220504.599516
+DEBUG 2023-08-22 15:52:05,293 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\aiohttp\client_ws.py first seen with mtime 1690721537.4795065
+DEBUG 2023-08-22 15:52:05,295 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\openai\version.py first seen with mtime 1690721537.8574007
+DEBUG 2023-08-22 15:52:05,296 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\aiohttp\http_websocket.py first seen with mtime 1690721537.487723
+DEBUG 2023-08-22 15:52:05,297 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\aiohttp\payload.py first seen with mtime 1690721537.4913487
+DEBUG 2023-08-22 15:52:05,297 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\django\middleware\clickjacking.py first seen with mtime 1692556069.7199316
+DEBUG 2023-08-22 15:52:05,298 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\openai\api_resources\error_object.py first seen with mtime 1690721537.8673735
+DEBUG 2023-08-22 15:52:05,298 autoreload File C:\Users\Asif\AppData\Roaming\Python\Python311\site-packages\channels\db.py first seen with mtime 1691220504.6004913
+DEBUG 2023-08-22 15:52:05,299 autoreload File C:\Users\Asif\AppData\Roaming\Python\Python311\site-packages\channels\layers.py first seen with mtime 1691220504.6044812
+DEBUG 2023-08-22 15:52:05,299 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\aiohttp\http_parser.py first seen with mtime 1690721537.486486
+DEBUG 2023-08-22 15:52:05,300 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\aiohttp\_http_parser.cp311-win_amd64.pyd first seen with mtime 1690721537.4685082
+DEBUG 2023-08-22 15:52:05,301 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\aiosignal\__init__.py first seen with mtime 1690721537.4323263
+DEBUG 2023-08-22 15:52:05,302 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\openai\openai_response.py first seen with mtime 1690721537.853411
+DEBUG 2023-08-22 15:52:05,303 autoreload File C:\Users\Asif\AppData\Roaming\Python\Python311\site-packages\channels\utils.py first seen with mtime 1691220504.6104648
+DEBUG 2023-08-22 15:52:05,303 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\openai\api_resources\engine.py first seen with mtime 1690721537.8663764
+DEBUG 2023-08-22 15:52:05,303 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\openai\api_resources\abstract\api_resource.py first seen with mtime 1690721537.873358
+DEBUG 2023-08-22 15:52:05,305 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\aiohttp\client_reqrep.py first seen with mtime 1690721537.4785063
+DEBUG 2023-08-22 15:52:05,306 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\openai\api_resources\abstract\__init__.py first seen with mtime 1690721537.8723605
+DEBUG 2023-08-22 15:52:05,306 autoreload File C:\Users\Asif\AppData\Roaming\Python\Python311\site-packages\channels\security\__init__.py first seen with mtime 1691220504.6194408
+DEBUG 2023-08-22 15:52:05,306 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\aiohttp\tcp_helpers.py first seen with mtime 1690721537.4973328
+DEBUG 2023-08-22 15:52:05,307 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\aiohttp\connector.py first seen with mtime 1690721537.4804745
+DEBUG 2023-08-22 15:52:05,308 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\aiohttp\http_exceptions.py first seen with mtime 1690721537.4854617
+DEBUG 2023-08-22 15:55:12,677 autoreload File C:\Users\Asif\PycharmProjects\Capstone\Agronomy\templates\chat previous mtime: 1691557053.727607, current mtime: 1692698112.504717
+DEBUG 2023-08-22 15:55:12,678 autoreload C:\Users\Asif\PycharmProjects\Capstone\Agronomy\templates\chat notified as changed. Signal results: [(<function template_changed at 0x00000163BF08C5E0>, True), (<function translation_file_changed at 0x00000163C22A09A0>, None)].
+DEBUG 2023-08-22 15:55:12,680 autoreload File C:\Users\Asif\PycharmProjects\Capstone\Agronomy\templates\chat\chat-ai.html previous mtime: 1691531419.921545, current mtime: 1692698112.504717
+DEBUG 2023-08-22 15:55:12,680 autoreload C:\Users\Asif\PycharmProjects\Capstone\Agronomy\templates\chat\chat-ai.html notified as changed. Signal results: [(<function template_changed at 0x00000163BF08C5E0>, True), (<function translation_file_changed at 0x00000163C22A09A0>, None)].
+DEBUG 2023-08-22 15:55:58,150 autoreload File C:\Users\Asif\PycharmProjects\Capstone\Agronomy\templates\chat previous mtime: 1692698112.504717, current mtime: 1692698157.7352152
+DEBUG 2023-08-22 15:55:58,150 autoreload C:\Users\Asif\PycharmProjects\Capstone\Agronomy\templates\chat notified as changed. Signal results: [(<function template_changed at 0x00000163BF08C5E0>, True), (<function translation_file_changed at 0x00000163C22A09A0>, None)].
+DEBUG 2023-08-22 15:55:58,152 autoreload File C:\Users\Asif\PycharmProjects\Capstone\Agronomy\templates\chat\chat-expert.html previous mtime: 1691351124.4429905, current mtime: 1692698157.7232475
+DEBUG 2023-08-22 15:55:58,152 autoreload C:\Users\Asif\PycharmProjects\Capstone\Agronomy\templates\chat\chat-expert.html notified as changed. Signal results: [(<function template_changed at 0x00000163BF08C5E0>, True), (<function translation_file_changed at 0x00000163C22A09A0>, None)].
+DEBUG 2023-08-22 15:55:58,152 autoreload File C:\Users\Asif\PycharmProjects\Capstone\Agronomy\templates\chat\chat-user.html previous mtime: 1691351124.4579327, current mtime: 1692698157.697317
+DEBUG 2023-08-22 15:55:58,153 autoreload C:\Users\Asif\PycharmProjects\Capstone\Agronomy\templates\chat\chat-user.html notified as changed. Signal results: [(<function template_changed at 0x00000163BF08C5E0>, True), (<function translation_file_changed at 0x00000163C22A09A0>, None)].
+DEBUG 2023-08-22 15:55:58,153 autoreload File C:\Users\Asif\PycharmProjects\Capstone\Agronomy\templates\chat\request-ai.html previous mtime: 1691286850.4590433, current mtime: 1692698157.7092845
+DEBUG 2023-08-22 15:55:58,153 autoreload C:\Users\Asif\PycharmProjects\Capstone\Agronomy\templates\chat\request-ai.html notified as changed. Signal results: [(<function template_changed at 0x00000163BF08C5E0>, True), (<function translation_file_changed at 0x00000163C22A09A0>, None)].
+DEBUG 2023-08-22 15:55:58,153 autoreload File C:\Users\Asif\PycharmProjects\Capstone\Agronomy\templates\chat\request-expert.html previous mtime: 1691162730.7914588, current mtime: 1692698157.7342181
+DEBUG 2023-08-22 15:55:58,154 autoreload C:\Users\Asif\PycharmProjects\Capstone\Agronomy\templates\chat\request-expert.html notified as changed. Signal results: [(<function template_changed at 0x00000163BF08C5E0>, True), (<function translation_file_changed at 0x00000163C22A09A0>, None)].
+DEBUG 2023-08-22 15:56:21,248 autoreload File C:\Users\Asif\PycharmProjects\Capstone\Agronomy\templates\managements previous mtime: 1692244413.3294652, current mtime: 1692698180.7953846
+DEBUG 2023-08-22 15:56:21,248 autoreload C:\Users\Asif\PycharmProjects\Capstone\Agronomy\templates\managements notified as changed. Signal results: [(<function template_changed at 0x00000163BF08C5E0>, True), (<function translation_file_changed at 0x00000163C22A09A0>, None)].
+DEBUG 2023-08-22 15:56:21,250 autoreload File C:\Users\Asif\PycharmProjects\Capstone\Agronomy\templates\managements\accounts.html previous mtime: 1691199181.4629369, current mtime: 1692698180.7823973
+DEBUG 2023-08-22 15:56:21,250 autoreload C:\Users\Asif\PycharmProjects\Capstone\Agronomy\templates\managements\accounts.html notified as changed. Signal results: [(<function template_changed at 0x00000163BF08C5E0>, True), (<function translation_file_changed at 0x00000163C22A09A0>, None)].
+DEBUG 2023-08-22 15:56:21,251 autoreload File C:\Users\Asif\PycharmProjects\Capstone\Agronomy\templates\managements\expert-requests.html previous mtime: 1691587236.0314298, current mtime: 1692698180.7943892
+DEBUG 2023-08-22 15:56:21,251 autoreload C:\Users\Asif\PycharmProjects\Capstone\Agronomy\templates\managements\expert-requests.html notified as changed. Signal results: [(<function template_changed at 0x00000163BF08C5E0>, True), (<function translation_file_changed at 0x00000163C22A09A0>, None)].
+DEBUG 2023-08-22 15:56:38,894 autoreload File C:\Users\Asif\PycharmProjects\Capstone\Agronomy\templates\managements previous mtime: 1692698180.7953846, current mtime: 1692698198.195158
+DEBUG 2023-08-22 15:56:38,894 autoreload C:\Users\Asif\PycharmProjects\Capstone\Agronomy\templates\managements notified as changed. Signal results: [(<function template_changed at 0x00000163BF08C5E0>, True), (<function translation_file_changed at 0x00000163C22A09A0>, None)].
+DEBUG 2023-08-22 15:56:38,897 autoreload File C:\Users\Asif\PycharmProjects\Capstone\Agronomy\templates\managements\insert-category.html previous mtime: 1690283216.769286, current mtime: 1692698198.183189
+DEBUG 2023-08-22 15:56:38,898 autoreload C:\Users\Asif\PycharmProjects\Capstone\Agronomy\templates\managements\insert-category.html notified as changed. Signal results: [(<function template_changed at 0x00000163BF08C5E0>, True), (<function translation_file_changed at 0x00000163C22A09A0>, None)].
+DEBUG 2023-08-22 15:56:38,898 autoreload File C:\Users\Asif\PycharmProjects\Capstone\Agronomy\templates\managements\insert-disease-problem.html previous mtime: 1690283216.7144327, current mtime: 1692698198.195158
+DEBUG 2023-08-22 15:56:38,898 autoreload C:\Users\Asif\PycharmProjects\Capstone\Agronomy\templates\managements\insert-disease-problem.html notified as changed. Signal results: [(<function template_changed at 0x00000163BF08C5E0>, True), (<function translation_file_changed at 0x00000163C22A09A0>, None)].
+DEBUG 2023-08-22 15:56:49,875 autoreload File C:\Users\Asif\PycharmProjects\Capstone\Agronomy\templates\managements previous mtime: 1692698198.195158, current mtime: 1692698209.656488
+DEBUG 2023-08-22 15:56:49,875 autoreload C:\Users\Asif\PycharmProjects\Capstone\Agronomy\templates\managements notified as changed. Signal results: [(<function template_changed at 0x00000163BF08C5E0>, True), (<function translation_file_changed at 0x00000163C22A09A0>, None)].
+DEBUG 2023-08-22 15:56:49,877 autoreload File C:\Users\Asif\PycharmProjects\Capstone\Agronomy\templates\managements\insert-subcategory.html previous mtime: 1690283216.8500705, current mtime: 1692698209.656488
+DEBUG 2023-08-22 15:56:49,877 autoreload C:\Users\Asif\PycharmProjects\Capstone\Agronomy\templates\managements\insert-subcategory.html notified as changed. Signal results: [(<function template_changed at 0x00000163BF08C5E0>, True), (<function translation_file_changed at 0x00000163C22A09A0>, None)].
+DEBUG 2023-08-22 15:56:59,782 autoreload File C:\Users\Asif\PycharmProjects\Capstone\Agronomy\templates\managements previous mtime: 1692698209.656488, current mtime: 1692698219.6164804
+DEBUG 2023-08-22 15:56:59,782 autoreload C:\Users\Asif\PycharmProjects\Capstone\Agronomy\templates\managements notified as changed. Signal results: [(<function template_changed at 0x00000163BF08C5E0>, True), (<function translation_file_changed at 0x00000163C22A09A0>, None)].
+DEBUG 2023-08-22 15:56:59,784 autoreload File C:\Users\Asif\PycharmProjects\Capstone\Agronomy\templates\managements\update-disease-problem.html previous mtime: 1690283216.8231463, current mtime: 1692698219.6154828
+DEBUG 2023-08-22 15:56:59,785 autoreload C:\Users\Asif\PycharmProjects\Capstone\Agronomy\templates\managements\update-disease-problem.html notified as changed. Signal results: [(<function template_changed at 0x00000163BF08C5E0>, True), (<function translation_file_changed at 0x00000163C22A09A0>, None)].
+DEBUG 2023-08-22 15:57:05,330 autoreload File C:\Users\Asif\PycharmProjects\Capstone\Agronomy\templates\managements previous mtime: 1692698219.6164804, current mtime: 1692698224.5747378
+DEBUG 2023-08-22 15:57:05,330 autoreload C:\Users\Asif\PycharmProjects\Capstone\Agronomy\templates\managements notified as changed. Signal results: [(<function template_changed at 0x00000163BF08C5E0>, True), (<function translation_file_changed at 0x00000163C22A09A0>, None)].
+DEBUG 2023-08-22 15:57:05,333 autoreload File C:\Users\Asif\PycharmProjects\Capstone\Agronomy\templates\managements\update-subcategory.html previous mtime: 1690283216.7403643, current mtime: 1692698224.5737636
+DEBUG 2023-08-22 15:57:05,333 autoreload C:\Users\Asif\PycharmProjects\Capstone\Agronomy\templates\managements\update-subcategory.html notified as changed. Signal results: [(<function template_changed at 0x00000163BF08C5E0>, True), (<function translation_file_changed at 0x00000163C22A09A0>, None)].
+DEBUG 2023-08-22 15:57:32,848 autoreload File C:\Users\Asif\PycharmProjects\Capstone\Agronomy\templates\managements previous mtime: 1692698224.5747378, current mtime: 1692698251.859877
+DEBUG 2023-08-22 15:57:32,848 autoreload C:\Users\Asif\PycharmProjects\Capstone\Agronomy\templates\managements notified as changed. Signal results: [(<function template_changed at 0x00000163BF08C5E0>, True), (<function translation_file_changed at 0x00000163C22A09A0>, None)].
+DEBUG 2023-08-22 15:57:32,851 autoreload File C:\Users\Asif\PycharmProjects\Capstone\Agronomy\templates\managements\view-disease-problem.html previous mtime: 1690283216.7194197, current mtime: 1692698251.859877
+DEBUG 2023-08-22 15:57:32,851 autoreload C:\Users\Asif\PycharmProjects\Capstone\Agronomy\templates\managements\view-disease-problem.html notified as changed. Signal results: [(<function template_changed at 0x00000163BF08C5E0>, True), (<function translation_file_changed at 0x00000163C22A09A0>, None)].
+DEBUG 2023-08-22 15:57:44,949 autoreload File C:\Users\Asif\PycharmProjects\Capstone\Agronomy\templates\managements previous mtime: 1692698251.859877, current mtime: 1692698264.4200375
+DEBUG 2023-08-22 15:57:44,949 autoreload C:\Users\Asif\PycharmProjects\Capstone\Agronomy\templates\managements notified as changed. Signal results: [(<function template_changed at 0x00000163BF08C5E0>, True), (<function translation_file_changed at 0x00000163C22A09A0>, None)].
+DEBUG 2023-08-22 15:57:44,952 autoreload File C:\Users\Asif\PycharmProjects\Capstone\Agronomy\templates\managements\view-subcategory.html previous mtime: 1690283216.8351102, current mtime: 1692698264.419068
+DEBUG 2023-08-22 15:57:44,952 autoreload C:\Users\Asif\PycharmProjects\Capstone\Agronomy\templates\managements\view-subcategory.html notified as changed. Signal results: [(<function template_changed at 0x00000163BF08C5E0>, True), (<function translation_file_changed at 0x00000163C22A09A0>, None)].
+DEBUG 2023-08-22 15:59:09,883 autoreload File C:\Users\Asif\PycharmProjects\Capstone\Agronomy\templates\ask-question.html previous mtime: 1690993832.3378062, current mtime: 1692698349.8071914
+DEBUG 2023-08-22 15:59:09,883 autoreload C:\Users\Asif\PycharmProjects\Capstone\Agronomy\templates\ask-question.html notified as changed. Signal results: [(<function template_changed at 0x00000163BF08C5E0>, True), (<function translation_file_changed at 0x00000163C22A09A0>, None)].
+DEBUG 2023-08-22 15:59:19,804 autoreload File C:\Users\Asif\PycharmProjects\Capstone\Agronomy\templates\contacts.html previous mtime: 1691851311.8296947, current mtime: 1692698359.0255
+DEBUG 2023-08-22 15:59:19,805 autoreload C:\Users\Asif\PycharmProjects\Capstone\Agronomy\templates\contacts.html notified as changed. Signal results: [(<function template_changed at 0x00000163BF08C5E0>, True), (<function translation_file_changed at 0x00000163C22A09A0>, None)].
+DEBUG 2023-08-22 16:00:59,229 autoreload File C:\Users\Asif\PycharmProjects\Capstone\Agronomy\templates\update-answer.html previous mtime: 1690991353.334005, current mtime: 1692698458.3722236
+DEBUG 2023-08-22 16:00:59,229 autoreload C:\Users\Asif\PycharmProjects\Capstone\Agronomy\templates\update-answer.html notified as changed. Signal results: [(<function template_changed at 0x00000163BF08C5E0>, True), (<function translation_file_changed at 0x00000163C22A09A0>, None)].
+DEBUG 2023-08-22 16:01:05,852 autoreload File C:\Users\Asif\PycharmProjects\Capstone\Agronomy\templates\update-question.html previous mtime: 1690994813.356764, current mtime: 1692698464.8853347
+DEBUG 2023-08-22 16:01:05,853 autoreload C:\Users\Asif\PycharmProjects\Capstone\Agronomy\templates\update-question.html notified as changed. Signal results: [(<function template_changed at 0x00000163BF08C5E0>, True), (<function translation_file_changed at 0x00000163C22A09A0>, None)].
+DEBUG 2023-08-22 16:01:12,475 autoreload File C:\Users\Asif\PycharmProjects\Capstone\Agronomy\templates\view-question.html previous mtime: 1690993797.3437455, current mtime: 1692698471.4394846
+DEBUG 2023-08-22 16:01:12,475 autoreload C:\Users\Asif\PycharmProjects\Capstone\Agronomy\templates\view-question.html notified as changed. Signal results: [(<function template_changed at 0x00000163BF08C5E0>, True), (<function translation_file_changed at 0x00000163C22A09A0>, None)].
+DEBUG 2023-08-22 16:01:20,366 autoreload File C:\Users\Asif\PycharmProjects\Capstone\Agronomy\templates\weather.html previous mtime: 1691556391.745682, current mtime: 1692698480.3478906
+DEBUG 2023-08-22 16:01:20,366 autoreload C:\Users\Asif\PycharmProjects\Capstone\Agronomy\templates\weather.html notified as changed. Signal results: [(<function template_changed at 0x00000163BF08C5E0>, True), (<function translation_file_changed at 0x00000163C22A09A0>, None)].

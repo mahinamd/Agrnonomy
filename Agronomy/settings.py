@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 import sys
 import os
 
+import Agronomy.middleware
 from . import sensitive
 from pathlib import Path
 from django.contrib.messages import constants as messages
@@ -38,8 +39,23 @@ CSRF_TRUSTED_ORIGINS = sensitive.CSRF_TRUSTED_ORIGINS
 # Auth User Model
 AUTH_USER_MODEL = 'accounts.Account'
 
-# Application definition
+AUTHENTICATION_BACKENDS = [
+    'accounts.backends.CustomModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
 
+# Allauth
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_USER_MODEL_USERNAME_FIELD = None
+ACCOUNT_EMAIL_VERIFICATION = "none"
+#ACCOUNT_SESSION_REMEMBER = True
+ACCOUNT_USER_DISPLAY = "accounts.utils.custom_user_display"
+LOGIN_REDIRECT_URL = '/'
+
+# Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -47,11 +63,33 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     'channels',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
     'pages',
     'accounts',
     'managements',
 ]
+
+SITE_ID = 2 if os.environ['PRODUCTION'] == 'Yes' else 1
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        "AUTH_PARAMS": {
+            "access_type": "online",
+        }
+    }
+}
+
+SOCIALACCOUNT_AUTO_SIGNUP = True
+SOCIALACCOUNT_ADAPTER = 'accounts.forms.CustomDefaultSocialAccountAdapter'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -62,6 +100,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'Agronomy.middleware.SessionCheckerMiddleware',
+    'Agronomy.middleware.PreventGoogleOauthMiddleware',
 ]
 
 ROOT_URLCONF = 'Agronomy.urls'
@@ -77,6 +117,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'Agronomy.context_processors.global_context',
             ],
         },
     },
@@ -157,6 +198,71 @@ STATIC_URL = 'static/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = 'media/'
 
+# Logs
+LOGGING_DIR = os.path.join(BASE_DIR, 'logs')
+if not os.path.exists(LOGGING_DIR):
+    os.mkdir(LOGGING_DIR)
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '{levelname} {asctime} {module} {message}',
+            'style': '{',
+        },
+    },
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose',
+        },
+        'debug_file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(LOGGING_DIR, 'debug.log'),
+            'formatter': 'verbose',
+            'mode': 'w',
+        },
+        'info_file': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(LOGGING_DIR, 'info.log'),
+            'formatter': 'verbose',
+            'mode': 'w',
+        },
+        'warning_file': {
+            'level': 'WARNING',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(LOGGING_DIR, 'warning.log'),
+            'formatter': 'verbose',
+            'mode': 'w',
+        },
+        'error_file': {
+            'level': 'ERROR',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(LOGGING_DIR, 'error.log'),
+            'formatter': 'verbose',
+            'mode': 'w',
+        },
+        'critical_file': {
+            'level': 'CRITICAL',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(LOGGING_DIR, 'critical.log'),
+            'formatter': 'verbose',
+            'mode': 'w',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console', 'debug_file', 'info_file', 'warning_file', 'error_file', 'critical_file'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
@@ -164,3 +270,28 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # 10mb = 10 * 1024 * 1024
 DATA_UPLOAD_MAX_MEMORY_SIZE = 10485760
+
+# Session age in seconds for 2 days
+SESSION_COOKIE_AGE = 60 * 60 * 24 * 2
+
+# Google reCAPTCHA
+# v2
+RECAPTCHA_V2_SITE_KEY = sensitive.RECAPTCHA_V2_SITE_KEY
+RECAPTCHA_V2_SECRET_KEY = sensitive.RECAPTCHA_V2_SECRET_KEY
+
+# v3
+RECAPTCHA_V3_SITE_KEY = sensitive.RECAPTCHA_V3_SITE_KEY
+RECAPTCHA_V3_SECRET_KEY = sensitive.RECAPTCHA_V3_SECRET_KEY
+
+# File based Email Configuration
+# EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+# EMAIL_FILE_PATH = BASE_DIR / 'emails'
+
+# SMTP Email Configuration
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.mailgun.org'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = sensitive.EMAIL_HOST_USER
+EMAIL_HOST_PASSWORD = sensitive.EMAIL_HOST_PASSWORD
+

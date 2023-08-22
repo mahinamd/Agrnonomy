@@ -1,72 +1,126 @@
 {% extends "index.html" %}
-{% load static %}
-{% load i18n %}
+{% load static i18n %}
+
+{% block link %}
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/css/intlTelInput.css">
+
+{% endblock %}
 
 {% block content %}
-    <br><br><br>
-    {% include 'message.html' %}
-    <section class="py-4 py-md-5 my-5">
+
+    <section class="my-5 py-5">
+        {% include 'message.html' %}
         <div class="container py-md-5">
             <div class="row">
-                <div class="col-md-6 text-center"><img class="img-fluid h-100"
-                                                       src="{% static 'assets/img/loginBg1.jpg' %}"></div>
+                <div class="col-md-6 text-center">
+                    <img class="img-fluid h-100" src="{% static 'assets/img/loginBg1.jpg' %}">
+                </div>
                 <div class="col-md-6 col-lg-6 col-xl-6 col-xxl-6 offset-lg-0 text-center text-md-start align-self-center">
-                    <h2 class="display-6 fw-bold my-3 mb-5 text-center"><span
-                            class="underline pb-1"><strong>Welcome!</strong></span></h2>
+                    <h2 class="display-6 fw-bold my-3 mb-5 text-center">
+                        <span class="underline pb-1"><strong>{% trans "Welcome" %}!</strong></span>
+                    </h2>
                     <div>
-                        <h4 class="fw-normal mb-4 text-center"><img class="me-2"
-                                                                    src="{% static 'assets/img/agronomy_32px.png' %}">Agronomy
+                        <h4 class="fw-normal mb-4 text-center">
+                            <img class="me-2" src="{% static 'assets/img/agronomy_32px.png' %}">{% trans "Agronomy" %}
                         </h4>
-                        <div class="text-center">
-                            <h6 class="fw-normal mb-3">Login with</h6><a
-                                class="border rounded-pill shadow-sm btn google-btn"
-                                href="#"><span><img
-                                src="{% static 'assets/img/google.svg' %}"></span><span>Google</span></a>
-                        </div>
-                        <hr>
-                        <form action="{% url 'login-form' %}" method="post"> {% csrf_token %}
-                            <h6 class="fw-normal mb-3 text-center">Or login with credentials</h6>
-                            <div><input class="form-control mb-1" type="email" name="email" placeholder="Phone or Email"
-                                        required="" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,15}$"></div>
-                            <div class="d-flex"><input id="pass-id" class="form-control mb-1" type="password"
-                                                       name="password" placeholder="Password" required="">
-                                <button class="btn btn-primary viewBtn" type="button" onclick="pass_show()"><i
-                                        id="pass-eye" class="fas fa-eye"></i>
+                        <form id="login-form" action="{% url 'login' %}" method="post"> {% csrf_token %}
+                            <div class="text-center">
+                                <h6 class="fw-normal mb-3">{% trans "Login with" %}</h6>
+                                <button id="google-oauth-btn" class="border rounded-pill shadow-sm btn google-btn" type="submit">
+                                    <span><img src="{% static 'assets/img/google.svg' %}"></span><span>&nbsp;{% trans "Google" %}</span>
                                 </button>
                             </div>
-                            <div>
-                                <div class="form-check"><input class="form-check-input" type="checkbox" id="formCheck-1"
-                                                               name="rme">
-                                    <label class="form-check-label" for="formCheck-1">Remember me</label></div>
+                            <hr>
+                            <h6 class="fw-normal mb-3 text-center">{% trans "Or login with credentials" %}</h6>
+                            <div class="d-flex justify-content-center align-items-center my-3">
+                                <button id="phone-input-field-show-btn" class="btn btn-style-2 mt-1 active" type="button">{% trans "Phone" %}</button>
+                                <span class="mx-2">{% trans "Or" %}</span>
+                                <button id="email-input-field-show-btn" class="btn btn-style-2 mt-1" type="button">{% trans "Email" %}</button>
+                            </div>
+                            <div class="mt-2">
+                                <input id="iti-input-field" class="form-control" type="tel" placeholder="{% trans "Phone" %}" pattern="^[0-9]{9,15}$" required="">
+                                <input id="phone-input-field" class="form-control d-none" type="hidden" name="phone" pattern="^\+[0-9]{9,15}$" required="">
+                                <input id="email-input-field" class="form-control d-none" type="email" name="email" placeholder="{% trans "Email" %}" pattern="^[a-z0-9._]+@[a-z0-9.]+\.[a-z]{2,15}$" disabled>
+                            </div>
+                            <div class="d-flex mt-2">
+                                <input id="password-input-field" class="form-control me-2" type="password" name="password" placeholder="{% trans "Password" %}" required="">
+                                <button id="password-show-btn" class="btn btn-primary viewBtn" type="button">
+                                    <i id="password-eye-icon" class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                            <div class="d-flex justify-content-center align-items-center form-check mt-2">
+                                <input id="remember-me-form-check" class="form-check-input mt-0 me-2" type="checkbox" name="remember_me" value="yes">
+                                <label class="form-check-label" for="remember-me-form-check">{% trans "Remember me" %}</label>
+                                <input id="g-recaptcha-response-v3" class="form-control d-none" type="hidden" name="token" required="">
                             </div>
                             {% include 'form-message.html' %}
+                            <div class="text-center py-3 d-none" id="loading-spinner">
+                                <span class="spinner-border spinner-border-sm spinner-color" role="status"></span>
+                            </div>
+                            <div class="d-flex justify-content-center align-items-center my-2">
+                                <div class="g-recaptcha" data-sitekey="{{ RECAPTCHA_V2_SITE_KEY }}"></div>
+                            </div>
                             <div class="text-center">
-                                <button class="btn btn-primary my-3" type="submit"><strong>Login</strong><br></button>
+                                <button class="btn btn-primary my-3" type="submit"><strong>{% trans "Login" %}</strong><br></button>
+                                <div id="g-recaptcha-response-modal-dialog" class="modal fade" role="dialog" tabindex="-1">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">{% trans "Google reCaptcha Response" %}</h4>
+                                                <button class="btn-close" type="button" aria-label="Close" data-bs-dismiss="modal"></button>
+                                            </div>
+                                            <div id="modal-body" class="modal-body">
+                                                <p>{% trans "Please complete the reCAPTCHA before login." %}</p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button id="confirm-ok" class="btn btn-light" type="button" data-bs-dismiss="modal">{% trans "Ok" %}</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </form>
-                        <div class="pb-5 mt-3"><a class="float-start link" href={% url "forgotten-password" %}>Forgot
-                            password?<br></a><a class="float-end link" href={% url "signup" %}>Create new
-                            account<br></a>
+                        <div class="pb-5 mt-3">
+                            <a class="float-start link" href={% url "forgotten-password" %}>{% trans "Forgot password" %}?<br></a>
+                            <a class="float-end link" href={% url "signup" %}>{% trans "Create new account" %}<br></a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
 {% endblock %}
 
 {% block script %}
-    <script>
-        function pass_show() {
-            let p = document.getElementById("pass-id");
-            let i = document.getElementById("pass-eye");
-            if (p.type === "password") {
-                p.type = "text";
-                i.className = "fas fa-eye-slash";
-            } else {
-                p.type = "password";
-                i.className = "fas fa-eye";
-            }
-        }
+
+    <script type="text/javascript">
+
+        const form = document.getElementById("login-form");
+        const informationCount = null;
+        const DATA_UPLOAD_MAX_MEMORY_SIZE = null;
+
     </script>
+
+    <script src="https://www.google.com/recaptcha/api.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js?render={{ RECAPTCHA_V3_SITE_KEY }}"></script>
+
+    <script>
+        $(document).ready(function () {
+            grecaptcha.ready(function() {
+                const greCaptchaBadge = document.querySelector(".grecaptcha-badge");
+                greCaptchaBadge.style.bottom = "80px";
+
+                grecaptcha.execute("{{ RECAPTCHA_V3_SITE_KEY }}", {action: 'submit'}).then(function(token) {
+                    document.getElementById('g-recaptcha-response-v3').value = token;
+                });
+            });
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.1.1/build/js/intlTelInput.min.js"></script>
+    <script src="{% static "assets/js/signup_login_form_handler.js" %}"></script>
+    <script src="{% static "assets/js/form_handler.js" %}"></script>
+
 {% endblock %}

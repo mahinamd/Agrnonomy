@@ -10,8 +10,6 @@ urlpatterns = [
     path('contacts', views.contactsPage, name='contacts'),
     path('testimonials', views.testimonialsPage, name='testimonials'),
     path('faq', views.faqPage, name='faq'),
-    path('login', views.loginPage, name='login'),
-    path('signup', views.signupPage, name='signup'),
     path('forgotten-password', views.forgottenPasswordPage, name='forgotten-password'),
 
     path('profile', views.profilePage, name='profile'),
