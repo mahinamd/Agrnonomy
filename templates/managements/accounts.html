@@ -23,16 +23,17 @@
                                 <tr>
                                     <th>No</th>
                                     <th>ID</th>
+                                    <th>Superuser</th>
                                     <th>Admin</th>
-                                    <th>Active</th>
                                     <th>Staff</th>
                                     <th>Expert</th>
-                                    <th>Superuser</th>
                                     <th>verified</th>
+                                    <th>Active</th>
                                     <th>Image</th>
                                     <th>Name</th>
                                     <th>phone</th>
                                     <th>Email</th>
+                                    <th>Reputation</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
@@ -41,16 +42,17 @@
                                         <tr>
                                             <td>{{ forloop.counter }}</td>
                                             <td>{{ account.id }}</td>
-                                            <td>{{ account.is_admin }}</td>
-                                            <td>{{ account.is_active }}</td>
-                                            <td>{{ account.is_staff }}</td>
-                                            <td>{{ account.expert }}</td>
                                             <td>{{ account.is_superuser }}</td>
+                                            <td>{{ account.is_admin }}</td>
+                                            <td>{{ account.is_staff }}</td>
+                                            <td>{{ account.is_expert }}</td>
                                             <td>{{ account.is_verified }}</td>
-                                            <td><img class="questions-profile-img me-2" src="{{ account.pimg.url }}"></td>
-                                            <td>{{ account.fname }} {{ account.lname }}</td>
+                                            <td>{{ account.is_active }}</td>
+                                            <td><img class="questions-profile-img me-2" src="{{ account.image.url }}"></td>
+                                            <td>{{ account.get_name }}</td>
                                             <td>{{ account.phone }}</td>
                                             <td>{{ account.email }}</td>
+                                            <td>{{ account.reputation }}</td>
                                             <td>
                                                 <div class="btn-group navBtnBg">
                                                     <a class="btn btn-sm" role="button">Actions</a>

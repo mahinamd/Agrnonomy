@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-08-22 16:23+0600\n"
+"POT-Creation-Date: 2023-08-22 16:41+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -262,7 +262,7 @@ msgid " email address has been verified successfully."
 msgstr ""
 
 #: .\templates\emails\approval_email.html:368 .\templates\login.html:65
-#: .\templates\navbar.html:147
+#: .\templates\navbar.html:146
 msgid "Login"
 msgstr ""
 
@@ -833,14 +833,14 @@ msgid "Settings"
 msgstr ""
 
 #: .\templates\navbar.html:136
-msgid "Activity"
+msgid "Activity log"
 msgstr ""
 
-#: .\templates\navbar.html:140
+#: .\templates\navbar.html:139
 msgid "Logout"
 msgstr ""
 
-#: .\templates\navbar.html:148
+#: .\templates\navbar.html:147
 msgid "Sign up"
 msgstr ""
 

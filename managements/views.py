@@ -607,13 +607,13 @@ def accounts_page(request, account_id=None, context=None):
                     account.save()
                     create_notification(request, user, account_id, "You have been promoted to staff")
                     messages.success(request, "The account has been promoted to staff successfully")
-                elif filters == "Demote-expert" and account.expert:
-                    account.expert = False
+                elif filters == "Demote-expert" and account.is_expert:
+                    account.is_expert = False
                     account.save()
                     create_notification(request, user, account_id, "You have been demoted from expert")
                     messages.success(request, "The account has been demoted from expert successfully")
-                elif filters == "Promote-expert" and not account.expert:
-                    account.expert = True
+                elif filters == "Promote-expert" and not account.is_expert:
+                    account.is_expert = True
                     account.save()
                     create_notification(request, user, account_id, "You have been promoted to expert")
                     messages.success(request, "The account has been promoted to expert successfully")
@@ -656,7 +656,7 @@ def expert_requests_page(request, context=None):
             return expert_requests_page(request, context)
         else:
             accounts = Account.objects.all()
-            accounts = [account for account in accounts if account.expert]
+            accounts = [account for account in accounts if account.is_expert]
             problems = Problem.objects.all()
             rooms = Room.objects.all()
             context["accounts"] = accounts
