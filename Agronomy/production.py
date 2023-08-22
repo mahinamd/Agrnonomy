@@ -17,8 +17,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    #'Agronomy.middleware.SessionCheckerMiddleware',
-    #'Agronomy.middleware.PreventGoogleOauthMiddleware',
+    'Agronomy.middleware.SessionCheckerMiddleware',
+    'Agronomy.middleware.PreventGoogleOauthMiddleware',
 ]
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
