@@ -1,0 +1,100 @@
+DEBUG 2023-08-23 19:37:34,816 base Asynchronous middleware Agronomy.middleware.PreventGoogleOauthMiddleware adapted.
+DEBUG 2023-08-23 19:37:35,523 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\django\db\models\sql\compiler.py first seen with mtime 1692556069.547395
+DEBUG 2023-08-23 19:37:37,085 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\aiohttp\client_proto.py first seen with mtime 1690721537.4774823
+DEBUG 2023-08-23 19:37:37,085 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\openai\api_resources\image.py first seen with mtime 1690721537.8693686
+DEBUG 2023-08-23 19:37:37,086 autoreload File C:\Users\Asif\AppData\Roaming\Python\Python311\site-packages\channels\db.py first seen with mtime 1691220504.6004913
+DEBUG 2023-08-23 19:37:37,086 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\multidict\__init__.py first seen with mtime 1690721537.2653832
+DEBUG 2023-08-23 19:37:37,086 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\openai\api_resources\abstract\createable_api_resource.py first seen with mtime 1690721537.8743556
+DEBUG 2023-08-23 19:37:37,087 autoreload File C:\Users\Asif\AppData\Roaming\Python\Python311\site-packages\channels\middleware.py first seen with mtime 1691220504.6054785
+DEBUG 2023-08-23 19:37:37,088 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\openai\api_resources\abstract\nested_resource_class_methods.py first seen with mtime 1690721537.878344
+DEBUG 2023-08-23 19:37:37,088 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\yarl\_url.py first seen with mtime 1690721537.386458
+DEBUG 2023-08-23 19:37:37,089 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\aiohttp\__init__.py first seen with mtime 1690721537.4602573
+DEBUG 2023-08-23 19:37:37,089 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\yarl\__init__.py first seen with mtime 1690721537.3804715
+DEBUG 2023-08-23 19:37:37,089 autoreload File C:\Users\Asif\AppData\Roaming\Python\Python311\site-packages\channels\generic\websocket.py first seen with mtime 1691220504.6144545
+DEBUG 2023-08-23 19:37:37,090 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\openai\api_resources\embedding.py first seen with mtime 1690721537.865379
+DEBUG 2023-08-23 19:37:37,091 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\openai\api_resources\chat_completion.py first seen with mtime 1690721537.8613896
+DEBUG 2023-08-23 19:37:37,093 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\aiohttp\client_ws.py first seen with mtime 1690721537.4795065
+DEBUG 2023-08-23 19:37:37,093 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\aiohttp\resolver.py first seen with mtime 1690721537.4953382
+DEBUG 2023-08-23 19:37:37,093 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\openai\api_resources\abstract\api_resource.py first seen with mtime 1690721537.873358
+DEBUG 2023-08-23 19:37:37,093 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\aiohttp\payload_streamer.py first seen with mtime 1690721537.4933436
+DEBUG 2023-08-23 19:37:37,094 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\aiohttp\formdata.py first seen with mtime 1690721537.482469
+DEBUG 2023-08-23 19:37:37,095 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\aiohttp\_helpers.cp311-win_amd64.pyd first seen with mtime 1690721537.464246
+DEBUG 2023-08-23 19:37:37,095 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\aiohttp\base_protocol.py first seen with mtime 1690721537.4754877
+DEBUG 2023-08-23 19:37:37,095 autoreload File C:\Users\Asif\PycharmProjects\Capstone\Agronomy\Agronomy\routing.py first seen with mtime 1691477771.0502408
+DEBUG 2023-08-23 19:37:37,095 autoreload File C:\Users\Asif\AppData\Roaming\Python\Python311\site-packages\channels\security\websocket.py first seen with mtime 1691220504.620438
+DEBUG 2023-08-23 19:37:37,096 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\openai\api_resources\abstract\updateable_api_resource.py first seen with mtime 1690721537.8793418
+DEBUG 2023-08-23 19:37:37,098 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\openai\api_requestor.py first seen with mtime 1690721537.8484242
+DEBUG 2023-08-23 19:37:37,098 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\openai\api_resources\edit.py first seen with mtime 1690721537.864382
+DEBUG 2023-08-23 19:37:37,099 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\openai\error.py first seen with mtime 1690721537.8504188
+DEBUG 2023-08-23 19:37:37,099 autoreload File C:\Users\Asif\PycharmProjects\Capstone\Agronomy\Agronomy\production.py first seen with mtime 1692792341.319785
+DEBUG 2023-08-23 19:37:37,103 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\openai\openai_object.py first seen with mtime 1690721537.8524137
+DEBUG 2023-08-23 19:37:37,104 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\yarl\_quoting.py first seen with mtime 1690721537.3814409
+DEBUG 2023-08-23 19:37:37,104 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\aiohttp\hdrs.py first seen with mtime 1690721537.482469
+DEBUG 2023-08-23 19:37:37,104 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\openai\api_resources\deployment.py first seen with mtime 1690721537.8633842
+DEBUG 2023-08-23 19:37:37,107 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\openai\api_resources\abstract\__init__.py first seen with mtime 1690721537.8723605
+DEBUG 2023-08-23 19:37:37,107 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\multidict\_multidict.cp311-win_amd64.pyd first seen with mtime 1690721537.269372
+DEBUG 2023-08-23 19:37:37,107 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\openai\api_resources\error_object.py first seen with mtime 1690721537.8673735
+DEBUG 2023-08-23 19:37:37,108 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\aiohttp\abc.py first seen with mtime 1690721537.4745162
+DEBUG 2023-08-23 19:37:37,109 autoreload File C:\Users\Asif\PycharmProjects\Capstone\Agronomy\Agronomy\asgi.py first seen with mtime 1691481354.5409446
+DEBUG 2023-08-23 19:37:37,110 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\openai\datalib\numpy_helper.py first seen with mtime 1690721537.8833308
+DEBUG 2023-08-23 19:37:37,111 autoreload File C:\Users\Asif\AppData\Roaming\Python\Python311\site-packages\channels\auth.py first seen with mtime 1691220504.5984979
+DEBUG 2023-08-23 19:37:37,112 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\openai\__init__.py first seen with mtime 1690721537.8464296
+DEBUG 2023-08-23 19:37:37,115 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\openai\api_resources\fine_tune.py first seen with mtime 1690721537.868371
+DEBUG 2023-08-23 19:37:37,116 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\aiohttp\_http_parser.cp311-win_amd64.pyd first seen with mtime 1690721537.4685082
+DEBUG 2023-08-23 19:37:37,117 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\aiohttp\cookiejar.py first seen with mtime 1690721537.4815056
+DEBUG 2023-08-23 19:37:37,118 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\openai\api_resources\__init__.py first seen with mtime 1690721537.859395
+DEBUG 2023-08-23 19:37:37,120 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\aiohttp\log.py first seen with mtime 1690721537.4903498
+DEBUG 2023-08-23 19:37:37,120 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\aiohttp\client_exceptions.py first seen with mtime 1690721537.4765122
+DEBUG 2023-08-23 19:37:37,122 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\openai\api_resources\audio.py first seen with mtime 1690721537.860392
+DEBUG 2023-08-23 19:37:37,122 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\multidict\_abc.py first seen with mtime 1690721537.2673833
+DEBUG 2023-08-23 19:37:37,122 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\frozenlist\__init__.py first seen with mtime 1690721537.318274
+DEBUG 2023-08-23 19:37:37,124 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\aiohttp\locks.py first seen with mtime 1690721537.4890451
+DEBUG 2023-08-23 19:37:37,124 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\openai\api_resources\customer.py first seen with mtime 1690721537.8623867
+DEBUG 2023-08-23 19:37:37,125 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\aiohttp\client_reqrep.py first seen with mtime 1690721537.4785063
+DEBUG 2023-08-23 19:37:37,126 autoreload File C:\Users\Asif\AppData\Roaming\Python\Python311\site-packages\channels\generic\__init__.py first seen with mtime 1691220504.6124601
+DEBUG 2023-08-23 19:37:37,126 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\aiohttp\http_exceptions.py first seen with mtime 1690721537.4854617
+DEBUG 2023-08-23 19:37:37,128 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\aiohttp\typedefs.py first seen with mtime 1690721537.499328
+DEBUG 2023-08-23 19:37:37,130 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\openai\api_resources\file.py first seen with mtime 1690721537.868371
+DEBUG 2023-08-23 19:37:37,131 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\aiohttp\_websocket.cp311-win_amd64.pyd first seen with mtime 1690721537.472528
+DEBUG 2023-08-23 19:37:37,132 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\aiosignal\__init__.py first seen with mtime 1690721537.4323263
+DEBUG 2023-08-23 19:37:37,134 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\aiohttp\_http_writer.cp311-win_amd64.pyd first seen with mtime 1690721537.4705012
+DEBUG 2023-08-23 19:37:37,135 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\openai\openai_response.py first seen with mtime 1690721537.853411
+DEBUG 2023-08-23 19:37:37,135 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\aiohttp\helpers.py first seen with mtime 1690721537.4834847
+DEBUG 2023-08-23 19:37:37,136 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\frozenlist\_frozenlist.cp311-win_amd64.pyd first seen with mtime 1690721537.3202689
+DEBUG 2023-08-23 19:37:37,136 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\openai\api_resources\moderation.py first seen with mtime 1690721537.871363
+DEBUG 2023-08-23 19:37:37,138 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\aiohttp\client.py first seen with mtime 1690721537.4765122
+DEBUG 2023-08-23 19:37:37,138 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\multidict\_multidict_base.py first seen with mtime 1690721537.271346
+DEBUG 2023-08-23 19:37:37,140 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\aiohttp\payload.py first seen with mtime 1690721537.4913487
+DEBUG 2023-08-23 19:37:37,141 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\openai\api_resources\abstract\engine_api_resource.py first seen with mtime 1690721537.8763494
+DEBUG 2023-08-23 19:37:37,142 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\aiohttp\connector.py first seen with mtime 1690721537.4804745
+DEBUG 2023-08-23 19:37:37,143 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\async_timeout\__init__.py first seen with mtime 1690721537.351186
+DEBUG 2023-08-23 19:37:37,143 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\openai\api_resources\completion.py first seen with mtime 1690721537.8623867
+DEBUG 2023-08-23 19:37:37,144 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\aiohttp\tracing.py first seen with mtime 1690721537.4983304
+DEBUG 2023-08-23 19:37:37,145 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\openai\datalib\__init__.py first seen with mtime 1690721537.8813362
+DEBUG 2023-08-23 19:37:37,145 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\aiohttp\streams.py first seen with mtime 1690721537.4963357
+DEBUG 2023-08-23 19:37:37,147 autoreload File C:\Users\Asif\PycharmProjects\Capstone\Agronomy\Agronomy\middleware.py first seen with mtime 1692680910.096464
+DEBUG 2023-08-23 19:37:37,148 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\openai\util.py first seen with mtime 1690721537.855406
+DEBUG 2023-08-23 19:37:37,149 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\openai\version.py first seen with mtime 1690721537.8574007
+DEBUG 2023-08-23 19:37:37,149 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\django\contrib\sessions\backends\db.py first seen with mtime 1692556068.7605233
+DEBUG 2023-08-23 19:37:37,152 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\aiohttp\tcp_helpers.py first seen with mtime 1690721537.4973328
+DEBUG 2023-08-23 19:37:37,153 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\aiohttp\http_parser.py first seen with mtime 1690721537.486486
+DEBUG 2023-08-23 19:37:37,154 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\openai\api_resources\abstract\deletable_api_resource.py first seen with mtime 1690721537.8753521
+DEBUG 2023-08-23 19:37:37,154 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\django\middleware\clickjacking.py first seen with mtime 1692556069.7199316
+DEBUG 2023-08-23 19:37:37,155 autoreload File C:\Users\Asif\AppData\Roaming\Python\Python311\site-packages\channels\utils.py first seen with mtime 1691220504.6104648
+DEBUG 2023-08-23 19:37:37,157 autoreload File C:\Users\Asif\AppData\Roaming\Python\Python311\site-packages\channels\security\__init__.py first seen with mtime 1691220504.6194408
+DEBUG 2023-08-23 19:37:37,158 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\aiohttp\multipart.py first seen with mtime 1690721537.4913487
+DEBUG 2023-08-23 19:37:37,159 autoreload File C:\Users\Asif\AppData\Roaming\Python\Python311\site-packages\channels\layers.py first seen with mtime 1691220504.6044812
+DEBUG 2023-08-23 19:37:37,159 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\openai\datalib\common.py first seen with mtime 1690721537.8823335
+DEBUG 2023-08-23 19:37:37,160 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\aiohttp\http_websocket.py first seen with mtime 1690721537.487723
+DEBUG 2023-08-23 19:37:37,160 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\openai\api_resources\model.py first seen with mtime 1690721537.870366
+DEBUG 2023-08-23 19:37:37,161 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\yarl\_quoting_c.cp311-win_amd64.pyd first seen with mtime 1690721537.382459
+DEBUG 2023-08-23 19:37:37,162 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\multidict\_compat.py first seen with mtime 1690721537.268353
+DEBUG 2023-08-23 19:37:37,162 autoreload File C:\Program Files\Python\Python311\Lib\pydoc.py first seen with mtime 1680631450.0
+DEBUG 2023-08-23 19:37:37,162 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\aiohttp\http_writer.py first seen with mtime 1690721537.4880452
+DEBUG 2023-08-23 19:37:37,163 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\openai\api_resources\engine.py first seen with mtime 1690721537.8663764
+DEBUG 2023-08-23 19:37:37,163 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\django\core\asgi.py first seen with mtime 1692556069.3349617
+DEBUG 2023-08-23 19:37:37,164 autoreload File C:\Users\Asif\PycharmProjects\Capstone\Agronomy\pages\consumers.py first seen with mtime 1691467837.4324281
+DEBUG 2023-08-23 19:37:37,164 autoreload File C:\Users\Asif\AppData\Roaming\Python\Python311\site-packages\channels\sessions.py first seen with mtime 1691220504.6074731
+DEBUG 2023-08-23 19:37:37,165 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\openai\api_resources\abstract\listable_api_resource.py first seen with mtime 1690721537.877347
+DEBUG 2023-08-23 19:37:37,165 autoreload File C:\Program Files\Python\Python311\Lib\site-packages\aiohttp\http.py first seen with mtime 1690721537.4844913
+DEBUG 2023-08-23 19:37:37,166 autoreload File C:\Users\Asif\AppData\Roaming\Python\Python311\site-packages\channels\consumer.py first seen with mtime 1691220504.599516
