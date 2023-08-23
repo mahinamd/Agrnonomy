@@ -39,7 +39,7 @@ CSRF_TRUSTED_ORIGINS = sensitive.CSRF_TRUSTED_ORIGINS
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
-
+    'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
@@ -49,10 +49,10 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
-    'pages',
-    'accounts',
-    'managements',
-    'django.contrib.contenttypes',
+    'pages.apps.PagesConfig',
+    'accounts.apps.AccountsConfig',
+    'managements.apps.ManagementsConfig',
+
 ]
 
 # Auth User Model
