@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 import sys
 import os
 
-import Agronomy.middleware
+#import Agronomy.middleware
 from . import sensitive
 from pathlib import Path
 from django.contrib.messages import constants as messages
@@ -39,12 +39,11 @@ CSRF_TRUSTED_ORIGINS = sensitive.CSRF_TRUSTED_ORIGINS
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
-    'django.contrib.sites',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
+    'django.contrib.sites',
     'channels',
     'allauth',
     'allauth.account',
