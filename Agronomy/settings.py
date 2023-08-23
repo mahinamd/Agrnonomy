@@ -36,25 +36,6 @@ ALLOWED_HOSTS = sensitive.ALLOWED_HOSTS
 ALLOWED_DOMAIN = sensitive.ALLOWED_DOMAIN
 CSRF_TRUSTED_ORIGINS = sensitive.CSRF_TRUSTED_ORIGINS
 
-# Auth User Model
-AUTH_USER_MODEL = 'accounts.Account'
-
-AUTHENTICATION_BACKENDS = [
-    'accounts.backends.CustomModelBackend',
-    'allauth.account.auth_backends.AuthenticationBackend',
-]
-
-# Allauth
-ACCOUNT_AUTHENTICATION_METHOD = 'email'
-ACCOUNT_UNIQUE_EMAIL = True
-ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_USERNAME_REQUIRED = False
-ACCOUNT_USER_MODEL_USERNAME_FIELD = None
-ACCOUNT_EMAIL_VERIFICATION = "none"
-#ACCOUNT_SESSION_REMEMBER = True
-ACCOUNT_USER_DISPLAY = "accounts.utils.custom_user_display"
-LOGIN_REDIRECT_URL = '/'
-
 # Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -73,6 +54,25 @@ INSTALLED_APPS = [
     'accounts',
     'managements',
 ]
+
+# Auth User Model
+AUTH_USER_MODEL = 'accounts.Account'
+
+AUTHENTICATION_BACKENDS = [
+    'accounts.backends.CustomModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+# Allauth
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_UNIQUE_EMAIL = True
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_USER_MODEL_USERNAME_FIELD = None
+ACCOUNT_EMAIL_VERIFICATION = "none"
+#ACCOUNT_SESSION_REMEMBER = True
+ACCOUNT_USER_DISPLAY = "accounts.utils.custom_user_display"
+LOGIN_REDIRECT_URL = '/'
 
 SITE_ID = 2 if os.environ['PRODUCTION'] == 'Yes' else 1
 
