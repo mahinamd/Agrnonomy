@@ -14,11 +14,12 @@ from channels.routing import ProtocolTypeRouter, URLRouter
 from channels.security.websocket import AllowedHostsOriginValidator
 from django.core.asgi import get_asgi_application
 from dotenv import load_dotenv
+from .settings import INSTALLED_APPS
 
 load_dotenv()
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Agronomy.production' if os.environ['PRODUCTION'] == 'Yes' else 'Agronomy.settings')
-
+print(INSTALLED_APPS)
 asgi_application = get_asgi_application()
 
 from .routing import websocket_urlpatterns
