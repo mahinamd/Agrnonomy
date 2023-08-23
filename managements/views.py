@@ -1,31 +1,21 @@
+import copy
+import json
+import os
+import traceback
+
+from PIL import Image
+from django.conf import settings
+from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.utils import translation
-from django.contrib import messages
-from django.http import HttpResponse
-from django.conf import settings
-
-from .models import Category, Subcategory, Information, DiseaseProblem
-from .forms import CategoryForm, SubcategoryForm, InformationForm, DiseaseProblemForm
 
 from accounts.models import Account
 from accounts.views import create_notification
-from pages.models import Room, Problem, Message
 from pages.forms import RoomForm
-
-from django.core.files.storage import default_storage
-from django.core.files.storage import FileSystemStorage
-import os
-import copy
-#import cv2
-import json
-import base64
-import requests
-from django.core import files
-import traceback
-from PIL import Image
-from io import BytesIO
-from django.http import JsonResponse
+from pages.models import Room, Problem
+from .forms import CategoryForm, SubcategoryForm, DiseaseProblemForm
+from .models import Category, Subcategory, Information, DiseaseProblem
 
 
 # Supporting functions
@@ -257,7 +247,8 @@ def update_form(request, context, form_name, object_id):
                 insects_causes_en = form.cleaned_data.get("insects_causes_en")
                 warning_en = form.cleaned_data.get("warning_en")
                 solution_en = form.cleaned_data.get("solution_en")
-                if name_bn != name_en and (old_object.insects_causes_bn != insects_causes_bn or old_object.solution_bn != solution_bn or old_object.warning_bn != warning_bn or old_object.insects_causes_en != insects_causes_en or old_object.warning_en != warning_en or old_object.solution_en != solution_en):
+                if name_bn != name_en and (
+                        old_object.insects_causes_bn != insects_causes_bn or old_object.solution_bn != solution_bn or old_object.warning_bn != warning_bn or old_object.insects_causes_en != insects_causes_en or old_object.warning_en != warning_en or old_object.solution_en != solution_en):
                     disease_problem_flag = True
 
             if original_img_file and cropping_details:

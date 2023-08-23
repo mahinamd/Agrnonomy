@@ -1,36 +1,20 @@
 import re
+import secrets
 
-from django import forms
-from django.contrib.auth.forms import UsernameField
-from django.contrib.auth.forms import AuthenticationForm
-#from django.contrib.admin.forms import AuthenticationForm
-from .models import Account
-from django.contrib.auth import password_validation, authenticate
-from django.core.exceptions import ValidationError, FieldDoesNotExist
-from django.utils.translation import gettext_lazy as _
-from django.views.decorators.debug import sensitive_variables
-from django.contrib.auth.views import LoginView
-from django.contrib.auth import get_user_model
-from collections import OrderedDict
-from django.utils.text import capfirst
-from allauth.account.utils import user_display
-from allauth.account.adapter import DefaultAccountAdapter
+from allauth.account.adapter import get_adapter as get_account_adapter
+from allauth.account.utils import user_email, user_field
 from allauth.socialaccount.adapter import DefaultSocialAccountAdapter
-from allauth.account.utils import user_email, user_field, user_username, has_verified_email, send_email_confirmation
 from allauth.utils import (
-    get_request_param,
     get_user_model,
-    import_callable,
-    serialize_instance,
     valid_email_or_none,
 )
-from allauth.account import app_settings
-from allauth.account.app_settings import *
-from allauth.account.adapter import get_adapter as get_account_adapter
-import secrets
-from allauth.socialaccount.models import SocialAccount
-from allauth.socialaccount.providers.google.views import GoogleOAuth2Adapter
-from allauth.socialaccount.providers.oauth2.client import OAuth2Error
+from django import forms
+from django.contrib.auth import password_validation, authenticate
+from django.contrib.auth.forms import AuthenticationForm
+from django.core.exceptions import ValidationError, FieldDoesNotExist
+from django.utils.translation import gettext_lazy as _
+
+from .models import Account
 
 
 class AccountForm(forms.ModelForm):
@@ -41,12 +25,12 @@ class AccountForm(forms.ModelForm):
     class Meta:
         model = Account
         fields = ('first_name', 'last_name', 'email', 'phone', 'main_pass', 'confirm_pass')
-        #field_classes = {'username': UsernameField}
+        # field_classes = {'username': UsernameField}
 
-    #def __init__(self, *args, **kwargs):
-        #super().__init__(*args, **kwargs)
-        #if self._meta.model.USERNAME_FIELD in self.fields:
-            #self.fields[self._meta.model.USERNAME_FIELD].widget.attrs['autofocus'] = True
+    # def __init__(self, *args, **kwargs):
+    # super().__init__(*args, **kwargs)
+    # if self._meta.model.USERNAME_FIELD in self.fields:
+    # self.fields[self._meta.model.USERNAME_FIELD].widget.attrs['autofocus'] = True
 
     def clean_email(self):
         email = self.cleaned_data.get("email").lower()
@@ -249,4 +233,3 @@ class CustomDefaultSocialAccountAdapter(DefaultSocialAccountAdapter):
             "phone": user_field(user, "phone") or "",
         }
         return initial
-

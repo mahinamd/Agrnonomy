@@ -1,33 +1,26 @@
-import base64
-import os
 import logging
-from django.conf import settings
-from django.shortcuts import render, HttpResponse, redirect
-from django.contrib.auth import login, authenticate, logout
-from django.contrib import messages
-from .models import Account, Token,  Notification
-from .forms import (
-    AccountForm, AccountUpdateForm, validate_authentication, AccountAuthenticationForm
-)
-from django.urls.base import resolve, reverse
-from django.utils import translation
-import requests
-from django.core.mail import send_mail
-from django.core.mail import EmailMessage
-from django.contrib.sites.shortcuts import get_current_site
-from django.template.loader import render_to_string
+import os
 import threading
-from .utils import token_generator
-from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
-from django.utils.encoding import force_bytes
-from django.utils import timezone
-from djongo.cursor import *
-from allauth.socialaccount.providers.google.views import GoogleOAuth2Adapter, oauth2_login, oauth2_callback
-from allauth.socialaccount.providers.oauth2.client import OAuth2Error, OAuth2Client
-from allauth.socialaccount.templatetags.socialaccount import provider_login_url
-from django.template import RequestContext
-from allauth.socialaccount.views import SocialLogin
 
+import requests
+from django.conf import settings
+from django.contrib import messages
+from django.contrib.auth import login, logout
+from django.contrib.sites.shortcuts import get_current_site
+from django.core.mail import EmailMessage
+from django.shortcuts import render, redirect
+from django.template.loader import render_to_string
+from django.urls.base import reverse
+from django.utils import translation
+from django.utils.encoding import force_bytes
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from djongo.cursor import *
+
+from .forms import (
+    AccountForm, validate_authentication, AccountAuthenticationForm
+)
+from .models import Account, Token, Notification
+from .utils import token_generator
 
 logger = logging.getLogger(__name__)
 

@@ -1,9 +1,9 @@
 from django.db import models
-from managements.models import get_default_img_filepath, remove_temp_files
-from django.dispatch import receiver
 from django.db.models.signals import post_save, pre_delete
-from django.utils.text import slugify
+from django.dispatch import receiver
+
 from accounts.models import Account
+from managements.models import get_default_img_filepath, remove_temp_files
 
 
 # Question model
@@ -200,6 +200,7 @@ class Message(models.Model):
 
     class Meta:
         verbose_name_plural = "Messages"
+
 
 '''
 # Contact model

@@ -7,7 +7,6 @@ from urllib.parse import urlparse
 import requests
 from django.conf import settings
 from django.contrib import messages
-from django.db import models
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect
 from django.urls.base import resolve, reverse
@@ -21,7 +20,6 @@ from managements.models import Category, Subcategory
 from managements.views import cropping_image, get_categories, get_subcategories_information, get_diseases_problems
 from .forms import QuestionForm, AnswerForm, ProblemForm
 from .models import Question, Answer, Vote, Problem, Room, Message
-from allauth.account.models import EmailAddress
 
 
 def setLanguage(request, language):

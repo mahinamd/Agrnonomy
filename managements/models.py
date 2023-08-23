@@ -1,10 +1,7 @@
-import os
-
-from django.conf import settings
 from django.db import models
-from djongo import models as djongo_models
-from django.dispatch import receiver
 from django.db.models.signals import pre_delete
+from django.dispatch import receiver
+
 from accounts.models import remove_temp_files
 
 

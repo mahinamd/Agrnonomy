@@ -8,8 +8,7 @@ https://docs.djangoproject.com/en/4.1/howto/deployment/wsgi/
 """
 
 import os
-import django
-from django.conf import settings
+
 from django.core.wsgi import get_wsgi_application
 from dotenv import load_dotenv
 
