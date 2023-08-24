@@ -73,7 +73,7 @@ ACCOUNT_EMAIL_VERIFICATION = "none"
 ACCOUNT_USER_DISPLAY = "accounts.utils.custom_user_display"
 LOGIN_REDIRECT_URL = '/'
 
-SITE_ID = 2 if os.environ['PRODUCTION'] == 'Yes' else 1
+SITE_ID = 1
 
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
@@ -87,7 +87,7 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
-SOCIALACCOUNT_AUTO_SIGNUP = True
+#SOCIALACCOUNT_AUTO_SIGNUP = True
 SOCIALACCOUNT_ADAPTER = 'accounts.forms.CustomDefaultSocialAccountAdapter'
 
 MIDDLEWARE = [

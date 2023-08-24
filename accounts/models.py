@@ -124,15 +124,15 @@ class Account(AbstractBaseUser, PermissionsMixin):
                 return True
 
         # Check all the permissions of the user
-        #for perm in self.user_permissions.all():
-            #if perm.content_type.app_label == app_label:
-                #return True
+        for perm in self.user_permissions.all():
+            if perm.content_type.app_label == app_label:
+                return True
 
         # Check all the permissions of the user's groups
-        #for group in self.groups.all():
-            #for perm in group.permissions.all():
-                #if perm.content_type.app_label == app_label:
-                    #return True
+        for group in self.groups.all():
+            for perm in group.permissions.all():
+                if perm.content_type.app_label == app_label:
+                    return True
 
         # If no permissions matched, return False
         return False
